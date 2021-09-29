@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar{ /*Aca se empieza el truqueo */
+  background: rgb(34,87,122);
+  background: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 57%, rgba(128,237,153,1) 100%);
+  float:right;
+  
+}
