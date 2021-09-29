@@ -1,8 +1,9 @@
+import Login from "./Login";
 
 function App() {
   return (
     <div className="App">
-      Hola 2
+      <Login />
     </div>
   );
 }
