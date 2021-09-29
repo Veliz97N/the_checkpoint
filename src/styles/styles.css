@@ -1,19 +1,20 @@
-:root {
-  --happy_background: #22577a;
+:root { /* variables de color para los temas */
+  --happy_background: rgb(34,87,122);
+  --happy_gradient: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 50%, rgb(85, 139, 98) 100%);
   --happy_input: #c4c4c4;
   --light_background: #E6E6E6;
   --light_input: #5C7AEA;
-  --dark_background: #212020
+  --dark_background: #212020;
 }
-
+/* 'Titillium Web' */
+/* Crimson Text */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: -apple-system, BlinkMacSystemFont,'Titillium Web',  "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--light_background);
 }
 
 code {
@@ -21,26 +22,29 @@ code {
     monospace;
 }
 
-.container {
+.container-fluid {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: var(--light_background);
+  background: var(--happy_gradient);
   box-sizing: border-box;
 }
 
 .login {
   position: absolute;
   width: 40%;
-  height: 138px;
+  height: 8.625rem;
   left: 30%;
   top: 20%;
   font-style: normal;
-  font-weight: normal;
-  font-size: 96px;
+  font-weight: 400;
+  font-size: 6rem;
   text-align: center;
-  color: var(--light_input);
-  
+  color: var(--happy_input);
+}
+
+.login h6{
+  font-style: italic;
 }
 
 .username-input input {
@@ -49,10 +53,11 @@ code {
   height: 7%;
   left: 27%;
   top: 30%;
-  background: var(--light_input);
+  background: var(--happy_input);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
   border-radius: 60px;
-  padding: 10px;
+  padding: 1rem;
   color: #22577a;
   margin-top: 2%;
 }
@@ -67,25 +72,26 @@ code {
   height: 7%;
   left: 27%;
   top: 38%;
-  background: var(--light_input);
+  background: var(--happy_input);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
   border-radius: 60px;
-  padding: 10px;
+  padding: 1rem;
   color: #22577a;
   margin-top: 2%;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #fff;
+  color: var(--happy_background);
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #fff;
+  color: var(--happy_background);
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: #fff;
+  color: var(--happy_background);
 }
 
 .login-button button {
@@ -94,8 +100,8 @@ code {
   height: 7%;
   left: 27%;
   top: 47%;
-  background: #57cc99;
-  border-color: #57cc99;
+  background: #47af82;
+  border-color: #47af82;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 60px;
   margin-top: 3%;
