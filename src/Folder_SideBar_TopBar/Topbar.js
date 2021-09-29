@@ -1,30 +1,23 @@
 import React,{useContext, useState} from 'react'
+import { BsFillGridFill } from "react-icons/bs"; //Grid que acompana texto Dashboard
+import UserContext from '../UserContext/UserContext';
+import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo';
 
 const Topbar = () => {
     const nombre_empresa = "The CheckPoint"
-    const usuario={name:"Juanito", cargo: "Administrador"}
-
+    const {user, isDesplegado, toggleIsDesplegado}= useContext(UserContext); //se anade informacion global referente al usuario y a si tiene desplegado el toggle
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3 p-0 w-100">
-            <div className="container">
-                <div className="nombre_empresa">
-                    <h3 >{nombre_empresa}</h3>
-                </div>
-                <div className="usuario_global d-sm-none d-md-flex" > 
-                    <div className="datos_usuario me-4 d-flex flex-column my-auto">
-                        <div className="nombre_usuario mx-auto">
-                            {usuario.name}
-                        </div>
-                        <div className="permiso_usuario mx-auto">
-                            <small className="text-muted">{usuario.cargo}</small>
-                            
-                        </div>
-                    </div>
-                    <div className="foto_usuario">
-                        <i class="fas fa-users fa-4x"></i>
-                    </div>
-                </div>
+        <nav className="navbar navbar-expand-lg navbar-light mb-3 p-0 w-100">
+            <div className="boton mx-3 border border-primary" onClick={()=>toggleIsDesplegado(!isDesplegado)}>
+                <BsFillGridFill />
+            </div>
+            
+            <div className="container">             
+                    <div className="nombre_empresa">
+                        <h3 >{nombre_empresa}</h3>
+                    </div> 
+                {isDesplegado? <Tarjeta_Usuario_Activo user={user}/>:""}
             </div>
         </nav>
     )

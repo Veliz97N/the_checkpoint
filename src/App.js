@@ -1,11 +1,17 @@
+import Sidebar from "./Folder_SideBar_TopBar/Sidebar";
 import Topbar from "./Folder_SideBar_TopBar/Topbar";
+import {UserProvider} from '../src/UserContext/UserContext';
 
 
 function App() {
   return (
-    <div className="App">
+    <UserProvider>
+
       <Topbar></Topbar>
-    </div>
+      <Sidebar></Sidebar>
+      
+
+    </UserProvider>
   );
 }
 
