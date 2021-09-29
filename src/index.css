@@ -64,7 +64,7 @@ code {
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: row;
-  align-items: center;
+
 }
 
 .sidebar li:hover{
@@ -104,14 +104,21 @@ code {
   width: 13rem;
 }
 
-.footer_sidebar:hover{
-  border: 1px solid black;
-  border-radius: 3rem;
-  background-color: var(--happy_selected);
-}
-
 .usuario_global{
   height: 70px;
   display: flex;
   align-items: center;
 }
+
+
+/* 
+.vistas_desplegadas{
+  position: absolute;
+  top:80px;
+  left: 14rem;
+}
+.vistas_no_desplegadas{
+  position: absolute;
+  top:80px;
+  left: 4rem;
+} */
