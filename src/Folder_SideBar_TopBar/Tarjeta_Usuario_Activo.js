@@ -13,7 +13,7 @@ const Tarjeta_Usuario_Activo = (props) => {
                 </div>
             </div>
             <div className="foto_usuario">
-                <i class="fas fa-users fa-4x"></i>
+                <i class="fas fa-users fa-3x"></i>
             </div>
         </div>
     )

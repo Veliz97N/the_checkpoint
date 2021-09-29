@@ -1,5 +1,4 @@
 import React,{useContext, useState} from 'react'
-
 import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
 import { GrCatalogOption, GrCatalog } from "react-icons/gr"; //Utilizada para catalogo
 import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
@@ -11,46 +10,55 @@ import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo'; //Se importa la t
 
 const Sidebar = () => {
 
+    const activo = {
+        width: '13rem'        
+      };
+      const no_activo ={
+          width: '3.5rem',
+          overflow: 'hidden'
+      };
+
     const {user, isDesplegado}= useContext(UserContext); //se anade informacion global referente al usuario y a si tiene desplegado el toggle
     
     return (
-        <div className="sidebar">
-            
+        <div className="sidebar" style={!isDesplegado?activo:no_activo}>
             <ul className="nav-li">
 
                 <li>
                     <a href="">
-                        <AiOutlineHome />
+                        <AiOutlineHome className="iconos_menu_lateral"/>
                         <span className="texto_menu_lateral">Inicio</span>
                     </a>
                 </li>
                 <li>
                     <a href="">
-                        <GrCatalogOption />
+                        <GrCatalogOption className="iconos_menu_lateral"/>
                         <span className="texto_menu_lateral">Catalogo</span>
                     </a>
                 </li>
                 <li>
                     <a href="">
-                        <RiBankLine/>
+                        <RiBankLine className="iconos_menu_lateral"/>
                         <span className="texto_menu_lateral">Ventas</span>
                     </a>
                 </li>
                 <li>
                     <a href="">
-                        <AiOutlineLineChart/>
+                        <AiOutlineLineChart className="iconos_menu_lateral"/>
                         <span className="texto_menu_lateral">Estadisticas</span>
                     </a>
                 </li>
                 <li>
                     <a href="">
-                        <IoSettingsOutline/>
+                        <IoSettingsOutline className="iconos_menu_lateral"/>
                         <span className="texto_menu_lateral">Ajustes</span>
                     </a>
                 </li>
             </ul>
-            
-                {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+                <div className="footer_sidebar">
+                    {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+                    
+                </div>
             
         </div>
     )

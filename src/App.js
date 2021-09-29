@@ -6,10 +6,11 @@ import {UserProvider} from '../src/UserContext/UserContext';
 function App() {
   return (
     <UserProvider>
-
       <Topbar></Topbar>
-      <Sidebar></Sidebar>
-      
+      <div className="contenedor_sidebar_vistasPrograma">
+        <Sidebar></Sidebar>
+        
+      </div>
 
     </UserProvider>
   );

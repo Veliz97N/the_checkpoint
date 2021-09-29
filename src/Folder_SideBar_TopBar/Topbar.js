@@ -9,8 +9,8 @@ const Topbar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light mb-3 p-0 w-100">
-            <div className="boton mx-3 border border-primary" onClick={()=>toggleIsDesplegado(!isDesplegado)}>
-                <BsFillGridFill />
+            <div className= "boton_toggle ms-5 " onClick={()=>toggleIsDesplegado(!isDesplegado)}>
+                <BsFillGridFill className="iconos_menu_lateral" />
             </div>
             
             <div className="container">             
