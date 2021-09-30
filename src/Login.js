@@ -1,7 +1,7 @@
 function Login() {
   return (
     // contenedor principal
-    <div className="container-fluid">
+      <>
       {/* contenedor para login  */}
       <div className="login">
         <h1>Bienvenido</h1>
@@ -30,7 +30,7 @@ function Login() {
         Conectar con Google
       </button>
       </div>
-    </div>
+    </>
   );
 }
 
