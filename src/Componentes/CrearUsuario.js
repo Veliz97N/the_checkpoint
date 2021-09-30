@@ -5,7 +5,7 @@ const CreateUser = () => {
         <div className="container" id="Container">
             <div id="insertUser">Ingresar Nuevo Usuario</div>
             <div className="btnClose">❌</div>
-            <div className="container-fluid">
+
                 <div className="row" id="dataUser">
                     <div>
                         Nombre:
@@ -44,7 +44,7 @@ const CreateUser = () => {
                 <div id="btnClick">✅</div>
                 <div id="btnClick2">❌</div>
                 </div>
-            </div>
+
         </div>
     );
 }

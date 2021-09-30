@@ -2,7 +2,43 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div className="color" id="color">
+        <div className="container">
+            <div className="row">
+                <div className="col" id="cuadro1">
+                    <div id="icon1">
+                        🤑
+                    </div>
+                </div>
+                <div className="col" id="cuadro2">
+                    <div id="icon2">
+                        🛒
+                    </div>
+                </div>
+                <div className="col" id="cuadro3">
+                    <div id="icon3">
+                        📈
+                    </div>
+                </div>
+                <div className="col" id="cuadro4">
+                    <div id="icon4">
+                        🔧
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col" id="text1">Venta</div>
+                <div className="col" id="text2">Inventario</div>
+                <div className="col" id="text3">Estadisticas</div>
+                <div className="col" id="text4">Ajustes</div>
+            </div>
+        </div>
+    );
+}
+
+export default Home;
+
+/*
+<div className="color" id="color">
             <div className="cuadro1">
                 <div className="icon1">🤑</div>
                 <div className="text1">Venta</div>
@@ -20,7 +56,4 @@ const Home = () => {
                 <div className="text4">Ajustes</div>
             </div>
         </div>
-    );
-}
-
-export default Home;
+*/
