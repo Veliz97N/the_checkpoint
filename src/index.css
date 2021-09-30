@@ -4,8 +4,15 @@
   --happy_non_selected:#57CC99;
   --happy_contorno_global:#22577A;
   --happy_interior_global:#;
+  --happy_background: rgb(34,87,122);
+  --happy_gradient: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 50%, rgb(85, 139, 98) 100%);
+  --happy_input: #c4c4c4;
+  --light_background: #E6E6E6;
+  --light_input: #5C7AEA;
+  --dark_background: #212020;
   /* Fin defincion variables tema Happy */
 }
+
 
 body {
   margin: 0;
@@ -14,6 +21,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  
 }
 
 code {
@@ -22,7 +31,7 @@ code {
 }
 .navbar{
   height: 75px;
-  background-color: var(--happy_contorno_global);
+  background: var(--happy_gradient);
 }
 
 .sidebar{
@@ -30,7 +39,7 @@ code {
   top:75px;
   left: 0;
   height: 100%;
-  
+  z-index: 100;
   background-color: var(--happy_contorno_global);
 }
 
@@ -53,7 +62,6 @@ code {
 .sidebar li{
   list-style: none;
   width: 13rem;
-
   position: relative;
   height: 4rem;
   padding-top: 1.5rem;
@@ -64,7 +72,6 @@ code {
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: row;
-
 }
 
 .sidebar li:hover{
@@ -90,10 +97,12 @@ code {
   transition: all 0.2s ease;
 }
 
+
 .boton_toggle:hover{
   transform: scale(1.5);
   color: var(--happy_selected);
 }
+
 
 .footer_sidebar{
   position:fixed;
@@ -102,23 +111,20 @@ code {
   align-items: center;
   justify-content: space-around;
   width: 13rem;
+  
 }
 
-.usuario_global{
+.usuario{
   height: 70px;
   display: flex;
   align-items: center;
+  
 }
 
 
-/* 
-.vistas_desplegadas{
-  position: absolute;
-  top:80px;
-  left: 14rem;
-}
-.vistas_no_desplegadas{
-  position: absolute;
-  top:80px;
-  left: 4rem;
-} */
+
+
+
+
+
+

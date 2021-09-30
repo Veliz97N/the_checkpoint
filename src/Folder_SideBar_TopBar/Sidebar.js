@@ -26,7 +26,6 @@ const Sidebar = () => {
     return (
         <div className="sidebar" style={!isDesplegado?activo:no_activo}>
             <ul className="nav-li">
-
                 <li>
                     <a href="">
                         <AiOutlineHome className="iconos_menu_lateral"/>
@@ -58,10 +57,9 @@ const Sidebar = () => {
                     </a>
                 </li>
             </ul>
-                <div className="footer_sidebar">
-                    {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
-                </div>
-            
+            <div className="footer_sidebar" >
+                {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+            </div>
         </div>
     )
 }

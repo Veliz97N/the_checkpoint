@@ -2,11 +2,11 @@ import React, { createContext, useState } from 'react';
 
 const UserContext = createContext();
 
-const usuario = { username: "Pepapig", password: "Juanito1", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamano: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+const usuario = { username: "Juan Carlos", password: "Juanito1", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamano: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
 
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(usuario)
-    const [isDesplegado, setIsDesplegado] = useState(true)
+    const [isDesplegado, setIsDesplegado] = useState(false)
    
     const toggleIsDesplegado = (booleano) => {
         setIsDesplegado(booleano)
