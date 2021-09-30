@@ -1,35 +1,45 @@
+import React, { useState } from "react";
+import LoginForm from "./LoginForm";
+
 function Login() {
+  // usuario de prueba
+  const adminUser = {
+    username: "admin",
+    password: "admin123",
+  };
+
+  const [user, setUser] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
+
+  const login_function = (user_data) => {
+    console.log(user_data);
+
+    if (user_data.username == adminUser.username && user_data.password == adminUser.password){
+      console.log("Logged in");
+      setUser({
+        username: user_data.username,
+        password: user_data.password
+      })
+    } else {
+      console.log("Usuario o contraseña incorrecto");
+      setError("Usuario o contraseña incorrecto");
+    }
+  };
+
+  const logout = () => {
+    setUser({username: "", password: ""})
+    setError("")
+  }
+
   return (
     // contenedor principal
-      <>
-      {/* contenedor para login  */}
-      <div className="login">
-        <h1>Bienvenido</h1>
-        <h6>Por favor inicia sesión para continuar</h6>
-      </div>
-      {/* Input username */}
-      <div className="username-input">
-      <input type="text" placeholder="Usuario" name="username-input" id="username-input" />
-      </div>
-      {/* Input password */}
-      <div className="password-input">
-      <input type="text" placeholder="Contraseña" name="password-input" id="password-input" />
-      </div>
-      {/* Login button */}
-      <div className="login-button">
-      <button className="btn btn-success" type="button">
-        Iniciar sesión
-      </button>
-      </div>
-      {/* Connect facebook y google buttons */}
-      <div className="connect-buttons">
-      <button className="btn btn-primary btn-sm fb" type="button">
-        Conectar con Facebook
-      </button>
-      <button className="btn btn-warning btn-sm google" type="button">
-        Conectar con Google
-      </button>
-      </div>
+    <>
+      {/* operador ternario para renderizado */}
+      {user.username !== "" ? (
+        <>
+      <h2>welcome, {user.username}</h2>
+      <button onClick={logout}>Logout</button>
+      </>) : <LoginForm login_function={login_function} error={error}/>}
     </>
   );
 }
