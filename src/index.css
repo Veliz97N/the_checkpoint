@@ -1,3 +1,19 @@
+:root{
+  /* Definicion variables tema Happy */
+  --happy_selected: #80ED99;
+  --happy_non_selected:#57CC99;
+  --happy_contorno_global:#22577A;
+  --happy_interior_global: #38A3A5;
+  --happy_background: rgb(34,87,122);
+  --happy_gradient: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 50%, rgb(85, 139, 98) 100%);
+  --happy_input: #c4c4c4;
+  --light_background: #E6E6E6;
+  --light_input: #5C7AEA;
+  --dark_background: #212020;
+  /* Fin defincion variables tema Happy */
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +21,144 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.navbar{
+  height: 75px;
+  background: var(--happy_gradient);
+}
+
+.sidebar{
+  position: absolute;
+  top:75px;
+  left: 0;
+  height: 100%;
+  z-index: 100;
+  background-color: var(--happy_contorno_global);
+}
+
+.sidebar_logo{
+  background-color: var(--happy_non_selected);
+  font-weight: bold;
+  height: 3rem;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-li{
+  padding-left: 0rem;
+}
+
+.sidebar li{
+  list-style: none;
+  width: 13rem;
+  position: relative;
+  height: 4rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem ;
+  font-size: 1.3rem;
+  padding-left: 0.5rem;
+  background-color: var(--happy_non_selected);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar li:hover{
+  background-color: var(--happy_selected);
+  padding-left: 1rem;
+  font-weight: bold;
+  
+}
+.sidebar li a{
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar li a .texto_menu_lateral{
+  margin-left: 1.5rem;
+}
+
+.iconos_menu_lateral{
+  font-size: 1.9rem;
+}
+
+.boton_toggle{
+  transition: all 0.2s ease;
+}
+
+
+.boton_toggle:hover{
+  transform: scale(1.5);
+  color: var(--happy_selected);
+}
+
+
+.footer_sidebar{
+  position:fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 13rem;
+  
+}
+
+.usuario{
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+
+/* Vista Cateogria-Ingresar Nuevo Producto*/
+
+.ingresarNuevoProducto{
+  background: var(--happy_gradient);
+}
+
+.ingresarNuevoProducto .titulo{
+  background: var(--happy_non_selected);
+  border-radius: 25px;
+}
+
+
+
+
+
+
+
+.btn_cancelar_ingresarNuevoProducto{
+  font-size: 4rem;
+  color:red;
+  transition: all 0.4s ease;
+}
+.btn_cancelar_ingresarNuevoProducto:hover{
+  font-size: 4.5rem;
+}
+.btn_aceptar_ingresarNuevoProducto{
+  font-size: 4rem;
+  color:green;
+  transition: all 0.4s ease;
+}
+.btn_aceptar_ingresarNuevoProducto:hover{
+  font-size: 4.5rem;
+}
+
+
+
+
+
+
+
+
