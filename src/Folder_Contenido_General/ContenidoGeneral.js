@@ -1,7 +1,8 @@
 import React,{useContext, useState} from 'react'
 import Sidebar from '../Folder_SideBar_TopBar/Sidebar'
 import UserContext from '../UserContext/UserContext';
-
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import IngresarNuevoProducto from "../Vistas/Catalogo/IngresarNuevoProducto";
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado}= useContext(UserContext);
@@ -20,12 +21,23 @@ const ContenidoGeneral = () => {
       };
 
     return (
-        <div className="contenidoGeneral">
-            <Sidebar></Sidebar>
-            <div className="container-fluid" style={!isDesplegado?activo:no_activo}>
-                
-            </div> 
+      <div className="contenidoGeneral">
+        <BrowserRouter>
+          <Sidebar></Sidebar>
+          <Switch>
+            <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
+
+            <Route exact path="/Catalogo_IngresarNuevoProducto" component={IngresarNuevoProducto} />
+
+            
+            </div>
+          </Switch>
+        </BrowserRouter>
         </div>
+            
+            
+                
+
     )
 }
 

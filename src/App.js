@@ -10,7 +10,6 @@ function App() {
     <UserProvider>
       <Topbar></Topbar>
       <ContenidoGeneral/>
-        
     </UserProvider>
   );
 }

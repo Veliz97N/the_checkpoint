@@ -8,6 +8,8 @@ import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
 import UserContext from '../UserContext/UserContext';
 import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo'; //Se importa la tarjeta de usuario, de modo que si no se muestra en topbar lo hara en sidebar
 
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
 
     const activo = {
@@ -27,34 +29,35 @@ const Sidebar = () => {
         <div className="sidebar" style={!isDesplegado?activo:no_activo}>
             <ul className="nav-li">
                 <li>
-                    <a href="">
-                        <AiOutlineHome className="iconos_menu_lateral"/>
+                    <Link to="/" >
+                        <AiOutlineHome className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Inicio</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        <GrCatalogOption className="iconos_menu_lateral"/>
+                    <Link to="/Catalogo_IngresarNuevoProducto" >
+                        <GrCatalogOption className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Catalogo</span>
-                    </a>
+
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        <RiBankLine className="iconos_menu_lateral"/>
+                    <Link to="/" >
+                        <RiBankLine className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Ventas</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        <AiOutlineLineChart className="iconos_menu_lateral"/>
+                    <Link to="/" >
+                        <AiOutlineLineChart className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Estadisticas</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        <IoSettingsOutline className="iconos_menu_lateral"/>
+                    <Link to="/" >
+                        <IoSettingsOutline className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Ajustes</span>
-                    </a>
+                    </Link>
                 </li>
             </ul>
             <div className="footer_sidebar" >
