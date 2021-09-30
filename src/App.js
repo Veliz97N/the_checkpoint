@@ -7,7 +7,7 @@ import Temas from './Componentes/Temas'
 function App() {
   return (
     <div className="App">
-      
+
     </div>
   );
 }
