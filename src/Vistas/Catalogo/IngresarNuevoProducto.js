@@ -15,13 +15,32 @@ const IngresarNuevoProducto = () => {
                             
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-  
+                            <label for="exampleInputPassword1">Categoria</label>
+                            <input type="text" name="" id="" placeholder="Ingresa el nombre del producto"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Codigo de Barras</label>
+                            <input type="text" name="" id="" placeholder="Ingresa el nombre del producto"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Valor Unidad</label>
+                            <input type="text" name="" id="" placeholder="Ingresa el nombre del producto"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Stock Disponible</label>
+                            <input type="text" name="" id="" placeholder="Ingresa el nombre del producto"/>
                         </div>
                     </div>
                     <div className="col-5 border border-primary">
-                        Hola
+                        <label for="exampleInputPassword1">Ingresa Imagen </label>
+                        <input type="file" name="" id="" />
+                        <i class="fas fa-users fa-3x"></i>
                     </div>
+                </div>
+                <div className=" h5 col-12 d-flex justify-content-center border border-primary py-3">
+
+                    <button>Ingresar</button>
+                    <button>Cancelar</button>
                 </div>
             </form>
             
