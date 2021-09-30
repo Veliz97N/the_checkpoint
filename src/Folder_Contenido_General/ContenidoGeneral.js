@@ -4,7 +4,8 @@ import UserContext from '../UserContext/UserContext';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Login from '../Login';
 
-import IngresarNuevoProducto from "../Vistas/Catalogo/IngresarNuevoProducto";
+import IngresarNuevoProducto from "../Vistas/Catalogo/Ingresar_o_Modificar_NuevoProducto";
+import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado}= useContext(UserContext);
@@ -29,9 +30,9 @@ const ContenidoGeneral = () => {
         <Switch>
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
 
-            <Route exact path="/" component={} />
+        
             
-            <Route exact path="/Catalogo_IngresarNuevoProducto" component={IngresarNuevoProducto} />
+            <Route exact path="/Catalogo_PaginaPrincipal" component={Catalogo_PaginaPrincipal} />
 
 
 
