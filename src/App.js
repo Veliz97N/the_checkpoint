@@ -9,15 +9,28 @@ import Sidebar from "./Folder_SideBar_TopBar/Sidebar";
 import Topbar from "./Folder_SideBar_TopBar/Topbar";
 import UserContext, {UserProvider} from '../src/UserContext/UserContext';
 import ContenidoGeneral from "./Folder_Contenido_General/ContenidoGeneral";
+import Login from "./Login";
 
 function App() {
   
+  const [isLogged, setIsLogged] = useState(false)
+
+  const toggleIsLogged = (booleano) =>{
+    setIsLogged(booleano)
+    console.log(isLogged);
+  }
   return (
     <div className="App">
     <UserProvider>
+      <Login toggleIsLogged={toggleIsLogged}/>
+      {isLogged &&
+      <div>
       <Topbar></Topbar>
       <ContenidoGeneral/>
       <Temas />
+      </div>
+      }
+
     </UserProvider>
     </div>
   );
