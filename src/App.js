@@ -4,15 +4,27 @@ import Topbar from "./Folder_SideBar_TopBar/Topbar";
 import UserContext, {UserProvider} from '../src/UserContext/UserContext';
 import React,{useContext, useState} from 'react';
 import ContenidoGeneral from "./Folder_Contenido_General/ContenidoGeneral";
+import Login from "./Login";
 
 function App() {
   
+  const [isLogged, setIsLogged] = useState(false)
+
+  const toggleIsLogged = (booleano) =>{
+    setIsLogged(booleano)
+    console.log(isLogged);
+  }
   return (
     <div className="App">
     <UserProvider>
+      <Login toggleIsLogged={toggleIsLogged}/>
+      {isLogged &&
+      <div>
       <Topbar></Topbar>
-      
       <ContenidoGeneral/>
+      </div>
+      }
+
     </UserProvider>
     </div>
   );

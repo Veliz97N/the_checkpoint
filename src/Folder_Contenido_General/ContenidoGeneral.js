@@ -28,7 +28,7 @@ const ContenidoGeneral = () => {
         <Sidebar></Sidebar>
         <Switch>
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
-            <Route exact path="/" component={Login} />
+            {/* <Route exact path="/" component={Login} /> */}
 
             
             <Route exact path="/Catalogo_IngresarNuevoProducto" component={IngresarNuevoProducto} />

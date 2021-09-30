@@ -9,7 +9,9 @@ function LoginForm({login_function, error}) {
     }
 
   return (
-    <form action="/Inicio" onSubmit={submitHandle}>
+    <div className="container-fluid" id="login-form">
+    {/* // falta el action="" en el form */}
+    <form onSubmit={submitHandle}> 
       {/* contenedor para login  */}
       <div className="login">
         <h1>Bienvenido</h1>  
@@ -54,6 +56,7 @@ function LoginForm({login_function, error}) {
         </button>
       </div>
     </form>
+    </div>
   );
 }
 
