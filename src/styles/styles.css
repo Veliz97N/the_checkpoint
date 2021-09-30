@@ -152,7 +152,7 @@ code {
 
 .container-fluid {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: var(--happy_gradient);
   box-sizing: border-box;
@@ -263,172 +263,136 @@ code {
 }
 
 /* Parte Bayron */
-.cuadro1{
-  position: absolute;
+#cuadro1{
   width: 170px;
   height: 170px;
-  left: 300px;
-  top: 100px;
+  margin-top: 30px;
+  margin-left: 15px;
   background: #80ED99;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-.cuadro2{
-  position: absolute;
+#cuadro2{
   width: 170px;
   height: 170px;
-  left: 520px;
-  top: 100px;
+  margin-left: 15px;
+  margin-top: 30px;
   background: #80ED99;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-.cuadro3{
-  position: absolute;
+#cuadro3{
   width: 170px;
   height: 170px;
-  left: 740px;
-  top: 100px;
+  margin-left: 15px;
+  margin-top: 30px;
   background: #80ED99;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-.cuadro4{
-  position: absolute;
+#cuadro4{
   width: 170px;
   height: 170px;
-  left: 960px;
-  top: 100px;
+  margin-left: 15px;
+  margin-top: 30px;
   background: #80ED99;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-.icon1{
-  position: absolute;
+#icon1{
   width: 172px;
   height: 129px;
-  left: 50px;
-  top: -35px;
+  margin-left: 40px;
+  margin-top: 15px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 52px;
   line-height: 84px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.icon2{
-  position: absolute;
+#icon2{
   width: 172px;
   height: 129px;
-  left: 50px;
-  top: -35px;
+  margin-left: 40px;
+  margin-top: 15px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 52px;
   line-height: 84px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.icon3{
-  position: absolute;
+#icon3{
   width: 172px;
   height: 129px;
-  left: 50px;
-  top: -35px;
+  margin-left: 40px;
+  margin-top: 15px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 52px;
   line-height: 84px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.icon4{
-  position: absolute;
+#icon4{
   width: 172px;
   height: 129px;
-  left: 50px;
-  top: -35px;
+  margin-left: 40px;
+  margin-top: 15px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 52px;
   line-height: 84px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.text1{
-  position: absolute;
+#text1{
   width: 100px;
   height: 100px;
-  left: 50px;
-  top: 30px;
+  margin-left: 40px;
+  margin-top: -35px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
   line-height: 30px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.text2{
-  position: absolute;
+#text2{
   width: 100px;
   height: 100px;
-  left: 30px;
-  top: 30px;
+  margin-left: 15px;
+  margin-top: -35px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
   line-height: 30px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.text3{
-  position: absolute;
+#text3{
   width: 100px;
   height: 100px;
-  left: 17px;
-  top: 30px;
+  margin-left: 7px;
+  margin-top: -35px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
   line-height: 30px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
-.text4{
-  position: absolute;
+#text4{
   width: 100px;
   height: 100px;
-  left: 45px;
-  top: 30px;
+  margin-left: 30px;
+  margin-top: -35px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
   line-height: 30px;
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
   color: #000000;
 }
 .Themes{
@@ -508,8 +472,8 @@ code {
   position: absolute;
   width: 300px;
   height: 50px;
-  left: 527px;
-  top: 70px;
+  left: 627px;
+  top: 10px;
   background: #80ED99;
   border-radius: 60px;
   display: flex;
@@ -544,16 +508,16 @@ code {
   position: absolute;
   width: 200px;
   height: 200px;
-  left: 750px;
-  top: 265px;
+  left: 850px;
+  top: 210px;
   background: silver;
   border-radius: 30px;
   border: 2px solid black;
 }
 .textImage{
   position: absolute;
-  left: 650px;
-  top: 170px;
+  left: 750px;
+  top: 130px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;

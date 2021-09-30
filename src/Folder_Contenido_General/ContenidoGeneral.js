@@ -1,7 +1,7 @@
 import React,{useContext, useState} from 'react'
 import Sidebar from '../Folder_SideBar_TopBar/Sidebar'
 import UserContext from '../UserContext/UserContext';
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from '../Login';
 import Inicio from '../Componentes/Inicio';
 import CreateUser from '../Componentes/CrearUsuario';
