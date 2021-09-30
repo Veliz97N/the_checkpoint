@@ -9,11 +9,11 @@ function Login() {
       </div>
       {/* Input username */}
       <div className="username-input">
-      <input type="text" placeholder="Usuario" name="" id="" />
+      <input type="text" placeholder="Usuario" name="username-input" id="username-input" />
       </div>
       {/* Input password */}
       <div className="password-input">
-      <input type="text" placeholder="Contraseña" name="" id="" />
+      <input type="text" placeholder="Contraseña" name="password-input" id="password-input" />
       </div>
       {/* Login button */}
       <div className="login-button">
