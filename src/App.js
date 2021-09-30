@@ -2,7 +2,7 @@ import React,{useContext, useState} from 'react';
 
 import Inicio from './Componentes/Inicio';
 import CreateUser from './Componentes/CrearUsuario';
-import Temas from './Componentes/Temas'
+import Temas from './Componentes/Temas';
 
 
 import Sidebar from "./Folder_SideBar_TopBar/Sidebar";
