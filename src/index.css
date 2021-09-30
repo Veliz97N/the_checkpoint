@@ -3,7 +3,7 @@
   --happy_selected: #80ED99;
   --happy_non_selected:#57CC99;
   --happy_contorno_global:#22577A;
-  --happy_interior_global:#;
+  --happy_interior_global: #38A3A5;
   --happy_background: rgb(34,87,122);
   --happy_gradient: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 50%, rgb(85, 139, 98) 100%);
   --happy_input: #c4c4c4;
@@ -118,7 +118,41 @@ code {
   height: 70px;
   display: flex;
   align-items: center;
-  
+}
+
+
+/* Vista Cateogria-Ingresar Nuevo Producto*/
+
+.ingresarNuevoProducto{
+  background: var(--happy_gradient);
+}
+
+.ingresarNuevoProducto .titulo{
+  background: var(--happy_non_selected);
+  border-radius: 25px;
+}
+
+
+
+
+
+
+
+.btn_cancelar_ingresarNuevoProducto{
+  font-size: 4rem;
+  color:red;
+  transition: all 0.4s ease;
+}
+.btn_cancelar_ingresarNuevoProducto:hover{
+  font-size: 4.5rem;
+}
+.btn_aceptar_ingresarNuevoProducto{
+  font-size: 4rem;
+  color:green;
+  transition: all 0.4s ease;
+}
+.btn_aceptar_ingresarNuevoProducto:hover{
+  font-size: 4.5rem;
 }
 
 
