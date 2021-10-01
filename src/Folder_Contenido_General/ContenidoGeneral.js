@@ -37,7 +37,7 @@ const ContenidoGeneral = () => {
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
             {/* <Route exact path="/" component={Login} /> */}
 
-            <Route exact path="/"component={Inicio}/>
+            <Route exact path="/Inicio"component={Inicio}/>
             <Route exact path="/Catalogo_PaginaPrincipal"component={Catalogo_PaginaPrincipal}/>
             <Route exact path="/Catalogo_IngresarNuevoProducto" > <IngresarNuevoProducto/> </Route>
             <Route exact path="/Catalogo_ModificarProducto" > <ModificarProducto/> </Route>

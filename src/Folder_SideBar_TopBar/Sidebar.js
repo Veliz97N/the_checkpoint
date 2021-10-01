@@ -29,7 +29,7 @@ const Sidebar = () => {
         <div className="sidebar" style={!isDesplegado?activo:no_activo}>
             <ul className="nav-li">
                 <li>
-                    <Link to="/" >
+                    <Link to="/Inicio" >
                         <AiOutlineHome className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Inicio</span>
                     </Link>

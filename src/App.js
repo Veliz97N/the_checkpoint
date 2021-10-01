@@ -17,18 +17,17 @@ function App() {
 
   const toggleIsLogged = (booleano) =>{
     setIsLogged(booleano)
-    console.log(isLogged);
   }
   return (
     <div className="App">
     <UserProvider>
       <Login toggleIsLogged={toggleIsLogged}/>
       {isLogged &&
-      <div>
-      <Topbar></Topbar>
-      <ContenidoGeneral/>
-      <Temas />
-      </div>
+          <div>
+            <Topbar></Topbar>
+            <ContenidoGeneral />
+            <Temas />
+          </div>
       }
 
     </UserProvider>
