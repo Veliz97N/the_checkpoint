@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from "react-router-dom";
 import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
 import { GrCatalogOption, GrCatalog } from "react-icons/gr"; //Utilizada para catalogo
@@ -6,10 +6,17 @@ import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
 import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
 import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
 import Layout from '../Folder_Contenido_General/Layout';
+import { Redirect } from 'react-router-dom';
+import UserContext from '../UserContext/UserContext';
+
 
 const Home = () => {
-    return (
-        <Layout hasNavbar hasSidebar>
+    const {isLogged, toggleIsLogged} = useContext(UserContext)
+    if (!isLogged){
+        return <Redirect to="/" />
+    } else {
+        return (
+            <Layout hasNavbar hasSidebar>
         <div className="container">
             <div className="row" id="cuadros">
                 <div className="col-3" id="cuadro1">
@@ -40,6 +47,7 @@ const Home = () => {
         </div>
         </Layout>
     );
+    }
 }
 
 export default Home;

@@ -115,7 +115,7 @@ const Catalogo_PaginaPrincipal = () => {
 
                             <td colspan="4">
                                 <input type="text"
-                                    class="form-control"
+                                    className="form-control"
                                     onChange={handlesetvalor}
                                     onKeyPress={e => {
                                         if (e.key === 'Enter') { 

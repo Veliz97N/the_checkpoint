@@ -68,9 +68,9 @@ const Temas = () => {
                     <li>
                         <a className="dropdown-item" href="#">
                             <div className="style">Estilo:
-                            <i class="fas fa-bold"></i>
-                            <i class="fas fa-italic"></i>
-                            <i class="fas fa-underline"></i>
+                            <i className="fas fa-bold"></i>
+                            <i className="fas fa-italic"></i>
+                            <i className="fas fa-underline"></i>
                             </div>
                         </a>
                         <a href="#" className="btn btn-primary" id="boton">

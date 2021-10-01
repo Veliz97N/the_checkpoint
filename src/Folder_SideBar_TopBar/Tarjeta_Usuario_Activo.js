@@ -34,7 +34,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             onMouseOver={() => setIsHover(true)}
             onMouseOut={() => setIsHover(false)}>
             
-            <button class="btn dropdown-toggle d-md-flex" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn dropdown-toggle d-md-flex" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             
             <div className="datos_usuario me-4 d-flex flex-column my-auto">
                 <div className="nombre_usuario mx-auto">
@@ -48,7 +48,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             </div>
 
             <div className="foto_usuario">
-                <i class="fas fa-users fa-3x"></i>
+                <i className="fas fa-users fa-3x"></i>
                 <div>
 
                 
@@ -56,7 +56,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             </div>
 
             </button>
-            <div style={estilo_dropdownmenuNuevo} class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div style={estilo_dropdownmenuNuevo} className="dropdown-menu" aria-labelledby="dropdownMenuButton">
             
                 <Link className="dropdown-item" to="/" >
                     Cerrar Sesion

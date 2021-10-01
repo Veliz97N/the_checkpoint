@@ -19,7 +19,12 @@ const UserProvider = ({ children }) => {
         console.log(isDesplegado)
     }
 
-    const data = { user, productos, isDesplegado, toggleIsDesplegado}
+    const toggleIsLogged = (booleano) => {
+        setIsLogged(booleano)
+        console.log(isLogged);
+    }
+
+    const data = { user, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
 
     return (
         <UserContext.Provider value={data}>

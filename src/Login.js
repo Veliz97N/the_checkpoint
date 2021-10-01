@@ -9,12 +9,7 @@ function Login() {
 
   const History = useHistory()
 
-  const [isLogged, setIsLogged] = useState(false)
-  
-  const toggleIsLogged = (booleano) =>{
-    setIsLogged(booleano)
-    console.log(booleano)
-  }
+  const {isLogged, toggleIsLogged} = useContext(UserContext)
   // usuario de prueba
   const adminUser = {
     username: "admin",
@@ -34,11 +29,7 @@ function Login() {
         password: user_data.password
       })
       toggleIsLogged(true)
-      History.push("/inicio")
-
-      
-      
-      
+      History.push("/inicio")      
     } else {
       console.log("Usuario o contraseña incorrecto");
       setError("Usuario o contraseña incorrecto");
@@ -51,9 +42,6 @@ function Login() {
     setError("")
     
   }
-
-
-  
 
   return (
     <Layout >

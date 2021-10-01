@@ -31,11 +31,11 @@ const ContenidoGeneral = () => {
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
             <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
             <Route exact path="/catalogo_modificarproducto" component={ModificarProducto} />
-            {/* <Route exact path="/ventas" component={ventas} /> */}
+            {/* <Route exact path="/ventas" component={Ventas} /> */}
             <Route exact path="/usuario_crearusuario" component={CreateUser}/>
             <Route exact path="/modificarusuario" component={ModificarUsuario} /> 
             {/* <Route exact path="/estadisticas" component={Estadisticas} /> */}
-            <Route exact path="/" component={Login} /> 
+            <Route exact path="/" component={()=> <Login authorized={false} />} /> 
           </div>
         </Switch>
     </BrowserRouter>
