@@ -83,7 +83,7 @@ const Catalogo_PaginaPrincipal = () => {
 
     return (
         <div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
-            <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/Catalogo_IngresarNuevoProducto" style={botonIngresarNuevoProducto}>
+            <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    
             <div style={contenedor_tabla} className="contenedor-tabla py-5 px-3">
@@ -106,7 +106,7 @@ const Catalogo_PaginaPrincipal = () => {
                                     {
                                         Add.map((opcionBusqueda, key) => <option key={key} value={key}>{opcionBusqueda}</option>)
                                     }
-                                </select >)      
+                                </select >      
                             </td>
 
                             <td colspan="4">

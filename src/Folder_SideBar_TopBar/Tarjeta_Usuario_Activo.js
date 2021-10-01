@@ -61,10 +61,10 @@ const Tarjeta_Usuario_Activo = (props) => {
                 <Link className="dropdown-item" to="/" >
                     Cerrar Sesion
                 </Link>
-                <Link className="dropdown-item" to="/Usuario_CrearUsuario" >
+                <Link className="dropdown-item" to="/usuario_crearusuario" >
                     Crear Usuario
                 </Link>
-                <Link className="dropdown-item" to="/ModificarUsuario" >
+                <Link className="dropdown-item" to="/modificarusuario" >
                     Ver Perfil
                 </Link>
                 

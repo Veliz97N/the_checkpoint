@@ -29,7 +29,7 @@ const Sidebar = () => {
         <div className="sidebar" style={!isDesplegado ? activo : no_activo}>
             <ul className="nav-li">
                 <li>
-                    <Link to="/Inicio" >
+                    <Link to="/inicio" >
                         <AiOutlineHome className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Inicio</span>
                     </Link>
@@ -38,13 +38,13 @@ const Sidebar = () => {
 
 
                 <li>
-                    <Link to="/" >
+                    <Link to="/ventas" >
                         <RiBankLine className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Ventas</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/Catalogo_PaginaPrincipal" >
+                    <Link to="/catalogo_paginaprincipal" >
                         <GrCatalogOption className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Catalogo</span>
 
@@ -52,7 +52,7 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                    <Link to="/" >
+                    <Link to="/estadisticas" >
                         <AiOutlineLineChart className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Estadisticas</span>
                     </Link>

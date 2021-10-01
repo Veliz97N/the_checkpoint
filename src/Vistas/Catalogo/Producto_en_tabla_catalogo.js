@@ -34,7 +34,7 @@ const Producto_en_tabla_catalogo = (props) => {
             <td>{props.producto.categoria}</td>
             <td>{props.producto.valorUnidad}</td>
             <td>{props.producto.stockDisponible + " unid."} 
-                <Link to="/Catalogo_ModificarProducto" >
+                <Link to="/catalogo_modificarproducto" >
                     <AiOutlineEdit className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
                 </Link>
                 </td>

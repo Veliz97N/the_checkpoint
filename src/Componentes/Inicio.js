@@ -11,7 +11,7 @@ const Home = () => {
         <div className="container">
             <div className="row" id="cuadros">
                 <div className="col-3" id="cuadro1">
-                <Link to="/Ventas">
+                <Link to="/ventas">
                     <div className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
                     <RiBankLine className="iconos_menu_principal" />
                     </div>
@@ -19,7 +19,7 @@ const Home = () => {
                 </Link>
                 </div>
                 <div className="col-3" id="cuadro2">
-                <Link to="/Catalogo_PaginaPrincipal">
+                <Link to="/catalogo_paginaprincipal">
                     <div  className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
                     <GrCatalogOption className="iconos_menu_principal" />
                     </div>
@@ -27,7 +27,7 @@ const Home = () => {
                 </Link>
                 </div>
                 <div className="col-3" id="cuadro3">
-                <Link to='/Estadisticas'>
+                <Link to='/estadisticas'>
                     <div  className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
                     <AiOutlineLineChart className="iconos_menu_principal" />
                     </div>
