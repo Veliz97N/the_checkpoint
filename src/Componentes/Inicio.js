@@ -1,33 +1,38 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
+import { GrCatalogOption, GrCatalog } from "react-icons/gr"; //Utilizada para catalogo
+import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
+import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
+import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
 
 const Home = () => {
     return (
         <div className="container">
             <div className="row" id="cuadros">
                 <div className="col-3" id="cuadro1">
-                    <div id="icon1">
-                        🤑
+                <Link to="/Ventas">
+                    <div className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
+                    <RiBankLine className="iconos_menu_principal" />
                     </div>
-                    <div className="col" id="text1">Venta</div>
+                    <div className="col-12" id="text1">Venta</div>
+                </Link>
                 </div>
                 <div className="col-3" id="cuadro2">
-                    <div id="icon2">
-                        🛒
+                <Link to="/Catalogo_PaginaPrincipal">
+                    <div  className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
+                    <GrCatalogOption className="iconos_menu_principal" />
                     </div>
-                    <div className="col" id="text2">Inventario</div>
+                    <div className="col-12" id="text2">Catálogo</div>
+                </Link>
                 </div>
                 <div className="col-3" id="cuadro3">
-                    <div id="icon3">
-                        📈
+                <Link to='/Estadisticas'>
+                    <div  className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
+                    <AiOutlineLineChart className="iconos_menu_principal" />
                     </div>
-
-                    <div className="col" id="text3">Estadisticas</div>
-                </div>
-                <div className="col-3" id="cuadro4">
-                    <div id="icon4">
-                        🔧
-                    </div>
-                    <div className="col" id="text4">Ajustes</div>
+                    <div className="col-12" id="text3">Estadísticas</div>
+                </Link>         
                 </div>
             </div>
         </div>
