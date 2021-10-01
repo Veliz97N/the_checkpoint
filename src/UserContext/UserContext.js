@@ -3,7 +3,6 @@ import React, { createContext, useState } from 'react';
 const UserContext = createContext();
 
 const usuario = { username: "Juan Carlos", password: "Juanito1", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamano: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
-
 const productos=[{nombreProducto:"Modelo",codigodebarras:"8888888888",categoria:"Abarrotes",valorUnidad:"1100",stockDisponible:"82"},
                 {nombreProducto:"Corona",codigodebarras:"555555555555",categoria:"Abarrotes",valorUnidad:"1100",stockDisponible:"82"},
                 {nombreProducto:"Papas Fritas",codigodebarras:"444444444",categoria:"Abarrotes",valorUnidad:"1100",stockDisponible:"82"},

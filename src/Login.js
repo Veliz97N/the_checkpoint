@@ -44,7 +44,7 @@ function Login({toggleIsLogged}) {
       {/* operador ternario para renderizado */}
       {user.username !== "" ? (
         <>
-        <Topbar />
+          
       </>) : <LoginForm login_function={login_function} error={error}/>}
     </>
   );
