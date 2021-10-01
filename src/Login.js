@@ -4,7 +4,11 @@ import UserContext, {userProvider} from "./UserContext/UserContext";
 import Topbar from './Folder_SideBar_TopBar/Topbar';
 import Layout from "./Folder_Contenido_General/Layout";
 
-function Login({toggleIsLogged}) {
+function Login() {
+  const toggleIsLogged = (booleano) =>{
+    setIsLogged(booleano)
+    console.log(booleano)
+  }
   // usuario de prueba
   const adminUser = {
     username: "admin",
@@ -38,15 +42,15 @@ function Login({toggleIsLogged}) {
     setError("")
     
   }
+  const [isLogged, setIsLogged] = useState(false)
+
+  
 
   return (
     <Layout >
-
     <>
-      {/* operador ternario para renderizado */}
       {user.username !== "" ? (
-        <>
-          
+        <>         
       </>) : <LoginForm login_function={login_function} error={error}/>}
     </>
     </Layout>

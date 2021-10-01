@@ -9,14 +9,11 @@ import Login from "./Login";
 
 function App() {
   
-  const [isLogged, setIsLogged] = useState(false)
 
-  const toggleIsLogged = (booleano) =>{
-    setIsLogged(booleano)
-  }
   return (
     <div className="App">
     <UserProvider>
+      
           <div>       
             <ContenidoGeneral />
 
