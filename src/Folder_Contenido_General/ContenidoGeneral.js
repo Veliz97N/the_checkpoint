@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from '../Login';
 import Inicio from '../Componentes/Inicio';
 import CreateUser from '../Componentes/CrearUsuario';
-
+import Ventas from '../Ventas';
 import IngresarNuevoProducto from "../Vistas/Catalogo/IngresarNuevoProducto";
 import { IoLogoInstagram } from 'react-icons/io5';
 import ModificarProducto from "../Vistas/Catalogo/ModificarProducto";
@@ -41,6 +41,7 @@ const ContenidoGeneral = () => {
             <Route exact path="/Catalogo_PaginaPrincipal"component={Catalogo_PaginaPrincipal}/>
             <Route exact path="/Catalogo_IngresarNuevoProducto" > <IngresarNuevoProducto/> </Route>
             <Route exact path="/Catalogo_ModificarProducto" > <ModificarProducto/> </Route>
+            <Route exact path="/Ventas"component={Ventas}/>
 
 
           </div>

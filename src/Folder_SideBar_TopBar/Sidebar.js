@@ -42,7 +42,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/" >
+                    <Link to="/Ventas" >
                         <RiBankLine className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Ventas</span>
                     </Link>
