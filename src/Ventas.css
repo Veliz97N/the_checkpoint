@@ -1,0 +1,32 @@
+:root{
+    /* Definicion variables tema Happy */
+    --happy_selected: #80ED99;
+    --happy_non_selected:#57CC99;
+    --happy_contorno_global:#22577A;
+    --happy_interior_global: #38A3A5;
+    --happy_background: rgb(34,87,122);
+    --happy_gradient: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 50%, rgb(85, 139, 98) 100%);
+    --happy_input: #c4c4c4;
+    --light_background: #E6E6E6;
+    --light_input: #5C7AEA;
+    --dark_background: #212020;
+    /* Fin defincion variables tema Happy */
+    }
+  
+  #cajon1 {
+      background: var(--happy_gradient);
+    }
+  
+  
+    i{
+      color: white;
+    }
+  
+    
+  
+    h2, h5{
+      color: white;
+      font-family:cursive;
+    }
+  
+    
