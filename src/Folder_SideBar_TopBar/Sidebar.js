@@ -53,12 +53,7 @@ const Sidebar = () => {
                         <span className="texto_menu_lateral">Estadisticas</span>
                     </Link>
                 </li>
-                <li>
-                    <Link to="/" >
-                        <IoSettingsOutline className="iconos_menu_lateral" />
-                        <span className="texto_menu_lateral">Ajustes</span>
-                    </Link>
-                </li>
+
             </ul>
             <div className="footer_sidebar" >
                 {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
