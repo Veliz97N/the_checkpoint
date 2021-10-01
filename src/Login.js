@@ -3,8 +3,14 @@ import LoginForm from "./LoginForm";
 import UserContext, {userProvider} from "./UserContext/UserContext";
 import Topbar from './Folder_SideBar_TopBar/Topbar';
 import Layout from "./Folder_Contenido_General/Layout";
+import { useHistory } from "react-router";
 
 function Login() {
+
+  const History = useHistory()
+
+  const [isLogged, setIsLogged] = useState(false)
+  
   const toggleIsLogged = (booleano) =>{
     setIsLogged(booleano)
     console.log(booleano)
@@ -28,6 +34,9 @@ function Login() {
         password: user_data.password
       })
       toggleIsLogged(true)
+      History.push("/inicio")
+
+      
       
       
     } else {
@@ -42,7 +51,7 @@ function Login() {
     setError("")
     
   }
-  const [isLogged, setIsLogged] = useState(false)
+
 
   
 
