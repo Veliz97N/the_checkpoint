@@ -538,5 +538,43 @@ code {
 }
 
 
-
+#stadistics{
+  background: #57CC99;
+  border-radius: 60px;
+  padding-top: 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 30px;
+}
+#tabla2{
+  margin-top: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+#tabla1{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  
+}
+#table:hover{
+  background: #80ED99;
+}
+#col1{
+  margin: 5px;
+  background: #57CC99;
+}
+#col2,#titleStadistic{
+  margin: 5px;
+  background: #80ED99;
+}
+#col3{
+  background: #57CC99;
+}
 

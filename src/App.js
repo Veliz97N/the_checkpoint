@@ -3,6 +3,7 @@ import React,{useContext, useState} from 'react';
 import Inicio from './Componentes/Inicio';
 import CreateUser from './Componentes/CrearUsuario';
 import Temas from './Componentes/Temas'
+import Estadisticas from './Componentes/Estadisticas';
 
 
 import Sidebar from "./Folder_SideBar_TopBar/Sidebar";
@@ -17,7 +18,7 @@ function App() {
     <UserProvider>
       <Topbar></Topbar>
       <ContenidoGeneral/>
-      <Temas />
+      <Estadisticas />
     </UserProvider>
     </div>
   );
