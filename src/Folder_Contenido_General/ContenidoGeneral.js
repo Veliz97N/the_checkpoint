@@ -8,6 +8,9 @@ import CreateUser from '../Componentes/CrearUsuario';
 
 import IngresarNuevoProducto from "../Vistas/Catalogo/IngresarNuevoProducto";
 import { IoLogoInstagram } from 'react-icons/io5';
+import ModificarProducto from "../Vistas/Catalogo/ModificarProducto";
+
+import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado}= useContext(UserContext);
@@ -34,10 +37,10 @@ const ContenidoGeneral = () => {
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
             {/* <Route exact path="/" component={Login} /> */}
 
-            <Route exact path="/" component={Inicio} />
-            
-            <Route exact path="/Catalogo_IngresarNuevoProducto" component={IngresarNuevoProducto} />
-
+            <Route exact path="/"component={Inicio}/>
+            <Route exact path="/Catalogo_PaginaPrincipal"component={Catalogo_PaginaPrincipal}/>
+            <Route exact path="/Catalogo_IngresarNuevoProducto" > <IngresarNuevoProducto/> </Route>
+            <Route exact path="/Catalogo_ModificarProducto" > <ModificarProducto/> </Route>
 
 
           </div>

@@ -35,7 +35,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/Catalogo_IngresarNuevoProducto" >
+                    <Link to="/Catalogo_PaginaPrincipal" >
                         <GrCatalogOption className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Catalogo</span>
 

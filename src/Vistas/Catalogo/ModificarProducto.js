@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
 
-const IngresarNuevoProducto = () => {
+const ModificarProducto = () => {
     const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
     const input_ingresarNuevoProducto = {
         backgroundColor: '#57CC99',
@@ -55,7 +55,7 @@ const IngresarNuevoProducto = () => {
             <div className="row">
                 <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                     <div className="titulo col-6 py-2 d-flex justify-content-center">
-                            {titulo.nuevo}
+                            {titulo.modificar}
                     </div>
                 </div>
             </div>
@@ -112,4 +112,4 @@ const IngresarNuevoProducto = () => {
     )
 }
 
-export default IngresarNuevoProducto
+export default ModificarProducto
