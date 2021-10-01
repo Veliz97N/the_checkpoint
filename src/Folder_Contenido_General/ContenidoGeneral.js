@@ -4,7 +4,9 @@ import UserContext from '../UserContext/UserContext';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Login from '../Login';
 
-import Ingresar_o_ModificarNuevoProducto from "../Vistas/Catalogo/Ingresar_o_Modificar_NuevoProducto";
+import IngresarNuevoProducto from "../Vistas/Catalogo/IngresarNuevoProducto";
+import ModificarProducto from "../Vistas/Catalogo/ModificarProducto";
+
 import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 
 const ContenidoGeneral = () => {
@@ -31,9 +33,9 @@ const ContenidoGeneral = () => {
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
 
         
-            
-            <Route exact path="/Catalogo_PaginaPrincipal" component={Catalogo_PaginaPrincipal} />
-            <Route exact path="/Catalogo_ModificarProducto" component={Ingresar_o_ModificarNuevoProducto} />
+            <Route exact path="/Catalogo_PaginaPrincipal"component={Catalogo_PaginaPrincipal}/>
+            <Route exact path="/Catalogo_IngresarNuevoProducto" > <IngresarNuevoProducto/> </Route>
+            <Route exact path="/Catalogo_ModificarProducto" > <ModificarProducto/> </Route>
 
 
           </div>
