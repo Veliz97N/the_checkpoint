@@ -4,7 +4,7 @@ import UserContext from '../UserContext/UserContext';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Login from '../Login';
 
-import IngresarNuevoProducto from "../Vistas/Catalogo/Ingresar_o_Modificar_NuevoProducto";
+import Ingresar_o_ModificarNuevoProducto from "../Vistas/Catalogo/Ingresar_o_Modificar_NuevoProducto";
 import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 
 const ContenidoGeneral = () => {
@@ -33,7 +33,7 @@ const ContenidoGeneral = () => {
         
             
             <Route exact path="/Catalogo_PaginaPrincipal" component={Catalogo_PaginaPrincipal} />
-
+            <Route exact path="/Catalogo_ModificarProducto" component={Ingresar_o_ModificarNuevoProducto} />
 
 
           </div>
