@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
+import Layout from '../../Folder_Contenido_General/Layout';
 
 const ModificarProducto = () => {
     const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
@@ -51,6 +52,7 @@ const ModificarProducto = () => {
      }
 
     return (
+        <Layout hasNavbar hasSidebar>
         <div className="ingresarNuevoProducto">
             <div className="row">
                 <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
@@ -109,6 +111,7 @@ const ModificarProducto = () => {
                 </div>
             </form>
         </div>
+        </Layout>
     )
 }
 

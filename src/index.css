@@ -35,9 +35,7 @@ code {
 
 .sidebar{
   position: absolute;
-  top:75px;
   left: 0;
-  height: 100%;
   z-index: 100;
   background-color: var(--happy_contorno_global);
 }
@@ -154,7 +152,7 @@ code {
 .container-fluid {
   position: relative;
   width: 100%;
-  height: cal(100vh - 4.6875rem);
+  height: 100vh;
   background: var(--happy_gradient);
   box-sizing: border-box;
 }

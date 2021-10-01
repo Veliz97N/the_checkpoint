@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 
 
+import Layout from '../../Folder_Contenido_General/Layout';
+
+
 
 
 const Catalogo_PaginaPrincipal = () => {
@@ -82,6 +85,7 @@ const Catalogo_PaginaPrincipal = () => {
     
 
     return (
+        <Layout hasNavbar hasSidebar>
         <div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
             <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
@@ -128,6 +132,7 @@ const Catalogo_PaginaPrincipal = () => {
                 </table>
             </div>
         </div>
+        </Layout>
     )
 }
 

@@ -17,13 +17,10 @@ function App() {
   return (
     <div className="App">
     <UserProvider>
-      <Login toggleIsLogged={toggleIsLogged}/>
-      {isLogged &&
           <div>       
             <ContenidoGeneral />
-            <Temas />
-          </div>
-      }
+
+          </div>      
 
     </UserProvider>
     </div>

@@ -13,29 +13,25 @@ import ModificarProducto from "../Vistas/Catalogo/Modificar_NuevoProducto";
 import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 import Topbar from '../Folder_SideBar_TopBar/Topbar';
 import ModificarUsuario from '../Componentes/ModificarUsuario';
+import Login from '../Login';
 
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado}= useContext(UserContext);
     const activo = {
-        position: 'absolute',
-        top: '75px',
+
         paddingLeft: '14rem',
         transition: "all ease .5s"
     };
     
   const no_activo = {
-    position: 'absolute',
-    top: '75px',
+
     paddingLeft: '6rem',
     transition: "all ease .5s"
   };
 
   return (
     <BrowserRouter>
-      <Topbar />
-      <div className="contenidoGeneral">
-      <Sidebar/>
         <Switch>
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
             <Route exact path="/inicio" component={Inicio} />
@@ -45,10 +41,9 @@ const ContenidoGeneral = () => {
             {/* <Route exact path="/ventas" component={ventas} /> */}
             <Route exact path="/usuario_crearusuario" component={CreateUser}/>
             <Route exact path="/modificarusuario" component={ModificarUsuario} /> 
-            {/* <Route exact path="/catalogo_modificarproducto" > <ModificarProducto /> </Route>  !! esta 2 veces */}
+            <Route exact path="/" component={Login} /> 
           </div>
         </Switch>
-      </div>
     </BrowserRouter>
 
 

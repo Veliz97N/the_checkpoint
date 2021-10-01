@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import LoginForm from "./LoginForm";
 import UserContext, {userProvider} from "./UserContext/UserContext";
 import Topbar from './Folder_SideBar_TopBar/Topbar';
+import Layout from "./Folder_Contenido_General/Layout";
 
 function Login({toggleIsLogged}) {
   // usuario de prueba
@@ -39,7 +40,8 @@ function Login({toggleIsLogged}) {
   }
 
   return (
-    // contenedor principal
+    <Layout >
+
     <>
       {/* operador ternario para renderizado */}
       {user.username !== "" ? (
@@ -47,6 +49,7 @@ function Login({toggleIsLogged}) {
           
       </>) : <LoginForm login_function={login_function} error={error}/>}
     </>
+    </Layout>
   );
 }
 

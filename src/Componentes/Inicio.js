@@ -5,9 +5,11 @@ import { GrCatalogOption, GrCatalog } from "react-icons/gr"; //Utilizada para ca
 import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
 import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
 import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
+import Layout from '../Folder_Contenido_General/Layout';
 
 const Home = () => {
     return (
+        <Layout hasNavbar hasSidebar>
         <div className="container">
             <div className="row" id="cuadros">
                 <div className="col-3" id="cuadro1">
@@ -36,6 +38,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+        </Layout>
     );
 }
 

@@ -1,10 +1,12 @@
 import React from 'react';
+import Layout from '../Folder_Contenido_General/Layout';
 
 const ModificarUsuario = () => {
     return (
-        <div className="container" id="Container">
-            <div id="insertUser">Ingresar Nuevo Usuario</div>
-            <div className="btnClose">❌</div>
+        <Layout hasNavbar>
+            <div className="container" id="Container">
+                <div id="insertUser">Ingresar Nuevo Usuario</div>
+                <div className="btnClose">❌</div>
 
                 <div className="row" id="dataUser">
                     <div>
@@ -34,18 +36,19 @@ const ModificarUsuario = () => {
                 </div>
 
                 <div className="textImage">
-                        Adjuntar Imagen Usuario:
+                    Adjuntar Imagen Usuario:
                     <div className="input-group mb-3">
-                        <input type="file" className="form-control"/>
+                        <input type="file" className="form-control" />
                     </div>
                 </div>
                 <div className="ImageProfile"></div>
                 <div className="botones">
-                <div id="btnClick">✅</div>
-                <div id="btnClick2">❌</div>
+                    <div id="btnClick">✅</div>
+                    <div id="btnClick2">❌</div>
                 </div>
 
-        </div>
+            </div>
+        </Layout>
     );
 }
 
