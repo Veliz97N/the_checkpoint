@@ -6,6 +6,9 @@ import UserContext from '../../UserContext/UserContext';
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 
+
+
+
 const Catalogo_PaginaPrincipal = () => {
     const {productos}= useContext(UserContext);
     const noactivopapi ={

@@ -21,7 +21,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: blue;
 }
 
 code {
@@ -267,7 +266,5 @@ code {
   text-decoration: none;
   color: black;
 }
-.IoAddCircleOutline{
-  font-size: 2rem;
-}
+
 

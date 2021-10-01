@@ -26,12 +26,21 @@ const Sidebar = () => {
     const {user, isDesplegado}= useContext(UserContext); //se anade informacion global referente al usuario y a si tiene desplegado el toggle
     
     return (
-        <div className="sidebar" style={!isDesplegado?activo:no_activo}>
+        <div className="sidebar" style={!isDesplegado ? activo : no_activo}>
             <ul className="nav-li">
                 <li>
                     <Link to="/Inicio" >
                         <AiOutlineHome className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Inicio</span>
+                    </Link>
+                </li>
+
+
+
+                <li>
+                    <Link to="/" >
+                        <RiBankLine className="iconos_menu_lateral" />
+                        <span className="texto_menu_lateral">Ventas</span>
                     </Link>
                 </li>
                 <li>
@@ -41,12 +50,7 @@ const Sidebar = () => {
 
                     </Link>
                 </li>
-                <li>
-                    <Link to="/" >
-                        <RiBankLine className="iconos_menu_lateral" />
-                        <span className="texto_menu_lateral">Ventas</span>
-                    </Link>
-                </li>
+
                 <li>
                     <Link to="/" >
                         <AiOutlineLineChart className="iconos_menu_lateral" />
