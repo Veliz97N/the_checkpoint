@@ -34,7 +34,7 @@ const Catalogo_PaginaPrincipal = () => {
       }
     return (
         <div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
-            <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/Catalogo_ModificarProducto" style={botonIngresarNuevoProducto}>
+            <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/Catalogo_IngresarNuevoProducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    
             
