@@ -3,9 +3,12 @@ import Layout from '../Folder_Contenido_General/Layout';
 
 const ModificarUsuario = () => {
     return (
-        <Layout hasNavbar>
+        <Layout hasNavbar hasSidebar>
             <div className="container" id="Container">
-                <div id="insertUser">Ingresar Nuevo Usuario</div>
+            <div className="col-12 d-flex justify-content-center">
+                    <div id="insertUser">Modificar Usuario</div>
+
+            </div>
                 <div className="btnClose">❌</div>
 
                 <div className="row" id="dataUser">
