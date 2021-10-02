@@ -447,5 +447,13 @@ code {
 }
 
 
+/*Style Gonzalo*/
+
+#cajaVentas {
+  background: var(--happy_gradient);
+  
+}
+
+
 
 

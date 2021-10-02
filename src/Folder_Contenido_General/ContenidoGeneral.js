@@ -8,6 +8,7 @@ import ModificarProducto from "../Vistas/Catalogo/Modificar_NuevoProducto";
 import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 import ModificarUsuario from '../Componentes/ModificarUsuario';
 import Login from '../Login';
+import Ventas from '../Ventas';
 
 
 const ContenidoGeneral = () => {
@@ -27,11 +28,20 @@ const ContenidoGeneral = () => {
     <BrowserRouter>
         <Switch>
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
+            {/* <Route exact path="/" component={Login} /> */}
+
+            {/*<Route exact path="/Inicio"component={Inicio}/>
+            <Route exact path="/Catalogo_PaginaPrincipal"component={Catalogo_PaginaPrincipal}/>
+            <Route exact path="/Catalogo_IngresarNuevoProducto" > <IngresarNuevoProducto/> </Route>
+            <Route exact path="/Catalogo_ModificarProducto" > <ModificarProducto/> </Route>
+  <Route exact path="/Ventas"component={Ventas}/>*/}
+
+
             <Route exact path="/inicio" component={Inicio} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
             <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
             <Route exact path="/catalogo_modificarproducto" component={ModificarProducto} />
-            {/* <Route exact path="/ventas" component={Ventas} /> */}
+            <Route exact path="/ventas" component={Ventas} />
             <Route exact path="/usuario_crearusuario" component={CreateUser}/>
             <Route exact path="/modificarusuario" component={ModificarUsuario} /> 
             {/* <Route exact path="/estadisticas" component={Estadisticas} /> */}
