@@ -1,177 +1,161 @@
 import './styles/styles.css';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Layout from './Folder_Contenido_General/Layout';
-
-
+import UserContext from './UserContext/UserContext'
+import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
+import { GiConfirmed } from "react-icons/gi";
 const Ventas = () => {
+    const { productos } = useContext(UserContext);
+    const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0")
+    const handleAddrTypeChange = (e) => {
+        setIndiceBuscarElemento(e.target.value)
+        
+    }
+    const noactivopapi = {
+        background: "#57CC99",
+        transition: "all 0.5s ease;",
+    }
+    const [addrtype, setAddrtype] = useState(["Buscar por Nombre", "Buscar por Categoria", "Buscar por Codigo de Barras"])
+    const Add = addrtype.map(Add => Add
+    )
+    const handlesetvalor = (e) => {
+        setValor(e.target.value)
+       
+    }
+    
+    const funcion_filtrar_busqueda_producto = (tipoBusqueda, valorBusqueda) => {
+        console.log(valorBusqueda)
+        if(tipoBusqueda==="0" &&valorBusqueda!==""){
+            
+            const productoFiltrados = productos.filter(producto => producto.nombreProducto.includes(valorBusqueda))
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        else if(tipoBusqueda==="1" &&valorBusqueda!==""){
+            
+            const productoFiltrados = productos.filter(producto => producto.categoria.includes(valorBusqueda))
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        else if ( tipoBusqueda==="2" &&valorBusqueda!==""){
+            
+            const productoFiltrados = productos.filter(producto => producto.codigodebarras.includes(valorBusqueda))
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        else if(valorBusqueda==="" || listaProductosFiltrado.length === 0 ){ //Si el valor de busqueda es ''
+            const productoFiltrados = []
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        //Me falta saber si la lista tiene un largo 0 
+    } 
+    const [listaProductosFiltrado, setListaProductosFiltrado] = useState([])
+    const [valor, setValor] = useState("")
 
-    /*const [vuelto, setVuelto] = useState({});*/
-    const [total, setTotal] = useState({
-        valortotal: [],
-        valorefectivo: [],
-
-    })
-
-    const Capturar = (event) => {
-        setTotal({
-            ...total,
-            [event.target.name]: event.target.value
-        })
+    const contenedorfotografia={
+        width: '250px',
+        height:'250px',
     }
 
-    /*const Tecla = e => {
-        if (e.keyCode === 13 && e.target.value !== "") {
-            function vuelto([valorefectivo],[valortotal]){
-                return([valorefectivo]+[valortotal])}
-        }
-    };*/
-
-    const Vuelto = (e) => {
-        if (e.value.name !== "") {
-            return ([total.valorefectivo] + [total.valortotal]);
-
-        }
+    const imagen_Ingresar_Modificar_Producto={
+        borderRadius: '50%',
+        width: '100%',
+        height:'100%',
+        objectFit: 'contain',
     }
-
-
-
     return (
         <Layout hasNavbar hasSidebar>
-            <div className="contenedor_ventas">
-                <div class="row">
-                    <div class="col-4">
-                        <div>
-                            <h2 className="titulo1Ventas">
-                                Informacion de Venta
-                            </h2>
-                            <h5 className="titulo2Ventas mt-3">
-                                Busqueda de prodcuto
-                            </h5>
-                        </div>
-                        <div className="row my-3 px-3 py-2">
-                            <div className="input-group my-3" id="input1">
-                                <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Nombre</span>
-                                <input type="text" className="form-control me-2 rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
-                            <div className="input-group my-3">
-                                <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Categoria</span>
-                                <input type="text" className="form-control rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
-                            <div className="input-group my-3">
-                                <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Codigo</span>
-                                <input type="text" className="form-control rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
-                            <div className="input-group my-5">
-                                <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Vendedor</span>
-                                <input type="text" className="form-control rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
-                            <div className="input-group my-3">
-                                <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Cantidad</span>
-                                <input type="text" className="form-control rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
-                            <div className="input-group my-3">
-                                <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Precio</span>
-                                <input type="text" className="form-control rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
-                        </div>
-
-                        <div className="col-12 mx-5 mb-5">
-                            <button type="button" class="btn btn-secondary rounded-pill mx-3"><i class="fas fa-check"></i></button>
-                            <button type="button" class="btn btn-secondary rounded-pill mx-2"><i class="fas fa-times"></i></button>
-                            <button type="button" class="btn btn-secondary rounded-pill mx-3"><i class="fas fa-ban"></i></button>
-                        </div>
-
-
-
-                    </div>
-
-                    <div class="col-8">
-                        <div className="row mt-4 px-4">
-                            <div className="col">
-
-                                <div className="card mx-auto" style={{ width: "10rem" }}>
-                                    <img src="https://m.media-amazon.com/images/I/81TLFU5Yj6L._SL1500_.jpg" className="card-img-top" alt="..."></img>
-                                </div>
-
-                            </div>
-
-                            <div className="col">
-                                <div class="row">
-                                    <div class="col-2 border border-white">Id</div>
-                                    <div class="col-10 border border-white">Nombre Producto</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-2 border border-white">Id</div>
-                                    <div class="col-10 border border-white">Nombre Producto</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-2 border border-white">Id</div>
-                                    <div class="col-10 border border-white">Nombre Producto</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-2 border border-white">Id</div>
-                                    <div class="col-10 border border-white">Nombre Producto</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mt-5 px-3">
-                            <div className="row mt-5">
-                                <div className="col mt-5">
-                                    <select className="form-select mt-5 rounded-pill" aria-label="Default select example">
-                                        <option selected>Metodo de Pago</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                                <div className="col mt-5">
-                                    <div className="input-group mt-5">
-                                        <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Efectivo</span>
-                                        <input
-                                            type="text"
-                                            onChange={Capturar}
-
-                                            name="valorefectivo"
-                                            className="form-control rounded-pill"
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-default"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                                <div className="col mt-5">
-                                    <div className="input-group my-3">
-                                        <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Total</span>
-                                        <input
-                                            type="text"
-                                            onChange={Capturar}
-                                            name="valortotal"
-                                            className="form-control rounded-pill"
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-default"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col mt-5">
-                                    <div className="input-group my-3">
-                                        <span className="input-group-text rounded-pill" type="search" placeholder="Search" id="inputGroup-sizing-default">Vuelto</span>
-                                        <input
-                                            type="text"
-                                            value={Vuelto}
-                                            className="form-control rounded-pill"
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-default"
-                                        />
-                                    </div>
-
-                                </div>
-                            </div>
+            <div className="Ventana_Ventas">
+                <div className="row">
+                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
+                        <div className="titulo col-6 py-2 d-flex justify-content-center">
+                            Nueva Venta
                         </div>
                     </div>
                 </div>
-
-            </div >
+                <div className="row">
+                     <div className="col-6 border border-primary"> {/*//ACA SE CREA LA PRIMERA COLUMNA DE LA IZQUIERDA  */}
+                        <div className='d-flex Contenedor_Buscar_Elemento_A_Vender mb-2'>
+                            < select
+                                onChange={e => handleAddrTypeChange(e)}
+                                className="browser-default custom-select" >
+                                {
+                                    Add.map((opcionBusqueda, key) => <option key={key} value={key}>{opcionBusqueda}</option>)
+                                }
+                            </select >
+                            <input type="text"
+                                className="form-control"
+                                onChange={handlesetvalor}
+                                onKeyPress={e => {
+                                    if (e.key === 'Enter') {
+                                        funcion_filtrar_busqueda_producto(indiceBuscarElemento, valor);
+                                    }
+                                }} />
+                        </div>
+                        <div className="Cantidad_Producto_A_Vender d-flex mb-2">
+                            <label className="col-md-4 col-sm-12 ps-2" for="exampleInputEmail1">Cantidad</label>
+                            <input className="col-md-8 col-sm-12" type='number' name="" id="" placeholder="Ingresa la cantidad" />
+                        </div>
+                        <fieldset disabled>
+                            <div className="Precio_Producto_A_Vender d-flex">
+                                <label className="col-md-4 col-sm-12 ps-2" for="exampleInputEmail1">Precio</label>
+                                <input className="col-md-8 col-sm-12" type='text' name="" id="" placeholder="Precio Final Producto" />
+                            </div>
+                        </fieldset>
+                        <div className="contenedor_fotografia_producto_a_vender justify-content-center d-md-flex d-sm-none my-3 ">
+                            <div style={contenedorfotografia} >
+                                <img style={imagen_Ingresar_Modificar_Producto}/>
+                            </div> 
+                        </div>
+                        <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary mx-5">Anadir Producto</button>
+                            <button type="reset" class="btn btn-primary mx-5">Remover Producto</button>
+                        </div>
+                       
+                    </div>
+                    <div className="col-6 border border-primary">
+                        <div className="contenedor_tabla_productos_a_vender">
+                            <table className="table">
+                                <thead className="py-5">
+                                    <tr className="py-5" style={noactivopapi}>
+                                        <th className="py-3" scope="col">Nombre del Producto</th>
+                                        <th className="py-3" scope="col">Codigo de Barras</th>
+                                        <th className="py-3" scope="col">Categoria</th>
+                                        <th className="py-3" scope="col">Cantidad</th>
+                                        <th className="py-3" scope="col">Valor</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                         <div class="form-group Metodo_Pago_Venta">
+                            <div class="paymentMethod p-2 d-flex justify-content-between align-items-center border rounded">
+                                <div className="contenedor_Metodo_Pago d-flex align-items-center">
+                                    <input class="form-radio-input" type="radio" id="check_paymentMethod_Mastercard" name="radio_payment" />
+                                    <i class="fab fa-cc-mastercard text-white fa-3x"></i>
+                                </div>
+                                <div className="contenedor_Metodo_Pago d-flex align-items-center">
+                                    <input class="form-radio-input ml-3" type="radio" id="check_paymentMethod_Visa" name="radio_payment" />
+                                    <i class="fab fa-cc-visa text-white fa-3x"></i>
+                                </div>
+                                <div className="contenedor_Metodo_Pago d-flex align-items-center">
+                                    <input class="form-radio-input ml-3" type="radio" id="check_paymentMethod" name="radio_payment" />
+                                    <i class="fab fa-cc-diners-club fa-3x text-white"></i>
+                                </div>
+                                <div className="contenedor_Metodo_Pago d-flex align-items-center">
+                                    <input class="form-radio-input ml-3 " type="radio" id="check_paymentMethod_express" name="radio_payment" />
+                                    <i class="fab fa-cc-amex fa-3x text-white mr-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                         <div className="col-12 d-flex justify-content-center botonera_Completar_O_Cancelar_Venta">
+                            <div className="ok mx-3">
+                                <GiConfirmed className="btn_aceptar_ingresarNuevoProducto" />
+                            </div>
+                            <div className="cancel mx-3">
+                                <AiOutlineDelete className="btn_cancelar_ingresarNuevoProducto" />
+                            </div>
+                        </div>
+                         
+                    </div>
+                </div>
+            </div>
         </Layout>
     );
 

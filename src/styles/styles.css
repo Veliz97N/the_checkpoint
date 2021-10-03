@@ -414,13 +414,13 @@ code {
 }
 .ImageProfile{
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   left: 850px;
   top: 210px;
-  background: silver;
-  border-radius: 30px;
-  border: 2px solid black;
+  background: transparent;
+
+
 }
 .textImage{
   position: absolute;

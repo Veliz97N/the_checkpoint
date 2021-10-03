@@ -41,10 +41,7 @@ const IngresarNuevoProducto = () => {
     }
 
     const [fileUrl, setFileUrl] = useState(null);
-    function processImage(event){
-        const imageFile = event.target.files[0];
-        const imageUrl = URL.createObjectURL(imageFile);
-     }
+
      function processImage(event){
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
@@ -86,8 +83,8 @@ const IngresarNuevoProducto = () => {
                         </div>
                     </div>
 
-                    <div className="col-md-5 col-sm-12 mt-2 mb-5">
-                        <div className="ingresar_foto mb-5 ps-2">
+                    <div className="col-md-5 col-sm-12 mt-2 mb-2">
+                        <div className="ingresar_foto mb-1 ps-2">
                             <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Ingresa Imagen </label>
                             <input style={input_ingresarFotografia} className="ingresarArchivo" type="file" name="" id="" accept="image/*" onChange={processImage}/>
                         </div>
