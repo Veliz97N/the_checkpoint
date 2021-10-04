@@ -22,7 +22,7 @@ function Login() {
 
   const login_function = (user_data) => {
     console.log(user_data);
-    if (user_data.username == adminUser.username && user_data.password == adminUser.password){
+    if (user_data.username === adminUser.username && user_data.password === adminUser.password){
       console.log("Logged in");
       setUser({
         username: user_data.username,
