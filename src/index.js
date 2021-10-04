@@ -4,7 +4,8 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@popperjs/core/";
 import "bootstrap/dist/js/bootstrap.bundle";
-import './styles/styles.css'
+import './styles/styles.css';
+import 'chart.js';
 
 
 

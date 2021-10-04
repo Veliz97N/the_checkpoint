@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from '../Login';
 import Inicio from '../Componentes/Inicio';
 import CreateUser from '../Componentes/CrearUsuario';
-import Estadisticas from '../Componentes/Estadisticas';
+import stadisticas from '../Componentes/Estadisticas';
 
 import IngresarNuevoProducto from "../Vistas/Catalogo/IngresarNuevoProducto";
 import { IoLogoInstagram } from 'react-icons/io5';
@@ -33,8 +33,9 @@ const ContenidoGeneral = () => {
         
         <Switch>
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
+            {/* <Route exact path="/" component={Login} /> */}
 
-            <Route exact path="/" component={Estadisticas} />
+            <Route exact path="/" component={stadisticas} />
             
             <Route exact path="/Catalogo_IngresarNuevoProducto" component={IngresarNuevoProducto} />
 

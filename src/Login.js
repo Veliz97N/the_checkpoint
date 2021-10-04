@@ -1,36 +1,52 @@
-function Login() {
+import React, { useState, useContext } from "react";
+import LoginForm from "./LoginForm";
+import UserContext, {userProvider} from "./UserContext/UserContext";
+import Topbar from './Folder_SideBar_TopBar/Topbar';
+
+function Login({toggleIsLogged}) {
+  // usuario de prueba
+  const adminUser = {
+    username: "admin",
+    password: "admin123",
+  };
+  
+  const [user, setUser] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
+  
+
+  const login_function = (user_data) => {
+    console.log(user_data);
+    if (user_data.username == adminUser.username && user_data.password == adminUser.password){
+      console.log("Logged in");
+      setUser({
+        username: user_data.username,
+        password: user_data.password
+      })
+      toggleIsLogged(true)
+      
+      
+    } else {
+      console.log("Usuario o contraseña incorrecto");
+      setError("Usuario o contraseña incorrecto");
+      toggleIsLogged(false)
+    }
+  };
+
+  const logout = () => {
+    setUser({username: "", password: ""})
+    setError("")
+    
+  }
+
   return (
     // contenedor principal
-    <div className="container-fluid">
-      {/* contenedor para login  */}
-      <div className="login">
-        <h1>Bienvenido</h1>
-        <h6>Por favor inicia sesión para continuar</h6>
-      </div>
-      {/* Input username */}
-      <div className="username-input">
-      <input type="text" placeholder="Usuario" name="username-input" id="username-input" />
-      </div>
-      {/* Input password */}
-      <div className="password-input">
-      <input type="text" placeholder="Contraseña" name="password-input" id="password-input" />
-      </div>
-      {/* Login button */}
-      <div className="login-button">
-      <button className="btn btn-success" type="button">
-        Iniciar sesión
-      </button>
-      </div>
-      {/* Connect facebook y google buttons */}
-      <div className="connect-buttons">
-      <button className="btn btn-primary btn-sm fb" type="button">
-        Conectar con Facebook
-      </button>
-      <button className="btn btn-warning btn-sm google" type="button">
-        Conectar con Google
-      </button>
-      </div>
-    </div>
+    <>
+      {/* operador ternario para renderizado */}
+      {user.username !== "" ? (
+        <>
+        <Topbar />
+      </>) : <LoginForm login_function={login_function} error={error}/>}
+    </>
   );
 }
 

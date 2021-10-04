@@ -3,12 +3,13 @@ import React from 'react';
 const Temas = () => {
     return (
         <div className="Themes">
-            <div className="btn-group">
+            <div className="btn-group dropstart">
                 <button
                     type="button"
                     className="btn"
                     data-bs-toggle="dropdown"
-                    aria-expanded="false"   
+                    aria-expanded="false"
+                    id="btnTheme"   
                 >
                     <div className="color-chart"></div>
                 </button>

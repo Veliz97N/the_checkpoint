@@ -1,12 +1,47 @@
 import React from 'react';
+import { Bar } from 'react-chartjs-2';
 
-const Estadisticas = () => {
+function stadisticas(){
+
+    const dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+
+    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+    const data1 = {
+        labels: dias,
+        datasets:[{
+            label: "Venta Semanal",
+            backgroundColor: '#9400D3',
+            borderWidth: 1,
+            hoverBackgroundColor: '#4B0082',
+            data: [435, 515, 651, 239, 658, 557, 758]
+        }]
+    
+    }
+   /*  const data2 = {
+        labels: meses,
+        datasets:[{
+            label: "Venta Mensual",
+            backgroundColor: '#9400D3',
+            borderWidth: 1,
+            hoverBackgroundColor: '#4B0082',
+            data2: [435, 515, 651, 239, 658, 557, 758, 651, 239, 658, 557, 758]
+        }]
+    
+    } */
+
+
+    const opciones={
+        maintainAspectRatio: false,
+        resposive: true
+    }
+    
     return (
         <div className="container">
             <div className="row">
-            <div className="col-4 d-flex justify-content-center aling-items-center" id="stadistics">
-                Estadisticas
-            </div>
+                <div className="col-4 d-flex justify-content-center aling-items-center" id="stadistics">
+                    Estadisticas
+                </div>
             </div>
             <div className="row align-items-start" id="tabla1">
                 <div className="col" id="col1">
@@ -19,19 +54,19 @@ const Estadisticas = () => {
                     <div className="d-flex justify-content-center">
                         Monto
                     </div>
-                    <div className="col d-flex justify-content-space-between">
-                        <div className="col-6">
+                    <div className="col d-flex aling-content-center" >
+                        <div className="col-6 d-flex justify-content-center">
                             Efectivo
                         </div>
-                        <div className="col-6">
+                        <div className="col-6 d-flex justify-content-center">
                             Tarjeta
                         </div>
                     </div>
                     <div className="col d-flex aling-content-center">
-                        <div className="col-6">
+                        <div className="col-6 d-flex justify-content-center">
                             Porcentaje Tarjeta
                         </div>
-                        <div className="col-6">
+                        <div className="col-6 d-flex justify-content-center">
                             Porcentaje Efectivo
                         </div>
                     </div>
@@ -41,25 +76,20 @@ const Estadisticas = () => {
                     </div>
                 </div>
                 <div className="col" id="col1">
-                    <div className="d-flex justify-content-center" id="titleStadistic">
+                    <div className=" col-6 d-flex justify-content-center" id="titleStadistic">
                         Grafico de ventas
                     </div>
-                    <div className="col d-flex aling-content-center">
-                        <div className="col-6">
-                            Ventas por dias
-                        </div>
-                        <div className="col-6">
-                            Cantidad de dias
-                        </div>
+                    <div className=" col d-flex aling-content-center" id="datas">
+                    <Bar data={data1} options={opciones} />
                     </div>
-                    <div className="d-flex justify-content-center">
-                        Inserte Grafica
-                    </div>
+                {/*     <div className=" col d-flex justify-content-center" id="titleStadistic">
+                    <Bar data={data2} options={opciones} />
+                    </div> */}
                 </div>
 
             </div>
             <div className="row align-items-start" id="tabla2">
-                <div className="col" id="col3">
+                <div className="col-6" id="col3">
                     <div className="d-flex justify-content-center" id="col2">
                         Listado de Productos Mas Vendidos
                     </div>
@@ -102,6 +132,7 @@ const Estadisticas = () => {
             </div>
         </div>
     )
+
 }
 
-export default Estadisticas;
+export default stadisticas;
