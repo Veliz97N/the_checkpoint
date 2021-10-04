@@ -1,7 +1,8 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import Layout from '../Folder_Contenido_General/Layout'
 
-function stadisticas(){
+function Estadisticas(){
 
     const dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 
@@ -37,6 +38,7 @@ function stadisticas(){
     }
     
     return (
+        <Layout hasNavbar hasSidebar>
         <div className="container">
             <div className="row">
                 <div className="col-4 d-flex justify-content-center aling-items-center" id="stadistics">
@@ -131,8 +133,9 @@ function stadisticas(){
                 </div>
             </div>
         </div>
+    </Layout>
     )
 
 }
 
-export default stadisticas;
+export default Estadisticas;

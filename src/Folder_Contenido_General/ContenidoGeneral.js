@@ -9,6 +9,7 @@ import ModificarUsuario from '../Componentes/ModificarUsuario';
 import Login from '../Login';
 import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
+import Estadisticas from '../Componentes/Estadisticas';
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado}= useContext(UserContext);
@@ -43,7 +44,7 @@ const ContenidoGeneral = () => {
             <Route exact path="/ventas" component={Ventas} />
             <Route exact path="/usuario_crearusuario" component={CrearUsuario}/>
             <Route exact path="/modificarusuario" component={ModificarUsuario} /> 
-            {/* <Route exact path="/estadisticas" component={Estadisticas} /> */}
+            <Route exact path="/estadisticas" component={Estadisticas} />
             <Route exact path="/" component={()=> <Login authorized={false} />} /> 
           </div>
         </Switch>
