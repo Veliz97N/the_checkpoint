@@ -142,7 +142,10 @@ const Ventas = () => {
         
         
     }
-
+    const [valorVentaBoleta, setValorVentaBoleta] = useState(0)
+    const funcionCalcularValorVentaBoleta=(producto)=>{
+        
+    }
     const alturaTabla={
         minHeight:'55vh',
         maxHeight:'55vh',
@@ -224,12 +227,14 @@ const Ventas = () => {
                                     </thead>
                                     <tbody>
                                         {/* ACA HAY UN ERROR, AL SER FALSE SE BORRA */}
-                                    {productoValido&&(datosProductosVendidos.map(datosproductovendido => <ProductosVendidosporBoleta producto={datosproductovendido} />))}
-                        
-                                        
+                                    {productoValido&&(datosProductosVendidos.map(datosproductovendido => 
+                                                    <ProductosVendidosporBoleta producto={datosproductovendido} />))}   
                                     </tbody>
 
                                 </table>
+                            </div>
+                            <div className="totalVenta">
+                                <p>Total Venta: {valorVentaBoleta}</p> {/*Aca necesito calcular el total de la venta  */}
                             </div>
 
                             <div class="form-group Metodo_Pago_Venta">
