@@ -7,7 +7,7 @@ import ModificarProducto from "../Vistas/Catalogo/Modificar_NuevoProducto";
 import Catalogo_PaginaPrincipal from "../Vistas/Catalogo/Catalogo_PaginaPrincipal";
 import ModificarUsuario from '../Componentes/ModificarUsuario';
 import Login from '../Login';
-import Ventas from '../Ventas';
+import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
 
 const ContenidoGeneral = () => {
