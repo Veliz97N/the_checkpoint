@@ -10,7 +10,8 @@ const Ventas = () => {
 
     //LAS VARIABLES IMPORTANTES DEL FORMULARIO SON: La lista listaProductosFiltrado, Cantidad y Precio.. Si los 3 son distintos de cero 
 
-    const { productos } = useContext(UserContext);
+    // const { productos } = useContext(UserContext);
+    const [productos,setProductos]=useState([null])
 
     const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0")
 
