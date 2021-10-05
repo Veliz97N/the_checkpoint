@@ -47,6 +47,10 @@ const CrearUsuario = () => {
         objectFit: 'contain',
     }
 
+    const overFlow = {
+        overflow:'hidden'
+    }
+
     const [fileUrl, setFileUrl] = useState(null);
 
      function processImage(event){
@@ -91,7 +95,7 @@ const CrearUsuario = () => {
                     </div>
 
                     <div className="col-md-5 col-sm-12 mt-2">
-                        <div style={overFlowAlaverga} className="ingresar_foto mb-1 ps-2">
+                        <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                             <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Imagen del Usuario </label>
                             <input style={input_ingresarFotografia}  type="file" name="" id="" accept="image/*" onChange={processImage}/>
                         </div>

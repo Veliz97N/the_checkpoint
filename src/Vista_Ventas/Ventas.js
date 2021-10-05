@@ -1,5 +1,5 @@
 import '../styles/styles.css';
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Layout from '../Folder_Contenido_General/Layout';
 import UserContext from '../UserContext/UserContext'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
@@ -136,7 +136,6 @@ const Ventas = () => {
                                     valor: valorVentaProducto}
 
             setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
-            console.log(listaProductos_A_Boleta)
             setProductoValido(true)
         }
         else if(productoValido==false){
@@ -147,7 +146,7 @@ const Ventas = () => {
         
     }
     const FuncionEliminarDatosProductosBoleta=() => {
-        setListaProductos_A_Boleta([])
+        
         setCantidad('')
         setValorVentaProducto('')
         
@@ -160,13 +159,68 @@ const Ventas = () => {
         overflowY: 'scroll'
     }
 
+    const [indiceAEliminar, setIndiceAEliminar] = useState("")
+
+    const eliminarProducto = (index) => {
+        setIndiceAEliminar(index)
+        console.log(index);
+        let nueva_Lista_A_Boleta = [...listaProductos_A_Boleta]
+        nueva_Lista_A_Boleta.splice(index,1)
+        setListaProductos_A_Boleta(nueva_Lista_A_Boleta)
+    }
+    const [totalVentaFinalizada,setTotalVentaFinalizada] = useState('')
+    
+    //ACA SE HACE DESPUES DE TI JOACO ... SE COLOCA EL VALOR DE LA VENTA, SE CAPTURA EL METODO DE PAGO ( VISA, EFECTIVO O TRANSFERENCIA)
+    // SE VALIDAN LOS BOTONES DE CONFIRMAR VENTA O CANCELAR VENTA Y EL DE CONFIRMAR DEVUELVE UN ARRAY CON LA LISTA DE PRODUCTOS FILTRADOS, EL PRECIO TOTAL
+    // Y EL METODO DE PAGO SELECCIONADO PARA ESA VENTA
+
+    const funcionCalcularTotalVenta=()=>{
+        let auxiliarTotalVenta= 0
+        for(let x = 0; x<listaProductos_A_Boleta.length; x++){
+            auxiliarTotalVenta+= listaProductos_A_Boleta[x].valor
+        }
+        setTotalVentaFinalizada(auxiliarTotalVenta)
+        console.log("El total es "+auxiliarTotalVenta)
+    }
+    
+
+
+
+    const [metodoPago, setMetodoPago] = useState(null)
+    const onChangeHandler_MetodoPago = (e) => {
+        console.log(e.target.value)
+        setMetodoPago(e.target.value)
+    }
+
+    const handler_ConfirmarVenta = () => {
+        if (listaProductos_A_Boleta.length>=1 && totalVentaFinalizada >= 0 && metodoPago !== null){
+            console.log("Entre")
+            const lista_DatosVentaFinalizada=[listaProductos_A_Boleta,totalVentaFinalizada,metodoPago]
+            console.log(lista_DatosVentaFinalizada)
+            alert("Venta Existosa")
+            //ACA HAY QUE SETEAR TODO EN CERO
+
+        }
+        else{
+            alert("Indique datos validos para la venta")
+        }
+        
+    }
+    const handler_CancelarVenta= () =>{
+        //ACA HAY QUE SETEAR TODO EN CERO
+    }
+
+    useEffect(() => {
+            console.log(listaProductos_A_Boleta)
+            funcionCalcularTotalVenta()
+    }, [listaProductos_A_Boleta])
 
     return (
         <Layout hasNavbar hasSidebar>
             <div className="Ventana_Ventas">
                 
                     <div className="row">
-                        <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
+                        <div className="h3 col-12 d-flex justify-content-center py-3 mb-3">
                             <div className="titulo col-6 py-2 d-flex justify-content-center">
                                 Nueva Venta
                             </div>
@@ -189,8 +243,8 @@ const Ventas = () => {
                                 <div className="col-8">
                                     <input type="text"
                                         className="form-control"
-                                        onChange={(e)=>funcion_filtrar_busqueda_producto(indiceBuscarElemento, e)}
-                                       />
+                                        onChange={(e) => funcion_filtrar_busqueda_producto(indiceBuscarElemento, e)}
+                                    />
                                 </div>
                             </div>
 
@@ -198,13 +252,13 @@ const Ventas = () => {
 
                                 <label className="col-md-4 col-sm-12 ps-2 me-2" for="exampleInputEmail1">Cantidad</label>
 
-                                <input className="col-md-8 col-sm-12 " type='number' name="" id="" placeholder="Ingresa la cantidad" value={cantidad} onChange={e => funcionCapturarCantidad_y_CalcularPrecio(e)} />
+                                <input className="col-md-8 col-sm-12 " type='number' name="" placeholder="Ingresa la cantidad" value={cantidad} onChange={e => funcionCapturarCantidad_y_CalcularPrecio(e)} />
                             </div>
 
                             <fieldset disabled>
                                 <div className="Precio_Producto_A_Vender d-flex">
                                     <label className="col-md-4 col-sm-12 ps-2 me-2" for="exampleInputEmail1">Precio</label>
-                                    <input className="col-md-8 col-sm-12" type='text' name="" id="" placeholder="Precio Final  Producto" value={valorVentaProducto} />
+                                    <input className="col-md-8 col-sm-12" type='text' name="" placeholder="Precio Final  Producto" value={valorVentaProducto} />
                                 </div>
                             </fieldset>
 
@@ -215,14 +269,14 @@ const Ventas = () => {
                             </div>
 
                             <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
-                                <button onClick={(e)=>FuncionValidarFormulario(e)} type="submit" class="btn btn-primary mx-5">Anadir Producto</button>
+                                <button onClick={(e) => FuncionValidarFormulario(e)} type="submit" class="btn btn-primary mx-5">Anadir Producto</button>
                                 <button type="reset" onClick={FuncionEliminarDatosProductosBoleta} class="btn btn-danger mx-5">Remover Producto</button>
                             </div>
 
                         </form>
                     </div>
 
-                        <div className="col-6 border border-primary">
+                    <div className="col-6 border border-primary">
 
                             <div className="contenedor_tabla_productos_a_vender" style={alturaTabla}>
                                 <table className="table">
@@ -236,40 +290,38 @@ const Ventas = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {/* ACA HAY UN ERROR, AL SER FALSE SE BORRA */}
-                                        {(listaProductos_A_Boleta.map(datosproductovendido => <ProductosVendidosporBoleta producto={datosproductovendido} />))}
-                                    
-                                        
+                                        {(listaProductos_A_Boleta.map((datosproductovendido, index)  => <ProductosVendidosporBoleta index={index} producto={datosproductovendido} eliminarProductoDeLaTabla={eliminarProducto}/>))}
                                     </tbody>
 
                                 </table>
                             </div>
+                            <div className="totalVenta">
+                                El total de la venta es: {totalVentaFinalizada}
+                            </div>
 
                             <div class="form-group Metodo_Pago_Venta">
-                                <div class="paymentMethod p-2 d-flex justify-content-between align-items-center border rounded">
+                                <div class="paymentMethod p-2 d-flex justify-content-between align-items-center border rounded" onChange={onChangeHandler_MetodoPago}>
+                                    
                                     <div className="contenedor_Metodo_Pago d-flex align-items-center">
-                                        <input class="form-radio-input" type="radio" id="check_paymentMethod_Mastercard" name="radio_payment" />
-                                        <i class="fab fa-cc-mastercard text-white fa-2x"></i>
-                                    </div>
-                                    <div className="contenedor_Metodo_Pago d-flex align-items-center">
-                                        <input class="form-radio-input ml-3" type="radio" id="check_paymentMethod_Visa" name="radio_payment" />
+                                        <input class="form-radio-input ml-3" type="radio" id="check_paymentMethod_Visa" name="radio_payment" value="visa" />
                                         <i class="fab fa-cc-visa text-white fa-2x"></i>
                                     </div>
                                     <div className="contenedor_Metodo_Pago d-flex align-items-center">
-                                        <input class="form-radio-input ml-3" type="radio" id="check_paymentMethod" name="radio_payment" />
-                                        <i class="fab fa-cc-diners-club fa-2x text-white"></i>
+                                        <input class="form-radio-input ml-3" type="radio" id="check_paymentMethod" name="radio_payment" value="efectivo"/>
+                                        <i class="fas fa-money-bill-wave text-white fa-2x"></i>
                                     </div>
                                     <div className="contenedor_Metodo_Pago d-flex align-items-center">
-                                        <input class="form-radio-input ml-3 " type="radio" id="check_paymentMethod_express" name="radio_payment" />
-                                        <i class="fab fa-cc-amex fa-2x text-white mr-3"></i>
+                                        <input class="form-radio-input ml-3 " type="radio" id="check_paymentMethod_express" name="radio_payment" value="transferencia"/>
+                                        <i class="fas fa-comments-dollar text-white fa-2x"></i>
                                     </div>
                                 </div>
                             </div>
+
                             <div className="col-12 d-flex justify-content-center botonera_Completar_O_Cancelar_Venta">
-                                <div className="ok mx-3">
+                                <div className="ok mx-3" onClick={handler_ConfirmarVenta}>
                                     <GiConfirmed className="btn_aceptar_ingresarNuevoProducto" />
                                 </div>
-                                <div className="cancel mx-3">
+                                <div className="cancel mx-3" onClick={handler_CancelarVenta}>
                                     <AiOutlineDelete className="btn_cancelar_ingresarNuevoProducto" />
                                 </div>
                             </div>
