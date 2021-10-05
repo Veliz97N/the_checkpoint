@@ -16,10 +16,12 @@ const CrearUsuario = () => {
         marginBottom: '1rem'
       }
 
+
+
       const input_ingresarFotografia = { //Esto no funciona papiiiii
         backgroundColor: '#57CC99',
         color: 'black',
-        fontSize: '1.3rem',
+        fontSize: '1rem',
         borderRadius: '35px',
         transition: "all ease .5s",
         transition: "all ease .5s",
@@ -28,6 +30,11 @@ const CrearUsuario = () => {
         color: "red"
         }
     }
+
+    const overFlowAlaverga = {
+        overflow:'hidden'
+    }
+    
     const contenedorfotografia={
         width: '250px',
         height:'250px',
@@ -84,9 +91,9 @@ const CrearUsuario = () => {
                     </div>
 
                     <div className="col-md-5 col-sm-12 mt-2">
-                        <div className="ingresar_foto mb-1 ps-2">
+                        <div style={overFlowAlaverga} className="ingresar_foto mb-1 ps-2">
                             <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Imagen del Usuario </label>
-                            <input style={input_ingresarFotografia} className="ingresarArchivo" type="file" name="" id="" accept="image/*" onChange={processImage}/>
+                            <input style={input_ingresarFotografia}  type="file" name="" id="" accept="image/*" onChange={processImage}/>
                         </div>
                         <div className="contenedorcontenedor justify-content-center d-md-flex d-sm-none "> 
                         {fileUrl?<div style={contenedorfotografia} > 
