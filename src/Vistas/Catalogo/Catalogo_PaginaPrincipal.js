@@ -63,12 +63,12 @@ const Catalogo_PaginaPrincipal = () => {
         console.log(valorBusqueda)
         if(tipoBusqueda==="0" &&valorBusqueda!==""){
             
-            const productoFiltrados = productos.filter(producto => producto.nombreProducto.includes(valorBusqueda))
+            const productoFiltrados = productos.filter(producto => producto.nombreProducto.toLowerCase().includes(valorBusqueda.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if(tipoBusqueda==="1" &&valorBusqueda!==""){
             
-            const productoFiltrados = productos.filter(producto => producto.categoria.includes(valorBusqueda))
+            const productoFiltrados = productos.filter(producto => producto.categoria.toLowerCase().includes(valorBusqueda.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if ( tipoBusqueda==="2" &&valorBusqueda!==""){

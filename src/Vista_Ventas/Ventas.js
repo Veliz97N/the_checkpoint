@@ -27,7 +27,7 @@ const Ventas = () => {
     )
 
     const [listaProductosFiltrado, setListaProductosFiltrado] = useState([])
-    const [valor, setValor] = useState("")
+
     
     const contenedorfotografia={
         width: '250px',
@@ -45,7 +45,7 @@ const Ventas = () => {
 
         if (valorBusqueda.target.value !== "") {
             if (tipoBusqueda === "0") {
-                const producto_A_Vender = productos.filter(producto => producto.nombreProducto == valorBusqueda.target.value)
+                const producto_A_Vender = productos.filter(producto => producto.nombreProducto.toLowerCase() == valorBusqueda.target.value.toLowerCase())
                 if(producto_A_Vender.length>=1){
                     setListaProductosFiltrado(producto_A_Vender)
                     setCantidad(1)
@@ -98,12 +98,16 @@ const Ventas = () => {
             setValorVentaProducto(valorProducto)
         }
     }
-    const [datosProductosVendidos, setDatosProductosVendidos] = useState([])
+
+    const [listaProductos_A_Boleta, setListaProductos_A_Boleta] = useState([])
+    
     const [productoValido, setProductoValido] = useState(false)
+   
     const FuncionValidarFormulario = (e) =>{
         e.preventDefault();
         
         let productoValido = false
+
         if(listaProductosFiltrado.length>=1 ){
             productoValido = true;
         }
@@ -131,8 +135,8 @@ const Ventas = () => {
                                     cantidadVendida:cantidad,
                                     valor: valorVentaProducto}
 
-            setDatosProductosVendidos([...datosProductosVendidos,productoVendido]);
-            console.log(datosProductosVendidos)
+            setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
+            console.log(listaProductos_A_Boleta)
             setProductoValido(true)
         }
         else if(productoValido==false){
@@ -142,12 +146,21 @@ const Ventas = () => {
         
         
     }
+    const FuncionEliminarDatosProductosBoleta=() => {
+        setListaProductos_A_Boleta([])
+        setCantidad('')
+        setValorVentaProducto('')
+        
 
+
+    }
     const alturaTabla={
         minHeight:'55vh',
         maxHeight:'55vh',
         overflowY: 'scroll'
     }
+
+
     return (
         <Layout hasNavbar hasSidebar>
             <div className="Ventana_Ventas">
@@ -162,7 +175,7 @@ const Ventas = () => {
                     <div className="row">
                     
                     <div className="col-6 "> {/*//ACA SE CREA LA PRIMERA COLUMNA DE LA IZQUIERDA  */}
-                        <form>
+                        <form >
                             <div className='d-flex Contenedor_Buscar_Elemento_A_Vender mb-2'>
 
                                 < select
@@ -203,7 +216,7 @@ const Ventas = () => {
 
                             <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
                                 <button onClick={(e)=>FuncionValidarFormulario(e)} type="submit" class="btn btn-primary mx-5">Anadir Producto</button>
-                                <button type="reset" class="btn btn-danger mx-5">Remover Producto</button>
+                                <button type="reset" onClick={FuncionEliminarDatosProductosBoleta} class="btn btn-danger mx-5">Remover Producto</button>
                             </div>
 
                         </form>
@@ -224,8 +237,8 @@ const Ventas = () => {
                                     </thead>
                                     <tbody>
                                         {/* ACA HAY UN ERROR, AL SER FALSE SE BORRA */}
-                                    {productoValido&&(datosProductosVendidos.map(datosproductovendido => <ProductosVendidosporBoleta producto={datosproductovendido} />))}
-                        
+                                        {(listaProductos_A_Boleta.map(datosproductovendido => <ProductosVendidosporBoleta producto={datosproductovendido} />))}
+                                    
                                         
                                     </tbody>
 
