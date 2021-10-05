@@ -147,7 +147,7 @@ const Ventas = () => {
         
     }
     const FuncionEliminarDatosProductosBoleta=() => {
-        setListaProductos_A_Boleta([])
+        
         setCantidad('')
         setValorVentaProducto('')
         
@@ -158,6 +158,16 @@ const Ventas = () => {
         minHeight:'55vh',
         maxHeight:'55vh',
         overflowY: 'scroll'
+    }
+
+    const [indiceAEliminar, setIndiceAEliminar] = useState("")
+
+    const eliminarProducto = (index) => {
+        setIndiceAEliminar(index)
+        console.log(index);
+        let nueva_Lista_A_Boleta = [...listaProductos_A_Boleta]
+        nueva_Lista_A_Boleta.splice(index,1)
+        setListaProductos_A_Boleta(nueva_Lista_A_Boleta)
     }
 
 
@@ -198,13 +208,13 @@ const Ventas = () => {
 
                                 <label className="col-md-4 col-sm-12 ps-2 me-2" for="exampleInputEmail1">Cantidad</label>
 
-                                <input className="col-md-8 col-sm-12 " type='number' name="" id="" placeholder="Ingresa la cantidad" value={cantidad} onChange={e => funcionCapturarCantidad_y_CalcularPrecio(e)} />
+                                <input className="col-md-8 col-sm-12 " type='number' name=""  placeholder="Ingresa la cantidad" value={cantidad} onChange={e => funcionCapturarCantidad_y_CalcularPrecio(e)} />
                             </div>
 
                             <fieldset disabled>
                                 <div className="Precio_Producto_A_Vender d-flex">
                                     <label className="col-md-4 col-sm-12 ps-2 me-2" for="exampleInputEmail1">Precio</label>
-                                    <input className="col-md-8 col-sm-12" type='text' name="" id="" placeholder="Precio Final  Producto" value={valorVentaProducto} />
+                                    <input className="col-md-8 col-sm-12" type='text' name=""  placeholder="Precio Final  Producto" value={valorVentaProducto} />
                                 </div>
                             </fieldset>
 
@@ -237,8 +247,8 @@ const Ventas = () => {
                                     </thead>
                                     <tbody>
                                         {/* ACA HAY UN ERROR, AL SER FALSE SE BORRA */}
-                                        {(listaProductos_A_Boleta.map(datosproductovendido => <ProductosVendidosporBoleta producto={datosproductovendido} />))}
-                                    
+                                        {(listaProductos_A_Boleta.map((datosproductovendido, index)  => <ProductosVendidosporBoleta index={index} producto={datosproductovendido} eliminarProductoDeLaTabla={eliminarProducto}/>))}
+
                                         
                                     </tbody>
 

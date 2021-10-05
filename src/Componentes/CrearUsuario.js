@@ -19,7 +19,7 @@ const CrearUsuario = () => {
       const input_ingresarFotografia = { //Esto no funciona papiiiii
         backgroundColor: '#57CC99',
         color: 'black',
-        fontSize: '1.3rem',
+        fontSize: '1rem',
         borderRadius: '35px',
         transition: "all ease .5s",
         transition: "all ease .5s",
@@ -38,6 +38,10 @@ const CrearUsuario = () => {
         width: '100%',
         height:'100%',
         objectFit: 'contain',
+    }
+
+    const overFlow = {
+        overflow:'hidden'
     }
 
     const [fileUrl, setFileUrl] = useState(null);
@@ -84,7 +88,7 @@ const CrearUsuario = () => {
                     </div>
 
                     <div className="col-md-5 col-sm-12 mt-2">
-                        <div className="ingresar_foto mb-1 ps-2">
+                        <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                             <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Imagen del Usuario </label>
                             <input style={input_ingresarFotografia} className="ingresarArchivo" type="file" name="" id="" accept="image/*" onChange={processImage}/>
                         </div>

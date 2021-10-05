@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const ProductosVendidosporBoleta = (props) => {
@@ -23,6 +23,7 @@ const ProductosVendidosporBoleta = (props) => {
         transition: "all 0.5s ease;",  
     }
     const [isShow, setIsShow] = useState(false) 
+   
     return (
         <tr onMouseOver={() => setIsShow(true)}
             onMouseLeave={() => setIsShow(false)}
@@ -33,9 +34,9 @@ const ProductosVendidosporBoleta = (props) => {
             <td>{props.producto.categoria}</td>
             <td>{props.producto.cantidadVendida}</td>
             <td>{"$ "+props.producto.valor} 
-                <Link to="/catalogo_modificarproducto" >
-                    <AiOutlineEdit className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
-                </Link>
+                <button onClick={() => props.eliminarProductoDeLaTabla(props.index)}>
+                    <AiOutlineDelete className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
+                </button>             
                 </td>
         </tr>
     )
