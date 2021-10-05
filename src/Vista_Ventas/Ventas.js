@@ -40,8 +40,11 @@ const Ventas = () => {
         height:'100%',
         objectFit: 'contain',
     }
-
+    const [valor_busqueda_producto, setValor_busqueda_producto] = useState('')
+    
     const funcion_filtrar_busqueda_producto = (tipoBusqueda, valorBusqueda) => {
+        
+        setValor_busqueda_producto(valorBusqueda.target.value)
 
         if (valorBusqueda.target.value !== "") {
             if (tipoBusqueda === "0") {
@@ -78,7 +81,6 @@ const Ventas = () => {
     } 
 
     const [valorVentaProducto, setValorVentaProducto] = useState('')
-
     const [cantidad, setCantidad] = useState('')
 
     const funcionCapturarCantidad_y_CalcularPrecio=(e)=>{
@@ -183,9 +185,6 @@ const Ventas = () => {
         console.log("El total es "+auxiliarTotalVenta)
     }
     
-
-
-
     const [metodoPago, setMetodoPago] = useState(null)
     const onChangeHandler_MetodoPago = (e) => {
         console.log(e.target.value)
@@ -198,7 +197,20 @@ const Ventas = () => {
             const lista_DatosVentaFinalizada=[listaProductos_A_Boleta,totalVentaFinalizada,metodoPago]
             console.log(lista_DatosVentaFinalizada)
             alert("Venta Existosa")
+
             //ACA HAY QUE SETEAR TODO EN CERO
+            setValor_busqueda_producto('')
+            setCantidad('')
+            setValorVentaProducto('')
+            setListaProductos_A_Boleta([])
+            setTotalVentaFinalizada('')
+            //Falta el metodo de pago
+
+
+            //ACA SE HACE EL POST EN LA BASE DE DATOS DE LA INFO OBTENIDA EN LA VENTA
+
+
+
 
         }
         else{
@@ -208,6 +220,11 @@ const Ventas = () => {
     }
     const handler_CancelarVenta= () =>{
         //ACA HAY QUE SETEAR TODO EN CERO
+        setValor_busqueda_producto('')
+        setCantidad('')
+        setValorVentaProducto('')
+        setListaProductos_A_Boleta([])
+        setTotalVentaFinalizada('')
     }
 
     useEffect(() => {
@@ -244,6 +261,7 @@ const Ventas = () => {
                                     <input type="text"
                                         className="form-control"
                                         onChange={(e) => funcion_filtrar_busqueda_producto(indiceBuscarElemento, e)}
+                                        value={valor_busqueda_producto}
                                     />
                                 </div>
                             </div>
