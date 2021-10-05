@@ -34,10 +34,10 @@ const ProductosVendidosporBoleta = (props) => {
             <td>{props.producto.categoria}</td>
             <td>{props.producto.cantidadVendida}</td>
             <td>{"$ "+props.producto.valor} 
-                <button onClick={() => props.eliminarProductoDeLaTabla(props.index)}>
-                    <AiOutlineDelete className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
+                <button className="eliminar_producto_boleta" onClick={() => props.eliminarProductoDeLaTabla(props.index)}>
+                    <AiOutlineDelete className="ms-3" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
                 </button>             
-                </td>
+            </td>
         </tr>
     )
 }

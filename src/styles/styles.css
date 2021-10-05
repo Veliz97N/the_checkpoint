@@ -274,6 +274,20 @@ code {
   color: #fff;
 }
 
+.totalVenta input, .Precio_Producto_A_Vender input{
+  background-color: #fff;
+  color: #000000;
+}
+
+.eliminar_producto_boleta{
+  visibility: hidden;
+}
+
+.eliminar_producto_boleta:hover{
+  visibility: visible;
+  border: none;
+  background: transparent;
+}
 
 #cuadros a{
   list-style: none;
