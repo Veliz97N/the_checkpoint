@@ -42,10 +42,13 @@ const ModificarUsuario = (props) => {
 
     const [fileUrl, setFileUrl] = useState(null);
 
-     function processImage(event){
+    function processImage(event){
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
         setFileUrl(imageUrl)
+     }
+     const handler_Submit = (event) => {
+        event.preventDefault()
      }
 
     return (
@@ -58,7 +61,7 @@ const ModificarUsuario = (props) => {
                     </div>
                 </div>
             </div>
-            <form>
+            <form >
                 <div className="row">
                     <div className="col-md-7 col-sm-12">
                         <div className="caja_contenedora_label_input form-group my-2 mb-4">
@@ -75,11 +78,11 @@ const ModificarUsuario = (props) => {
                         </div>
                         <div className="form-group mb-4">
                             <label style={label_ingresarNuevoUsuario} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Contraseña</label>
-                            <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu contraseña"/>
+                            <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa tu contraseña"/>
                         </div>
                         <div className="form-group mb-4">
                             <label style={label_ingresarNuevoUsuario} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Confirmar Contraseña</label>
-                            <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa nuevamente tu contraseña"/>
+                            <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa nuevamente tu contraseña"/>
                         </div>
                     </div>
 
@@ -97,14 +100,22 @@ const ModificarUsuario = (props) => {
                 </div>
 
                 <div className="row">
-                    <div className=" h5 col-12 d-flex justify-content-center py-3 ps-2">
-                        <div className="ok mx-3">
-                            <GiConfirmed className="btn_aceptar_ingresarNuevoProducto" />
+                <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                            <button
+                                onClick={e=>handler_Submit(e)}
+                                type="submit"
+                                class="btn btn-primary mx-5"
+                            >
+                                Crear Nuevo Usuario
+                            </button>
+                            <button
+                                type="reset"
+                                
+                                class="btn btn-danger mx-5"
+                            >
+                                Cancelar
+                            </button>
                         </div>
-                        <div className="cancel mx-3">
-                            <AiOutlineDelete className="btn_cancelar_ingresarNuevoProducto" />
-                        </div>
-                    </div>
                 </div>
             </form>
         </div>
