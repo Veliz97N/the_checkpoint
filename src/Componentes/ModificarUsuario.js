@@ -72,12 +72,6 @@ const ModificarUsuario = (props) => {
         visibility: 'hidden'
     }
 
-    const [nombre_nuevoUsuario, setNombre_nuevoUsuario] = useState('')
-    const [apellido_nuevoUsuario, setApellido_nuevoUsuario] = useState('')
-    const [username_nuevoUsuario, setUsername_nuevoUsuario] = useState('')
-    const [password_nuevoUsuario, setPassword_nuevoUsuario] = useState('')
-    const [confirm_password_nuevoUsuario, setConfirm_password_nuevoUsuario] = useState('')
-
     const [booleano_feliz_nombre, setBooleano_feliz_nombre] = useState(null)
     const [booleano_feliz_apellido, setBooleano_feliz_apellido] = useState(null)
     const [booleano_feliz_username, setBooleano_feliz_username] = useState(null)
