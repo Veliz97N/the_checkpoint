@@ -48,6 +48,70 @@ const IngresarNuevoProducto = () => {
         setFileUrl(imageUrl)
      }
 
+
+
+     const [nombre_nuevoProducto, setNombre_nuevoProducto] = useState('')
+     const [categoria_nuevoProducto, setCategoria_nuevoProducto] = useState('')
+     const [codigoBarras_nuevoProducto, setCodigoBarras_nuevoProducto] = useState('')
+     const [valor_nuevoProducto, setValor_nuevoProducto] = useState('')
+     const [stock_nuevoProducto, setStock_nuevoProducto] = useState('')
+ 
+     const [booleano_feliz_nombre, setBooleano_feliz_nombre]= useState(null)
+     const [booleano_feliz_apellido, setBooleano_feliz_apellido]= useState(null)
+     const [booleano_feliz_username, setBooleano_feliz_username]= useState(null)
+     const [booleano_feliz_password, setBooleano_feliz_password]= useState(null)
+     const [booleano_feliz_confirm_password,setBooleano_feliz_confirm_password]= useState(null)
+
+     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+     const FuncionValidarFormulario = (e) => {
+         e.preventDefault();
+ 
+         if(nombre_nuevoProducto !='' && nombre_nuevoProducto.length>2 ){ //Falta que solo acepte letras y no numeros
+             setBooleano_feliz_nombre(true)
+         } 
+         else{
+             setBooleano_feliz_nombre(false)
+         }
+ 
+         if(categoria_nuevoProducto!='' && categoria_nuevoProducto.length>2 ){
+             setBooleano_feliz_apellido(true)
+         }
+         else{
+             setBooleano_feliz_apellido(false)
+         }
+ 
+         if(codigoBarras_nuevoProducto != '' && codigoBarras_nuevoProducto.length>3){
+             setBooleano_feliz_username(true)
+         }
+         else{
+             setBooleano_feliz_username(false)
+         }
+ 
+         if(valor_nuevoProducto!='' &&valor_nuevoProducto.length>2) { //Falta validarla para que contenga letras, numeros y una mayuscula
+             setBooleano_feliz_password(true)
+         }
+         else{
+             setBooleano_feliz_password(false)
+             
+         }
+ 
+         if(stock_nuevoProducto!='' && stock_nuevoProducto.length>=1){
+             setBooleano_feliz_confirm_password(true)
+         }
+         else{
+             setBooleano_feliz_confirm_password(false)
+         }
+ 
+         if(booleano_feliz_nombre&&booleano_feliz_apellido&&booleano_feliz_username&&booleano_feliz_password&&booleano_feliz_confirm_password){
+             
+             console.log("LGTM = Looks Good To Me")
+             //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+             console.log("Que haga el POST dice....")
+         }
+ 
+     }
+ 
+
     return (
         <Layout hasNavbar hasSidebar>
         <div className="ingresarNuevoProducto">
@@ -63,23 +127,23 @@ const IngresarNuevoProducto = () => {
                     <div className="col-md-7 col-sm-12">
                         <div className="caja_contenedora_label_input form-group my-2 mb-4">
                             <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12 ps-2" for="exampleInputEmail1">Nombre del Producto</label>
-                            <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el nombre del producto" />
+                            <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el nombre del producto"  onChange={(e) => setNombre_nuevoProducto(e.target.value)} value={nombre_nuevoProducto}/>
                         </div>
                         <div className="form-group mb-4">
                             <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Categoria</label>
-                            <input style={input_ingresarNuevoProducto}  className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa la categoria del producto"/>
+                            <input style={input_ingresarNuevoProducto}  className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa la categoria del producto" onChange={(e) => setCategoria_nuevoProducto(e.target.value)} value={categoria_nuevoProducto}/>
                         </div>
                         <div className="form-group mb-4">
                             <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Codigo de Barras</label>
-                            <input style={input_ingresarNuevoProducto}  className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el codigo de barras del producto"/>
+                            <input style={input_ingresarNuevoProducto}  className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el codigo de barras del producto" onChange={(e) => setCodigoBarras_nuevoProducto(e.target.value)} value={codigoBarras_nuevoProducto}/>
                         </div>
                         <div className="form-group mb-4">
                             <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Valor Unidad</label>
-                            <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el valor por unidad del producto"/>
+                            <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el valor por unidad del producto" onChange={(e) => setValor_nuevoProducto(e.target.value)} value={valor_nuevoProducto}/>
                         </div>
                         <div className="form-group mb-4">
                             <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Stock Disponible</label>
-                            <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el stock disponible para el producto"/>
+                            <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el stock disponible para el producto" onChange={(e) => setStock_nuevoProducto(e.target.value)} value={stock_nuevoProducto}/>
                         </div>
                     </div>
 
@@ -97,15 +161,23 @@ const IngresarNuevoProducto = () => {
                 </div>
 
                 <div className="row">
-                    <div className=" h5 col-12 d-flex justify-content-center py-3 ps-2">
-                        <div className="ok mx-3">
-                            <GiConfirmed className="btn_aceptar_ingresarNuevoProducto" />
-                        </div>
-                        <div className="cancel mx-3">
-                            <AiOutlineDelete className="btn_cancelar_ingresarNuevoProducto" />
+                        <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                            <button
+                                onClick={(e) => FuncionValidarFormulario(e)}
+                                type="submit"
+                                class="btn btn-primary mx-5"
+                            >
+                                Crear Nuevo Usuario
+                            </button>
+                            <button
+                                type="reset"
+
+                                class="btn btn-danger mx-5"
+                            >
+                                Cancelar
+                            </button>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
         </Layout>

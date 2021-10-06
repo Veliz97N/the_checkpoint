@@ -473,7 +473,7 @@ code {
 #stadistics{
   background: #57CC99;
   border-radius: 60px;
-  font-family: Roboto;
+  font-family: 'Titillium Web';
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -481,13 +481,13 @@ code {
   margin-bottom: 20px;
 }
 #tabla2{
-  font-family: Roboto;
+  font-family: 'Titillium Web';
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
 }
 #tabla1{
-  font-family: Roboto;
+  font-family: 'Titillium Web';
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
