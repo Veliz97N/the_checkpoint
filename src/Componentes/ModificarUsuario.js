@@ -10,6 +10,17 @@ const ModificarUsuario = (props) => {
         color: 'black',
         fontSize: '1.3rem'
     };
+    const input_ingresarNuevoUsuario_Desactivado = {
+        backgroundColor: '#d8d8d8',
+        color: 'black',
+        fontSize: '1.3rem'
+    }
+    const input_ingresarNuevoUsuario_Activado = {
+        backgroundColor: '#57CC99',
+        color: 'black',
+        fontSize: '1.3rem'
+    }
+
     const label_ingresarNuevoUsuario = {
         color: 'black',
         fontSize: '1.3rem',
@@ -123,6 +134,83 @@ const ModificarUsuario = (props) => {
 
     }
 
+
+    // ACAAAAAAAAAAAAAAAAAAAA    const [nombre, setNombre] = useState()
+    // const handle_Editar_Nombre= (e) =>{
+    //     if(e.target.checked == true){
+    //         setNombre(true)
+    //     }
+    //     else{
+    //         setNombre(false)
+    //     }
+    // }
+
+
+
+
+    const [nuevoNombre, setNuevoNombre] = useState('')
+
+    const handler_EditarNombre=(e)=> {
+        const nombre = e.target.value
+        setNuevoNombre(nombre)
+        console.log(nombre)
+    }
+
+
+
+
+
+
+
+    const [apellido, setApellido] = useState()
+    const handle_Editar_Apellido= (e) =>{
+        if(e.target.checked == true){
+            setApellido(true)
+        }
+        else{
+            setApellido(false)
+        }
+    }
+
+    const [userName, setUserName] = useState()
+    const handle_Editar_Username= (e) =>{
+        if(e.target.checked == true){
+            setUserName(true)
+        }
+        else{
+            setUserName(false)
+        }
+    }
+
+    const [password, setPassword] = useState()
+    const handle_Editar_Password= (e) =>{
+        if(e.target.checked == true){
+            setPassword(true)
+        }
+        else{
+            setPassword(false)
+        }
+    }
+
+
+
+
+
+
+
+
+    const handle_Editar_ConfirmarPassword= (e) =>{
+        if(e.target.checked == true){
+            setNombre(true)
+        }
+        else{
+            setNombre(false)
+        }
+        
+    }
+
+
+
     return (
         <Layout hasNavbar hasSidebar>
             <div className="crearUsuario">
@@ -148,13 +236,14 @@ const ModificarUsuario = (props) => {
 
                                             </div>
                                             <div className="col-4">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={e=>handle_Editar_Nombre(e)}></input>
 
                                             </div>
                                         </div>
 
                                     </label>
-                                    <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu nombre" value={props.user.nombre} />
+                                    {nombre?<input disabled = {false} style={input_ingresarNuevoUsuario_Activado} className="       col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu nombre" onChange={e=> handler_EditarNombre(e)} value={nuevoNombre}   />
+                                            :<input disabled = {true} style={input_ingresarNuevoUsuario_Desactivado} className="       col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu nombre" value={props.user.nombre} />  }
                                 </div>
                                 {booleano_feliz_nombre == false ? <div style={visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>
                                     : <div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>}
@@ -173,14 +262,16 @@ const ModificarUsuario = (props) => {
 
                                             </div>
                                             <div className="col-4">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={e=>handle_Editar_Apellido(e)}></input>
 
                                             </div>
                                         </div>
                                     </label>
 
 
-                                    <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu apellido" value={props.user.apellido} />
+                                    {/* <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu apellido" value={props.user.apellido} /> */}
+                                    {apellido?<input disabled = {false} style={input_ingresarNuevoUsuario_Activado} className="col-md-8 col-sm-12" type="text"  placeholder="Ingresa tu apellido" onChange={e=> handler_EditarNombre(e)} value={nuevoApellido} />
+                                            :<input disabled = {true} style={input_ingresarNuevoUsuario_Desactivado} className="col-md-8 col-sm-12" type="text" placeholder="Ingresa tu apellido" value={props.user.apellido} />  }
                                 </div>
                                 {booleano_feliz_apellido == false ? <div style={visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>
                                     : <div style={no_visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>}
@@ -198,7 +289,7 @@ const ModificarUsuario = (props) => {
 
                                             </div>
                                             <div className="col-4">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={e=>handle_Editar_Username(e)}></input>
 
                                             </div>
                                         </div>
@@ -206,7 +297,9 @@ const ModificarUsuario = (props) => {
                                     </label>
 
 
-                                    <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu nombre de usuario" value={props.user.username} />
+
+                                    {userName?<input disabled = {false} style={input_ingresarNuevoUsuario_Activado} className="col-md-8 col-sm-12" type="text"  placeholder="Ingresa tu usuario" onChange={e=> handler_EditarNombre(e)} value={nuevoUsername} />
+                                            :<input disabled = {true} style={input_ingresarNuevoUsuario_Desactivado} className="col-md-8 col-sm-12" type="text" placeholder="Ingresa tu usuario" value={props.user.username} />  }
                                 </div>
                                 {booleano_feliz_username == false ? <div style={visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>
                                     : <div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>}
@@ -225,13 +318,15 @@ const ModificarUsuario = (props) => {
                                             </div>
 
                                             <div className="col-4">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={e=>handle_Editar_Password(e)}></input>
 
                                             </div>
                                         </div>
                                     </label>
 
-                                    <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa tu contraseña" value={props.user.password} />
+                                    
+                                    {password?<input disabled = {false} style={input_ingresarNuevoUsuario_Activado} className="col-md-8 col-sm-12" type="text"  placeholder="Ingresa tu contraseña" onChange={e=> handler_EditarNombre(e)} value={nuevoPassword} />
+                                            :<input disabled = {true} style={input_ingresarNuevoUsuario_Desactivado} className="col-md-8 col-sm-12" type="text" placeholder="Ingresa tu contraseña" value={props.user.password}/> }
                                 </div>
                                 {booleano_feliz_password == false ? <div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
                                     : <div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
@@ -240,20 +335,13 @@ const ModificarUsuario = (props) => {
 
                             <div className="fuera my-2 mb-4">
                                 <div className="form-group">
-                                    <label style={label_ingresarNuevoUsuario} className="col-md-4 col-sm-12" for="exampleInputPassword1">
-                                        <div className="row">
-                                            <div className="col-8">
-                                                Confirmar Contraseña
-
-                                            </div>
-
-                                            <div className="col-4">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-
-                                            </div>
-                                        </div>
+                                    <label style={label_ingresarNuevoUsuario} className="col-md-4 col-sm-12" for="exampleInputPassword1">                                      
+                                                Confirmar Contraseña                                                            
                                     </label>
-                                    <input style={input_ingresarNuevoUsuario} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa nuevamente tu contraseña" value={props.user.password} />
+
+                                    {password?<input disabled = {false} style={input_ingresarNuevoUsuario_Activado} className="col-md-8 col-sm-12" type="text"  placeholder="Ingresa tu contraseña" onChange={e=> handler_EditarNombre(e)} value={nuevoConfirmarPassword} />
+                                            :<input disabled = {true} style={input_ingresarNuevoUsuario_Desactivado} className="col-md-8 col-sm-12" type="text" placeholder="Ingresa tu contraseña" value={props.user.password}/> }
+                               
                                 </div>
                                 {booleano_feliz_confirm_password == false ? <div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
                                     : <div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
