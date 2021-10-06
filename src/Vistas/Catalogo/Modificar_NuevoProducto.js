@@ -1,62 +1,77 @@
-import React,{useContext, useState} from 'react'
+import React, { useContext, useState } from 'react'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
 import Layout from '../../Folder_Contenido_General/Layout';
 import UserContext from '../../UserContext/UserContext';
 
 const ModificarProducto = () => {
-    const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
+    const titulo = { nuevo: "Ingresar Nuevo Producto", modificar: "Modificar Producto Existente" }
     const input_ingresarNuevoProducto = {
         backgroundColor: '#57CC99',
         color: 'black',
-        fontSize: '1.3rem'     
-      };
-      const label_ingresarNuevoProducto={
+        fontSize: '1.3rem'
+    };
+    const label_ingresarNuevoProducto = {
         color: 'black',
         fontSize: '1.3rem',
         marginBottom: '1rem'
-      }
+    }
+    const input_ingresarNuevoUsuario_Desactivado = {
+        backgroundColor: "#d8d8d8",
+        color: "black",
+        fontSize: "1.3rem",
+      };
+      const input_ingresarNuevoUsuario_Activado = {
+        backgroundColor: "#57CC99",
+        color: "black",
+        fontSize: "1.3rem",
+      };
 
-      const input_ingresarFotografia = { //Esto no funciona papiiiii
+    const input_ingresarFotografia = { //Esto no funciona papiiiii
         backgroundColor: '#57CC99',
         color: 'black',
         fontSize: '1.3rem',
         borderRadius: '35px',
         transition: "all ease .5s",
         transition: "all ease .5s",
-            ":hover": {
-        backgroundColor: "yellow",
-        color: "red"
+        ":hover": {
+            backgroundColor: "yellow",
+            color: "red"
         }
     }
-    const contenedorfotografia={
+    const contenedorfotografia = {
         width: '250px',
-        height:'250px',
+        height: '250px',
     }
 
-    const imagen_Ingresar_Modificar_Producto={
+    const imagen_Ingresar_Modificar_Producto = {
         borderRadius: '50%',
         width: '100%',
-        height:'100%',
+        height: '100%',
         objectFit: 'contain',
     }
+    const visible = {
+        visibility: "visible",
+      };
+      const no_visible = {
+        visibility: "hidden",
+      };
 
-    
 
     const [fileUrl, setFileUrl] = useState(null);
-    function processImage(event){
+    function processImage(event) {
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
-     }
-     function processImage(event){
+    }
+    function processImage(event) {
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
         setFileUrl(imageUrl)
-     }
+    }
 
-     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ ACA SI EMPIEZA LO CHIDO PAPIIIIIIIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
-    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext);
-    
+    // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ ACA SI EMPIEZA LO CHIDO PAPIIIIIIIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+    const { productoSeleccionado, toggleProductoSeleccionado } = useContext(UserContext);
+
     const [booleano_feliz_nombre, setBooleano_feliz_nombre] = useState(null);
     const [booleano_feliz_categoria, setBooleano_feliz_categoria] = useState(null);
     const [booleano_feliz_codigoBarras, setBooleano_feliz_codigoBarras] = useState(null);
@@ -66,9 +81,11 @@ const ModificarProducto = () => {
     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
 
     const FuncionValidarFormulario = (e) => {
-        let productoModificado = { nombreProducto: productoSeleccionado.nombreProducto, categoria: productoSeleccionado.categoria, 
-                                codigodebarras: productoSeleccionado.codigodebarras, valorUnidad: productoSeleccionado.valorUnidad, 
-                                stockDisponible: productoSeleccionado.stockDisponible }
+        let productoModificado = {
+            nombreProducto: productoSeleccionado.nombreProducto, categoria: productoSeleccionado.categoria,
+            codigodebarras: productoSeleccionado.codigodebarras, valorUnidad: productoSeleccionado.valorUnidad,
+            stockDisponible: productoSeleccionado.stockDisponible
+        }
         e.preventDefault();
 
         if (nombre === true) {
@@ -101,12 +118,12 @@ const ModificarProducto = () => {
             }
         }
         if (valorUnidad === true) {
-            if (checkedTrue_ValorUnidad != "" && checkedTrue_ValorUnidad.length>=1) {
+            if (checkedTrue_ValorUnidad != "" && checkedTrue_ValorUnidad.length >= 1) {
                 setBooleano_feliz_valorUnidad(true);
                 productoModificado.valorUnidad = checkedTrue_ValorUnidad
                 //Falta validarla para que contenga letras, numeros y una mayuscula
             }
-            else{
+            else {
                 setBooleano_feliz_valorUnidad(false)
                 productoModificado.valorUnidad = productoSeleccionado.valorUnidad
             }
@@ -117,7 +134,7 @@ const ModificarProducto = () => {
                 productoModificado.stockDisponible = checkedTrue_StockDisponible
                 //Falta validarla para que contenga letras, numeros y una mayuscula
             }
-            else{
+            else {
                 setBooleano_feliz_stockDisponible(false)
                 productoModificado.stockDisponible = productoSeleccionado.stockDisponible
             }
@@ -127,7 +144,7 @@ const ModificarProducto = () => {
             booleano_feliz_nombre ||
             booleano_feliz_categoria ||
             booleano_feliz_codigoBarras ||
-            booleano_feliz_valorUnidad||
+            booleano_feliz_valorUnidad ||
             booleano_feliz_stockDisponible
         ) {
             console.log("LGTM = Looks Good To Me");
@@ -157,7 +174,7 @@ const ModificarProducto = () => {
         setCheckedTrue_ValorUnidad(e.target.value);
     };
 
-    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] =useState();
+    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState();
     const handler_CheckedTrue_StockDisponible = (e) => {
         setCheckedTrue_StockDisponible(e.target.value);
     };
@@ -220,7 +237,7 @@ const ModificarProducto = () => {
         setCheckedTrue_StockDisponible("")
     }
 
-  //❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌   ACA TERMINA LO CHIDO PAPIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+    //❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌   ACA TERMINA LO CHIDO PAPIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
 
 
 
@@ -238,28 +255,324 @@ const ModificarProducto = () => {
                 <form>
                     <div className="row">
                         <div className="col-md-7 col-sm-12">
-                            <div className="caja_contenedora_label_input form-group my-2 mb-4">
-                                <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12 ps-2" for="exampleInputEmail1">Nombre del Producto</label>
-                                <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el nombre del producto" value={productoSeleccionado.nombreProducto} />
-                            </div>
-                            <div className="form-group mb-4">
-                                <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Categoria</label>
-                                <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa la categoria del producto" value={productoSeleccionado.categoria} />
-                            </div>
-                            <div className="form-group mb-4">
-                                <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Codigo de Barras</label>
-                                <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el codigo de barras del producto" value={productoSeleccionado.codigodebarras} />
-                            </div>
-                            <div className="form-group mb-4">
-                                <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Valor Unidad</label>
-                                <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el valor por unidad del producto" value={productoSeleccionado.valorUnidad} />
-                            </div>
-                            <div className="form-group mb-4">
-                                <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Stock Disponible</label>
-                                <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa el stock disponible para el producto" value={productoSeleccionado.stockDisponible} />
-                            </div>
-                        </div>
 
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label
+                                        style={label_ingresarNuevoProducto}
+                                        className="col-md-4 col-sm-12 ps-2"
+                                        for="exampleInputEmail1"
+                                    >
+                                        <div className="row">
+                                            <div className="col-8">Nombre</div>
+                                            <div className="col-4">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                    onClick={(e) => handler_Editar_Nombre(e)}
+                                                ></input>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    {nombre ? (
+                                        <input
+                                            disabled={false}
+                                            style={input_ingresarNuevoUsuario_Activado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa tu nombre"
+                                            onChange={(e) => handle_CheckedTrue_Nombre(e)}
+                                            value={checkedTrue_Nombre}
+                                        />
+                                    ) : (
+                                        <input
+                                            disabled={true}
+                                            style={input_ingresarNuevoUsuario_Desactivado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa tu nombre"
+                                            value={productoSeleccionado.nombreProducto}
+                                        />
+                                    )}
+                                </div>
+                                {booleano_feliz_nombre == false ? (
+                                    <div
+                                        style={visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Nombre Invalido
+                                    </div>
+                                ) : (
+                                    <div
+                                        style={no_visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Nombre Invalido
+                                    </div>
+                                )}
+                            </div>
+
+                        
+
+
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label
+                                        style={label_ingresarNuevoProducto}
+                                        className="col-md-4 col-sm-12 ps-2"
+                                        for="exampleInputEmail1"
+                                    >
+                                        <div className="row">
+                                            <div className="col-8">Categoria</div>
+                                            <div className="col-4">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                    onClick={(e) => handle_Editar_Categoria(e)}
+                                                ></input>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    {categoria ? (
+                                        <input
+                                            disabled={false}
+                                            style={input_ingresarNuevoUsuario_Activado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa la categoria"
+                                            onChange={(e) => handler_CheckedTrue_Categoria(e)}
+                                            value={checkedTrue_Categoria}
+                                        />
+                                    ) : (
+                                        <input
+                                            disabled={true}
+                                            style={input_ingresarNuevoUsuario_Desactivado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa la categoria"
+                                            value={productoSeleccionado.categoria}
+                                        />
+                                    )}
+                                </div>
+                                {booleano_feliz_categoria == false ? (
+                                    <div
+                                        style={visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Categoria Invalida
+                                    </div>
+                                ) : (
+                                    <div
+                                        style={no_visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Categoria Invalida
+                                    </div>
+                                )}
+                            </div>                                    
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label
+                                        style={label_ingresarNuevoProducto}
+                                        className="col-md-4 col-sm-12 ps-2"
+                                        for="exampleInputEmail1"
+                                    >
+                                        <div className="row">
+                                            <div className="col-8">Codigo de Barras</div>
+                                            <div className="col-4">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                    onClick={(e) => handle_Editar_CodigoBarras(e)}
+                                                ></input>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    {codigoBarras ? (
+                                        <input
+                                            disabled={false}
+                                            style={input_ingresarNuevoUsuario_Activado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa el codigo de barras"
+                                            onChange={(e) => handler_CheckedTrue_CodigoBarras(e)}
+                                            value={checkedTrue_CodigoBarras}
+                                        />
+                                    ) : (
+                                        <input
+                                            disabled={true}
+                                            style={input_ingresarNuevoUsuario_Desactivado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa el codigo de barras"
+                                            value={productoSeleccionado.codigodebarras}
+                                        />
+                                    )}
+                                </div>
+                                {booleano_feliz_categoria == false ? (
+                                    <div
+                                        style={visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Codigo de Barras Invalido
+                                    </div>
+                                ) : (
+                                    <div
+                                        style={no_visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Codigo de Barras Invalido
+                                    </div>
+                                )}
+                            </div> 
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label
+                                        style={label_ingresarNuevoProducto}
+                                        className="col-md-4 col-sm-12 ps-2"
+                                        for="exampleInputEmail1"
+                                    >
+                                        <div className="row">
+                                            <div className="col-8">Valor Unidad</div>
+                                            <div className="col-4">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                    onClick={(e) => handle_Editar_ValorUnidad(e)}
+                                                ></input>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    {valorUnidad ? (
+                                        <input
+                                            disabled={false}
+                                            style={input_ingresarNuevoUsuario_Activado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa el valor unitario"
+                                            onChange={(e) => handler_CheckedTrue_ValorUnidad(e)}
+                                            value={checkedTrue_ValorUnidad}
+                                        />
+                                    ) : (
+                                        <input
+                                            disabled={true}
+                                            style={input_ingresarNuevoUsuario_Desactivado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa el valor unitario"
+                                            value={productoSeleccionado.valorUnidad}
+                                        />
+                                    )}
+                                </div>
+                                {booleano_feliz_valorUnidad == false ? (
+                                    <div
+                                        style={visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Valor Unidad Invalido
+                                    </div>
+                                ) : (
+                                    <div
+                                        style={no_visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Valor Unidad Invalido
+                                    </div>
+                                )}
+                            </div> 
+
+                            
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label
+                                        style={label_ingresarNuevoProducto}
+                                        className="col-md-4 col-sm-12 ps-2"
+                                        for="exampleInputEmail1"
+                                    >
+                                        <div className="row">
+                                            <div className="col-8">Stock Disponible</div>
+                                            <div className="col-4">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                    onClick={(e) => handle_Editar_StockDisponible(e)}
+                                                ></input>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    {stockDisponible ? (
+                                        <input
+                                            disabled={false}
+                                            style={input_ingresarNuevoUsuario_Activado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa el stock disponible"
+                                            onChange={(e) => handler_CheckedTrue_StockDisponible(e)}
+                                            value={checkedTrue_StockDisponible}
+                                        />
+                                    ) : (
+                                        <input
+                                            disabled={true}
+                                            style={input_ingresarNuevoUsuario_Desactivado}
+                                            className="col-md-8 col-sm-12"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Ingresa el stock disponible"
+                                            value={productoSeleccionado.stockDisponible}
+                                        />
+                                    )}
+                                </div>
+                                {booleano_feliz_stockDisponible == false ? (
+                                    <div
+                                        style={visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Stock Disponible Invalido
+                                    </div>
+                                ) : (
+                                    <div
+                                        style={no_visible}
+                                        className="invalido d-flex justify-content-end my-0"
+                                    >
+                                        Stock Disponible Invalido
+                                    </div>
+                                )}
+                            </div> 
+
+
+                        </div>
                         <div className="col-md-5 col-sm-12 mt-2 mb-5">
                             <div className="ingresar_foto mb-5 ps-2">
                                 <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Ingresa Imagen </label>

@@ -86,61 +86,61 @@ const ModificarUsuario = (props) => {
   //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
 
   const FuncionValidarFormulario = (e) => {
-    let usuarioModificado = {nombre:props.user.nombre, apellido:props.user.apellido, username:props.user.username, password:props.user.password} 
+    let usuarioModificado = { nombre: props.user.nombre, apellido: props.user.apellido, username: props.user.username, password: props.user.password }
     e.preventDefault();
-    if (nombre===true){        
-        if (checkedTrue_nombre !== "" && checkedTrue_nombre.length > 2) {
-          //Falta que solo acepte letras y no numeros
+    if (nombre === true) {
+      if (checkedTrue_nombre !== "" && checkedTrue_nombre.length > 2) {
+        //Falta que solo acepte letras y no numeros
         setBooleano_feliz_nombre(true);
-        usuarioModificado.nombre = checkedTrue_nombre         
-        } else {
-          setBooleano_feliz_nombre(false);
-          usuarioModificado.nombre = props.user.nombre
-          console.log(nombre);
-        }
-    } 
-    if (apellido === true){
-        if (checkedTrue_Apellido != "" && checkedTrue_Apellido.length > 2) {
-          setBooleano_feliz_apellido(true);
-          usuarioModificado.apellido = checkedTrue_Apellido
-        } else {
-          setBooleano_feliz_apellido(false);
-          usuarioModificado.apellido = props.user.apellido
-        }
+        usuarioModificado.nombre = checkedTrue_nombre
+      } else {
+        setBooleano_feliz_nombre(false);
+        usuarioModificado.nombre = props.user.nombre
+        console.log(nombre);
+      }
     }
-    if (userName===true){
-        if (checkedTrue_Username != "" && checkedTrue_Username.length > 3) {
-          setBooleano_feliz_username(true);
-          usuarioModificado.username = checkedTrue_Username
-        } else {
-          setBooleano_feliz_username(false);
-          usuarioModificado.username = props.user.username
-        }
+    if (apellido === true) {
+      if (checkedTrue_Apellido != "" && checkedTrue_Apellido.length > 2) {
+        setBooleano_feliz_apellido(true);
+        usuarioModificado.apellido = checkedTrue_Apellido
+      } else {
+        setBooleano_feliz_apellido(false);
+        usuarioModificado.apellido = props.user.apellido
+      }
     }
-    if (password===true){
-        if (checkedTrue_Password === "" ) {
-            setBooleano_feliz_password(false);
-            usuarioModificado.password = props.user.password
-          //Falta validarla para que contenga letras, numeros y una mayuscula
-        } else if(checkedTrue_Password != ""){
-            if (checkedTrue_Password.length > 5){
-                setBooleano_feliz_password(true);  
-                usuarioModificado.password = checkedTrue_Password        
-              } else {
-                  setBooleano_feliz_password(false)
-                  usuarioModificado.password = props.user.password
-              }           
-        } 
-        if (
-          checkedTrue_ConfirmarPassword != "" &&
-          checkedTrue_ConfirmarPassword == checkedTrue_Password
-        ) {
-          setBooleano_feliz_confirm_password(true);
+    if (userName === true) {
+      if (checkedTrue_Username != "" && checkedTrue_Username.length > 3) {
+        setBooleano_feliz_username(true);
+        usuarioModificado.username = checkedTrue_Username
+      } else {
+        setBooleano_feliz_username(false);
+        usuarioModificado.username = props.user.username
+      }
+    }
+    if (password === true) {
+      if (checkedTrue_Password === "") {
+        setBooleano_feliz_password(false);
+        usuarioModificado.password = props.user.password
+        //Falta validarla para que contenga letras, numeros y una mayuscula
+      } else if (checkedTrue_Password != "") {
+        if (checkedTrue_Password.length > 5) {
+          setBooleano_feliz_password(true);
           usuarioModificado.password = checkedTrue_Password
         } else {
-          setBooleano_feliz_confirm_password(false);
+          setBooleano_feliz_password(false)
           usuarioModificado.password = props.user.password
         }
+      }
+      if (
+        checkedTrue_ConfirmarPassword != "" &&
+        checkedTrue_ConfirmarPassword == checkedTrue_Password
+      ) {
+        setBooleano_feliz_confirm_password(true);
+        usuarioModificado.password = checkedTrue_Password
+      } else {
+        setBooleano_feliz_confirm_password(false);
+        usuarioModificado.password = props.user.password
+      }
     }
 
     if (
@@ -577,7 +577,7 @@ const ModificarUsuario = (props) => {
               >
                 Crear Nuevo Usuario
               </button>
-              <button type="reset" onClick={(e)=> cancelar_Usuario(e)} class="btn btn-danger mx-5">
+              <button type="reset" onClick={(e) => cancelar_Usuario(e)} class="btn btn-danger mx-5">
                 Cancelar
               </button>
             </div>
