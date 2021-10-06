@@ -17,7 +17,9 @@ const productos=[{nombreProducto:"Modelo",codigodebarras:"8888888888",categoria:
 
 
 const UserProvider = ({ children }) => {
-    const [productoSeleccionado, setProductoSeleccionado] = useState()
+
+    const [productoSeleccionado, setProductoSeleccionado] = useState("")
+
     const [user, setUser] = useState(usuario)
     const [vendedor, setVendedor] = useState(vendedor_prueba)
     const [isDesplegado, setIsDesplegado] = useState(false) 

@@ -12,7 +12,7 @@ import CrearUsuario from '../Componentes/CrearUsuario';
 import Estadisticas from '../Componentes/Estadisticas';
 
 const ContenidoGeneral = () => {
-    const {user, isDesplegado}= useContext(UserContext);
+    const {user, isDesplegado, productoSeleccionado}= useContext(UserContext);
     const activo = {
         paddingLeft: '14rem',
         transition: "all ease .5s"
@@ -32,7 +32,7 @@ const ContenidoGeneral = () => {
             <Route exact path="/inicio" component={Inicio} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
             <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
-            <Route exact path="/catalogo_modificarproducto" component={ModificarProducto} />
+            <Route exact path="/catalogo_modificarproducto" component={()=> <ModificarProducto productoSeleccionado={productoSeleccionado}/>} />
             <Route exact path="/ventas" component={Ventas} />
             <Route exact path="/usuario_crearusuario" component={CrearUsuario}/>
             <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 

@@ -14,7 +14,6 @@ const ModificarProducto = () => {
     const label_ingresarNuevoProducto = {
         color: 'black',
         fontSize: '1.3rem',
-        marginBottom: '1rem'
     }
     const input_ingresarNuevoUsuario_Desactivado = {
         backgroundColor: "#d8d8d8",
@@ -70,7 +69,8 @@ const ModificarProducto = () => {
     }
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ ACA SI EMPIEZA LO CHIDO PAPIIIIIIIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
-    const { productoSeleccionado, toggleProductoSeleccionado } = useContext(UserContext);
+    
+    const { productoSeleccionado, toggleProductoSeleccionado } = useContext(UserContext); // ACA TAMBIEN RECIBEEEE 
 
     const [booleano_feliz_nombre, setBooleano_feliz_nombre] = useState(null);
     const [booleano_feliz_categoria, setBooleano_feliz_categoria] = useState(null);
@@ -174,7 +174,7 @@ const ModificarProducto = () => {
         setCheckedTrue_ValorUnidad(e.target.value);
     };
 
-    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState();
+    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState("");
     const handler_CheckedTrue_StockDisponible = (e) => {
         setCheckedTrue_StockDisponible(e.target.value);
     };
@@ -517,7 +517,7 @@ const ModificarProducto = () => {
                                         for="exampleInputEmail1"
                                     >
                                         <div className="row">
-                                            <div className="col-8">Stock Disponible</div>
+                                            <div className="col-8">Stock</div>
                                             <div className="col-4">
                                                 <input
                                                     class="form-check-input"
@@ -573,8 +573,8 @@ const ModificarProducto = () => {
 
 
                         </div>
-                        <div className="col-md-5 col-sm-12 mt-2 mb-5">
-                            <div className="ingresar_foto mb-5 ps-2">
+                        <div className="col-md-5 col-sm-12 mt-2 mb-2">
+                            <div className="ingresar_foto mb-1 ps-2">
                                 <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Ingresa Imagen </label>
                                 <input style={input_ingresarFotografia} className="ingresarArchivo" type="file" name="" id="" accept="image/*" onChange={processImage} />
                             </div>
