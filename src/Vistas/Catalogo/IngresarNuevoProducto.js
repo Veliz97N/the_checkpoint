@@ -97,7 +97,6 @@ const IngresarNuevoProducto = () => {
          }
          else{
             setBooleano_feliz_valor(false)
-             
          }
  
          if(stock_nuevoProducto!='' && stock_nuevoProducto.length>=1){

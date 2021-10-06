@@ -14,7 +14,10 @@ const productos=[{nombreProducto:"Modelo",codigodebarras:"8888888888",categoria:
 
                 //Se pasa usuario, productos como variable global para simular la obtencion de la informacion proveniente de la base de datos
 
+
+
 const UserProvider = ({ children }) => {
+    const [productoSeleccionado, setProductoSeleccionado] = useState()
     const [user, setUser] = useState(usuario)
     const [vendedor, setVendedor] = useState(vendedor_prueba)
     const [isDesplegado, setIsDesplegado] = useState(false) 
@@ -24,13 +27,17 @@ const UserProvider = ({ children }) => {
         setIsDesplegado(booleano)
         console.log(isDesplegado)
     }
+    const toggleProductoSeleccionado = (valor) =>{
+        setProductoSeleccionado(valor)
+    }
+    
 
     const toggleIsLogged = (booleano) => {
         setIsLogged(booleano)
         console.log(isLogged);
     }
 
-    const data = { user, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
+    const data = { user, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado}
     // data de prueba para otro rol
     // const data_vendedor = {vendedor, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
     return (
