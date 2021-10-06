@@ -41,7 +41,7 @@ const ModificarProducto = () => {
         objectFit: 'contain',
     }
 
-    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext);
+    
 
     const [fileUrl, setFileUrl] = useState(null);
     function processImage(event){
@@ -53,6 +53,177 @@ const ModificarProducto = () => {
         const imageUrl = URL.createObjectURL(imageFile);
         setFileUrl(imageUrl)
      }
+
+     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ ACA SI EMPIEZA LO CHIDO PAPIIIIIIIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext);
+    
+    const [booleano_feliz_nombre, setBooleano_feliz_nombre] = useState(null);
+    const [booleano_feliz_categoria, setBooleano_feliz_categoria] = useState(null);
+    const [booleano_feliz_codigoBarras, setBooleano_feliz_codigoBarras] = useState(null);
+    const [booleano_feliz_valorUnidad, setBooleano_feliz_valorUnidad] = useState(null);
+    const [booleano_feliz_stockDisponible, setBooleano_feliz_stockDisponible] = useState(null);
+
+    //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+
+    const FuncionValidarFormulario = (e) => {
+        let productoModificado = { nombreProducto: productoSeleccionado.nombreProducto, categoria: productoSeleccionado.categoria, 
+                                codigodebarras: productoSeleccionado.codigodebarras, valorUnidad: productoSeleccionado.valorUnidad, 
+                                stockDisponible: productoSeleccionado.stockDisponible }
+        e.preventDefault();
+
+        if (nombre === true) {
+            if (checkedTrue_Nombre !== "" && checkedTrue_Nombre.length > 2) {
+                //Falta que solo acepte letras y no numeros
+                setBooleano_feliz_nombre(true);
+                productoModificado.nombreProducto = checkedTrue_Nombre
+            } else {
+                setBooleano_feliz_nombre(false);
+                productoModificado.nombreProducto = productoSeleccionado.nombreProducto
+                console.log(nombre);
+            }
+        }
+        if (categoria === true) {
+            if (checkedTrue_Categoria != "" && checkedTrue_Categoria.length > 2) {
+                setBooleano_feliz_categoria(true);
+                productoModificado.categoria = checkedTrue_Categoria
+            } else {
+                setBooleano_feliz_categoria(false);
+                productoModificado.categoria = productoSeleccionado.categoria
+            }
+        }
+        if (codigoBarras === true) {
+            if (checkedTrue_CodigoBarras != "" && checkedTrue_CodigoBarras.length > 3) {
+                setBooleano_feliz_codigoBarras(true);
+                productoModificado.codigodebarras = checkedTrue_CodigoBarras
+            } else {
+                setBooleano_feliz_codigoBarras(false);
+                productoModificado.codigodebarras = productoSeleccionado.codigodebarras
+            }
+        }
+        if (valorUnidad === true) {
+            if (checkedTrue_ValorUnidad != "" && checkedTrue_ValorUnidad.length>=1) {
+                setBooleano_feliz_valorUnidad(true);
+                productoModificado.valorUnidad = checkedTrue_ValorUnidad
+                //Falta validarla para que contenga letras, numeros y una mayuscula
+            }
+            else{
+                setBooleano_feliz_valorUnidad(false)
+                productoModificado.valorUnidad = productoSeleccionado.valorUnidad
+            }
+        }
+        if (stockDisponible === true) {
+            if (checkedTrue_StockDisponible === "") {
+                setBooleano_feliz_stockDisponible(true);
+                productoModificado.stockDisponible = checkedTrue_StockDisponible
+                //Falta validarla para que contenga letras, numeros y una mayuscula
+            }
+            else{
+                setBooleano_feliz_stockDisponible(false)
+                productoModificado.stockDisponible = productoSeleccionado.stockDisponible
+            }
+        }
+
+        if (
+            booleano_feliz_nombre ||
+            booleano_feliz_categoria ||
+            booleano_feliz_codigoBarras ||
+            booleano_feliz_valorUnidad||
+            booleano_feliz_stockDisponible
+        ) {
+            console.log("LGTM = Looks Good To Me");
+            //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+            console.log("Que haga el POST dice....");
+            console.log(productoModificado);
+        }
+    };
+
+    const [checkedTrue_Nombre, setCheckedTrue_Nombre] = useState("");
+    const handle_CheckedTrue_Nombre = (e) => {
+        setCheckedTrue_Nombre(e.target.value);
+    };
+
+    const [checkedTrue_Categoria, setCheckedTrue_Categoria] = useState("");
+    const handler_CheckedTrue_Categoria = (e) => {
+        setCheckedTrue_Categoria(e.target.value);
+    };
+
+    const [checkedTrue_CodigoBarras, setCheckedTrue_CodigoBarras] = useState("");
+    const handler_CheckedTrue_CodigoBarras = (e) => {
+        setCheckedTrue_CodigoBarras(e.target.value);
+    };
+
+    const [checkedTrue_ValorUnidad, setCheckedTrue_ValorUnidad] = useState("");
+    const handler_CheckedTrue_ValorUnidad = (e) => {
+        setCheckedTrue_ValorUnidad(e.target.value);
+    };
+
+    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] =useState();
+    const handler_CheckedTrue_StockDisponible = (e) => {
+        setCheckedTrue_StockDisponible(e.target.value);
+    };
+
+
+    const [nombre, setNombre] = useState();
+    const handler_Editar_Nombre = (e) => {
+        if (e.target.checked == true) {
+            setNombre(true);
+        } else {
+            setNombre(false);
+        }
+    };
+
+    const [categoria, setCategoria] = useState();
+    const handle_Editar_Categoria = (e) => {
+        if (e.target.checked == true) {
+            setCategoria(true);
+        } else {
+            setCategoria(false);
+        }
+    };
+
+    const [codigoBarras, setCodigoBarras] = useState();
+    const handle_Editar_CodigoBarras = (e) => {
+        if (e.target.checked == true) {
+            setCodigoBarras(true);
+        } else {
+            setCodigoBarras(false);
+        }
+    };
+
+    const [valorUnidad, setValorUnidad] = useState();
+    const handle_Editar_ValorUnidad = (e) => {
+        if (e.target.checked == true) {
+            setValorUnidad(true);
+        } else {
+            setValorUnidad(false);
+        }
+    };
+    const [stockDisponible, setStockDispinible] = useState();
+    const handle_Editar_StockDisponible = (e) => {
+        if (e.target.checked == true) {
+            setStockDispinible(true);
+        } else {
+            setStockDispinible(false);
+        }
+    };
+
+    const cancelar_Producto = (e) => {
+        setNombre(false)
+        setCategoria(false)
+        setCodigoBarras(false)
+        setValorUnidad(false)
+        setStockDispinible(false)
+        setCheckedTrue_Nombre("")
+        setCheckedTrue_Categoria("")
+        setCheckedTrue_CodigoBarras("")
+        setCheckedTrue_ValorUnidad("")
+        setCheckedTrue_StockDisponible("")
+    }
+
+  //❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌   ACA TERMINA LO CHIDO PAPIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+
+
+
 
     return (
         <Layout hasNavbar hasSidebar>
@@ -111,7 +282,7 @@ const ModificarProducto = () => {
                             >
                                 Crear Nuevo Usuario
                             </button>
-                            <button type="reset" onClick={(e) => cancelar_Usuario(e)} class="btn btn-danger mx-5">
+                            <button type="reset" onClick={(e) => cancelar_Producto(e)} class="btn btn-danger mx-5">
                                 Cancelar
                             </button>
                         </div>
