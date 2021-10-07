@@ -183,33 +183,49 @@ code {
   width: 50%;
   height: 7%;
   left: 27%;
-  top: 30%;
+  top: 33%;
   background: var(--happy_input);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   border-radius: 60px;
   padding: 1rem;
   color: #22577a;
-  margin-top: 2%;
+  
 }
+@media  (max-width: 1000px) {
+  .username-input input{
+    position: absolute;
+    top: 35%;
+  }
+  .password-input input {
+    position: absolute;
+    
+    margin-top: 1%;
+}
+.login-button button{
+  margin-top: 1%;
+}
+}
+
+
 
 .username-input input:focus, .password-input input:focus {
   outline: none;
 }
-
+  
 .password-input input {
   position: absolute;
   width: 50%;
   height: 7%;
   left: 27%;
-  top: 38%;
+  top: 42%;
   background: var(--happy_input);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   border-radius: 60px;
   padding: 1rem;
   color: #22577a;
-  margin-top: 2%;
+  
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -231,12 +247,12 @@ code {
   width: 50%;
   height: 7%;
   left: 27%;
-  top: 47%;
+  top: 53%;
   background: #47af82;
   border-color: #47af82;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 60px;
-  margin-top: 3%;
+  
 }
 
 .connect-buttons button{

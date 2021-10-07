@@ -182,7 +182,7 @@ code {
 .login h6{
   font-style: italic;
 }
-
+/* 
 .username-input input {
   font-family: 'Titillium Web';
   position: absolute;
@@ -219,16 +219,16 @@ code {
   margin-top: 2%;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
   color: var(--happy_background);
-  opacity: 1; /* Firefox */
+  opacity: 1; 
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder { 
   color: var(--happy_background);
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+::-ms-input-placeholder { 
   color: var(--happy_background);
 }
 
@@ -272,7 +272,7 @@ code {
   background-color: #c94a00;
   border-color: #c94a00;
   color: #fff;
-}
+} */
 
 .totalVenta input, .Precio_Producto_A_Vender input{
   background-color: #fff;

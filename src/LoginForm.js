@@ -25,10 +25,11 @@ function LoginForm({login_function, error}) {
       <div className="login">
         <h1>Bienvenido</h1>  
       {/* Si hay error */}
-      {(error !== "") ? (<h6 style={error_style}>{error}</h6>) : (<h6>Por favor inicia sesión para continuar</h6>)}
+      {(error !== "") ? (<h6 className="m-1" style={error_style}>{error}</h6>) : (<h6 className="m-1">Por favor inicia sesión para continuar</h6>)}
       </div>
       {/* Input username */}
-      <div className="username-input">
+      <div className="username-input ">
+        
         <input
           type="text"
           placeholder="Usuario"
@@ -38,6 +39,7 @@ function LoginForm({login_function, error}) {
           value={user_data.username}
         />
       </div>
+      
       {/* Input password */}
       <div className="password-input">
         <input
