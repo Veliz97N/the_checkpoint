@@ -22,7 +22,7 @@ function Estadisticas(){
         }]
     }
   
-    const [datos_A_Graficar, setDatos_A_Graficar] = useState(datosRecibidos)
+    const [datos_A_Graficar, setDatos_A_Graficar] = useState(informacion_Base_Datos)
 
 
 
@@ -39,7 +39,9 @@ function Estadisticas(){
         maintainAspectRatio: false,
         resposive: true
     }
-
+    const opcionesdeGrafico = {
+        visibility:'hidden'
+    }
 
     
     return (
