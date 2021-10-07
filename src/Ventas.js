@@ -9,8 +9,9 @@ const Ventas = () => {
     const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0")
     const handleAddrTypeChange = (e) => {
         setIndiceBuscarElemento(e.target.value)
-        
     }
+
+
     const noactivopapi = {
         background: "#57CC99",
         transition: "all 0.5s ease;",
@@ -60,6 +61,7 @@ const Ventas = () => {
         height:'100%',
         objectFit: 'contain',
     }
+    //Ventas en 768 px se va al carajo
     return (
         <Layout hasNavbar hasSidebar>
             <div className="Ventana_Ventas">
@@ -70,8 +72,8 @@ const Ventas = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                     <div className="col-6 border border-primary"> {/*//ACA SE CREA LA PRIMERA COLUMNA DE LA IZQUIERDA  */}
+                
+                     <div className="col-md-6 col-sm-12 "> {/*//ACA SE CREA LA PRIMERA COLUMNA DE LA IZQUIERDA  */}
                         <div className='d-flex Contenedor_Buscar_Elemento_A_Vender mb-2'>
                             < select
                                 onChange={e => handleAddrTypeChange(e)}
@@ -110,7 +112,7 @@ const Ventas = () => {
                         </div>
                        
                     </div>
-                    <div className="col-6 border border-primary">
+                    <div className="col-md-6 col-sm-12">
                         <div className="contenedor_tabla_productos_a_vender">
                             <table className="table">
                                 <thead className="py-5">
@@ -155,7 +157,7 @@ const Ventas = () => {
                          
                     </div>
                 </div>
-            </div>
+            
         </Layout>
     );
 
