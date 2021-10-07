@@ -39,7 +39,9 @@ function Estadisticas(){
         maintainAspectRatio: false,
         resposive: true
     }
-
+    const opcionesdeGrafico = {
+        visibility:'hidden'
+    }
 
     
     return (
