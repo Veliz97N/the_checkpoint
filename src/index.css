@@ -37,6 +37,7 @@ code {
   position: absolute;
   left: 0;
   z-index: 100;
+  height: calc(100%-75px);
   background-color: var(--happy_contorno_global);
 }
 
@@ -103,7 +104,7 @@ code {
 
 
 .footer_sidebar{
-  position:fixed;
+  
   bottom: 0;
   display: flex;
   align-items: center;
@@ -132,20 +133,23 @@ code {
 
 
 .btn_cancelar_ingresarNuevoProducto{
-  font-size: 4rem;
+  font-size: 3rem;
   color:red;
   transition: all 0.4s ease;
 }
 .btn_cancelar_ingresarNuevoProducto:hover{
-  font-size: 4.5rem;
+  font-size: 3.05rem;
+  color:#ff6765;
 }
+
 .btn_aceptar_ingresarNuevoProducto{
-  font-size: 4rem;
+  font-size: 3rem;
   color:green;
   transition: all 0.4s ease;
 }
 .btn_aceptar_ingresarNuevoProducto:hover{
-  font-size: 4.5rem;
+  font-size: 3.05rem;
+  color:var(--happy_selected)
 }
 
 
@@ -450,4 +454,19 @@ code {
 
 .invalido{
   color:red
+}
+
+.algo{
+  width: 60%;
+  background: var(--happy_selected);
+  border: none;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+  cursor: pointer;
+}
+.algo:hover{
+  background: var(--happy_interior_global);
+  cursor: pointer;  
+  
 }

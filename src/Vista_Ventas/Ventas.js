@@ -342,7 +342,7 @@ const Ventas = () => {
             </form>
           </div>
 
-          <div className="col-6 border border-primary">
+          <div className="col-6">
             <div
               className="contenedor_tabla_productos_a_vender"
               style={alturaTabla}

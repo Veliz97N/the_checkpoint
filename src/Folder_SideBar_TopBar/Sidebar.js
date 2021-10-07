@@ -26,7 +26,8 @@ const Sidebar = () => {
     const {user, isDesplegado}= useContext(UserContext); //se anade informacion global referente al usuario y a si tiene desplegado el toggle
     
     return (
-        <div className="sidebar" style={!isDesplegado ? activo : no_activo}>
+        <div className="sidebar d-flex flex-column justify-content-between" style={!isDesplegado ? activo : no_activo}>
+            
             <ul className="nav-li">
                 <li>
                     <Link to="/inicio" >
@@ -56,9 +57,13 @@ const Sidebar = () => {
                 </li>
 
             </ul>
+
+
             <div className="footer_sidebar" >
                 {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
             </div>
+
+
         </div>
     )
 }
