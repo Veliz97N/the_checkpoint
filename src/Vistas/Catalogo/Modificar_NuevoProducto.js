@@ -594,7 +594,7 @@ const ModificarProducto = () => {
                                 type="submit"
                                 class="btn btn-primary mx-5"
                             >
-                                Crear Nuevo Usuario
+                                Confirmar Producto
                             </button>
                             <button type="reset" onClick={(e) => cancelar_Producto(e)} class="btn btn-danger mx-5">
                                 Cancelar

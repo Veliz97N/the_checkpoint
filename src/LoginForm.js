@@ -7,17 +7,30 @@ function LoginForm({login_function, error}) {
         e.preventDefault();
         login_function(user_data);
     }
+    const styles = {
+      background: "#F95B02",
+      borderColor: "#F95B02",
+      ":hover": {
+        backgroundColor: "#c94a00",
+        borderColor: "#c94a00",
+        color: "#fff"
+      }
+    }
 
-  return (
-    
-    <div className="container-fluid" id="login-form">
+    const error_style = {
+      color: "red",
+      fontSize: "1.3rem"
+    }
+
+  return (   
+    <>
     {/* // falta el action="" en el form */}
     <form onSubmit={submitHandle}> 
       {/* contenedor para login  */}
       <div className="login">
         <h1>Bienvenido</h1>  
       {/* Si hay error */}
-      {(error !== "") ? (<h6>{error}</h6>) : (<h6>Por favor inicia sesión para continuar</h6>)}
+      {(error !== "") ? (<h6 style={error_style}>{error}</h6>) : (<h6>Por favor inicia sesión para continuar</h6>)}
       </div>
       {/* Input username */}
       <div className="username-input">
@@ -52,12 +65,12 @@ function LoginForm({login_function, error}) {
         <button className="btn btn-primary btn-sm fb" type="submit">
           Conectar con Facebook
         </button>
-        <button className="btn btn-warning btn-sm google" type="submit">
+        <button className="btn btn-warning btn-sm google-btn" style={styles} type="submit">
           Conectar con Google
         </button>
       </div>
     </form>
-    </div>
+    </>
   );
 }
 

@@ -198,7 +198,7 @@ const IngresarNuevoProducto = () => {
                                 type="submit"
                                 class="btn btn-primary mx-5"
                             >
-                                Crear Nuevo Usuario
+                                Crear Nuevo Producto
                             </button>
                             <button
                                 type="reset"

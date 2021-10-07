@@ -15,7 +15,7 @@ const Sidebar = () => {
     const activo = {
         width: '13rem',
         overflow: 'hidden',
-        transition: "all ease .5s",       
+        transition: "all ease .5s",     
       };
       const no_activo ={
           width: '3.5rem',
