@@ -240,6 +240,7 @@ const CrearUsuario = () => {
             <div className="crearUsuario">
 
                 <div className="row">
+                    
                     <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                         <div className="titulo col-6 py-2 d-flex justify-content-center">
                             Crear Nuevo Usuario
