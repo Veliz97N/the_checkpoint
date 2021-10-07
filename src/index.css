@@ -478,25 +478,11 @@ code {
   overflow: hidden;
   transition: all ease .5s
   
-};
-
-
-@media  (max-width: 1000px) {
-  .username-input input{
-    position: absolute;
-    top: 35%;
-  }
-  .password-input input {
-    position: absolute;
-    
-    margin-top: 1%;
-}
-.login-button button{
-  margin-top: 1%;
-}
 }
 
-@media  (max-width: 768px) {
+
+
+@media  (max-width: 830px) {
   .sidebar{
     width: 4rem;
   }

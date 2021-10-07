@@ -16,8 +16,9 @@ const Layout = ({ children, hasNavbar, hasSidebar }) => {
         transition: "all ease .5s"
       };
       const isChiquito = useMediaQuery({
-        query: '(max-width: 768px)'
+        query: '(max-width: 830px)'
       })
+
     return (
         <>
             {hasNavbar && <Topbar />}

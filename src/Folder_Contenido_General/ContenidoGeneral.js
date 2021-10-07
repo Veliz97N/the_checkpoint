@@ -14,20 +14,6 @@ import { useMediaQuery } from 'react-responsive'
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado, productoSeleccionado}= useContext(UserContext);
-    const activo = {
-        paddingLeft: '0',
-        transition: "all ease .5s"
-    };
-    
-  const no_activo = {
-
-    paddingLeft: '',
-    transition: "all easxe .5s"
-  };
-
-  const isChiquito = useMediaQuery({
-    query: '(max-width: 768px)'
-  })
 
   return (
     <BrowserRouter>
