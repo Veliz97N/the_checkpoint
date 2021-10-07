@@ -265,4 +265,8 @@ code {
   color: black;
 }
 
-.estiloselectpicker{}
+/* .estiloselectpicker{} */
+
+.invalido{
+  color:red
+}
