@@ -238,13 +238,18 @@ const ModificarUsuario = (props) => {
     setCheckedTrue_ConfirmarPassword("")
   }
 
+  const borde_titulo = {
+    background: "#57CC99",
+    borderRadius:"25px"
+  }
+
   return (
     <Layout hasNavbar hasSidebar>
     {!isChiquito?
       <div className="crearUsuario">
         <div className="row">
           <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
-            <div className="titulo col-6 py-2 d-flex justify-content-center">
+            <div className="titulo col-6 col-sm-6 py-2 d-flex justify-content-center" style={borde_titulo}>
               Ver Perfil de Usuario
             </div>
           </div>

@@ -10,7 +10,9 @@ const ModificarProducto = () => {
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
-
+    const overFlow = {
+        overflow: "hidden",
+    };
     const titulo = { nuevo: "Ingresar Nuevo Producto", modificar: "Modificar Producto Existente" }
     const input_ingresarNuevoProducto = {
         backgroundColor: '#57CC99',
@@ -584,7 +586,7 @@ const ModificarProducto = () => {
                  
                  
                   <div className="col-md-5 col-sm-12 mt-2 ">
-                    <div className="ingresar_foto mb-5 ps-2">
+                    <div className="ingresar_foto mb-5 ps-2" style={overFlow}>
                       <label
                         style={label_ingresarNuevoProducto}
                         className=" col-lg-4 col-md-4 col-sm-12 mb-4"
@@ -994,7 +996,7 @@ const ModificarProducto = () => {
        
        
                   <div className="col-md-5 col-sm-12 mb-3">
-                    <div className="ingresar_foto mb-1 ps-2">
+                    <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                       <label
                         style={label_ingresarNuevoProducto}
                         className=" col-lg-4 col-md-4 col-sm-12 mb-4"

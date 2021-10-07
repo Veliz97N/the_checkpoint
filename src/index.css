@@ -124,7 +124,7 @@ code {
 /* Vista Cateogria-Ingresar Nuevo Producto*/
 
 .ingresarNuevoProducto{
-  background: var(--happy_gradient);
+  background: transparent;
 }
 
 .ingresarNuevoProducto .titulo{
