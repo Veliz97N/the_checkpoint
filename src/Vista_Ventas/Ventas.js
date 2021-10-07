@@ -255,7 +255,7 @@ const Ventas = () => {
           <div className="col-md-6 col-sm-12 ">
             
             <form>
-              <div className="d-md-flex Contenedor_Buscar_Elemento_A_Vender mb-2 mb-sm-2 border border-primary">
+              <div className="d-md-flex Contenedor_Buscar_Elemento_A_Vender mb-2 mb-sm-2">
                 <select
                   onChange={(e) => handleAddrTypeChange(e)}
                   className="browser-default custom-select col-md-4 col-sm-12 col-xs-12 me-2 mb-sm-2"
