@@ -132,20 +132,23 @@ code {
 
 
 .btn_cancelar_ingresarNuevoProducto{
-  font-size: 4rem;
+  font-size: 3rem;
   color:red;
   transition: all 0.4s ease;
 }
 .btn_cancelar_ingresarNuevoProducto:hover{
-  font-size: 4.5rem;
+  font-size: 3.05rem;
+  color:#ff6765;
 }
+
 .btn_aceptar_ingresarNuevoProducto{
-  font-size: 4rem;
+  font-size: 3rem;
   color:green;
   transition: all 0.4s ease;
 }
 .btn_aceptar_ingresarNuevoProducto:hover{
-  font-size: 4.5rem;
+  font-size: 3.05rem;
+  color:var(--happy_selected)
 }
 
 
