@@ -9,24 +9,32 @@ import UserContext from '../UserContext/UserContext';
 import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo'; //Se importa la tarjeta de usuario, de modo que si no se muestra en topbar lo hara en sidebar
 
 import { Link } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive';
 
 const Sidebar = () => {
 
     const activo = {
         width: '13rem',
         overflow: 'hidden',
-        transition: "all ease .5s",       
+        transition: "all ease .5s",     
       };
       const no_activo ={
           width: '3.5rem',
           overflow: 'hidden',
           transition: "all ease .5s",
+          
       };
+
+      const isChiquito = useMediaQuery({
+        query: '(max-width: 830px)'
+      })
 
     const {user, isDesplegado}= useContext(UserContext); //se anade informacion global referente al usuario y a si tiene desplegado el toggle
     
     return (
-        <div className="sidebar" style={!isDesplegado ? activo : no_activo}>
+        <>
+        {!isDesplegado ? <div className=" activo sidebar d-flex flex-column justify-content-between">
+            
             <ul className="nav-li">
                 <li>
                     <Link to="/inicio" >
@@ -56,10 +64,54 @@ const Sidebar = () => {
                 </li>
 
             </ul>
+
+
+            <div className="footer_sidebar" >
+                {!isChiquito && !isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+            </div>
+
+
+        </div>
+        :<div className=" no_activo sidebar d-flex flex-column justify-content-between">
+            
+            <ul className="nav-li">
+                <li>
+                    <Link to="/inicio" >
+                        <AiOutlineHome className="iconos_menu_lateral" />
+                        <span className="texto_menu_lateral">Inicio</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/ventas" >
+                        <RiBankLine className="iconos_menu_lateral" />
+                        <span className="texto_menu_lateral">Ventas</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/catalogo_paginaprincipal" >
+                        <GrCatalogOption className="iconos_menu_lateral" />
+                        <span className="texto_menu_lateral">Catalogo</span>
+
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to="/estadisticas" >
+                        <AiOutlineLineChart className="iconos_menu_lateral" />
+                        <span className="texto_menu_lateral">Estadisticas</span>
+                    </Link>
+                </li>
+
+            </ul>
+
+
             <div className="footer_sidebar" >
                 {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
             </div>
-        </div>
+
+
+        </div>}
+        </>
     )
 }
 

@@ -37,6 +37,7 @@ code {
   position: absolute;
   left: 0;
   z-index: 100;
+  height: calc(100%-75px);
   background-color: var(--happy_contorno_global);
 }
 
@@ -103,7 +104,7 @@ code {
 
 
 .footer_sidebar{
-  position:fixed;
+  
   bottom: 0;
   display: flex;
   align-items: center;
@@ -132,20 +133,23 @@ code {
 
 
 .btn_cancelar_ingresarNuevoProducto{
-  font-size: 4rem;
+  font-size: 3rem;
   color:red;
   transition: all 0.4s ease;
 }
 .btn_cancelar_ingresarNuevoProducto:hover{
-  font-size: 4.5rem;
+  font-size: 3.05rem;
+  color:#ff6765;
 }
+
 .btn_aceptar_ingresarNuevoProducto{
-  font-size: 4rem;
+  font-size: 3rem;
   color:green;
   transition: all 0.4s ease;
 }
 .btn_aceptar_ingresarNuevoProducto:hover{
-  font-size: 4.5rem;
+  font-size: 3.05rem;
+  color:var(--happy_selected)
 }
 
 
@@ -179,33 +183,35 @@ code {
   width: 50%;
   height: 7%;
   left: 27%;
-  top: 30%;
+  top: 33%;
   background: var(--happy_input);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   border-radius: 60px;
   padding: 1rem;
   color: #22577a;
-  margin-top: 2%;
+  
 }
+
+
 
 .username-input input:focus, .password-input input:focus {
   outline: none;
 }
-
+  
 .password-input input {
   position: absolute;
   width: 50%;
   height: 7%;
   left: 27%;
-  top: 38%;
+  top: 42%;
   background: var(--happy_input);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   border-radius: 60px;
   padding: 1rem;
   color: #22577a;
-  margin-top: 2%;
+  
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -222,19 +228,21 @@ code {
 }
 
 .login-button button {
+  font-family: 'Titillium Web';
   position: absolute;
   width: 50%;
   height: 7%;
   left: 27%;
-  top: 47%;
+  top: 53%;
   background: #47af82;
   border-color: #47af82;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 60px;
-  margin-top: 3%;
+  
 }
 
 .connect-buttons button{
+  font-family: 'Titillium Web';
   width: 22.5%;
   position: absolute;
   height: 7%;
@@ -245,24 +253,203 @@ code {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+
 .fb {
   left: 27%;
 }
 
-.google {
-  left: 54%;
-  background-color: #F95B02;
-  border-color: #F95B02;
-}
 
-.google:hover{
-  background-color: #c94a00;
-  border-color: #c94a00;
-  color: #fff;
-}
+
+
 .tomodificarproducto{
   text-decoration: none;
   color: black;
+}
+
+
+
+#cuadros a{
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+
+/* Parte Bayron */
+#cuadro1, #cuadro2, #cuadro3, #cuadro4{
+  width: 170px;
+  height: 170px;
+  margin-top: 30px;
+  margin-left: 15px;
+  background: #80ED99;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+
+#text1, #text2, #text3{
+  display: flex;
+  justify-content: center;
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+  /* margin-top: -35px; */
+}
+
+
+.Themes{
+  display: flex;
+  justify-content: end;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.Theme1{
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-right: 40px solid grey;
+  border-top: 46px solid grey;
+  border-left: 40px solid;
+  border-bottom: 43px solid;
+}
+.Theme2{
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-right: 40px solid #59D9BA;
+  border-top: 46px solid #59D9BA;
+  border-left: 40px solid #22577A;
+  border-bottom: 43px solid #22577A;
+}
+.Theme3{
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-right: 40px solid #ffffff;
+  border-top: 46px solid #ffffff;
+  border-left: 40px solid #3D56B2;
+  border-bottom: 43px solid #3D56B2;
+  
+}
+.color-chart {
+  border-right: 20px solid #59D9BA;
+  border-top: 20px solid #22577A;
+  border-left: 20px solid #59D9BA;
+  border-bottom: 20px solid #22577A;
+  border-radius: 100%;
+}
+.fas{
+  margin-left: 15px;
+}
+
+.foto_inicio {
+  margin: 0;
+}
+
+#inputss{
+  width: 100px;
+}
+#carta{
+  background: silver;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+#boton{
+  margin-left: 90px;
+}
+#dataUser{
+  width: 320px;
+  padding-top: 120px;
+  padding-left: 100px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+#dataInsert{
+  width: 300px;
+  top: 306px;
+  background: #57CC99;
+  border: none;
+}
+#insertUser{
+  width: 300px;
+  height: 50px;
+  left: 627px;
+  top: 10px;
+  background: #80ED99;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#btnClick{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  font-size: 35px;
+  left: 600px;
+  top: 550px;
+  cursor: pointer;
+}
+#btnClick2{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  font-size: 35px;
+  left: 700px;
+  top: 550px;
+  cursor: pointer;
+}
+.ImageProfile{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 850px;
+  top: 210px;
+  background: transparent;
+
+
+}
+.textImage{
+  position: absolute;
+  left: 750px;
+  top: 130px;
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+}
+.btnClose{
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 1200px;
+  top: 70px;
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 56px;
+  cursor: pointer;
+}
+
+
+/*Style Gonzalo*/
+
+#cajaVentas {
+  background: var(--happy_gradient);
 }
 
 /* .estiloselectpicker{} */
@@ -270,3 +457,41 @@ code {
 .invalido{
   color:red
 }
+
+.algo{
+  width: 60%;
+  background: var(--happy_selected);
+  border: none;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+  cursor: pointer;
+}
+.algo:hover{
+  background: var(--happy_interior_global);
+  cursor: pointer;  
+  
+}
+
+.activo {
+  width: 13rem;
+  overflow: hidden;
+  transition: all ease .5s  
+}
+.no_activo {
+  width: 3.5rem;
+  overflow: hidden;
+  transition: all ease .5s
+  
+}
+
+
+
+@media  (max-width: 830px) {
+  .sidebar{
+    width: 4rem;
+  }
+}
+
+
+

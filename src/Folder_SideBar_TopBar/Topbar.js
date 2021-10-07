@@ -3,7 +3,7 @@ import { BsFillGridFill } from "react-icons/bs"; //Grid que acompana texto Dashb
 import UserContext from '../UserContext/UserContext';
 import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom";
 
 const Topbar = () => {
@@ -22,6 +22,10 @@ const Topbar = () => {
         transition: "all ease .5s"
       };
 
+      const isChiquito = useMediaQuery({
+        query: '(max-width: 830px)'
+      })
+
     return (
 
         <nav className="navbar navbar-expand-lg navbar-light p-0 w-100">
@@ -35,10 +39,10 @@ const Topbar = () => {
             
             <div className="container">             
                     <div className={"nombre_empresa"} style={titulo_Hover?titulo_activo:titulo_no_activo}>
-                        <h3 >{nombre_empresa}</h3>
+                        {isChiquito?'':<h3 >{nombre_empresa}</h3>}
                     </div> 
-
-                {isDesplegado? <Tarjeta_Usuario_Activo user={user}/>:""}
+                {!isChiquito && isDesplegado? <Tarjeta_Usuario_Activo user={user}/>: ""}
+                
             </div>
         </nav>
 

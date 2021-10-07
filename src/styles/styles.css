@@ -42,12 +42,6 @@ code {
   width: 100vw;
 }
 
-.sidebar{
-  position: absolute;
-  left: 0;
-  z-index: 100;
-  background-color: transparent;
-}
 
 .sidebar_logo{
   background-color: transparent;
@@ -171,6 +165,7 @@ code {
 }
 
 .login {
+  font-family: 'Titillium Web';
   position: absolute;
   width: 40%;
   height: 8.625rem;
@@ -186,8 +181,9 @@ code {
 .login h6{
   font-style: italic;
 }
-
+/* 
 .username-input input {
+  font-family: 'Titillium Web';
   position: absolute;
   width: 50%;
   height: 7%;
@@ -207,6 +203,7 @@ code {
 }
 
 .password-input input {
+  font-family: 'Titillium Web';
   position: absolute;
   width: 50%;
   height: 7%;
@@ -221,20 +218,21 @@ code {
   margin-top: 2%;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
   color: var(--happy_background);
-  opacity: 1; /* Firefox */
+  opacity: 1; 
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder { 
   color: var(--happy_background);
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+::-ms-input-placeholder { 
   color: var(--happy_background);
 }
 
 .login-button button {
+  font-family: 'Titillium Web';
   position: absolute;
   width: 50%;
   height: 7%;
@@ -248,6 +246,7 @@ code {
 }
 
 .connect-buttons button{
+  font-family: 'Titillium Web';
   width: 22.5%;
   position: absolute;
   height: 7%;
@@ -262,17 +261,17 @@ code {
   left: 27%;
 }
 
-.google {
+.google-btn {
   left: 54%;
-  background-color: #F95B02;
+  background: #F95B02;
   border-color: #F95B02;
 }
 
-.google:hover{
+.google-btn:hover{
   background-color: #c94a00;
   border-color: #c94a00;
   color: #fff;
-}
+} */
 
 .totalVenta input, .Precio_Producto_A_Vender input{
   background-color: #fff;
@@ -464,9 +463,8 @@ code {
 
 /*Style Gonzalo*/
 
-#cajaVentas {
-  background: var(--happy_gradient);
-  
+#cajaVentas{
+  background: var(--happy_gradient);  
 }
 
 

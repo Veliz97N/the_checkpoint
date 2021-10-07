@@ -10,26 +10,18 @@ import Login from '../Login';
 import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
 import Estadisticas from '../Componentes/Estadisticas';
+import { useMediaQuery } from 'react-responsive'
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado, productoSeleccionado}= useContext(UserContext);
-    const activo = {
-        paddingLeft: '14rem',
-        transition: "all ease .5s"
-    };
-    
-  const no_activo = {
-
-    paddingLeft: '6rem',
-    transition: "all ease .5s"
-  };
 
   return (
     <BrowserRouter>
         <Switch>
-          <div className="container" style={!isDesplegado ? activo : no_activo}>
+       
+          <div className="container-fluid">
             
-            <Route exact path="/inicio" component={Inicio} />
+            <Route exact path="/inicio" component={()=> <Inicio user={user}/>} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
             <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
             <Route exact path="/catalogo_modificarproducto" component={()=> <ModificarProducto productoSeleccionado={productoSeleccionado}/>} />
@@ -38,6 +30,7 @@ const ContenidoGeneral = () => {
             <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 
             <Route exact path="/estadisticas" component={Estadisticas} />
             <Route exact path="/" component={()=> <Login authorized={false} />} /> 
+    
           </div>
         </Switch>
     </BrowserRouter>
