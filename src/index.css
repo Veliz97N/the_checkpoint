@@ -37,6 +37,7 @@ code {
   position: absolute;
   left: 0;
   z-index: 100;
+  height: calc(100%-75px);
   background-color: var(--happy_contorno_global);
 }
 
@@ -103,7 +104,7 @@ code {
 
 
 .footer_sidebar{
-  position:fixed;
+  
   bottom: 0;
   display: flex;
   align-items: center;

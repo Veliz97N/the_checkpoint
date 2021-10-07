@@ -41,12 +41,7 @@ code {
   background: var(--happy_gradient);
 }
 
-.sidebar{
-  position: absolute;
-  left: 0;
-  z-index: 100;
-  background-color: var(--happy_contorno_global);
-}
+
 
 .sidebar_logo{
   background-color: var(--happy_non_selected);
