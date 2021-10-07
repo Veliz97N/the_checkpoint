@@ -5,6 +5,7 @@ import Layout from "../Folder_Contenido_General/Layout";
 import DatePicker from "react-datepicker";
 import { addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+import { useMediaQuery } from 'react-responsive';
 
 import FilaEstadisticas_ProductosMasVendidos from "./filaEstadisticas_ProductosMasVendidos";
 
@@ -127,6 +128,10 @@ function Estadisticas() {
     funcionObtenerInformacionBaseDatos();
   }, [startDate]);
 
+  const isChiquito = useMediaQuery({
+    query: '(max-width: 600px)'
+  })
+
   return (
     <Layout hasNavbar hasSidebar>
       <div className="container">
@@ -211,8 +216,8 @@ function Estadisticas() {
           </div>
         </div>
       </div>
-
-      <div className="row mt-1 p-2" id="tabla2">
+      {!isChiquito&&
+      <div className="row mt-1 p-2 d-none d-sm-block " id="tabla2">
         <div className="col-md-12 col-sm-12">
           <div className="prueba " id="col3">
             <div className="d-flex justify-content-center" id="col2">
@@ -243,7 +248,9 @@ function Estadisticas() {
             </table>
           </div>
         </div>
+      
       </div>
+      }
     </Layout>
   );
 }

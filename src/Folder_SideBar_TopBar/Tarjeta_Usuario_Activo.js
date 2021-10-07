@@ -31,7 +31,7 @@ const Tarjeta_Usuario_Activo = (props) => {
 
   return (
     <>
-      {!isChiquito ? (
+      {!isChiquito&&
         <div
           style={isHover ? activo_tarjeta_usuario : no_activo_tarjeta_usuario}
           className="usuario btn-group d-sm-none d-md-flex"
@@ -76,7 +76,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             </Link>
           </div>
         </div>
-      ) : ("")}
+      }
     </>
   );
 };

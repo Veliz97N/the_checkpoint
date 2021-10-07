@@ -2,9 +2,11 @@ import React,{useState,useContext} from 'react'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
 import Producto_en_tabla_catalogo from './Producto_en_tabla_catalogo';
+import Producto_en_tabla_responsive from './Producto_en_tabla_responsive';
 import UserContext from '../../UserContext/UserContext';
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
+import { useMediaQuery } from 'react-responsive';
 
 import Layout from '../../Folder_Contenido_General/Layout';
 
@@ -88,10 +90,13 @@ const Catalogo_PaginaPrincipal = () => {
         //Me falta saber si la lista tiene un largo 0 
     } 
     
+    const isChiquito = useMediaQuery({
+        query: '(max-width: 730px)'
+      })
 
     return (
         <Layout hasNavbar hasSidebar>
-        <div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+        {!isChiquito?(<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
             <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    
@@ -133,7 +138,47 @@ const Catalogo_PaginaPrincipal = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>):(<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+            <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
+                          <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
+            </Link>                    
+            <div style={contenedor_tabla} className="contenedor-tabla py-5 px-3">
+                <table className="table">
+                    <thead className="py-5">
+                        <tr className="py-5" style={noactivopapi}>                            
+                            <th className="py-3"scope="col">Nombre del Producto</th>
+                            <th className="py-3" scope="col">Valor</th>
+                            <th className="py-3" scope="col">Stock Disponible</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style={noactivopapi}>
+                            <td>
+                                < select
+                                    onChange={e => handleAddrTypeChange(e)}
+                                    className="browser-default custom-select" >
+                                    {
+                                        Add.map((opcionBusqueda, key) => <option key={key} value={key}>{opcionBusqueda}</option>)
+                                    }
+                                </select >      
+                            </td>
+
+                            <td colspan="4">
+                                <input type="text"
+                                    className="form-control"
+                                    onChange={(e)=>funcion_filtrar_busqueda_producto(indiceBuscarElemento,e)}
+                                    value={valor_busqueda_producto}
+                                    />
+                            </td>
+
+                        </tr>
+                        {   (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_responsive  producto={producto}/>)
+                        :productos.map(producto =>  <Producto_en_tabla_responsive  producto={producto}/>)}                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>)}
         </Layout>
     )
 }
