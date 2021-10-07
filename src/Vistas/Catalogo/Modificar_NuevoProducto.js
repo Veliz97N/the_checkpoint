@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
+import { Link } from 'react-router-dom';
 import Layout from '../../Folder_Contenido_General/Layout';
 import UserContext from '../../UserContext/UserContext';
 
@@ -14,6 +15,7 @@ const ModificarProducto = () => {
     const label_ingresarNuevoProducto = {
         color: 'black',
         fontSize: '1.3rem',
+        marginBottom: '1rem'
     }
     const input_ingresarNuevoUsuario_Desactivado = {
         backgroundColor: "#d8d8d8",
@@ -69,8 +71,7 @@ const ModificarProducto = () => {
     }
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ ACA SI EMPIEZA LO CHIDO PAPIIIIIIIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
-    
-    const { productoSeleccionado, toggleProductoSeleccionado } = useContext(UserContext); // ACA TAMBIEN RECIBEEEE 
+    const { productoSeleccionado, toggleProductoSeleccionado } = useContext(UserContext);
 
     const [booleano_feliz_nombre, setBooleano_feliz_nombre] = useState(null);
     const [booleano_feliz_categoria, setBooleano_feliz_categoria] = useState(null);
@@ -174,7 +175,7 @@ const ModificarProducto = () => {
         setCheckedTrue_ValorUnidad(e.target.value);
     };
 
-    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState("");
+    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState();
     const handler_CheckedTrue_StockDisponible = (e) => {
         setCheckedTrue_StockDisponible(e.target.value);
     };
@@ -235,6 +236,7 @@ const ModificarProducto = () => {
         setCheckedTrue_CodigoBarras("")
         setCheckedTrue_ValorUnidad("")
         setCheckedTrue_StockDisponible("")
+        console.log("producto cancelado");
     }
 
     //❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌   ACA TERMINA LO CHIDO PAPIIIII ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
@@ -246,7 +248,7 @@ const ModificarProducto = () => {
         <Layout hasNavbar hasSidebar>
             <div className="ingresarNuevoProducto">
                 <div className="row">
-                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
+                    <div className="h3 col-12 d-flex justify-content-center py-4 my-1">
                         <div className="titulo col-6 py-2 d-flex justify-content-center">
                             {titulo.modificar}
                         </div>
@@ -254,9 +256,9 @@ const ModificarProducto = () => {
                 </div>
                 <form>
                     <div className="row">
-                        <div className="col-md-7 col-sm-12">
+                        <div className="col-md-7 col-sm-12 my-1">
 
-                            <div className="fuera my-2 mb-4">
+                            <div className="fuera my-2 pb-3">
                                 <div className="form-group">
                                     <label
                                         style={label_ingresarNuevoProducto}
@@ -284,7 +286,7 @@ const ModificarProducto = () => {
                                             type="text"
                                             name=""
                                             id=""
-                                            placeholder="Ingresa tu nombre"
+                                            placeholder="Ingresa el nombre del producto"
                                             onChange={(e) => handle_CheckedTrue_Nombre(e)}
                                             value={checkedTrue_Nombre}
                                         />
@@ -296,7 +298,7 @@ const ModificarProducto = () => {
                                             type="text"
                                             name=""
                                             id=""
-                                            placeholder="Ingresa tu nombre"
+                                            placeholder="Ingresa el nombre del producto"
                                             value={productoSeleccionado.nombreProducto}
                                         />
                                     )}
@@ -330,8 +332,8 @@ const ModificarProducto = () => {
                                         for="exampleInputEmail1"
                                     >
                                         <div className="row">
-                                            <div className="col-8">Categoria</div>
-                                            <div className="col-4">
+                                            <div className="col-md-8">Categoria</div>
+                                            <div className="col-md-4">
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
@@ -517,7 +519,7 @@ const ModificarProducto = () => {
                                         for="exampleInputEmail1"
                                     >
                                         <div className="row">
-                                            <div className="col-8">Stock</div>
+                                            <div className="col-8">Stock Disponible</div>
                                             <div className="col-4">
                                                 <input
                                                     class="form-check-input"
@@ -573,21 +575,21 @@ const ModificarProducto = () => {
 
 
                         </div>
-                        <div className="col-md-5 col-sm-12 mt-2 mb-2">
-                            <div className="ingresar_foto mb-1 ps-2">
+                        <div className="col-md-5 col-sm-12 mt-2 mb-5">
+                            <div className="ingresar_foto mb-5 ps-2">
                                 <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Ingresa Imagen </label>
                                 <input style={input_ingresarFotografia} className="ingresarArchivo" type="file" name="" id="" accept="image/*" onChange={processImage} />
                             </div>
                             <div className="contenedorcontenedor justify-content-center d-md-flex d-sm-none ">
                                 {fileUrl ? <div style={contenedorfotografia} >
-                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} />
+                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} alt="" />
                                 </div> : ""} {/* ASI NO SE MUESTRAN BORDES PLOMOS ANTIESTETICOS */}
                             </div>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                        <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center mb-1">
                             <button
                                 onClick={(e) => FuncionValidarFormulario(e)}
                                 type="submit"
@@ -595,9 +597,11 @@ const ModificarProducto = () => {
                             >
                                 Crear Nuevo Usuario
                             </button>
+                            <Link to="/catalogo_paginaprincipal">
                             <button type="reset" onClick={(e) => cancelar_Producto(e)} class="btn btn-danger mx-5">
                                 Cancelar
                             </button>
+                            </Link>
                         </div>
                     </div>
                 </form>
