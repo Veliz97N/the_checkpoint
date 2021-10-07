@@ -192,20 +192,6 @@ code {
   color: #22577a;
   
 }
-@media  (max-width: 1000px) {
-  .username-input input{
-    position: absolute;
-    top: 35%;
-  }
-  .password-input input {
-    position: absolute;
-    
-    margin-top: 1%;
-}
-.login-button button{
-  margin-top: 1%;
-}
-}
 
 
 
@@ -480,4 +466,36 @@ code {
   background: var(--happy_interior_global);
   cursor: pointer;  
   
+}
+
+.activo {
+  width: 13rem;
+  overflow: hidden;
+  transition: all ease .5s  
+}
+.no_activo {
+  width: 3.5rem;
+  overflow: hidden;
+  transition: all ease .5s
+  
+};
+@media  (max-width: 1000px) {
+  .username-input input{
+    position: absolute;
+    top: 35%;
+  }
+  .password-input input {
+    position: absolute;
+    
+    margin-top: 1%;
+}
+.login-button button{
+  margin-top: 1%;
+}
+}
+
+@media  (max-width: 768px) {
+  .sidebar{
+    width: 4rem;
+  }
 }
