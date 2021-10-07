@@ -2,8 +2,13 @@ import React,{useState} from 'react'
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
 import Layout from '../Folder_Contenido_General/Layout'
+import { useMediaQuery } from "react-responsive";
 
 const CrearUsuario = () => {
+    const isChiquito = useMediaQuery({
+        query: "(max-width: 577px)",
+      });
+
     const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
     const input_ingresarNuevoProducto = {
         backgroundColor: '#57CC99',
@@ -121,6 +126,7 @@ const CrearUsuario = () => {
 
     const [datosNuevoUsuario, setDatosNuevoUsuario] = useState()
    
+
     const functionValidarFormulario = (e) =>{
         e.preventDefault()
 
@@ -128,9 +134,13 @@ const CrearUsuario = () => {
 
 
     }
+
+
     return (
         <Layout hasNavbar hasSidebar>
+        {!isChiquito?
             <div className="crearUsuario">
+               
                 <div className="row">
                     <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                         <div className="titulo col-6 py-2 d-flex justify-content-center">
@@ -138,9 +148,11 @@ const CrearUsuario = () => {
                         </div>
                     </div>
                 </div>
+                
                 <form >
+                   
                     <div className="row">
-                        <div className="col-md-7 col-sm-12">
+                        <div className="col-md-6 col-sm-12">
 
                             <div className="fuera my-2 mb-4">
                                 <div className="caja_contenedora_label_input form-group">
@@ -187,7 +199,7 @@ const CrearUsuario = () => {
                             </div>
 
                         </div>
-                        <div className="col-md-5 col-sm-12 mt-2">
+                        <div className="col-md-5 col-sm-12 mt-2 mb-sm-3">
                             <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                                 <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Imagen del Usuario </label>
                                 <input style={input_ingresarFotografia} type="file" name="" id="" accept="image/*" onChange={processImage} />
@@ -201,6 +213,7 @@ const CrearUsuario = () => {
 
                     </div>
 
+                    
                     <div className="row">
                         <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
                             <button
@@ -219,8 +232,110 @@ const CrearUsuario = () => {
                             </button>
                         </div>
                     </div>
+                
                 </form>
+           
             </div>
+            :
+            <div className="crearUsuario">
+
+                <div className="row">
+                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
+                        <div className="titulo col-6 py-2 d-flex justify-content-center">
+                            Crear Nuevo Usuario
+                        </div>
+                    </div>
+                </div>
+                
+                <form >
+                    
+                    <div className="row">
+                        <div className="col-12">
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="caja_contenedora_label_input form-group">
+                                    <label style={label_ingresarNuevoProducto} className="col-12 d-block" for="exampleInputEmail1">Nombre</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-12 d-block" type="text" name="" id="" placeholder="Ingresa tu nombre" onChange={(e) => setNombre_nuevoUsuario(e.target.value)} value={nombre_nuevoUsuario} />
+                                </div>
+                                {booleano_feliz_nombre==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>
+                                                             :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>}
+                            </div>
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label style={label_ingresarNuevoProducto} className="col-12 d-block  ps-2" for="exampleInputPassword1">Apellido</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-12 d-block" type="text" name="" id="" placeholder="Ingresa tu apellido" onChange={(e) => setApellido_nuevoUsuario(e.target.value)} value={apellido_nuevoUsuario} />
+                                </div>
+                                {booleano_feliz_apellido==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>
+                                                                :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>}
+                            </div>
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label style={label_ingresarNuevoProducto} className="col-12 d-block ps-2" for="exampleInputPassword1">Nombre de Usuario</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-12 d-block" type="text" name="" id="" placeholder="Ingresa tu nombre de usuario" onChange={(e) => setUsername_nuevoUsuario(e.target.value)} value={username_nuevoUsuario} />
+                                </div>
+                                {booleano_feliz_username==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>
+                                                                :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>}
+                            </div>
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label style={label_ingresarNuevoProducto} className="col-12 d-block  ps-2" for="exampleInputPassword1">Contrasena</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-12 d-block" type='password' name="" id="" placeholder="Ingresa tu contrasena" onChange={(e) => setPassword_nuevoUsuario(e.target.value)} value={password_nuevoUsuario} />
+                                </div>
+                                {booleano_feliz_password==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
+                                                                :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
+                            </div>
+
+                            <div className="fuera my-2 mb-4">
+                                <div className="form-group">
+                                    <label style={label_ingresarNuevoProducto} className="col-12 d-block  ps-2" for="exampleInputPassword1">Confirmar Contrasena</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-12 d-block" type='password' name="" id="" placeholder="Ingresa nuevamente tu contrasena" onChange={(e) => setConfirm_password_nuevoUsuario(e.target.value)} value={confirm_password_nuevoUsuario} />
+                                </div>
+                                {booleano_feliz_confirm_password==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
+                                                                       :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
+                            </div>
+
+                        </div>
+                        <div className="col-12">
+                            <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
+                                <label style={label_ingresarNuevoProducto} className=" col-lg-4 col-md-4 col-sm-12 mb-4" for="exampleInputPassword1">Imagen del Usuario </label>
+                                <input style={input_ingresarFotografia} type="file" name="" id="" accept="image/*" onChange={processImage} />
+                            </div>
+                            <div className="contenedorcontenedor justify-content-center d-md-flex d-sm-none ">
+                                {fileUrl ? <div style={contenedorfotografia} >
+                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} />
+                                </div> : ""}
+                            </div>
+                        </div>
+
+                    </div>
+
+                   
+                    <div className="row">
+                        <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                            <button
+                                onClick={(e) => FuncionValidarFormulario(e)}
+                                type="submit"
+                                class="btn btn-primary mx-5"
+                            >
+                                Crear Nuevo Usuario
+                            </button>
+                            <button
+                                type="reset"
+
+                                class="btn btn-danger mx-5"
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+               
+                </form>
+            
+            </div>
+        }
         </Layout>
     )
 }

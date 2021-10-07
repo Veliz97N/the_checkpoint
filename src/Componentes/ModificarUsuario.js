@@ -3,7 +3,13 @@ import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
 import Layout from "../Folder_Contenido_General/Layout";
 
+import { useMediaQuery } from "react-responsive";
+
 const ModificarUsuario = (props) => {
+  const isChiquito = useMediaQuery({
+    query: "(max-width: 577px)",
+  });
+  
   const titulo = {
     nuevo: "Ingresar Nuevo Usuario",
     modificar: "Modificar Usuario Existente",
@@ -65,7 +71,7 @@ const ModificarUsuario = (props) => {
     event.preventDefault();
   };
 
-  const overflow = {
+  const overFlow = {
     overflow: "hidden",
   };
 
@@ -234,6 +240,7 @@ const ModificarUsuario = (props) => {
 
   return (
     <Layout hasNavbar hasSidebar>
+    {!isChiquito?
       <div className="crearUsuario">
         <div className="row">
           <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
@@ -533,8 +540,8 @@ const ModificarUsuario = (props) => {
               </div>
             </div>
 
-            <div className="col-md-5 col-sm-12 mt-2">
-              <div className="ingresar_foto mb-1 ps-2">
+            <div className="col-md-5 col-sm-12 mt-2 mb-sm-4">
+              <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                 <label
                   style={label_ingresarNuevoUsuario}
                   className=" col-lg-4 col-md-4 col-sm-12 mb-4"
@@ -575,7 +582,7 @@ const ModificarUsuario = (props) => {
                 type="submit"
                 class="btn btn-primary mx-5"
               >
-                Crear Nuevo Usuario
+                Modificar Usuario
               </button>
               <button type="reset" onClick={(e) => cancelar_Usuario(e)} class="btn btn-danger mx-5">
                 Cancelar
@@ -584,6 +591,367 @@ const ModificarUsuario = (props) => {
           </div>
         </form>
       </div>
+      
+      
+      
+      
+      
+      :
+
+
+
+
+      <div className="crearUsuario">
+        <div className="row">
+          <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
+            <div className="titulo col-6 py-2 d-flex justify-content-center">
+              Ver Perfil de Usuario
+            </div>
+          </div>
+        </div>
+        <form>
+          <div className="row">
+            <div className="col-12">
+              <div className="fuera my-2 mb-4">
+                <div className="form-group">
+                  <label
+                    style={label_ingresarNuevoUsuario}
+                    className="col-12 d-flex justify-content-between"
+                    for="exampleInputEmail1"
+                  >
+                    <div className="row">
+                      <div className="col-8 ">Nombre</div>
+                      <div className="col-4">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          onClick={(e) => handler_Editar_Nombre(e)}
+                        ></input>
+                      </div>
+                    </div>
+                  </label>
+                  {nombre ? (
+                    <input
+                      disabled={false}
+                      style={input_ingresarNuevoUsuario_Activado}
+                      className="col-12 d-block"
+                      type="text"
+                      name=""
+                      id=""
+                      placeholder="Ingresa tu nombre"
+                      onChange={(e) => handle_CheckedTrue_Nombre(e)}
+                      value={checkedTrue_nombre}
+                    />
+                  ) : (
+                    <input
+                      disabled={true}
+                      style={input_ingresarNuevoUsuario_Desactivado}
+                      className="col-12 d-block"
+                      type="text"
+                      name=""
+                      id=""
+                      placeholder="Ingresa tu nombre"
+                      value={props.user.nombre}
+                    />
+                  )}
+                </div>
+                {booleano_feliz_nombre == false ? (
+                  <div
+                    style={visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Nombre Invalido
+                  </div>
+                ) : (
+                  <div
+                    style={no_visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Nombre Invalido
+                  </div>
+                )}
+              </div>
+
+              <div className="fuera mb-4">
+                <div className="form-group">
+                  <label
+                    style={label_ingresarNuevoUsuario}
+                    className="col-12 d-flex justify-content-between"
+                    for="exampleInputPassword1"
+                  >
+                    <div className="row">
+                      <div className="col-8">Apellido</div>
+                      <div className="col-4">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          onClick={(e) => handle_Editar_Apellido(e)}
+                        ></input>
+                      </div>
+                    </div>
+                  </label>
+                  {apellido ? (
+                    <input
+                      disabled={false}
+                      style={input_ingresarNuevoUsuario_Activado}
+                      className="col-12"
+                      type="text"
+                      placeholder="Ingresa tu apellido"
+                      onChange={(e) => handler_CheckedTrue_Apellido(e)}
+                      value={checkedTrue_Apellido}
+                    />
+                  ) : (
+                    <input
+                      disabled={true}
+                      style={input_ingresarNuevoUsuario_Desactivado}
+                      className="col-12"
+                      type="text"
+                      placeholder="Ingresa tu apellido"
+                      value={props.user.apellido}
+                    />
+                  )}
+                </div>
+                {booleano_feliz_apellido == false ? (
+                  <div
+                    style={visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Apellido Invalido
+                  </div>
+                ) : (
+                  <div
+                    style={no_visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Apellido Invalido
+                  </div>
+                )}
+              </div>
+
+              <div className="fuera mb-4">
+                <div className="form-group">
+                  <label
+                    style={label_ingresarNuevoUsuario}
+                    className="col-12 d-flex justify-content-between"
+                    for="exampleInputPassword1"
+                  >
+                    <div className="row">
+                      <div className="col-10">Nombre de Usuario</div>
+                      <div className="col-1">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          onClick={(e) => handle_Editar_Username(e)}
+                        ></input>
+                      </div>
+                    </div>
+                  </label>
+
+                  {userName ? (
+                    <input
+                      disabled={false}
+                      style={input_ingresarNuevoUsuario_Activado}
+                      className="col-12"
+                      type="text"
+                      placeholder="Ingresa tu usuario"
+                      onChange={(e) => handler_CheckedTrue_Username(e)}
+                      value={checkedTrue_Username}
+                    />
+                  ) : (
+                    <input
+                      disabled={true}
+                      style={input_ingresarNuevoUsuario_Desactivado}
+                      className="col-12"
+                      type="text"
+                      placeholder="Ingresa tu usuario"
+                      value={props.user.username}
+                    />
+                  )}
+                </div>
+                {booleano_feliz_username == false ? (
+                  <div
+                    style={visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Nombre de Usuario Invalido
+                  </div>
+                ) : (
+                  <div
+                    style={no_visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Nombre de Usuario Invalido
+                  </div>
+                )}
+              </div>
+
+              <div className="fuera mb-4">
+                <div className="form-group ">
+                  <label
+                    style={label_ingresarNuevoUsuario}
+                    className="col-12 d-flex justify-content-between"
+                    for="exampleInputPassword1"
+                  >
+                    <div className="row">
+                      <div className="col-8">Contraseña</div>
+
+                      <div className="col-4">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          onClick={(e) => handle_Editar_Password(e)}
+                        ></input>
+                      </div>
+                    </div>
+                  </label>
+
+                  {password ? (
+                    <input
+                      disabled={false}
+                      style={input_ingresarNuevoUsuario_Activado}
+                      className="col-12"
+                      type="password"
+                      placeholder="Ingresa tu contraseña"
+                      onChange={(e) => handler_CheckedTrue_Password(e)}
+                      value={checkedTrue_Password}
+                    />
+                  ) : (
+                    <input
+                      disabled={true}
+                      style={input_ingresarNuevoUsuario_Desactivado}
+                      className="col-12"
+                      type="password"
+                      placeholder="Ingresa tu contraseña"
+                      value={props.user.password}
+                    />
+                  )}
+                </div>
+                {booleano_feliz_password == false ? (
+                  <div
+                    style={visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Contraseña Invalida
+                  </div>
+                ) : (
+                  <div
+                    style={no_visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Contraseña Invalida
+                  </div>
+                )}
+              </div>
+
+              <div className="fuera my-2 mb-4">
+                <div className="form-group">
+                  <label
+                    style={label_ingresarNuevoUsuario}
+                    className="col-12 d-flex justify-content-between"
+                    for="exampleInputPassword1"
+                  >
+                    Confirmar Contraseña
+                  </label>
+
+                  {password ? (
+                    <input
+                      disabled={false}
+                      style={input_ingresarNuevoUsuario_Activado}
+                      className="col-12"
+                      type="password"
+                      placeholder="Ingresa tu contraseña"
+                      onChange={(e) => handler_CheckedTrue_ConfirmarPassword(e)}
+                      value={checkedTrue_ConfirmarPassword}
+                    />
+                  ) : (
+                    <input
+                      disabled={true}
+                      style={input_ingresarNuevoUsuario_Desactivado}
+                      className="col-12"
+                      type="password"
+                      placeholder="Ingresa tu contraseña"
+                      value={props.user.password}
+                    />
+                  )}
+                </div>
+                {booleano_feliz_confirm_password == false ? (
+                  <div
+                    style={visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Contraseña Invalida
+                  </div>
+                ) : (
+                  <div
+                    style={no_visible}
+                    className="invalido d-flex justify-content-end my-0"
+                  >
+                    Contraseña Invalida
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="col-md-5 col-sm-12 mt-2 mb-sm-4">
+              <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
+                <label
+                  style={label_ingresarNuevoUsuario}
+                  className=" col-lg-4 col-md-4 col-sm-12 mb-4"
+                  for="exampleInputPassword1"
+                >
+                  Imagen del Usuario{" "}
+                </label>
+                <input
+                  style={input_ingresarFotografia}
+                  className="ingresarArchivo"
+                  type="file"
+                  name=""
+                  id=""
+                  accept="image/*"
+                  onChange={processImage}
+                />
+              </div>
+              <div className="contenedorcontenedor justify-content-center d-md-flex d-sm-none ">
+                {fileUrl ? (
+                  <div style={contenedorfotografia}>
+                    <img
+                      style={imagen_Ingresar_Modificar_Usuario}
+                      src={fileUrl}
+                      alt=""
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="mt-3 botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+              <button
+                onClick={(e) => FuncionValidarFormulario(e)}
+                type="submit"
+                class="btn btn-primary mx-5"
+              >
+                Modificar Usuario
+              </button>
+              <button type="reset" onClick={(e) => cancelar_Usuario(e)} class="btn btn-danger mx-5">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  }
     </Layout>
   );
 };
