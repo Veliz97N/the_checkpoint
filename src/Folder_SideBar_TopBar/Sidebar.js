@@ -34,9 +34,6 @@ const Sidebar = () => {
                         <span className="texto_menu_lateral">Inicio</span>
                     </Link>
                 </li>
-
-
-
                 <li>
                     <Link to="/ventas" >
                         <RiBankLine className="iconos_menu_lateral" />
@@ -66,4 +63,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default Sidebar;

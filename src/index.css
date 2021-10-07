@@ -266,6 +266,7 @@ code {
 }
 
 
+
 #cuadros a{
   list-style: none;
   text-decoration: none;
@@ -443,5 +444,10 @@ code {
 
 #cajaVentas {
   background: var(--happy_gradient);
-  
+}
+
+/* .estiloselectpicker{} */
+
+.invalido{
+  color:red
 }

@@ -159,6 +159,8 @@ code {
   font-size: 4.5rem;
 }
 
+
+
 /* Parte Joaco */
 #login-form {
   position: relative;
@@ -272,6 +274,20 @@ code {
   color: #fff;
 }
 
+.totalVenta input, .Precio_Producto_A_Vender input{
+  background-color: #fff;
+  color: #000000;
+}
+
+.eliminar_producto_boleta{
+  visibility: hidden;
+}
+
+.eliminar_producto_boleta:hover{
+  visibility: visible;
+  border: none;
+  background: transparent;
+}
 
 #cuadros a{
   list-style: none;
@@ -378,7 +394,6 @@ code {
   border: none;
 }
 #insertUser{
-  position: absolute;
   width: 300px;
   height: 50px;
   left: 627px;
@@ -415,13 +430,13 @@ code {
 }
 .ImageProfile{
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   left: 850px;
   top: 210px;
-  background: silver;
-  border-radius: 30px;
-  border: 2px solid black;
+  background: transparent;
+
+
 }
 .textImage{
   position: absolute;
@@ -446,6 +461,45 @@ code {
   cursor: pointer;
 }
 
+
+/*Style Gonzalo*/
+
+#cajaVentas{
+  background: var(--happy_gradient);  
+}
+
+
+#stadistics{
+  background: #57CC99;
+  border-radius: 60px;
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+#tabla2{
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+#tabla1{
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  
+}
+#col1, #col3{
+  margin: 5px;
+  background: #57CC99;
+}
+#col2,#titleStadistic{
+  margin: 5px;
+  background: #80ED99;
+}
 
 
 

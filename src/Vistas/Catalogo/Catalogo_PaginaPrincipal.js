@@ -58,27 +58,36 @@ const Catalogo_PaginaPrincipal = () => {
         setValor(e.target.value)
        
     }
+    const [valor_busqueda_producto, setValor_busqueda_producto] = useState("")
     
+
     const funcion_filtrar_busqueda_producto = (tipoBusqueda, valorBusqueda) => {
-        console.log(valorBusqueda)
-        if(tipoBusqueda==="0" &&valorBusqueda!==""){
+        
+        setValor_busqueda_producto(valorBusqueda.target.value);
+        
+        if(valorBusqueda.target.value!= ""){
+        if(tipoBusqueda==="0"){
             
-            const productoFiltrados = productos.filter(producto => producto.nombreProducto.includes(valorBusqueda))
+            const productoFiltrados = productos.filter(producto => (producto.nombreProducto).toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if(tipoBusqueda==="1" &&valorBusqueda!==""){
             
-            const productoFiltrados = productos.filter(producto => producto.categoria.includes(valorBusqueda))
+            const productoFiltrados = productos.filter(producto => producto.categoria.toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if ( tipoBusqueda==="2" &&valorBusqueda!==""){
             
-            const productoFiltrados = productos.filter(producto => producto.codigodebarras.includes(valorBusqueda))
+            const productoFiltrados = productos.filter(producto => producto.codigodebarras.includes(valor_busqueda_producto))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if(valorBusqueda==="" || listaProductosFiltrado.length === 0 ){ //Si el valor de busqueda es ''
             const productoFiltrados = []
             setListaProductosFiltrado(productoFiltrados)
+        }
+    }
+        else {
+            setListaProductosFiltrado([]);  
         }
         //Me falta saber si la lista tiene un largo 0 
     } 
@@ -116,12 +125,9 @@ const Catalogo_PaginaPrincipal = () => {
                             <td colspan="4">
                                 <input type="text"
                                     className="form-control"
-                                    onChange={handlesetvalor}
-                                    onKeyPress={e => {
-                                        if (e.key === 'Enter') { 
-                                            funcion_filtrar_busqueda_producto(indiceBuscarElemento,valor);
-                                        }
-                                    }}/>
+                                    onChange={(e)=>funcion_filtrar_busqueda_producto(indiceBuscarElemento,e)}
+                                    value={valor_busqueda_producto}
+                                    />
                             </td>
 
                         </tr>
