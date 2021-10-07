@@ -76,55 +76,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             </Link>
           </div>
         </div>
-      ) : (
-        
-          <div className="col-3">
-            <button
-              className="btn dropdown-toggle "
-              type="button"
-              id="dropdownMenuButton"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <div className="col-3" id="cuadro4">
-              <div className="datos_usuario m-2 d-flex flex-column my-auto">
-                <div className="col-12 py-4 mt-3 mb-1 d-flex justify-content-center">
-                  <div className="foto_usuario">
-                    <i className="fas fa-users fa-3x"></i>
-                  </div>
-                </div>
-                <div className="col-12" id="text1">
-                  <div className="nombre_usuario mx-auto">
-                    {props.user.username}
-                  </div>
-                </div>
-                <div className="col-12  text-center" id="text-2">
-                  <div className="permiso_usuario mx-auto">
-                    <small className="text-white">{props.user.permiso}</small>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </button>
-            <div
-              style={estilo_dropdownmenuNuevo}
-              className="dropdown-menu"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <Link className="dropdown-item" to="/">
-                Cerrar Sesion
-              </Link>
-              <Link className="dropdown-item" to="/usuario_crearusuario">
-                Crear Usuario
-              </Link>
-              <Link className="dropdown-item" to="/modificarusuario">
-                Ver Perfil
-              </Link>
-            </div>
-          </div>
-        
-      )}
+      ) : ("")}
     </>
   );
 };
