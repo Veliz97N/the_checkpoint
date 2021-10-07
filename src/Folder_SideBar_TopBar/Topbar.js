@@ -41,8 +41,8 @@ const Topbar = () => {
                     <div className={"nombre_empresa"} style={titulo_Hover?titulo_activo:titulo_no_activo}>
                         {isChiquito?'':<h3 >{nombre_empresa}</h3>}
                     </div> 
-
-                {isDesplegado? <Tarjeta_Usuario_Activo user={user}/>:""}
+                {!isChiquito && isDesplegado? <Tarjeta_Usuario_Activo user={user}/>: ""}
+                
             </div>
         </nav>
 

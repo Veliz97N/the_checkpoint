@@ -21,7 +21,7 @@ const ContenidoGeneral = () => {
        
           <div className="container-fluid">
             
-            <Route exact path="/inicio" component={Inicio} />
+            <Route exact path="/inicio" component={()=> <Inicio user={user}/>} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
             <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
             <Route exact path="/catalogo_modificarproducto" component={()=> <ModificarProducto productoSeleccionado={productoSeleccionado}/>} />

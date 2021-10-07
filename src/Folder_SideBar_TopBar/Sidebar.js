@@ -9,6 +9,7 @@ import UserContext from '../UserContext/UserContext';
 import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo'; //Se importa la tarjeta de usuario, de modo que si no se muestra en topbar lo hara en sidebar
 
 import { Link } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive';
 
 const Sidebar = () => {
 
@@ -23,6 +24,10 @@ const Sidebar = () => {
           transition: "all ease .5s",
           
       };
+
+      const isChiquito = useMediaQuery({
+        query: '(max-width: 830px)'
+      })
 
     const {user, isDesplegado}= useContext(UserContext); //se anade informacion global referente al usuario y a si tiene desplegado el toggle
     
@@ -62,7 +67,7 @@ const Sidebar = () => {
 
 
             <div className="footer_sidebar" >
-                {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+                {!isChiquito && !isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
             </div>
 
 
