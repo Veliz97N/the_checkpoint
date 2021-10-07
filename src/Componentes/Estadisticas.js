@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import { useState } from 'react/cjs/react.development';
 import Layout from '../Folder_Contenido_General/Layout'
 
 function Estadisticas(){
@@ -9,7 +10,8 @@ function Estadisticas(){
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
     const datosRecibidos = [10000, 515, 651, 239, 658, 557, 758]
-    const data1 = {
+
+    const informacion_Base_Datos = {
         labels: dias,
         datasets:[{
             label: "Venta Semanal",
@@ -18,9 +20,19 @@ function Estadisticas(){
             hoverBackgroundColor: '#4B0082',
             data: datosRecibidos
         }]
-    
     }
+  
+    const [datos_A_Graficar, setDatos_A_Graficar] = useState(datosRecibidos)
 
+
+
+
+    const funcionObtenerInformacionBaseDatos = () =>{
+
+
+
+
+    }
 
 
     const opciones={
@@ -51,7 +63,22 @@ function Estadisticas(){
                   className="d-flex justify-content-center"
                   id="titleStadistic"
                 >
-                  Venta Diaria
+                  <select
+                  
+                  className="browser-default custom-select col-4 me-2"
+                >
+                 
+                    <option>
+                      Venta Diaria
+                    </option>
+                    <option>
+                      Venta Semanal
+                    </option>
+                    <option>
+                      Venta Mensual
+                    </option>
+                  
+                </select>
                 </div>
 
                 <div className="d-flex justify-content-center">Fecha</div>
@@ -88,7 +115,7 @@ function Estadisticas(){
                   Grafico de Ventas
                 </div>
                 <div className=" col d-flex aling-content-center" id="datas">
-                  <Bar data={data1} options={opciones} />
+                  <Bar data={datos_A_Graficar} options={opciones} />
                 </div>
               </div>
             </div>
