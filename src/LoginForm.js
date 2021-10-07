@@ -10,11 +10,6 @@ function LoginForm({login_function, error}) {
     const styles = {
       background: "#F95B02",
       borderColor: "#F95B02",
-      ":hover": {
-        backgroundColor: "#c94a00",
-        borderColor: "#c94a00",
-        color: "#fff"
-      }
     }
 
     const error_style = {
@@ -61,14 +56,14 @@ function LoginForm({login_function, error}) {
         </button>
       </div>
       {/* Connect facebook y google buttons */}
-      <div className="connect-buttons">
+      {/* <div className="connect-buttons">
         <button className="btn btn-primary btn-sm fb" type="submit">
           Conectar con Facebook
         </button>
-        <button className="btn btn-warning btn-sm google-btn" style={styles} type="submit">
+        <button className="btn bg-danger btn-sm google-btn" type="submit">
           Conectar con Google
         </button>
-      </div>
+      </div> */}
     </form>
     </>
   );

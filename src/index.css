@@ -256,17 +256,9 @@ code {
   left: 27%;
 }
 
-.google-btn {
-  left: 54%;
-  background: #F95B02;
-  border-color: #F95B02;
-}
 
-.google-btn:hover{
-  background-color: #c94a00;
-  border-color: #c94a00;
-  color: #fff;
-}
+
+
 .tomodificarproducto{
   text-decoration: none;
   color: black;
