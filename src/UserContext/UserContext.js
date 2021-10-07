@@ -18,7 +18,7 @@ const productos=[{nombreProducto:"Modelo",codigodebarras:"8888888888",categoria:
 
 const UserProvider = ({ children }) => {
 
-    const [productoSeleccionado, setProductoSeleccionado] = useState("")
+    const [productoSeleccionado, setProductoSeleccionado] = useState("") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
 
     const [user, setUser] = useState(usuario)
     const [vendedor, setVendedor] = useState(vendedor_prueba)

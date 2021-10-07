@@ -5,13 +5,16 @@ import UserContext from '../../UserContext/UserContext';
 
 const Producto_en_tabla_catalogo = (props) => {
 
-    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext);
+    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext); //ACA RECIBE LA WEAAAA 
     const visibleEditarProductoCategoria = {
         visibility: 'visible',
         fontSize: "1.4rem",
         color:'black',
         transition: "all .5s ease;",
 
+    }
+    const inutil = {
+        color:'black',
     }
     const invisibleEditarProductoCategoria ={
         visibility: 'hidden',
