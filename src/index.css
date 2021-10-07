@@ -479,6 +479,8 @@ code {
   transition: all ease .5s
   
 };
+
+
 @media  (max-width: 1000px) {
   .username-input input{
     position: absolute;

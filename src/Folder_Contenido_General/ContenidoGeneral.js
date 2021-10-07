@@ -27,6 +27,7 @@ const ContenidoGeneral = () => {
   return (
     <BrowserRouter>
         <Switch>
+          
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
             
             <Route exact path="/inicio" component={Inicio} />
