@@ -24,7 +24,9 @@ function Estadisticas(){
   
     const [datos_A_Graficar, setDatos_A_Graficar] = useState(informacion_Base_Datos)
 
-
+    const opinionbrigida = {
+        visibility: 'visible'
+    };
 
 
     const funcionObtenerInformacionBaseDatos = () =>{
