@@ -252,14 +252,13 @@ const Ventas = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-6 ">
-            {" "}
-            {/*//ACA SE CREA LA PRIMERA COLUMNA DE LA IZQUIERDA  */}
+          <div className="col-md-6 col-sm-12 ">
+            
             <form>
-              <div className="d-flex Contenedor_Buscar_Elemento_A_Vender mb-2">
+              <div className="d-md-flex Contenedor_Buscar_Elemento_A_Vender mb-2 mb-sm-2 border border-primary">
                 <select
                   onChange={(e) => handleAddrTypeChange(e)}
-                  className="browser-default custom-select col-4 me-2"
+                  className="browser-default custom-select col-md-4 col-sm-12 col-xs-12 me-2 mb-sm-2"
                 >
                   {Add.map((opcionBusqueda, key) => (
                     <option key={key} value={key}>
@@ -268,7 +267,7 @@ const Ventas = () => {
                   ))}
                 </select>
 
-                <div className="col-8">
+                <div className="col-md-8 col-sm-12 col-xs-12">
                   <input
                     type="text"
                     className="form-control"
@@ -280,16 +279,16 @@ const Ventas = () => {
                 </div>
               </div>
 
-              <div className="Cantidad_Producto_A_Vender d-flex mb-2">
+              <div className="Cantidad_Producto_A_Vender d-md-flex mb-md-2 mb-sm-3">
                 <label
-                  className="col-md-4 col-sm-12 ps-2 me-2"
+                  className="col-md-4 col-sm-12 col-xs-12 ps-2 me-2 d-sm-flex mb-sm-2 justify-content-center"
                   for="exampleInputEmail1"
                 >
                   Cantidad
                 </label>
 
                 <input
-                  className="col-md-8 col-sm-12 "
+                  className="col-md-8 col-sm-12 col-xs-12 "
                   type="number"
                   name=""
                   placeholder="Ingresa la cantidad"
@@ -299,9 +298,9 @@ const Ventas = () => {
               </div>
 
               <fieldset disabled>
-                <div className="Precio_Producto_A_Vender d-flex">
+                <div className="Precio_Producto_A_Vender d-md-flex">
                   <label
-                    className="col-md-4 col-sm-12 ps-2 me-2"
+                    className="col-md-4 col-sm-12 ps-2 me-2 mb-sm-2 d-sm-flex justify-content-center"
                     for="exampleInputEmail1"
                   >
                     Precio
@@ -323,7 +322,7 @@ const Ventas = () => {
                 </div>
               </div>
 
-              <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+              <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center my-sm-3">
                 <button
                   onClick={(e) => FuncionValidarFormulario(e)}
                   type="submit"
@@ -342,7 +341,7 @@ const Ventas = () => {
             </form>
           </div>
 
-          <div className="col-6">
+          <div className="col-md-6 col-sm-12">
             <div
               className="contenedor_tabla_productos_a_vender"
               style={alturaTabla}
@@ -382,15 +381,15 @@ const Ventas = () => {
             </div>
             <div className="totalVenta">
               <fieldset disabled>
-                <div className="Precio_Producto_A_Vender d-flex col-10">
+                <div className="Precio_Producto_A_Vender d-md-flex dm-sm-flex col-md-10">
                   <label
-                    className="col-md-4 col-sm-12 mt-2"
+                    className="col-md-4 col-sm-6 mt-2"
                     for="exampleInputEmail1"
                   >
                     Total venta:
                   </label>
                   <input
-                    className="col-md-8 col-sm-12 my-2"
+                    className="col-md-8 col-sm-6 my-2"
                     type="text"
                     name=""
                     placeholder="Total Venta"
@@ -402,7 +401,7 @@ const Ventas = () => {
 
             <div class="form-group Metodo_Pago_Venta">
               <div
-                class="paymentMethod p-2 d-flex justify-content-between align-items-center border rounded"
+                class="paymentMethod p-2 d-flex justify-content-around align-items-center border rounded"
                 onChange={onChangeHandler_MetodoPago}
               >
                 <div className="contenedor_Metodo_Pago d-flex align-items-center">
@@ -425,16 +424,7 @@ const Ventas = () => {
                   />
                   <i class="fas fa-money-bill-wave text-white fa-2x"></i>
                 </div>
-                <div className="contenedor_Metodo_Pago d-flex align-items-center">
-                  <input
-                    class="form-radio-input ml-3 "
-                    type="radio"
-                    id="check_paymentMethod_express"
-                    name="radio_payment"
-                    value="transferencia"
-                  />
-                  <i class="fas fa-comments-dollar text-white fa-2x"></i>
-                </div>
+              
               </div>
             </div>
 
