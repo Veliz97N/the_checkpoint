@@ -15,13 +15,13 @@ import { useMediaQuery } from 'react-responsive'
 const ContenidoGeneral = () => {
     const {user, isDesplegado, productoSeleccionado}= useContext(UserContext);
     const activo = {
-        paddingLeft: '13rem',
+        paddingLeft: '0',
         transition: "all ease .5s"
     };
     
   const no_activo = {
 
-    paddingLeft: '6rem',
+    paddingLeft: '',
     transition: "all easxe .5s"
   };
 
@@ -32,8 +32,8 @@ const ContenidoGeneral = () => {
   return (
     <BrowserRouter>
         <Switch>
-          {!isChiquito?
-          <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
+       
+          <div className="container-fluid">
             
             <Route exact path="/inicio" component={Inicio} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
@@ -44,18 +44,8 @@ const ContenidoGeneral = () => {
             <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 
             <Route exact path="/estadisticas" component={Estadisticas} />
             <Route exact path="/" component={()=> <Login authorized={false} />} /> 
-          </div>:<div className="container-fluid" style={no_activo}>
-            
-            <Route exact path="/inicio" component={Inicio} />
-            <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
-            <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
-            <Route exact path="/catalogo_modificarproducto" component={()=> <ModificarProducto productoSeleccionado={productoSeleccionado}/>} />
-            <Route exact path="/ventas" component={Ventas} />
-            <Route exact path="/usuario_crearusuario" component={CrearUsuario}/>
-            <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 
-            <Route exact path="/estadisticas" component={Estadisticas} />
-            <Route exact path="/" component={()=> <Login authorized={false} />} /> 
-          </div>}
+    
+          </div>
         </Switch>
     </BrowserRouter>
 
