@@ -612,6 +612,8 @@ const ModificarUsuario = (props) => {
         <form>
           <div className="row">
             <div className="col-12">
+              
+              
               <div className="fuera my-2 mb-4">
                 <div className="form-group">
                   <label
