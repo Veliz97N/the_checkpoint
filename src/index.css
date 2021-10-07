@@ -270,3 +270,18 @@ code {
 .invalido{
   color:red
 }
+
+.algo{
+  width: 60%;
+  background: var(--happy_selected);
+  border: none;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+  cursor: pointer;
+}
+.algo:hover{
+  background: var(--happy_interior_global);
+  cursor: pointer;  
+  
+}

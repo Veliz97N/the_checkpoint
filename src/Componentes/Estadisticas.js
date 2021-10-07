@@ -1,7 +1,10 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react/cjs/react.development';
 import Layout from '../Folder_Contenido_General/Layout'
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function Estadisticas(){
 
@@ -10,6 +13,8 @@ function Estadisticas(){
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
     const datosRecibidos = [10000, 515, 651, 239, 658, 557, 758]
+
+    const [startDate, setStartDate] = useState(new Date());
 
     const informacion_Base_Datos = {
         labels: dias,
@@ -23,11 +28,6 @@ function Estadisticas(){
     }
   
     const [datos_A_Graficar, setDatos_A_Graficar] = useState(informacion_Base_Datos)
-
-    const opinionbrigida = {
-        visibility: 'visible'
-    };
-
 
     const funcionObtenerInformacionBaseDatos = () =>{
 
@@ -45,7 +45,15 @@ function Estadisticas(){
         visibility:'hidden'
     }
 
-    
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
+    useEffect(() => {        
+        
+            console.log("Holiwis");
+        
+    }, [date])
+
     return (
       <Layout hasNavbar hasSidebar>
         <div className="container">
@@ -75,17 +83,28 @@ function Estadisticas(){
                     <option>
                       Venta Diaria
                     </option>
-                    <option>
+                    {/* <option>
                       Venta Semanal
                     </option>
                     <option>
                       Venta Mensual
                     </option>
-                  
+                   */}
                 </select>
                 </div>
+           
+                <div className="row d-flex justify-content-center">
+                    <div className="col-8 d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
+                            <div className="contenedorfecha mx-2">
+                                Fecha: 
+                            </div>
+                            <DatePicker className="algo" selected={startDate} onChange={(date) => setStartDate(date)}/>  </div>
+                    </div>
+                </div>
+              
 
-                <div className="d-flex justify-content-center">Fecha</div>
+
                 <div className="d-flex justify-content-center">Monto</div>
                 <div className="col d-flex aling-content-center">
                   <div className="col-6 d-flex justify-content-center">
