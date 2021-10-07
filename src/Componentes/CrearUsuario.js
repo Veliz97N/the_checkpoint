@@ -119,6 +119,15 @@ const CrearUsuario = () => {
     }
 
 
+    const [datosNuevoUsuario, setDatosNuevoUsuario] = useState()
+   
+    const functionValidarFormulario = (e) =>{
+        e.preventDefault()
+
+
+
+
+    }
     return (
         <Layout hasNavbar hasSidebar>
             <div className="crearUsuario">
