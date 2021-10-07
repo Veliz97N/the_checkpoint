@@ -199,6 +199,22 @@ const CrearUsuario = () => {
                             </div>
                         </div>
 
+                    </div>
+
+                    <div className="row">
+                        <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                            <button
+                                onClick={(e) => FuncionValidarFormulario(e)}
+                                type="submit"
+                                class="btn btn-primary mx-5"
+                            >
+                                Crear Nuevo Usuario
+                            </button>
+                            <button
+                                type="reset"
+
+                                class="btn btn-danger mx-5"
+                            >
                                 Cancelar
                             </button>
                         </div>
