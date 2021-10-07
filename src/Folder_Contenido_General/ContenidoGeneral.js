@@ -10,24 +10,29 @@ import Login from '../Login';
 import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
 import Estadisticas from '../Componentes/Estadisticas';
+import { useMediaQuery } from 'react-responsive'
 
 const ContenidoGeneral = () => {
     const {user, isDesplegado, productoSeleccionado}= useContext(UserContext);
     const activo = {
-        paddingLeft: '14rem',
+        paddingLeft: '13rem',
         transition: "all ease .5s"
     };
     
   const no_activo = {
 
     paddingLeft: '6rem',
-    transition: "all ease .5s"
+    transition: "all easxe .5s"
   };
+
+  const isChiquito = useMediaQuery({
+    query: '(max-width: 768px)'
+  })
 
   return (
     <BrowserRouter>
         <Switch>
-          
+          {!isChiquito?
           <div className="container-fluid" style={!isDesplegado ? activo : no_activo}>
             
             <Route exact path="/inicio" component={Inicio} />
@@ -39,7 +44,18 @@ const ContenidoGeneral = () => {
             <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 
             <Route exact path="/estadisticas" component={Estadisticas} />
             <Route exact path="/" component={()=> <Login authorized={false} />} /> 
-          </div>
+          </div>:<div className="container-fluid" style={no_activo}>
+            
+            <Route exact path="/inicio" component={Inicio} />
+            <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
+            <Route exact path="/catalogo_ingresarnuevoproducto" component={IngresarNuevoProducto} /> 
+            <Route exact path="/catalogo_modificarproducto" component={()=> <ModificarProducto productoSeleccionado={productoSeleccionado}/>} />
+            <Route exact path="/ventas" component={Ventas} />
+            <Route exact path="/usuario_crearusuario" component={CrearUsuario}/>
+            <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 
+            <Route exact path="/estadisticas" component={Estadisticas} />
+            <Route exact path="/" component={()=> <Login authorized={false} />} /> 
+          </div>}
         </Switch>
     </BrowserRouter>
 
