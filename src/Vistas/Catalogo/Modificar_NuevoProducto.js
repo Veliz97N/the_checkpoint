@@ -254,6 +254,7 @@ const ModificarProducto = () => {
                         </div>
                     </div>
                 </div>
+                <row>
                 <form>
                     <div className="row">
                         <div className="col-md-7 col-sm-12 my-1">
@@ -605,6 +606,7 @@ const ModificarProducto = () => {
                         </div>
                     </div>
                 </form>
+                </row>
             </div>
         </Layout>
     )

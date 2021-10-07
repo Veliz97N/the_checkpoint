@@ -79,58 +79,90 @@ const Catalogo_PaginaPrincipal = () => {
       const productoFiltrados = [];
       setListaProductosFiltrado(productoFiltrados);
     }
-    //Me falta saber si la lista tiene un largo 0
-  };
+    const [addrtype, setAddrtype] = useState(["Buscar por Nombre", "Buscar por Categoria", "Buscar por Codigo de Barras"])
+    const Add = addrtype.map(Add => Add
+    )
 
-  return (
-    <Layout hasNavbar hasSidebar>
-      <div
-        style={Catalogo_PaginaPrincipal}
-        className="Catalogo-PaginaPrincipal"
-      >
-        <Link
-          className="boton_hacia_IngresarNuevoProducto p-2"
-          to="/catalogo_ingresarnuevoproducto"
-          style={botonIngresarNuevoProducto}
-        >
-          <IoAddCircleOutline style={botonagregarNuevoProducto} /> Agregar
-          Producto
-        </Link>
-        <div style={contenedor_tabla} className="contenedor-tabla py-5 px-3">
-          <table className="table">
-            <thead className="py-5">
-              <tr className="py-5" style={noactivopapi}>
-                <th className="py-3" scope="col">
-                  Nombre del Producto
-                </th>
-                <th className="py-3" scope="col">
-                  Codigo de Barras
-                </th>
-                <th className="py-3" scope="col">
-                  Categoria
-                </th>
-                <th className="py-3" scope="col">
-                  Valor
-                </th>
-                <th className="py-3" scope="col">
-                  Stock Disponible
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={noactivopapi}>
-                <td>
-                  <select
-                    onChange={(e) => handleAddrTypeChange(e)}
-                    className="browser-default custom-select"
-                  >
-                    {Add.map((opcionBusqueda, key) => (
-                      <option key={key} value={key}>
-                        {opcionBusqueda}
-                      </option>
-                    ))}
-                  </select>
-                </td>
+    
+    const [listaProductosFiltrado, setListaProductosFiltrado] = useState([])
+    
+    const [valor, setValor] = useState("")
+
+    const handlesetvalor = (e) => {
+        setValor(e.target.value)
+       
+    }
+    const [valor_busqueda_producto, setValor_busqueda_producto] = useState("")
+    
+
+    const funcion_filtrar_busqueda_producto = (tipoBusqueda, valorBusqueda) => {
+        
+        setValor_busqueda_producto(valorBusqueda.target.value);
+        
+        if(valorBusqueda.target.value!= ""){
+        if(tipoBusqueda==="0"){
+            
+            const productoFiltrados = productos.filter(producto => (producto.nombreProducto).toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        else if(tipoBusqueda==="1" &&valorBusqueda!==""){
+            
+            const productoFiltrados = productos.filter(producto => producto.categoria.toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        else if ( tipoBusqueda==="2" &&valorBusqueda!==""){
+            
+            const productoFiltrados = productos.filter(producto => producto.codigodebarras.includes(valor_busqueda_producto))
+            setListaProductosFiltrado(productoFiltrados)
+        }
+        else if(valorBusqueda==="" || listaProductosFiltrado.length === 0 ){ //Si el valor de busqueda es ''
+            const productoFiltrados = []
+            setListaProductosFiltrado(productoFiltrados)
+        }
+    }
+        else {
+            setListaProductosFiltrado([]);  
+        }
+        //Me falta saber si la lista tiene un largo 0 
+    } 
+    
+
+    return (
+        <Layout hasNavbar hasSidebar>
+        <div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+            <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
+                          <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
+            </Link>                    
+            <div style={contenedor_tabla} className="contenedor-tabla py-5 px-3">
+                <table className="table">
+                    <thead className="py-5">
+                        <tr className="py-5" style={noactivopapi}>                            
+                            <th className="py-3"scope="col">Nombre del Producto</th>
+                            <th className="py-3" scope="col">Codigo de Barras</th>
+                            <th className="py-3" scope="col">Categoria</th>
+                            <th className="py-3" scope="col">Valor</th>
+                            <th className="py-3" scope="col">Stock Disponible</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style={noactivopapi}>
+                            <td>
+                                < select
+                                    onChange={e => handleAddrTypeChange(e)}
+                                    className="browser-default custom-select" >
+                                    {
+                                        Add.map((opcionBusqueda, key) => <option key={key} value={key}>{opcionBusqueda}</option>)
+                                    }
+                                </select >      
+                            </td>
+
+                            <td colspan="4">
+                                <input type="text"
+                                    className="form-control"
+                                    onChange={(e)=>funcion_filtrar_busqueda_producto(indiceBuscarElemento,e)}
+                                    value={valor_busqueda_producto}
+                                    />
+                            </td>
 
                 <td colspan="4">
                   <input
@@ -162,5 +194,6 @@ const Catalogo_PaginaPrincipal = () => {
     </Layout>
   );
 };
+}
 
 export default Catalogo_PaginaPrincipal;
