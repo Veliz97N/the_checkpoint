@@ -6,11 +6,7 @@ import UserContext from '../../UserContext/UserContext';
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 
-
 import Layout from '../../Folder_Contenido_General/Layout';
-
-
-
 
 const Catalogo_PaginaPrincipal = () => {
     const { productos } = useContext(UserContext);
