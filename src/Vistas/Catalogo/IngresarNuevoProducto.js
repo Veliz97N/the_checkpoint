@@ -3,15 +3,12 @@ import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import { GiConfirmed } from "react-icons/gi";
 import Layout from '../../Folder_Contenido_General/Layout';
 import { useMediaQuery } from "react-responsive";
-
+import { Fetch } from '../../Fetch';
 const IngresarNuevoProducto = () => {
 
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
-
-
-
     const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
     const input_ingresarNuevoProducto = {
         backgroundColor: '#57CC99',
@@ -76,6 +73,15 @@ const IngresarNuevoProducto = () => {
      const [booleano_feliz_codigoBarra, setBooleano_feliz_codigoBarra]= useState(null)
      const [booleano_feliz_valor, setBooleano_feliz_valor]= useState(null)
      const [booleano_feliz_stock,setBooleano_feliz_stock]= useState(null)
+
+     
+     const productos_A_Vender = () => {
+       const arr_de_objetos = {nombre: nombre_nuevoProducto, codigodebarras: codigoBarras_nuevoProducto, categoria: categoria_nuevoProducto,
+                              precioVenta: valor_nuevoProducto, imagen: "", stockDisponible: stock_nuevoProducto}
+        
+      }
+
+     
 
      //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
      const FuncionValidarFormulario = (e) => {

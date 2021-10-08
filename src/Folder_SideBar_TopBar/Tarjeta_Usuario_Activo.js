@@ -28,10 +28,13 @@ const Tarjeta_Usuario_Activo = (props) => {
   };
 
   const [isHover, setIsHover] = useState(null);
+  const verUsuario = () => {
+    console.log(props.user);
+  }
 
   return (
     <>
-      {!isChiquito&&
+      {!isChiquito&&(
         <div
           style={isHover ? activo_tarjeta_usuario : no_activo_tarjeta_usuario}
           className="usuario btn-group d-sm-none d-md-flex"
@@ -45,14 +48,15 @@ const Tarjeta_Usuario_Activo = (props) => {
             data-bs-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            onClick={verUsuario}
           >
             <div className="datos_usuario me-4 d-flex flex-column my-auto">
               <div className="nombre_usuario mx-auto">
-                {props.user.username}
+                {props.user[0].name}
               </div>
 
               <div className="permiso_usuario mx-auto">
-                <small className="text-white">{props.user.permiso}</small>
+                <small className="text-white">{props.user[0].role}</small>
               </div>
             </div>
 
@@ -76,6 +80,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             </Link>
           </div>
         </div>
+      )
       }
     </>
   );

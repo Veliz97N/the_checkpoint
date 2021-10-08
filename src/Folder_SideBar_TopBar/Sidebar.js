@@ -67,7 +67,7 @@ const Sidebar = () => {
 
 
             <div className="footer_sidebar" >
-                {!isChiquito && !isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+                {user&&(!isChiquito && !isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : "")} {/* Esta madre debo arreglarla */}
             </div>
 
 
@@ -106,7 +106,7 @@ const Sidebar = () => {
 
 
             <div className="footer_sidebar" >
-                {!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
+                {user&&!isDesplegado ? <Tarjeta_Usuario_Activo user={user} /> : ""} {/* Esta madre debo arreglarla */}
             </div>
 
 

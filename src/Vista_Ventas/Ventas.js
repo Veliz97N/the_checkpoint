@@ -52,25 +52,25 @@ const Ventas = () => {
       if (tipoBusqueda === "0") {
         const producto_A_Vender = productos.filter(
           (producto) =>
-            producto.nombreProducto.toLowerCase() ==
+            producto.nombre.toLowerCase() ==
             valorBusqueda.target.value.toLowerCase()
         );
         if (producto_A_Vender.length >= 1) {
           setListaProductosFiltrado(producto_A_Vender);
           setCantidad(1);
-          setValorVentaProducto(1 * producto_A_Vender[0].valorUnidad);
+          setValorVentaProducto(1 * producto_A_Vender[0].precio_venta);
         } else {
           setCantidad("");
           setValorVentaProducto("");
         }
       } else if (tipoBusqueda === "1") {
         const producto_A_Vender = productos.filter(
-          (producto) => producto.codigodebarras == valorBusqueda.target.value
+          (producto) => producto.codigo_barras == valorBusqueda.target.value
         );
         if (producto_A_Vender.length >= 1) {
           setListaProductosFiltrado(producto_A_Vender);
           setCantidad(1);
-          setValorVentaProducto(1 * producto_A_Vender[0].valorUnidad);
+          setValorVentaProducto(1 * producto_A_Vender[0].precio_venta);
         } else {
           setCantidad("");
           setValorVentaProducto("");
@@ -98,7 +98,7 @@ const Ventas = () => {
       setValorVentaProducto("");
     } else if (listaProductosFiltrado.length === 1) {
       const valorProducto =
-        e.target.value * listaProductosFiltrado[0].valorUnidad;
+        e.target.value * listaProductosFiltrado[0].precio_venta;
       setValorVentaProducto(valorProducto);
     }
   };
@@ -116,13 +116,13 @@ const Ventas = () => {
           parseInt(producto.cantidadVendida) +
           parseInt(productoNuevo.cantidadVendida);
         const nuevo_valor =
-          parseInt(producto.valor) + parseInt(productoNuevo.valor);
+          parseInt(producto.precio_venta) + parseInt(productoNuevo.precio_venta);
         const nuevo_producto = {
           nombre: producto.nombre,
-          codigodebarras: producto.codigodebarras,
+          codigo_barras: producto.codigo_barras,
           categoria: producto.categoria,
           cantidadVendida: nueva_Cantidad,
-          valor: nuevo_valor,
+          precio_venta: nuevo_valor,
         };
         
         nueva_Lista_A_Boleta.splice(index,1,nuevo_producto)    
@@ -149,11 +149,11 @@ const Ventas = () => {
     if (productoValido === true) {
       console.log("Los datos de la venta son validos");
       const productoVendido = {
-        nombre: listaProductosFiltrado[0].nombreProducto, //Esto hay que hacerlo un array de objetos
-        codigodebarras: listaProductosFiltrado[0].codigodebarras,
+        nombre: listaProductosFiltrado[0].nombre, //Esto hay que hacerlo un array de objetos
+        codigo_barras: listaProductosFiltrado[0].codigo_barras,
         categoria: listaProductosFiltrado[0].categoria,
         cantidadVendida: cantidad,
-        valor: valorVentaProducto,
+        precio_venta: valorVentaProducto,
       };
 
       setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
@@ -191,7 +191,7 @@ const Ventas = () => {
   const funcionCalcularTotalVenta = () => {
     let auxiliarTotalVenta = 0;
     for (let x = 0; x < listaProductos_A_Boleta.length; x++) {
-      auxiliarTotalVenta += listaProductos_A_Boleta[x].valor;
+      auxiliarTotalVenta += listaProductos_A_Boleta[x].precio_venta;
     }
     setTotalVentaFinalizada(auxiliarTotalVenta);
     console.log("El total es " + auxiliarTotalVenta);

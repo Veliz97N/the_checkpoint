@@ -7,11 +7,13 @@ import UserContext from '../../UserContext/UserContext';
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 import { useMediaQuery } from 'react-responsive';
+import { Fetch } from '../../Fetch';
 
 import Layout from '../../Folder_Contenido_General/Layout';
 
 const Catalogo_PaginaPrincipal = () => {
-    const { productos } = useContext(UserContext);
+    const {productos}  = useContext(UserContext);
+
     const noactivopapi = {
         background: "#57CC99",
         transition: "all 0.5s ease;",
@@ -66,7 +68,7 @@ const Catalogo_PaginaPrincipal = () => {
         if(valorBusqueda.target.value!= ""){
         if(tipoBusqueda==="0"){
             
-            const productoFiltrados = productos.filter(producto => (producto.nombreProducto).toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
+            const productoFiltrados = productos.filter(producto => (producto.nombre).toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if(tipoBusqueda==="1" &&valorBusqueda!==""){
@@ -76,7 +78,7 @@ const Catalogo_PaginaPrincipal = () => {
         }
         else if ( tipoBusqueda==="2" &&valorBusqueda!==""){
             
-            const productoFiltrados = productos.filter(producto => producto.codigodebarras.includes(valor_busqueda_producto))
+            const productoFiltrados = productos.filter(producto => producto.codigo_barras.includes(valor_busqueda_producto))
             setListaProductosFiltrado(productoFiltrados)
         }
         else if(valorBusqueda==="" || listaProductosFiltrado.length === 0 ){ //Si el valor de busqueda es ''
@@ -118,6 +120,7 @@ const Catalogo_PaginaPrincipal = () => {
                                     onChange={e => handleAddrTypeChange(e)}
                                     className="browser-default custom-select" >
                                     {
+                                        productos &&
                                         Add.map((opcionBusqueda, key) => <option key={key} value={key}>{opcionBusqueda}</option>)
                                     }
                                 </select >      
@@ -132,7 +135,8 @@ const Catalogo_PaginaPrincipal = () => {
                             </td>
 
                         </tr>
-                        {   (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)
+                        {   productos&&
+                        (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)
                         :productos.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)}                        
                         
                     </tbody>
@@ -157,7 +161,8 @@ const Catalogo_PaginaPrincipal = () => {
                                 < select
                                     onChange={e => handleAddrTypeChange(e)}
                                     className="browser-default custom-select" >
-                                    {
+                                    {   
+                                        productos &&
                                         Add.map((opcionBusqueda, key) => <option key={key} value={key}>{opcionBusqueda}</option>)
                                     }
                                 </select >      
@@ -172,7 +177,8 @@ const Catalogo_PaginaPrincipal = () => {
                             </td>
 
                         </tr>
-                        {   (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_responsive  producto={producto}/>)
+                        {   productos&&
+                        (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_responsive  producto={producto}/>)
                         :productos.map(producto =>  <Producto_en_tabla_responsive  producto={producto}/>)}                        
                         
                     </tbody>

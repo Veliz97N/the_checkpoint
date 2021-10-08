@@ -100,7 +100,7 @@ const Home = (props) => {
                 </div>
                 <div className="col-12" id="text2">
                 <div className="nombre_usuario mx-auto">
-                    {props.user.username}
+                    {props.user[0].name}
                   </div>
                 </div>
               </button>

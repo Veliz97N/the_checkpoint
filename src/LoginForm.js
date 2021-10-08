@@ -7,10 +7,10 @@ function LoginForm({login_function, error}) {
         e.preventDefault();
         login_function(user_data);
     }
-    const styles = {
-      background: "#F95B02",
-      borderColor: "#F95B02",
-    }
+    // const styles = {
+    //   background: "#F95B02",
+    //   borderColor: "#F95B02",
+    // }
 
     const error_style = {
       color: "red",

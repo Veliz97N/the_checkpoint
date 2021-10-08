@@ -45,10 +45,10 @@ const Producto_en_tabla_responsive = (props) => {
             onMouseLeave={() => setIsShow(false)}
             style={isShow?activopapi:noactivopapi}
             >
-            <th scope="row">{props.producto.nombreProducto}</th>
+            <th scope="row">{props.producto.nombre}</th>
            
-            <td>{props.producto.valorUnidad}</td>
-            <td>{props.producto.stockDisponible + " unid."} 
+            <td>{props.producto.precio_venta}</td>
+            <td>{props.producto.stock + " unid."} 
                 <Link to="/catalogo_modificarproducto" onClick={handler_InformacionProductoModificar}>
                     <AiOutlineEdit className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
                 </Link>

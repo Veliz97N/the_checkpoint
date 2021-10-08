@@ -5,7 +5,7 @@ import UserContext from "../UserContext/UserContext";
 import { useMediaQuery } from 'react-responsive'
 
 const Layout = ({ children, hasNavbar, hasSidebar }) => {
-    const {isDesplegado, productoSeleccionado}= useContext(UserContext);
+    const {isDesplegado, productoSeleccionado, user}= useContext(UserContext);
     const activo = {
         paddingLeft: '13rem',
         transition: "all ease .5s"
@@ -21,9 +21,9 @@ const Layout = ({ children, hasNavbar, hasSidebar }) => {
 
     return (
         <>
-            {hasNavbar && <Topbar />}
+            {user && hasNavbar && <Topbar />}
             <div className="contenidoGeneral">
-                { hasSidebar && <Sidebar />}
+                { user && hasSidebar && <Sidebar />}
                 {!isChiquito?
                 <div className="contenedorDeInformacion" style={!isDesplegado ? activo : no_activo}>
                     {children}

@@ -46,11 +46,11 @@ const Producto_en_tabla_catalogo = (props) => {
             onMouseLeave={() => setIsShow(false)}
             style={isShow?activopapi:noactivopapi}
             >
-            <th scope="row">{props.producto.nombreProducto}</th>
-            <td >{props.producto.codigodebarras}</td>
-            <td>{props.producto.categoria}</td>
-            <td>{props.producto.valorUnidad}</td>
-            <td>{props.producto.stockDisponible + " unid."} 
+            <th scope="row">{props.producto.nombre}</th>
+            <td >{props.producto.codigo_barras}</td>
+            <td>{props.producto.id_categoria}</td>
+            <td>{props.producto.precio_venta}</td>
+            <td>{props.producto.stock + " unid."} 
                 <Link to="/catalogo_modificarproducto" onClick={handler_InformacionProductoModificar}>
                     <AiOutlineEdit className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
                 </Link>

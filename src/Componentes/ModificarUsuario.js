@@ -4,6 +4,7 @@ import { GiConfirmed } from "react-icons/gi";
 import Layout from "../Folder_Contenido_General/Layout";
 
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 
 const ModificarUsuario = (props) => {
   const isChiquito = useMediaQuery({
@@ -89,29 +90,29 @@ const ModificarUsuario = (props) => {
   const [booleano_feliz_confirm_password, setBooleano_feliz_confirm_password] =
     useState(null);
 
-  //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+  //const usuario = { name:"Juan Carlos", last_name: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
 
   const FuncionValidarFormulario = (e) => {
-    let usuarioModificado = { nombre: props.user.nombre, apellido: props.user.apellido, username: props.user.username, password: props.user.password }
+    let usuarioModificado = { name: props.user[0].name, last_name: props.user[0].last_name, username: props.user[0].username, password: props.user[0].password }
     e.preventDefault();
-    if (nombre === true) {
+    if (name === true) {
       if (checkedTrue_nombre !== "" && checkedTrue_nombre.length > 2) {
         //Falta que solo acepte letras y no numeros
         setBooleano_feliz_nombre(true);
-        usuarioModificado.nombre = checkedTrue_nombre
+        usuarioModificado.name = checkedTrue_nombre
       } else {
         setBooleano_feliz_nombre(false);
-        usuarioModificado.nombre = props.user.nombre
-        console.log(nombre);
+        usuarioModificado.name = props.user[0].name
+        console.log(name);
       }
     }
-    if (apellido === true) {
+    if (last_name === true) {
       if (checkedTrue_Apellido != "" && checkedTrue_Apellido.length > 2) {
         setBooleano_feliz_apellido(true);
-        usuarioModificado.apellido = checkedTrue_Apellido
+        usuarioModificado.last_name = checkedTrue_Apellido
       } else {
         setBooleano_feliz_apellido(false);
-        usuarioModificado.apellido = props.user.apellido
+        usuarioModificado.last_name = props.user[0].last_name
       }
     }
     if (userName === true) {
@@ -120,13 +121,13 @@ const ModificarUsuario = (props) => {
         usuarioModificado.username = checkedTrue_Username
       } else {
         setBooleano_feliz_username(false);
-        usuarioModificado.username = props.user.username
+        usuarioModificado.username = props.user[0].username
       }
     }
     if (password === true) {
       if (checkedTrue_Password === "") {
         setBooleano_feliz_password(false);
-        usuarioModificado.password = props.user.password
+        usuarioModificado.password = props.user[0].password
         //Falta validarla para que contenga letras, numeros y una mayuscula
       } else if (checkedTrue_Password != "") {
         if (checkedTrue_Password.length > 5) {
@@ -134,7 +135,7 @@ const ModificarUsuario = (props) => {
           usuarioModificado.password = checkedTrue_Password
         } else {
           setBooleano_feliz_password(false)
-          usuarioModificado.password = props.user.password
+          usuarioModificado.password = props.user[0].password
         }
       }
       if (
@@ -145,7 +146,7 @@ const ModificarUsuario = (props) => {
         usuarioModificado.password = checkedTrue_Password
       } else {
         setBooleano_feliz_confirm_password(false);
-        usuarioModificado.password = props.user.password
+        usuarioModificado.password = props.user[0].password
       }
     }
 
@@ -189,7 +190,7 @@ const ModificarUsuario = (props) => {
     setCheckedTrue_ConfirmarPassword(e.target.value);
   };
 
-  const [nombre, setNombre] = useState();
+  const [name, setNombre] = useState();
   const handler_Editar_Nombre = (e) => {
     if (e.target.checked == true) {
       setNombre(true);
@@ -198,7 +199,7 @@ const ModificarUsuario = (props) => {
     }
   };
 
-  const [apellido, setApellido] = useState();
+  const [last_name, setApellido] = useState();
   const handle_Editar_Apellido = (e) => {
     if (e.target.checked == true) {
       setApellido(true);
@@ -277,7 +278,7 @@ const ModificarUsuario = (props) => {
                       </div>
                     </div>
                   </label>
-                  {nombre ? (
+                  {name ? (
                     <input
                       disabled={false}
                       style={input_ingresarNuevoUsuario_Activado}
@@ -298,7 +299,7 @@ const ModificarUsuario = (props) => {
                       name=""
                       id=""
                       placeholder="Ingresa tu nombre"
-                      value={props.user.nombre}
+                      value={props.user[0].name}
                     />
                   )}
                 </div>
@@ -339,13 +340,13 @@ const ModificarUsuario = (props) => {
                       </div>
                     </div>
                   </label>
-                  {apellido ? (
+                  {last_name ? (
                     <input
                       disabled={false}
                       style={input_ingresarNuevoUsuario_Activado}
                       className="col-md-8 col-sm-12"
                       type="text"
-                      placeholder="Ingresa tu apellido"
+                      placeholder="Ingresa tu last_name"
                       onChange={(e) => handler_CheckedTrue_Apellido(e)}
                       value={checkedTrue_Apellido}
                     />
@@ -355,8 +356,8 @@ const ModificarUsuario = (props) => {
                       style={input_ingresarNuevoUsuario_Desactivado}
                       className="col-md-8 col-sm-12"
                       type="text"
-                      placeholder="Ingresa tu apellido"
-                      value={props.user.apellido}
+                      placeholder="Ingresa tu last_name"
+                      value={props.user[0].last_name}
                     />
                   )}
                 </div>
@@ -365,14 +366,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Apellido Invalido
+                    last_name Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Apellido Invalido
+                    last_name Invalido
                   </div>
                 )}
               </div>
@@ -385,7 +386,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputPassword1"
                   >
                     <div className="row">
-                      <div className="col-8">Nombre de Usuario</div>
+                      <div className="col-8">name de Usuario</div>
                       <div className="col-4">
                         <input
                           class="form-check-input"
@@ -415,7 +416,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="text"
                       placeholder="Ingresa tu usuario"
-                      value={props.user.username}
+                      value={props.user[0].username}
                     />
                   )}
                 </div>
@@ -424,14 +425,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Nombre de Usuario Invalido
+                    name de Usuario Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Nombre de Usuario Invalido
+                    name de Usuario Invalido
                   </div>
                 )}
               </div>
@@ -475,7 +476,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user.password}
+                      value={props.user[0].password}
                     />
                   )}
                 </div>
@@ -523,7 +524,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user.password}
+                      value={props.user[0].password}
                     />
                   )}
                 </div>
@@ -627,7 +628,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputEmail1"
                   >
                     <div className="row">
-                      <div className="col-8 ">Nombre</div>
+                      <div className="col-8 ">name</div>
                       <div className="col-4">
                         <input
                           class="form-check-input"
@@ -639,7 +640,7 @@ const ModificarUsuario = (props) => {
                       </div>
                     </div>
                   </label>
-                  {nombre ? (
+                  {name ? (
                     <input
                       disabled={false}
                       style={input_ingresarNuevoUsuario_Activado}
@@ -647,7 +648,7 @@ const ModificarUsuario = (props) => {
                       type="text"
                       name=""
                       id=""
-                      placeholder="Ingresa tu nombre"
+                      placeholder="Ingresa tu name"
                       onChange={(e) => handle_CheckedTrue_Nombre(e)}
                       value={checkedTrue_nombre}
                     />
@@ -659,8 +660,8 @@ const ModificarUsuario = (props) => {
                       type="text"
                       name=""
                       id=""
-                      placeholder="Ingresa tu nombre"
-                      value={props.user.nombre}
+                      placeholder="Ingresa tu name"
+                      value={props.user[0].name}
                     />
                   )}
                 </div>
@@ -669,14 +670,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Nombre Invalido
+                    name Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Nombre Invalido
+                    name Invalido
                   </div>
                 )}
               </div>
@@ -689,7 +690,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputPassword1"
                   >
                     <div className="row">
-                      <div className="col-8">Apellido</div>
+                      <div className="col-8">last_name</div>
                       <div className="col-4">
                         <input
                           class="form-check-input"
@@ -701,13 +702,13 @@ const ModificarUsuario = (props) => {
                       </div>
                     </div>
                   </label>
-                  {apellido ? (
+                  {last_name ? (
                     <input
                       disabled={false}
                       style={input_ingresarNuevoUsuario_Activado}
                       className="col-12"
                       type="text"
-                      placeholder="Ingresa tu apellido"
+                      placeholder="Ingresa tu last_name"
                       onChange={(e) => handler_CheckedTrue_Apellido(e)}
                       value={checkedTrue_Apellido}
                     />
@@ -717,8 +718,8 @@ const ModificarUsuario = (props) => {
                       style={input_ingresarNuevoUsuario_Desactivado}
                       className="col-12"
                       type="text"
-                      placeholder="Ingresa tu apellido"
-                      value={props.user.apellido}
+                      placeholder="Ingresa tu last_name"
+                      value={props.user[0].last_name}
                     />
                   )}
                 </div>
@@ -727,14 +728,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Apellido Invalido
+                    last_name Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Apellido Invalido
+                    last_name Invalido
                   </div>
                 )}
               </div>
@@ -747,7 +748,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputPassword1"
                   >
                     <div className="row">
-                      <div className="col-10">Nombre de Usuario</div>
+                      <div className="col-10">name de Usuario</div>
                       <div className="col-1">
                         <input
                           class="form-check-input"
@@ -777,7 +778,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="text"
                       placeholder="Ingresa tu usuario"
-                      value={props.user.username}
+                      value={props.user[0].username}
                     />
                   )}
                 </div>
@@ -786,14 +787,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Nombre de Usuario Invalido
+                    name de Usuario Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    Nombre de Usuario Invalido
+                    name de Usuario Invalido
                   </div>
                 )}
               </div>
@@ -837,7 +838,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user.password}
+                      value={props.user[0].password}
                     />
                   )}
                 </div>
@@ -885,7 +886,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user.password}
+                      value={props.user[0].password}
                     />
                   )}
                 </div>
@@ -951,9 +952,11 @@ const ModificarUsuario = (props) => {
               >
                 Modificar Usuario
               </button>
+              <Link to="/inicio">
               <button type="reset" onClick={(e) => cancelar_Usuario(e)} class="btn btn-danger mx-5">
                 Cancelar
               </button>
+              </Link>
             </div>
           </div>
         </form>

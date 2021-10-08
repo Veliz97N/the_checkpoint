@@ -30,10 +30,10 @@ const ProductosVendidosporBoleta = (props) => {
             style={isShow?activopapi:noactivopapi}
             >
             <th scope="row">{props.producto.nombre}</th>
-            <td >{props.producto.codigodebarras}</td>
+            <td >{props.producto.codigo_barras}</td>
             <td>{props.producto.categoria}</td>
             <td>{props.producto.cantidadVendida}</td>
-            <td>{"$ "+props.producto.valor} 
+            <td>{"$ "+props.producto.precio_venta} 
                 <button className="eliminar_producto_boleta" onClick={() => props.eliminarProductoDeLaTabla(props.index)}>
                     <AiOutlineDelete className="ms-3" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
                 </button>             
