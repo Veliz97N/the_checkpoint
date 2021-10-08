@@ -333,7 +333,7 @@ const IngresarNuevoProducto = () => {
                 </div>
 
                 <div className="col-md-5 col-sm-12 mt-2 mb-2">
-                  <div className="ingresar_foto mb-1 ps-2">
+                  <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                     <label
                       style={label_ingresarNuevoProducto}
                       className=" col-lg-4 col-md-4 col-sm-12 mb-4"

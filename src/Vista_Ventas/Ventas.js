@@ -5,11 +5,15 @@ import UserContext from "../UserContext/UserContext";
 import { AiOutlineDelete } from "react-icons/ai";
 import { GiConfirmed, GiConsoleController } from "react-icons/gi";
 import ProductosVendidosporBoleta from "./ProductosVendidosporBoleta";
+import { useMediaQuery } from "react-responsive";
 
 const Ventas = () => {
   //LAS VARIABLES IMPORTANTES DEL FORMULARIO SON: La lista listaProductosFiltrado, Cantidad y Precio.. Si los 3 son distintos de cero
 
   const { productos } = useContext(UserContext);
+  const isChiquito = useMediaQuery({
+    query: "(max-width: 577px)",
+  });
 
   const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0");
 
@@ -241,12 +245,17 @@ const Ventas = () => {
     funcionCalcularTotalVenta();
   }, [listaProductos_A_Boleta]);
 
+  const titulo_venta = {
+    background: "#57CC99",
+    borderRadius: "25px"
+  }
+
   return (
     <Layout hasNavbar hasSidebar>
       <div className="Ventana_Ventas">
         <div className="row">
           <div className="h3 col-12 d-flex justify-content-center py-3 mb-3">
-            <div className="titulo col-6 py-2 d-flex justify-content-center">
+            <div className="titulo col-6 py-2 d-flex justify-content-center titulo" style={titulo_venta}>
               Nueva Venta
             </div>
           </div>
@@ -315,12 +324,13 @@ const Ventas = () => {
                 </div>
               </fieldset>
 
-              <div className="contenedor_fotografia_producto_a_vender justify-content-center d-md-flex d-sm-none my-3 ">
+              {!isChiquito&&
+                <div className="contenedor_fotografia_producto_a_vender justify-content-center d-md-flex d-sm-none my-3 ">
                 <div style={contenedorfotografia}>
                   <img style={imagen_Ingresar_Modificar_Producto} />{" "}
                   {/*Aca se agrega la imagen de la weaita */}
                 </div>
-              </div>
+              </div>}
 
               <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center my-sm-3">
                 <button

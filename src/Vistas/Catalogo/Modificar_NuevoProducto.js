@@ -336,8 +336,8 @@ const ModificarProducto = () => {
                           for="exampleInputEmail1"
                         >
                           <div className="row">
-                            <div className="col-md-8">Categoria</div>
-                            <div className="col-md-4">
+                            <div className="col-8">Categoria</div>
+                            <div className="col-4">
                               <input
                                 class="form-check-input"
                                 type="checkbox"

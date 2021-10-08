@@ -609,7 +609,7 @@ const ModificarUsuario = (props) => {
       <div className="crearUsuario">
         <div className="row">
           <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
-            <div className="titulo col-6 py-2 d-flex justify-content-center">
+            <div className="titulo col-8 py-2 d-flex justify-content-center " style={borde_titulo}>
               Ver Perfil de Usuario
             </div>
           </div>
