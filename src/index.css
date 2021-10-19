@@ -154,13 +154,32 @@ code {
 }
 
 
-.container-fluid {
+.container-fluid-light {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: var(--happy_gradient);
+  background: var(--light_background);
   box-sizing: border-box;
 }
+
+.container-fluid-dark {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: var(--dark_background);
+  box-sizing: border-box;
+}
+
+
+/* PARTE JOACO */
+.color-dark{
+  color: var(--happy_input);
+}
+.color-light{
+  color: black;
+}
+
+
 
 .login {
   position: absolute;
@@ -172,7 +191,7 @@ code {
   font-weight: 400;
   font-size: 6rem;
   text-align: center;
-  color: var(--happy_input);
+  
 }
 
 .login h6{
@@ -239,24 +258,7 @@ code {
   border-color: #47af82;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 60px;
-  
-}
-
-.connect-buttons button{
-  font-family: 'Titillium Web';
-  width: 22.5%;
-  position: absolute;
-  height: 7%;
-  top: 58%;
-  margin-top: 2%;
-  border-radius: 60px;
-  color: #fff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-
-.fb {
-  left: 27%;
+  /* color:black; */
 }
 
 
@@ -266,6 +268,8 @@ code {
   text-decoration: none;
   color: black;
 }
+
+/* FIN PARTE JOACO */
 
 
 

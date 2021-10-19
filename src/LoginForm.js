@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState,useContext } from "react";
+import UserContext from './UserContext/UserContext';
 function LoginForm({login_function, error}) {
 
     const [user_data, Setuser_data] = useState({username: "", password: ""});
@@ -7,10 +7,7 @@ function LoginForm({login_function, error}) {
         e.preventDefault();
         login_function(user_data);
     }
-    // const styles = {
-    //   background: "#F95B02",
-    //   borderColor: "#F95B02",
-    // }
+    const {isDarkMode,toggleSetIsDarkMode} = useContext(UserContext)
 
     const error_style = {
       color: "red",
@@ -22,7 +19,7 @@ function LoginForm({login_function, error}) {
     {/* // falta el action="" en el form */}
     <form onSubmit={submitHandle}> 
       {/* contenedor para login  */}
-      <div className="login">
+      <div className={isDarkMode?"login color-dark":"login color-light"}>
         <h1>Bienvenido</h1>  
       {/* Si hay error */}
       {(error !== "") ? (<h6 className="m-1" style={error_style}>{error}</h6>) : (<h6 className="m-1">Por favor inicia sesión para continuar</h6>)}
@@ -55,6 +52,13 @@ function LoginForm({login_function, error}) {
       <div className="login-button">
         <button className="btn btn-success" type="submit">
           Iniciar sesión
+        </button>
+      </div>
+
+      <div className="aloja">
+        <button className="btn btn-success" type="submit"
+        onClick={()=>toggleSetIsDarkMode(!isDarkMode)}>
+          Cambiar la wea
         </button>
       </div>
       {/* Connect facebook y google buttons */}

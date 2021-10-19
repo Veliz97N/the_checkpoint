@@ -10,16 +10,16 @@ import Login from '../Login';
 import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
 import Estadisticas from '../Componentes/Estadisticas';
-import { useMediaQuery } from 'react-responsive'
+
 
 const ContenidoGeneral = () => {
-    const {user, isDesplegado, productoSeleccionado}= useContext(UserContext);
+    const {user,productoSeleccionado,isDarkMode}= useContext(UserContext);
 
   return (
     <BrowserRouter>
         <Switch>
        
-          <div className="container-fluid">
+          <div className={isDarkMode?"container-fluid-dark":"container-fluid-light"}>
             
             <Route exact path="/inicio" component={()=> <Inicio user={user}/>} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
