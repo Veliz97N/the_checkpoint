@@ -21,6 +21,8 @@ const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
     const usuario = Fetch_usuarios()
 
+
+
     const [productoSeleccionado, setProductoSeleccionado] = useState("") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
 
     // const [user, setUser] = useState(usuario)
@@ -31,6 +33,13 @@ const UserProvider = ({ children }) => {
     // const setUsuario = () => {
 
     // }
+
+   const [isDarkMode, setIsDarkMode] = useState(true)
+   
+   const toggleSetIsDarkMode=(bool)=>{
+       setIsDarkMode(bool);
+   }
+
 
     const toggleIsDesplegado = (booleano) => {
         setIsDesplegado(booleano)
@@ -47,7 +56,8 @@ const UserProvider = ({ children }) => {
         console.log(isLogged);
     }
 
-    const data = { user, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado}
+    const data = { user, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
+    ,toggleSetIsDarkMode,isDarkMode}
     // data de prueba para otro rol
     // const data_vendedor = {vendedor, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
     return (
