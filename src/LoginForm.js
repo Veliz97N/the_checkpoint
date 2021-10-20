@@ -61,15 +61,6 @@ function LoginForm({login_function, error}) {
           Cambiar la wea
         </button>
       </div>
-      {/* Connect facebook y google buttons */}
-      {/* <div className="connect-buttons">
-        <button className="btn btn-primary btn-sm fb" type="submit">
-          Conectar con Facebook
-        </button>
-        <button className="btn bg-danger btn-sm google-btn" type="submit">
-          Conectar con Google
-        </button>
-      </div> */}
     </form>
     </>
   );

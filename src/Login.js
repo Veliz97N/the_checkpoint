@@ -8,21 +8,25 @@ function Login() {
 
   const History = useHistory()
 
-  const {isLogged, toggleIsLogged, user} = useContext(UserContext)
+  const {isLogged, toggleIsLogged, user, role} = useContext(UserContext)
   // usuario de prueba
-  const [adminUser, setAdminUser] = useState()
+  const [adminUser, setAdminUser] = useState("")
 
-  const identificar_roles = (user) => {
+  const identificar_roles = (user, role) => {
     const adminUser = {
       username: "",
       password: ""
     }
     for (let x = 0; x< user.length; x++){
-      if (user[x].role === "Administrador"){
-        adminUser.username = user[x].username;
-        adminUser.password = user[x].password;
-        console.log("este es adminUser",adminUser);
-        setAdminUser(adminUser);
+      console.log(user[x],  "esto es user[x]");
+      console.log(role, "esto es role");
+      for(let j=0; j< role.length; j++){
+        if (user[x].role_id === role[j].id){
+          adminUser.username = user[x].username;
+          adminUser.password = user[x].password;
+          console.log("este es adminUser",adminUser);
+          setAdminUser(adminUser);
+        }
       }
     }
   }
@@ -30,12 +34,14 @@ function Login() {
   const [usuario, setUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
   useEffect(()=>{
-    identificar_roles(user)
-  }, [user])
+    identificar_roles(user, role)
+  }, [user, role])
 
   const login_function = (user_data) => {
     console.log("este es user_data",user_data); 
-    if (adminUser){
+    console.log(adminUser);
+    if (adminUser !== ""){
+
     if (user_data.username === adminUser.username && user_data.password === adminUser.password){
       console.log("Logged in");     
       setUser({
