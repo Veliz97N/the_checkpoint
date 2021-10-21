@@ -20,23 +20,24 @@ const ModificarProducto = () => {
         fontSize: '1.3rem'
     };
     const label_ingresarNuevoProducto = {
-        color: 'black',
+        color: '#fff',
         fontSize: '1.3rem',
         
     }
     const input_ingresarNuevoUsuario_Desactivado = {
-        backgroundColor: "#d8d8d8",
-        color: "black",
+        backgroundColor: "#667ea0",
+        color: "#fff",
         fontSize: "1.3rem",
       };
       const input_ingresarNuevoUsuario_Activado = {
-        backgroundColor: "#57CC99",
-        color: "black",
+        backgroundColor: "#667ea0",
+        color: "#fff",
         fontSize: "1.3rem",
+        opacity: "0.8"
       };
 
     const input_ingresarFotografia = { //Esto no funciona papiiiii
-        backgroundColor: '#57CC99',
+        backgroundColor: '#667ea0',
         color: 'black',
         fontSize: '1.3rem',
         borderRadius: '35px',

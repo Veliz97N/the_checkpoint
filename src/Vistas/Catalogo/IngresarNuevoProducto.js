@@ -11,12 +11,12 @@ const IngresarNuevoProducto = () => {
       });
     const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
     const input_ingresarNuevoProducto = {
-        backgroundColor: '#57CC99',
-        color: 'black',
+        backgroundColor: '#667ea0',
+        color: 'white',
         fontSize: '1.3rem'     
       };
       const label_ingresarNuevoProducto={
-        color: 'black',
+        color: 'white',
         fontSize: '1.3rem',
         
       }
@@ -27,7 +27,7 @@ const IngresarNuevoProducto = () => {
         visibility:'hidden'
     }
       const input_ingresarFotografia = { //Esto no funciona papiiiii
-        backgroundColor: '#57CC99',
+        backgroundColor: '#667ea0',
         color: 'black',
         fontSize: '1.3rem',
         borderRadius: '35px',

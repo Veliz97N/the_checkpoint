@@ -101,9 +101,10 @@ function Estadisticas() {
       datasets: [
         {
           label: "Venta Semanal",
-          backgroundColor: "#9400D3",
+          backgroundColor: "#0f2b4e",
+          textColor: "#fff",
           borderWidth: 1,
-          hoverBackgroundColor: "#4B0082",
+          hoverBackgroundColor: "#9400D3",
           data: datosRecibidos,
         },
       ],

@@ -15,12 +15,15 @@ const ProductosVendidosporBoleta = (props) => {
          
     }
     const activopapi ={
-        background: "#80ED99",
-        transition: "all .5s ease;",  
+        background: "#667ea0",
+        transition: "all .5s ease;",
+        opacity: "0.8",
+        color: "#fff"   
     }
     const noactivopapi ={
-        background: "#57CC99",
-        transition: "all 0.5s ease;",  
+        background: "#667ea0",
+        transition: "all 0.5s ease;",
+        color: "#e5e5f5"  
     }
     const [isShow, setIsShow] = useState(false) 
    

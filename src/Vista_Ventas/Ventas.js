@@ -25,6 +25,17 @@ const Ventas = () => {
     transition: "all 0.5s ease;",
     color: "#fff"
   };
+
+  const productos_vender ={
+    borderRight :"2px solid var(--dark_selected)",
+    opacity: "0.9",
+    paddingRight: "30px"
+  }
+
+  const productos_vender_2 = {
+    border: "none"
+  }
+
   const [addrtype, setAddrtype] = useState([
     "Buscar por Nombre",
     "Buscar por Codigo de Barras",
@@ -265,12 +276,12 @@ const Ventas = () => {
         <div className="row">
           <div className="col-md-6 col-sm-12 ">
             
-            <form>
+            <form style={!isChiquito ? productos_vender : productos_vender_2}>
               <div className="d-md-flex Contenedor_Buscar_Elemento_A_Vender mb-2 mb-sm-2">
                 <select
                   onChange={(e) => handleAddrTypeChange(e)}
                   className="browser-default custom-select col-md-4 col-sm-12 col-xs-12 me-2 mb-sm-2"
-                >
+                  >
                   {Add.map((opcionBusqueda, key) => (
                     <option key={key} value={key}>
                       {opcionBusqueda}
@@ -286,7 +297,7 @@ const Ventas = () => {
                       funcion_filtrar_busqueda_producto(indiceBuscarElemento, e)
                     }
                     value={valor_busqueda_producto}
-                  />
+                    />
                 </div>
               </div>
 
@@ -294,7 +305,7 @@ const Ventas = () => {
                 <label
                   className="col-md-4 col-sm-12 col-xs-12 ps-2 me-2 d-sm-flex mb-sm-2 justify-content-center"
                   for="exampleInputEmail1"
-                >
+                  >
                   Cantidad
                 </label>
 
@@ -305,7 +316,7 @@ const Ventas = () => {
                   placeholder="Ingresa la cantidad"
                   value={cantidad}
                   onChange={(e) => funcionCapturarCantidad_y_CalcularPrecio(e)}
-                />
+                  />
               </div>
 
               <fieldset disabled>
@@ -313,7 +324,7 @@ const Ventas = () => {
                   <label
                     className="col-md-4 col-sm-12 ps-2 me-2 mb-sm-2 d-sm-flex justify-content-center"
                     for="exampleInputEmail1"
-                  >
+                    >
                     Precio
                   </label>
                   <input
@@ -322,7 +333,7 @@ const Ventas = () => {
                     name=""
                     placeholder="Precio Final Producto"
                     value={valorVentaProducto}
-                  />
+                    />
                 </div>
               </fieldset>
 
@@ -339,18 +350,19 @@ const Ventas = () => {
                   onClick={(e) => FuncionValidarFormulario(e)}
                   type="submit"
                   class="btn btn-primary mx-5"
-                >
+                  >
                   Anadir Producto
                 </button>
                 <button
                   type="reset"
                   onClick={FuncionEliminarDatosProductosBoleta}
                   class="btn btn-danger mx-5"
-                >
+                  >
                   Remover Producto
                 </button>
               </div>
             </form>
+            
           </div>
 
           <div className="col-md-6 col-sm-12">

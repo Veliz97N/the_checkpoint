@@ -4,7 +4,7 @@
   --happy_non_selected:#57CC99;
   --happy_contorno_global:#22577A;
   --happy_interior_global: #38A3A5;
-  --happy_background: rgb(34,87,122);
+  --happy_background: #0f2b4e;
   --happy_gradient: linear-gradient(90deg, rgba(34,87,122,1) 0%, rgba(34,87,122,1) 50%, rgb(85, 139, 98) 100%);
   --happy_input: #c4c4c4;
   --light_background: #E6E6E6;
@@ -161,8 +161,9 @@ code {
 }
 
 .ingresarNuevoProducto .titulo{
-  background: var(--happy_non_selected);
+  background: var(--dark_selected);
   border-radius: 25px;
+  color: white;
 }
 
 
@@ -281,14 +282,17 @@ code {
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--happy_background);
   opacity: 1; /* Firefox */
+  padding-left: 5px;
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: var(--happy_background);
+  padding-left: 5px;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: var(--happy_background);
+  padding-left: 5px;
 }
 
 .login-button button {
@@ -507,9 +511,7 @@ code {
   cursor: pointer;
 }
 
-.Ventana_Ventas{
-  padding-right: 20px;
-}
+
 
 .invalido{
   color:red
@@ -517,12 +519,13 @@ code {
 
 .algo{
   width: 60%;
-  background: var(--happy_selected);
-  border: none;
+  background: var(--dark_selected);
+  border: 1px solid var(--dark_notselected);
   -moz-transition: background-color 1s ease-out;
   -o-transition: background-color 1s ease-out;
   transition: background-color 1s ease-out;
   cursor: pointer;
+  padding-left: 2px;
 }
 .algo:hover{
   background: var(--happy_interior_global);
@@ -541,7 +544,50 @@ code {
   transition: all ease .5s
   
 }
+.Ventana_Ventas{
+  padding-right: 20px;
+  color: white;
+}
 
+.Ventana_Ventas form .Contenedor_Buscar_Elemento_A_Vender input, .ingresarNuevoProducto form input{
+  background-color: var(--dark_selected);
+  color: white;
+}
+
+
+#stadistics{
+  background: var(--dark_selected);
+  color: #fff;
+  border-radius: 60px;
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+#tabla2{
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+#tabla1{
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  
+}
+#col1, #col3{
+  margin: 5px;
+  background: var(--dark_selected);
+}
+#col2, #titleStadistic{
+  background: var(--dark_notselected);
+  color: #fff;
+  padding: 5px 0;
+}
 
 
 @media  (max-width: 830px) {

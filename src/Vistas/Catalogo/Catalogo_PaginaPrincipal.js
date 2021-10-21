@@ -15,8 +15,9 @@ const Catalogo_PaginaPrincipal = () => {
     const {productos}  = useContext(UserContext);
 
     const noactivopapi = {
-        background: "#57CC99",
+        background: "#667ea0",
         transition: "all 0.5s ease;",
+        
     }
     const Catalogo_PaginaPrincipal = {
         position: 'relative',
@@ -30,10 +31,11 @@ const Catalogo_PaginaPrincipal = () => {
         top: '25px',
         right: '25px',
         zIndex: '1000',
-        background: '#80ED99',
+        background: '#667ea0',
         borderRadius: '25px',
         color: 'black',
         textDecoration: 'none',
+        border:"1px solid #0f2b4e"
     }
     const botonagregarNuevoProducto = {
         fontSize: '1.4rem'
