@@ -7,7 +7,7 @@ import { useMediaQuery } from 'react-responsive'
 const Layout = ({ children, hasNavbar, hasSidebar }) => {
     const {isDesplegado, productoSeleccionado, user}= useContext(UserContext);
     const activo = {
-        paddingLeft: '13rem',
+        paddingLeft: '14rem',
         transition: "all ease .5s"
     };
     const no_activo = {

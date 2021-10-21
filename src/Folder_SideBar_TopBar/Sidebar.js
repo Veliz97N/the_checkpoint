@@ -1,6 +1,7 @@
 import React,{useContext, useState} from 'react'
 import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
 import { GrCatalogOption, GrCatalog } from "react-icons/gr"; //Utilizada para catalogo
+import { GiBlackBook } from "react-icons/gi";
 import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
 import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
 import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
@@ -50,8 +51,8 @@ const Sidebar = () => {
                 </li>
                 <li>
                     <Link to="/catalogo_paginaprincipal" >
-                        <GrCatalogOption className="iconos_menu_lateral" />
-                        <span className="texto_menu_lateral">Catalogo</span>
+                        <GiBlackBook className="iconos_menu_lateral" />
+                        <span className="texto_menu_lateral">Catálogo</span>
 
                     </Link>
                 </li>
@@ -59,7 +60,7 @@ const Sidebar = () => {
                 <li>
                     <Link to="/estadisticas" >
                         <AiOutlineLineChart className="iconos_menu_lateral" />
-                        <span className="texto_menu_lateral">Estadisticas</span>
+                        <span className="texto_menu_lateral">Estadísticas</span>
                     </Link>
                 </li>
 
@@ -89,7 +90,7 @@ const Sidebar = () => {
                 </li>
                 <li>
                     <Link to="/catalogo_paginaprincipal" >
-                        <GrCatalogOption className="iconos_menu_lateral" />
+                        <GiBlackBook className="iconos_menu_lateral" />
                         <span className="texto_menu_lateral">Catalogo</span>
 
                     </Link>

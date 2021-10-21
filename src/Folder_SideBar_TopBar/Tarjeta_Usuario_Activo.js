@@ -13,7 +13,7 @@ const Tarjeta_Usuario_Activo = (props) => {
     justifyContent: "center",
     borderRadius: "25px",
     border: "1px solid black",
-    backgroundColor: "#80ED99",
+    backgroundColor: "#667ea0",
     transition: "all ease .5s",
   };
   const no_activo_tarjeta_usuario = {
@@ -22,6 +22,8 @@ const Tarjeta_Usuario_Activo = (props) => {
     display: "flex",
     justifyContent: "center",
     transition: "all ease .5s",
+    backgroundColor: "#667ea0",
+    borderRadius: "5px"
   };
   const estilo_dropdownmenuNuevo = {
     zIndex: "2000",
@@ -55,9 +57,9 @@ const Tarjeta_Usuario_Activo = (props) => {
                 {props.user[0].name}
               </div>
 
-              <div className="permiso_usuario mx-auto">
-                <small className="text-white">{props.user[0].role}</small>
-              </div>
+              {/* <div className="permiso_usuario mx-auto">
+                <small className="text-white">{props.user[0].role_id}</small>
+              </div> */}
             </div>
 
             <div className="foto_usuario">

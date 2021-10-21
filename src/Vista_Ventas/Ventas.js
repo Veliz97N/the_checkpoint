@@ -21,8 +21,9 @@ const Ventas = () => {
     setIndiceBuscarElemento(e.target.value);
   };
   const noactivopapi = {
-    background: "#57CC99",
+    background: "#667ea0",
     transition: "all 0.5s ease;",
+    color: "#fff"
   };
   const [addrtype, setAddrtype] = useState([
     "Buscar por Nombre",
@@ -246,8 +247,9 @@ const Ventas = () => {
   }, [listaProductos_A_Boleta]);
 
   const titulo_venta = {
-    background: "#57CC99",
-    borderRadius: "25px"
+    background: "#667ea0",
+    borderRadius: "25px",
+    color: "#fff"
   }
 
   return (

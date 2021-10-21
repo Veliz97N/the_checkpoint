@@ -14,11 +14,11 @@ const Topbar = () => {
 
 
     const titulo_activo = {
-        color: '#80ED99',
+        color: 'white',
         transition: "all ease .5s"
       };
     const titulo_no_activo = {
-        color: 'black',
+        color: '#667ea0',
         transition: "all ease .5s"
       };
 
@@ -33,14 +33,16 @@ const Topbar = () => {
             onClick={()=>toggleIsDesplegado(!isDesplegado)}
             onMouseOver={() => setIstitulo_Hover(true)}
             onMouseOut={() => setIstitulo_Hover(false)}>
-                <BsFillGridFill className="iconos_menu_lateral" />
+                <BsFillGridFill className="iconos_menu_lateral" id="boton-toggle" />
             </div>
             
             
-            <div className="container">             
-                    <div className={"nombre_empresa"} style={titulo_Hover?titulo_activo:titulo_no_activo}>
+            <div className="container-fluid"> 
+            <Link to="/inicio">
+                    <div className={nombre_empresa} style={titulo_Hover?titulo_activo:titulo_no_activo}>
                         {isChiquito?'':<h3 >{nombre_empresa}</h3>}
                     </div> 
+            </Link>            
                 {!isChiquito && isDesplegado? <Tarjeta_Usuario_Activo user={user}/>: ""}
                 
             </div>

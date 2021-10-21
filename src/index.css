@@ -9,7 +9,9 @@
   --happy_input: #c4c4c4;
   --light_background: #E6E6E6;
   --light_input: #5C7AEA;
-  --dark_background: #212020;
+  --dark_background: #262833;
+  --dark_selected: #667ea0; 
+  --dark_notselected: #0f2b4e;
   /* Fin defincion variables tema Happy */
 }
 
@@ -21,7 +23,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--happy_gradient);
+  background: var(--dark_background);
+  overflow: hidden;
 }
 
 code {
@@ -31,7 +34,7 @@ code {
 
 .navbar{
   height: 75px;
-  background: var(--happy_gradient);
+  background: var(--dark_background);
 }
 
 .sidebar{
@@ -39,7 +42,9 @@ code {
   left: 0;
   z-index: 100;
   height: calc(100%-75px);
-  background-color: var(--happy_contorno_global);
+  /* background-color: var(--dark_selected); */
+  box-shadow: 10px 5px 5px rgb(19, 18, 18);
+  border-radius: 0 15px 15px 0;
 }
 
 .sidebar_logo{
@@ -56,7 +61,7 @@ code {
 
 .nav-li{
   padding-left: 0rem;
-  
+  margin-bottom: 0;
 }
 
 .sidebar li{
@@ -68,21 +73,35 @@ code {
   padding-bottom: 1.5rem ;
   font-size: 1.3rem;
   padding-left: 0.5rem;
-  background-color: var(--happy_non_selected);
+  background-color: var(--dark_notselected);
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.sidebar li:last-of-type{
+  border-radius: 0 0 15px 0;
+}
+
+.sidebar li:first-of-type{
+  border-radius:0 15px 0 0;
 }
 
 .sidebar li:hover{
-  background-color: var(--happy_selected);
+  background-color: var(--dark_selected);
   padding-left: 1rem;
-  font-weight: bold;
-  
+  font-weight: bold; 
+}
+
+.sidebar li:hover .texto_menu_lateral,.sidebar li:hover .iconos_menu_lateral{
+  color: black;
 }
 .sidebar li a{
   text-decoration: none;
-  color: black;
+  opacity: 100%;
+  color: white;
+  font-weight: 400;
 }
 
 .sidebar li a .texto_menu_lateral{
@@ -91,18 +110,32 @@ code {
 
 .iconos_menu_lateral{
   font-size: 1.9rem;
+  color: #667ea0;
 }
 
-.boton_toggle{
+.iconos_menu_principal {
+  color: #667ea0;
+}
+
+#boton_toggle{
   transition: all 0.2s ease;
+  color: var(--dark_notselected);
 }
 
 
-.boton_toggle:hover{
+#boton_toggle:hover{
   transform: scale(1.5);
-  color: var(--happy_selected);
+  color: white;
 }
+ .navbar .container-fluid a{
+    text-decoration: none;
+ }
 
+ .navbar .container-fluid{
+   margin-right: 0;
+   padding-right: 0;
+   margin-left: 20px;
+ }
 
 .footer_sidebar{
   
@@ -170,6 +203,17 @@ code {
   box-sizing: border-box;
 }
 
+
+.nombre_usuario, .permiso_usuario, .foto_usuario {
+  color: white;
+}
+
+#cuadro2 .foto_usuario{
+  color: var(--dark_selected);
+}
+#cuadro2:hover .foto_usuario{
+  color: black;
+}
 
 /* PARTE JOACO */
 .color-dark{
@@ -276,6 +320,10 @@ code {
 #cuadros a{
   list-style: none;
   text-decoration: none;
+  color: var(--dark_selected);
+}
+
+#cuadros:hover{
   color: black;
 }
 
@@ -285,10 +333,19 @@ code {
   height: 170px;
   margin-top: 30px;
   margin-left: 15px;
-  background: #80ED99;
+  background: var(--dark_notselected);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
+
+#cuadro1:hover #text1, #cuadro2:hover #text2,#cuadro3:hover #text3, #cuadro1:hover .iconos_menu_principal, #cuadro2:hover .iconos_menu_principal,#cuadro3:hover .iconos_menu_principal{
+  color: black;
+}
+#cuadro1:hover, #cuadro2:hover, #cuadro3:hover {
+  background-color: var(--dark_selected);
+}
+
+
 
 
 #text1, #text2, #text3{
@@ -299,7 +356,7 @@ code {
   font-weight: normal;
   font-size: 25px;
   line-height: 30px;
-  color: #000000;
+  color: white;
   /* margin-top: -35px; */
 }
 
@@ -450,14 +507,9 @@ code {
   cursor: pointer;
 }
 
-
-/*Style Gonzalo*/
-
-#cajaVentas {
-  background: var(--happy_gradient);
+.Ventana_Ventas{
+  padding-right: 20px;
 }
-
-/* .estiloselectpicker{} */
 
 .invalido{
   color:red

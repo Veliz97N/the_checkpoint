@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
-import { GrCatalogOption, GrCatalog } from "react-icons/gr"; //Utilizada para catalogo
+import { GiBlackBook } from "react-icons/gi"; // catalogo nuevo
 import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
 import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
 import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
@@ -36,7 +36,7 @@ const Home = (props) => {
             <div className="col-3" id="cuadro2">
               <Link to="/catalogo_paginaprincipal">
                 <div className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
-                  <GrCatalogOption className="iconos_menu_principal" />
+                  <GiBlackBook className="iconos_menu_principal" />
                 </div>
                 <div className="col-12" id="text2">
                   Catálogo
@@ -69,7 +69,7 @@ const Home = (props) => {
             <div className="col-3" id="cuadro2">
               <Link to="/catalogo_paginaprincipal">
                 <div className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
-                  <GrCatalogOption className="iconos_menu_principal" />
+                  <GiBlackBook className="iconos_menu_principal" />
                 </div>
                 <div className="col-12" id="text2">
                   Catálogo
@@ -94,12 +94,12 @@ const Home = (props) => {
               aria-haspopup="true"
               aria-expanded="false">
                 <div className="col-12 py-4 mt-3 mb-2 d-flex justify-content-center">
-                <div className="foto_usuario">
+                <div className="foto_usuario ">
                     <i className="fas foto_inicio fa-users fa-3x"></i>
                   </div>
                 </div>
                 <div className="col-12" id="text2">
-                <div className="nombre_usuario mx-auto">
+                <div className=" mx-auto">
                     {props.user[0].name}
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const Fetch_productos = () => {
     const [state, setState] = useState([]);
     useEffect(() => {
-        fetch("https://3000-violet-sheep-xfqw2huk.ws-us17.gitpod.io/productos")
+        fetch("https://3000-blush-dragonfly-b6cfte5b.ws-us17.gitpod.io/productos")
             .then( response =>{
                 return response.json();
             })
@@ -18,7 +18,7 @@ export const Fetch_productos = () => {
 export const Fetch_usuarios = () => {
     const [state, setState] = useState([])
     useEffect(() => {
-        fetch("https://3000-violet-sheep-xfqw2huk.ws-us17.gitpod.io/users")
+        fetch("https://3000-blush-dragonfly-b6cfte5b.ws-us17.gitpod.io/users")
             .then( response =>{
                 return response.json();
             })
@@ -33,7 +33,7 @@ export const Fetch_usuarios = () => {
 export const Fetch_roles = () => {
     const [state, setState] = useState([])
     useEffect(() => {
-        fetch("https://3000-violet-sheep-xfqw2huk.ws-us17.gitpod.io/role")
+        fetch("https://3000-blush-dragonfly-b6cfte5b.ws-us17.gitpod.io/role")
         .then(response=> {
             return response.json();
         })
