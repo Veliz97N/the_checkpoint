@@ -24,7 +24,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--dark_background);
-  overflow: hidden;
+  
 }
 
 code {
@@ -91,7 +91,7 @@ code {
 .sidebar li:hover{
   background-color: var(--dark_selected);
   padding-left: 1rem;
-  font-weight: bold; 
+  
 }
 
 .sidebar li:hover .texto_menu_lateral,.sidebar li:hover .iconos_menu_lateral{
@@ -547,11 +547,17 @@ code {
 .Ventana_Ventas{
   padding-right: 20px;
   color: white;
+  
 }
+
 
 .Ventana_Ventas form .Contenedor_Buscar_Elemento_A_Vender input, .ingresarNuevoProducto form input{
   background-color: var(--dark_selected);
   color: white;
+}
+
+.contenedor_foto_boton{
+  height: 60vh;
 }
 
 

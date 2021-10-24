@@ -12,7 +12,7 @@ const Ventas = () => {
 
   const { productos } = useContext(UserContext);
   const isChiquito = useMediaQuery({
-    query: "(max-width: 577px)",
+    query: "(max-width: 770px)",
   });
 
   const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0");
@@ -44,21 +44,28 @@ const Ventas = () => {
 
   const [listaProductosFiltrado, setListaProductosFiltrado] = useState([]);
 
-  const contenedorfotografia = {
+  const contenedorfotografia_Visible = {
     width: "250px",
     height: "250px",
+    visibility: 'visible'
   };
-
+  const contenedorfotografia_NOVisible = {
+    width: "250px",
+    height: "250px",
+    visibility: 'hidden'
+  };
   const imagen_Ingresar_Modificar_Producto = {
     borderRadius: "50%",
     width: "100%",
     height: "100%",
     objectFit: "contain",
   };
+
   const [valor_busqueda_producto, setValor_busqueda_producto] = useState("");
 
   const funcion_filtrar_busqueda_producto = (tipoBusqueda, valorBusqueda) => {
     setValor_busqueda_producto(valorBusqueda.target.value);
+
 
     if (valorBusqueda.target.value !== "") {
       if (tipoBusqueda === "0") {
@@ -66,15 +73,20 @@ const Ventas = () => {
           (producto) =>
             producto.nombre.toLowerCase() ==
             valorBusqueda.target.value.toLowerCase()
+            //Me recupera un array porque esta haciendo un arrow a cada producto que coincide con el valorBusqueda
         );
-        if (producto_A_Vender.length >= 1) {
+        if (producto_A_Vender.length >= 1) { //Quiere decir que encontro al menos un producto que coincide en nombre
           setListaProductosFiltrado(producto_A_Vender);
-          setCantidad(1);
-          setValorVentaProducto(1 * producto_A_Vender[0].precio_venta);
+          setCantidad(1); //Esto me va a generar problemas, estoy dependiendo de muchas varaibles para un solo producto, ademas no es un array
+          setValorVentaProducto(1 * producto_A_Vender[0].precio_venta); // POR ESO LO HAGO SOLAMENTE CON EL PARENTENSIS [0]
+          setFotografia_disponible(true)
+            // FALTA DEFINIR SI ESE PRODUCTO TRAE LA IMAGEN O NO, SI NO LA TRAE PONER UNA "IMAGEN NO DISPONIBLE"
         } else {
           setCantidad("");
           setValorVentaProducto("");
         }
+
+
       } else if (tipoBusqueda === "1") {
         const producto_A_Vender = productos.filter(
           (producto) => producto.codigo_barras == valorBusqueda.target.value
@@ -88,6 +100,7 @@ const Ventas = () => {
           setValorVentaProducto("");
         }
       }
+
     } else {
       setListaProductosFiltrado([]);
       setValorVentaProducto("");
@@ -184,6 +197,7 @@ const Ventas = () => {
     maxHeight: "55vh",
     overflowY: "scroll",
   };
+  const [fotografia_disponible, setFotografia_disponible] = useState(false)
 
   const [indiceAEliminar, setIndiceAEliminar] = useState("");
 
@@ -267,14 +281,14 @@ const Ventas = () => {
     <Layout hasNavbar hasSidebar>
       <div className="Ventana_Ventas">
         <div className="row">
-          <div className="h3 col-12 d-flex justify-content-center py-3 mb-3">
+          <div className="h3 col-12 d-flex justify-content-center py-3">
             <div className="titulo col-6 py-2 d-flex justify-content-center titulo" style={titulo_venta}>
               Nueva Venta
             </div>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 col-sm-12 ">
+          <div className="col-md-6 col-sm-12 vender_lado_izquierdo">
             
             <form style={!isChiquito ? productos_vender : productos_vender_2}>
               <div className="d-md-flex Contenedor_Buscar_Elemento_A_Vender mb-2 mb-sm-2">
@@ -337,10 +351,13 @@ const Ventas = () => {
                 </div>
               </fieldset>
 
+              
+            <div className={!isChiquito?"contenedor_foto_boton d-flex flex-column justify-content-between":"d-flex flex-column justify-content-between"}>
               {!isChiquito&&
-                <div className="contenedor_fotografia_producto_a_vender justify-content-center d-md-flex d-sm-none my-3 ">
-                <div style={contenedorfotografia}>
-                  <img style={imagen_Ingresar_Modificar_Producto} />{" "}
+                <div className="contenedor_fotografia_producto_a_vender justify-content-center d-md-flex d-sm-none ">
+                <div style={fotografia_disponible?contenedorfotografia_Visible:contenedorfotografia_NOVisible}>
+                  
+                  <img style={imagen_Ingresar_Modificar_Producto}/>{" "}
                   {/*Aca se agrega la imagen de la weaita */}
                 </div>
               </div>}
@@ -360,6 +377,8 @@ const Ventas = () => {
                   >
                   Remover Producto
                 </button>
+              </div>
+
               </div>
             </form>
             

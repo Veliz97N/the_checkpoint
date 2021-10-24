@@ -22,7 +22,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--happy_gradient);
+  
 }
 
 code {
@@ -73,12 +73,7 @@ code {
   flex-direction: row;
 }
 
-.sidebar li:hover{
-  background-color: var(--happy_selected);
-  padding-left: 1rem;
-  font-weight: bold;
-  
-}
+
 .sidebar li a{
   text-decoration: none;
   color: black;
@@ -286,6 +281,11 @@ code {
   visibility: visible;
   border: none;
   background: transparent;
+}
+.Ventana_Ventas{
+  padding-right: 20px;
+  color: white;
+ 
 }
 
 #cuadros a{
@@ -500,4 +500,11 @@ code {
   background: #80ED99;
 }
 
+/* ACA DESPUES DE LA REVISION */
 
+fotografia_producto_a_vender_Disponible{
+  visibility: visible;
+}
+fotografia_producto_a_vender_NOdisponible{
+  visibility: hidden;
+}

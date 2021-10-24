@@ -19,7 +19,8 @@ const ContenidoGeneral = () => {
     <BrowserRouter>
         <Switch>
        
-          <div className={isDarkMode?"container-fluid-dark":"container-fluid-light"}>
+          <div className={isDarkMode?"container-fluid-dark":"container-fluid-light"}
+      >
             
             <Route exact path="/inicio" component={()=> <Inicio user={user}/>} />
             <Route exact path="/catalogo_paginaprincipal" component={Catalogo_PaginaPrincipal} />
