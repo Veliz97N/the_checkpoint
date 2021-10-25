@@ -276,7 +276,6 @@ const Ventas = () => {
     borderRadius: "25px",
     color: "#fff"
   }
-
   return (
     <Layout hasNavbar hasSidebar>
       <div className="Ventana_Ventas">
