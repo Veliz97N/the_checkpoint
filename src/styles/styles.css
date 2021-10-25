@@ -30,11 +30,7 @@ code {
     monospace;
 }
 
-.container-fluid, .container {
-  width: 100%;
-  
-  
-}
+
 
 .navbar{
   height: 4.6875rem;

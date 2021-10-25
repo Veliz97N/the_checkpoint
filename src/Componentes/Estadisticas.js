@@ -135,7 +135,7 @@ function Estadisticas() {
 
   return (
     <Layout hasNavbar hasSidebar>
-      <div className="container">
+      <div className="estadisticas">
         <div className="row mb-3">
           <div className="col-12 d-flex justify-content-center aling-items-center">
             <div
@@ -218,7 +218,7 @@ function Estadisticas() {
         </div>
       </div>
       {!isChiquito&&
-      <div className="row mt-1 p-2 d-none d-sm-block " id="tabla2">
+      <div className="mt-1 p-2 d-none d-sm-block " id="tabla2">
         <div className="col-md-12 col-sm-12">
           <div className="prueba " id="col3">
             <div className="d-flex justify-content-center" id="col2">
