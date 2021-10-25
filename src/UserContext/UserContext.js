@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { Fetch_productos, Fetch_usuarios, Fetch_roles } from '../Fetch';
+import useLocalStorage from '../useLocalStorage';
 
 const UserContext = createContext();
 
@@ -19,7 +20,10 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
-    const usuario = Fetch_usuarios()
+    
+    const [user, setUser] = Fetch_usuarios()
+    
+    // const [usuario, setUsuario] = useLocalStorage('name',()=>Fetch_usuarios())
     const role = Fetch_roles()
 
 
@@ -27,7 +31,7 @@ const UserProvider = ({ children }) => {
     const [productoSeleccionado, setProductoSeleccionado] = useState("") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
 
     // const [user, setUser] = useState(usuario)
-    const user = usuario
+    
     const [isDesplegado, setIsDesplegado] = useState(false) 
     const [isLogged, setIsLogged] = useState(false)
    
@@ -57,7 +61,7 @@ const UserProvider = ({ children }) => {
         console.log(isLogged, "is logged?");
     }
 
-    const data = { user, productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
+    const data = { user,productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
     // data de prueba para otro rol
     // const data_vendedor = {vendedor, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}

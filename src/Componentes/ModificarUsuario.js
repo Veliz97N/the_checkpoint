@@ -5,6 +5,7 @@ import Layout from "../Folder_Contenido_General/Layout";
 
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
+import useLocalStorage from "../useLocalStorage";
 
 const ModificarUsuario = (props) => {
   const isChiquito = useMediaQuery({
@@ -190,7 +191,7 @@ const ModificarUsuario = (props) => {
     setCheckedTrue_ConfirmarPassword(e.target.value);
   };
 
-  const [name, setNombre] = useState();
+  const [name, setNombre] = useLocalStorage('name',"");
   const handler_Editar_Nombre = (e) => {
     if (e.target.checked == true) {
       setNombre(true);
@@ -299,7 +300,7 @@ const ModificarUsuario = (props) => {
                       name=""
                       id=""
                       placeholder="Ingresa tu nombre"
-                      value={props.user[0].name}
+                      value={name[0].name}
                     />
                   )}
                 </div>

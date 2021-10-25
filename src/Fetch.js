@@ -16,18 +16,19 @@ export const Fetch_productos = () => {
 }
 
 export const Fetch_usuarios = () => {
-    const [state, setState] = useState([])
+    const [user, setUser] = useState([])
+    
     useEffect(() => {
         fetch("https://3000-tomato-crawdad-x2e9x31d.ws-us17.gitpod.io/users")
             .then( response =>{
                 return response.json();
             })
             .then( data => {
-                setState(data);
+                setUser(data);
                 console.log(data);
             })
     }, [])
-    return state;
+    return [user, setUser];
 }
 
 export const Fetch_roles = () => {

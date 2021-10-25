@@ -10,12 +10,21 @@ import { Redirect } from "react-router-dom";
 import UserContext from "../UserContext/UserContext";
 import { useMediaQuery } from "react-responsive";
 import Tarjeta_Usuario_Activo from '../Folder_SideBar_TopBar/Tarjeta_Usuario_Activo';
+import { useEffect } from "react/cjs/react.development";
+import useLocalStorage from "../useLocalStorage";
 
 const Home = (props) => {
+  const[nombre,setNombre]= useLocalStorage('name',"")
+ 
   const isChiquito = useMediaQuery({
     query: "(max-width: 830px)",
   });
   const { isLogged, toggleIsLogged, user } = useContext(UserContext);
+  useEffect(()=>{
+  
+    setNombre(user)
+    
+  },[])
   if (!isLogged) {
     return <Redirect to="/" />;
   } else {
