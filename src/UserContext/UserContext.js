@@ -38,7 +38,7 @@ const UserProvider = ({ children }) => {
 
     
     const [isDesplegado, setIsDesplegado] = useState(false) 
-    const [isLogged, setIsLogged] = useState(false)
+    const [isLogged, setIsLogged] = useLocalStorage('isLogeado',false)
    
     // const setUsuario = () => {
 

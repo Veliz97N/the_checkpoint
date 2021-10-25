@@ -100,7 +100,9 @@ const Catalogo_PaginaPrincipal = () => {
 
     return (
         <Layout hasNavbar hasSidebar>
-        {!isChiquito?(<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+        {!isChiquito?
+        
+        (<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
             <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    
@@ -144,7 +146,10 @@ const Catalogo_PaginaPrincipal = () => {
                     </tbody>
                 </table>
             </div>
-        </div>):(<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+        </div>):
+        
+        
+        (<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
             <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    

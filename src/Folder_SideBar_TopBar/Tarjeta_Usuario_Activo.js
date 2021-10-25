@@ -35,6 +35,9 @@ const Tarjeta_Usuario_Activo = (props) => {
   const verUsuario = () => {
     console.log(props.user);
   }
+  const functionCerrarTodo = () =>{
+    localStorage.clear()
+  }
 
   return (
     <>
@@ -71,7 +74,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             className="dropdown-menu"
             aria-labelledby="dropdownMenuButton"
           >
-            <Link className="dropdown-item" to="/">
+            <Link className="dropdown-item" to="/" onClick={functionCerrarTodo}>
               Cerrar Sesion
             </Link>
             <Link className="dropdown-item" to="/usuario_crearusuario">
