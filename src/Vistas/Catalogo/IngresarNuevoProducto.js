@@ -74,17 +74,22 @@ const IngresarNuevoProducto = () => {
      const [booleano_feliz_valor, setBooleano_feliz_valor]= useState(null)
      const [booleano_feliz_stock,setBooleano_feliz_stock]= useState(null)
 
-     
-     const productos_A_Vender = () => {
-       const arr_de_objetos = {nombre: nombre_nuevoProducto, codigodebarras: codigoBarras_nuevoProducto, categoria: categoria_nuevoProducto,
-                              precioVenta: valor_nuevoProducto, imagen: "", stockDisponible: stock_nuevoProducto}
-        
-      }
 
      
 
      //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
      const FuncionValidarFormulario = (e) => {
+      const nuevo_Producto = {
+        codigo_barras: codigoBarras_nuevoProducto, 
+        costo_compra:"600",
+        factura_proveedor:"800",
+        fecha_ingreso:"25/10/2021",
+        
+        // categoria: categoria_nuevoProducto,
+        nombre: nombre_nuevoProducto, 
+        image: "", 
+        precio_venta: valor_nuevoProducto, 
+        stock: stock_nuevoProducto}
          e.preventDefault();
  
          if(nombre_nuevoProducto !='' && nombre_nuevoProducto.length>2 ){ //Falta que solo acepte letras y no numeros
@@ -122,12 +127,39 @@ const IngresarNuevoProducto = () => {
             setBooleano_feliz_stock(false)
          }
  
-        if (booleano_feliz_producto && booleano_feliz_categoria && booleano_feliz_codigoBarra && booleano_feliz_valor && booleano_feliz_stock) {
+        // if (booleano_feliz_producto && booleano_feliz_categoria && booleano_feliz_codigoBarra && booleano_feliz_valor && booleano_feliz_stock) {
+         if (
+           nombre_nuevoProducto != "" &&
+           nombre_nuevoProducto.length > 2 &&
+           categoria_nuevoProducto != "" &&
+           categoria_nuevoProducto.length > 2 &&
+           codigoBarras_nuevoProducto != "" &&
+           codigoBarras_nuevoProducto.length > 3 &&
+           valor_nuevoProducto != "" &&
+           valor_nuevoProducto.length > 2 &&
+           stock_nuevoProducto != "" &&
+           stock_nuevoProducto.length >= 1
+         ) {
+           console.log("LGTM = Looks Good To Me");
+           //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+           console.log("Que haga el POST dice....");
+          
+           console.log(nuevo_Producto)
 
-            console.log("LGTM = Looks Good To Me")
-            //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
-            console.log("Que haga el POST dice....")
-        }
+           const requestOptions = {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify(nuevo_Producto),
+
+           };
+           const urlProducto= "https://3000-tomato-crawdad-x2e9x31d.ws-us17.gitpod.io/productos"
+
+           fetch(urlProducto, requestOptions)
+             .then((response) => response.json())
+             .then((data) => console.log(data,nuevo_Producto));
+
+           
+         }
 
     }
 

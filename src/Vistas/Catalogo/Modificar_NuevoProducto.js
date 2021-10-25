@@ -158,8 +158,14 @@ const ModificarProducto = () => {
         ) {
             console.log("LGTM = Looks Good To Me");
             //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+            
+
+
+
+
+
             console.log("Que haga el POST dice....");
-            console.log(productoModificado);
+            console.log(productoModificado+"PRODUCTO");
         }
     };
 
