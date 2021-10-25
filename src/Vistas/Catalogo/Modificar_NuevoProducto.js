@@ -262,18 +262,18 @@ const ModificarProducto = () => {
       <Layout hasNavbar hasSidebar>
         {!isChiquito ? (
           <div className="ingresarNuevoProducto">
-            <div className="row">
-              <div className="h3 col-12 d-flex justify-content-center py-4 my-1">
+            <div className="alo">
+              <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                 <div className="titulo col-6 py-2 d-flex justify-content-center">
                   {titulo.modificar}
                 </div>
               </div>
             </div>
-            <row>
+           
               <form>
-                <div className="row">
+                <div className="alo d-flex">
                   <div className="col-md-7 col-sm-12">
-                    <div className="fuera my-2 pb-3">
+                    <div className="fuera my-1 pb-3">
                       <div className="form-group">
                         <label
                           style={label_ingresarNuevoProducto}
@@ -523,7 +523,7 @@ const ModificarProducto = () => {
                       )}
                     </div>
 
-                    <div className="fuera my-2 mb-4">
+                    <div className="fuera my-2 mb-2">
                       <div className="form-group">
                         <label
                           style={label_ingresarNuevoProducto}
@@ -592,7 +592,7 @@ const ModificarProducto = () => {
                  
                  
                  
-                  <div className="col-md-5 col-sm-12 mt-2 ">
+                  <div className="col-md-5 col-sm-12 ps-3">
                     <div className="ingresar_foto mb-5 ps-2" style={overFlow}>
                       <label
                         style={label_ingresarNuevoProducto}
@@ -628,7 +628,7 @@ const ModificarProducto = () => {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="alo">
                   <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center mb-1">
                     <button
                       onClick={(e) => FuncionValidarFormulario(e)}
@@ -649,7 +649,7 @@ const ModificarProducto = () => {
                   </div>
                 </div>
               </form>
-            </row>
+            
           </div>
         ) 
         
@@ -668,16 +668,16 @@ const ModificarProducto = () => {
           
           
           <div className="ingresarNuevoProducto">
-            <div className="row">
+            <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-4 my-1">
                 <div className="titulo col-12 py-2 d-flex justify-content-center">
                   {titulo.modificar}
                 </div>
               </div>
             </div>
-            <row>
+           
               <form>
-                <div className="row">
+                <div className="alo">
                   <div className="col-12">
                     <div className="fuera my-2 pb-3">
                       <div className="form-group">
@@ -1038,7 +1038,7 @@ const ModificarProducto = () => {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="alo">
                   <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
                     <button
                       onClick={(e) => FuncionValidarFormulario(e)}
@@ -1059,7 +1059,6 @@ const ModificarProducto = () => {
                   </div>
                 </div>
               </form>
-            </row>
           </div>
         )}
       </Layout>

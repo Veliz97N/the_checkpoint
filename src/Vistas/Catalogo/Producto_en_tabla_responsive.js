@@ -9,7 +9,7 @@ const Producto_en_tabla_responsive = (props) => {
     const visibleEditarProductoCategoria = {
         visibility: 'visible',
         fontSize: "1.4rem",
-        color:'black',
+        color:'white',
         transition: "all .5s ease;",
 
     }
@@ -21,11 +21,12 @@ const Producto_en_tabla_responsive = (props) => {
          
     }
     const activopapi ={
-        background: "#80ED99",
+        background: "#667ea0",
         transition: "all .5s ease;",  
+        opacity: "0.8",
     }
     const noactivopapi ={
-        background: "#57CC99",
+        background: "#667ea0",
         transition: "all 0.5s ease;",  
     }
     const [isShow, setIsShow] = useState(false) 

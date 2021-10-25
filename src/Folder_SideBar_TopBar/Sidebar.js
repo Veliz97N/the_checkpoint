@@ -23,7 +23,7 @@ const Sidebar = () => {
         transition: "all ease .5s",     
       };
       const no_activo ={
-          width: '3.5rem',
+          width: '3rem',
           overflow: 'hidden',
           transition: "all ease .5s",
           

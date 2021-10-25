@@ -168,7 +168,7 @@ const IngresarNuevoProducto = () => {
       <Layout hasNavbar hasSidebar>
         {!isChiquito ? (
           <div className="ingresarNuevoProducto">
-            <div className="row">
+            <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                 <div className="titulo col-6 py-2 d-flex justify-content-center">
                   {titulo.nuevo}
@@ -176,7 +176,7 @@ const IngresarNuevoProducto = () => {
               </div>
             </div>
             <form>
-              <div className="row">
+              <div className="alo d-flex">
                 <div className="col-md-7 col-sm-12">
                   <div className="fuera my-2 mb-4">
                     <div className="form-group">
@@ -370,7 +370,7 @@ const IngresarNuevoProducto = () => {
                   </div>
                 </div>
 
-                <div className="col-md-5 col-sm-12 mt-2 mb-2">
+                <div className="col-md-5 col-sm-12 mt-2 mb-2 ps-3">
                   <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                     <label
                       style={label_ingresarNuevoProducto}
@@ -405,7 +405,7 @@ const IngresarNuevoProducto = () => {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="alo">
                 <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
                   <button
                     onClick={(e) => FuncionValidarFormulario(e)}
@@ -431,7 +431,7 @@ const IngresarNuevoProducto = () => {
 
 
           <div className="ingresarNuevoProducto">
-            <div className="row">
+            <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                 <div className="titulo col-12 py-2 d-flex justify-content-center">
                   {titulo.nuevo}
@@ -439,7 +439,7 @@ const IngresarNuevoProducto = () => {
               </div>
             </div>
             <form>
-              <div className="row">
+              <div className="alo">
                 <div className="col-12">
                   <div className="fuera my-2 mb-4">
                     <div className="form-group">
@@ -668,7 +668,7 @@ const IngresarNuevoProducto = () => {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="alo">
                 <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
                   <button
                     onClick={(e) => FuncionValidarFormulario(e)}

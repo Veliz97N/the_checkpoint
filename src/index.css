@@ -539,7 +539,7 @@ code {
   transition: all ease .5s  
 }
 .no_activo {
-  width: 3.5rem;
+  width: 3rem;
   overflow: hidden;
   transition: all ease .5s
   
@@ -602,7 +602,7 @@ code {
 
 @media  (max-width: 830px) {
   .sidebar{
-    width: 4rem;
+    width: 3.5rem;
   }
 }
 
