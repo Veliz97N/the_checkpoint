@@ -32,11 +32,12 @@ const Producto_en_tabla_catalogo = (props) => {
     const [isShow, setIsShow] = useState(false) 
     
     const handler_InformacionProductoModificar = () => {
-        const informacion = {nombreProducto: props.producto.nombreProducto,
-                            codigodebarras: props.producto.codigodebarras,
-                            categoria: props.producto.categoria,
-                            valorUnidad: props.producto.valorUnidad,
-                            stockDisponible: props.producto.stockDisponible}
+        const informacion = {nombreProducto: props.producto.nombre,
+                            codigodebarras: props.producto.codigo_barras,
+                            categoria: props.producto.id_categoria,
+                            valorUnidad: props.producto.precio_venta,
+                            stockDisponible: props.producto.stock}
+        console.log(informacion)
         toggleProductoSeleccionado(informacion)
 
     }

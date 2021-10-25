@@ -21,8 +21,12 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
     
-    const [user, setUser] = Fetch_usuarios()
-    
+    const [users, setUsers] = Fetch_usuarios()
+    const [user, setUser] = useLocalStorage("name","")
+    const toggleSetUser=(valorProvenienteLogin)=>{
+        setUser(valorProvenienteLogin)
+        console.log(user)
+    }
     
 
     // const [usuario, setUsuario] = useLocalStorage('name',()=>Fetch_usuarios())
@@ -30,9 +34,8 @@ const UserProvider = ({ children }) => {
 
 
 
-    const [productoSeleccionado, setProductoSeleccionado] = useState("") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
+    const [productoSeleccionado, setProductoSeleccionado] = useLocalStorage('productoSeleccionado',"") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
 
-    // const [user, setUser] = useState(usuario)
     
     const [isDesplegado, setIsDesplegado] = useState(false) 
     const [isLogged, setIsLogged] = useState(false)
@@ -51,7 +54,7 @@ const UserProvider = ({ children }) => {
     const toggleIsDesplegado = (booleano) => {
         setIsDesplegado(booleano)
         console.log(isDesplegado)
-        console.log(user);
+        console.log(users);
     }
     const toggleProductoSeleccionado = (valor) =>{
         setProductoSeleccionado(valor)
@@ -63,7 +66,7 @@ const UserProvider = ({ children }) => {
         console.log(isLogged, "is logged?");
     }
 
-    const data = { user,productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
+    const data = { user,toggleSetUser,users,productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
    
     // data de prueba para otro rol

@@ -14,7 +14,7 @@ import useLocalStorage from '../useLocalStorage';
 
 
 const ContenidoGeneral = () => {
-    const {user,productoSeleccionado,isDarkMode}= useContext(UserContext);
+    const {user,users,productoSeleccionado,isDarkMode}= useContext(UserContext);
     // const user=useLocalStorage('name',"")
   return (
     <BrowserRouter>

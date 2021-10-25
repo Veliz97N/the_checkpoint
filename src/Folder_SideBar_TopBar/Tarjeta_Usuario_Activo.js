@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
 import useLocalStorage from "../useLocalStorage";
 
 const Tarjeta_Usuario_Activo = (props) => {
-  const [name,setName]=useLocalStorage('name',"")
   const isChiquito = useMediaQuery({
     query: "(max-width: 830px)",
   });
@@ -56,12 +56,10 @@ const Tarjeta_Usuario_Activo = (props) => {
           >
             <div className="datos_usuario me-4 d-flex flex-column my-auto">
               <div className="nombre_usuario mx-auto">
-                {name[0].name}
+                {props.user.username}
               </div>
 
-              {/* <div className="permiso_usuario mx-auto">
-                <small className="text-white">{name[0].role_id}</small>
-              </div> */}
+        
             </div>
 
             <div className="foto_usuario">

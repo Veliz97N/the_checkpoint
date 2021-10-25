@@ -14,17 +14,13 @@ import { useEffect } from "react/cjs/react.development";
 import useLocalStorage from "../useLocalStorage";
 
 const Home = (props) => {
-  const[nombre,setNombre]= useLocalStorage('name',"")
+  // const[nombre,setNombre]= useLocalStorage('name',"")
  
   const isChiquito = useMediaQuery({
     query: "(max-width: 830px)",
   });
-  const { isLogged, toggleIsLogged, user } = useContext(UserContext);
-  useEffect(()=>{
+  const { isLogged} = useContext(UserContext);
   
-    setNombre(user)
-    
-  },[])
   if (!isLogged) {
     return <Redirect to="/" />;
   } else {
@@ -109,7 +105,7 @@ const Home = (props) => {
                 </div>
                 <div className="col-12" id="text2">
                 <div className=" mx-auto">
-                    {props.user[0].name}
+                    {props.user.username}
                   </div>
                 </div>
               </button>

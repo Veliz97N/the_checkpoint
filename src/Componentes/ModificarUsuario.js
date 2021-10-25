@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import useLocalStorage from "../useLocalStorage";
 
 const ModificarUsuario = (props) => {
+  
+  const [nameUsuarioActivo,setNameUsuarioActivo]=useLocalStorage('name',"")
   const isChiquito = useMediaQuery({
     query: "(max-width: 577px)",
   });
@@ -94,7 +96,8 @@ const ModificarUsuario = (props) => {
   //const usuario = { name:"Juan Carlos", last_name: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
 
   const FuncionValidarFormulario = (e) => {
-    let usuarioModificado = { name: props.user[0].name, last_name: props.user[0].last_name, username: props.user[0].username, password: props.user[0].password }
+
+    let usuarioModificado = { name: props.user.name, last_name: props.user.last_name, username: props.user.username, password: props.user.password }
     e.preventDefault();
     if (name === true) {
       if (checkedTrue_nombre !== "" && checkedTrue_nombre.length > 2) {
@@ -103,7 +106,7 @@ const ModificarUsuario = (props) => {
         usuarioModificado.name = checkedTrue_nombre
       } else {
         setBooleano_feliz_nombre(false);
-        usuarioModificado.name = props.user[0].name
+        usuarioModificado.name = props.user.name
         console.log(name);
       }
     }
@@ -113,7 +116,7 @@ const ModificarUsuario = (props) => {
         usuarioModificado.last_name = checkedTrue_Apellido
       } else {
         setBooleano_feliz_apellido(false);
-        usuarioModificado.last_name = props.user[0].last_name
+        usuarioModificado.last_name = props.user.last_name
       }
     }
     if (userName === true) {
@@ -122,13 +125,13 @@ const ModificarUsuario = (props) => {
         usuarioModificado.username = checkedTrue_Username
       } else {
         setBooleano_feliz_username(false);
-        usuarioModificado.username = props.user[0].username
+        usuarioModificado.username = props.user.username
       }
     }
     if (password === true) {
       if (checkedTrue_Password === "") {
         setBooleano_feliz_password(false);
-        usuarioModificado.password = props.user[0].password
+        usuarioModificado.password = props.user.password
         //Falta validarla para que contenga letras, numeros y una mayuscula
       } else if (checkedTrue_Password != "") {
         if (checkedTrue_Password.length > 5) {
@@ -136,7 +139,7 @@ const ModificarUsuario = (props) => {
           usuarioModificado.password = checkedTrue_Password
         } else {
           setBooleano_feliz_password(false)
-          usuarioModificado.password = props.user[0].password
+          usuarioModificado.password = props.user.password
         }
       }
       if (
@@ -147,7 +150,7 @@ const ModificarUsuario = (props) => {
         usuarioModificado.password = checkedTrue_Password
       } else {
         setBooleano_feliz_confirm_password(false);
-        usuarioModificado.password = props.user[0].password
+        usuarioModificado.password = props.user.password
       }
     }
 
@@ -191,7 +194,7 @@ const ModificarUsuario = (props) => {
     setCheckedTrue_ConfirmarPassword(e.target.value);
   };
 
-  const [name, setNombre] = useLocalStorage('name',"");
+  const [name, setNombre] = useState();
   const handler_Editar_Nombre = (e) => {
     if (e.target.checked == true) {
       setNombre(true);
@@ -300,7 +303,7 @@ const ModificarUsuario = (props) => {
                       name=""
                       id=""
                       placeholder="Ingresa tu nombre"
-                      value={name[0].name}
+                      value={props.user.name}
                     />
                   )}
                 </div>
@@ -358,7 +361,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="text"
                       placeholder="Ingresa tu last_name"
-                      value={props.user[0].last_name}
+                      value={props.user.last_name}
                     />
                   )}
                 </div>
@@ -387,7 +390,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputPassword1"
                   >
                     <div className="row">
-                      <div className="col-8">name de Usuario</div>
+                      <div className="col-8">Nombre de Usuario</div>
                       <div className="col-4">
                         <input
                           class="form-check-input"
@@ -417,7 +420,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="text"
                       placeholder="Ingresa tu usuario"
-                      value={props.user[0].username}
+                      value={props.user.username}
                     />
                   )}
                 </div>
@@ -477,7 +480,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user[0].password}
+                      value={props.user.password}
                     />
                   )}
                 </div>
@@ -525,7 +528,7 @@ const ModificarUsuario = (props) => {
                       className="col-md-8 col-sm-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user[0].password}
+                      value={props.user.password}
                     />
                   )}
                 </div>
@@ -662,7 +665,7 @@ const ModificarUsuario = (props) => {
                       name=""
                       id=""
                       placeholder="Ingresa tu name"
-                      value={props.user[0].name}
+                      value={props.user.name}
                     />
                   )}
                 </div>
@@ -720,7 +723,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="text"
                       placeholder="Ingresa tu last_name"
-                      value={props.user[0].last_name}
+                      value={props.user.last_name}
                     />
                   )}
                 </div>
@@ -779,7 +782,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="text"
                       placeholder="Ingresa tu usuario"
-                      value={props.user[0].username}
+                      value={props.user.username}
                     />
                   )}
                 </div>
@@ -839,7 +842,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user[0].password}
+                      value={props.user.password}
                     />
                   )}
                 </div>
@@ -887,7 +890,7 @@ const ModificarUsuario = (props) => {
                       className="col-12"
                       type="password"
                       placeholder="Ingresa tu contraseña"
-                      value={props.user[0].password}
+                      value={props.user.password}
                     />
                   )}
                 </div>

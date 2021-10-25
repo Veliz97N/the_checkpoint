@@ -9,25 +9,28 @@ function Login() {
 
   const History = useHistory()
   
-  const {isLogged, toggleIsLogged, user, role} = useContext(UserContext)
+  const {isLogged, toggleIsLogged, users, role,toggleSetUser} = useContext(UserContext)
   // usuario de prueba
   const[nombre,setNombre]= useLocalStorage('name',"")
   const [adminUser, setAdminUser] = useState("")
 
-  const identificar_roles = (user, role) => {
+  const identificar_roles = (users, role) => {
     const adminUser = {
       username: "",
-      password: ""
+      password: "",
+      name: "",
+      last_name:"",
     }
     
     
-    for (let x = 0; x< user.length; x++){
-      console.log(user[x],  "esto es user[x]");
-      console.log(role, "esto es role");
+    for (let x = 0; x< users.length; x++){
       for(let j=0; j< role.length; j++){
-        if (user[x].role_id === role[j].id){
-          adminUser.username = user[x].username;
-          adminUser.password = user[x].password;
+        if (users[x].role_id === role[j].id){
+          adminUser.username = users[x].username;
+          adminUser.password = users[x].password;
+          adminUser.name =  users[x].name;
+          adminUser.last_name =  users[x].last_name;
+
           console.log("este es adminUser",adminUser);
           setAdminUser(adminUser);
         }
@@ -40,8 +43,8 @@ function Login() {
   useEffect(()=>{
     
     //ACA FUNCIONA LA WEA NO SE PORQUE
-    identificar_roles(user, role)
-  }, [user, role])
+    identificar_roles(users, role)
+  }, [users, role])
 
   const login_function = (user_data) => {
      
@@ -57,6 +60,13 @@ function Login() {
         password: user_data.password
       })
       toggleIsLogged(true)
+      toggleSetUser({
+        username: user_data.username,
+        password: user_data.password,
+        name:adminUser.name,
+        last_name:adminUser.last_name,
+      }) //ACA SETEAMOS EL USUARIO QUE INGRESO CORRECTAMENTE
+     
       History.push("/inicio")  
     } else {
       console.log("Usuario o contraseña incorrecto");
