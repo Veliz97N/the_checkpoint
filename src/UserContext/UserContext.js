@@ -23,6 +23,8 @@ const UserProvider = ({ children }) => {
     
     const [user, setUser] = Fetch_usuarios()
     
+    
+
     // const [usuario, setUsuario] = useLocalStorage('name',()=>Fetch_usuarios())
     const role = Fetch_roles()
 
@@ -63,6 +65,7 @@ const UserProvider = ({ children }) => {
 
     const data = { user,productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
+   
     // data de prueba para otro rol
     // const data_vendedor = {vendedor, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
     return (

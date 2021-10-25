@@ -10,11 +10,12 @@ import Login from '../Login';
 import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
 import Estadisticas from '../Componentes/Estadisticas';
+import useLocalStorage from '../useLocalStorage';
 
 
 const ContenidoGeneral = () => {
     const {user,productoSeleccionado,isDarkMode}= useContext(UserContext);
-
+    // const user=useLocalStorage('name',"")
   return (
     <BrowserRouter>
         <Switch>
