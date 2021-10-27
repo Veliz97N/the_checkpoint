@@ -93,17 +93,41 @@ const IngresarNuevoProducto = () => {
         //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
         console.log("Que haga el POST dice....");
         let contador_existencias = 0
+        let info_categoria = 0
         for (let x = 0; x < categorias.length; x++) {
           //ACA VEO SI LA CATEGORIA INGRESADA YA EXISTE EN CATEGORIAS O SI DEBO CREAR UNA NUEVA
           if (categorias[x].nombre_cat === categoria_nuevoProducto) {
             contador_existencias +=1
-            
-          
+            info_categoria = {id_categoria: categorias[x].id, nombre_categoria:categorias[x].nombre_cat}
+            console.log(info_categoria)
         }
       }
+      const nuevo_Producto = {
+        codigo_barras: codigoBarras_nuevoProducto, 
+        costo_compra:"600",
+        factura_proveedor:"800",
+        fecha_ingreso:"25/10/2021",
+        categoria_id:info_categoria.id_categoria,
+        // categoria: categoria_nuevoProducto,
+        image: "", 
+        nombre: nombre_nuevoProducto, 
+        precio_venta: valor_nuevoProducto, 
+        stock: stock_nuevoProducto}
+
+        
         if (contador_existencias >=1) {
           //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
           console.log("Existe esta madre");
+          const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevo_Producto),
+          };
+          const urlProducto =
+            "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+          fetch(urlProducto, requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data, nuevo_Producto));
         }
 
 
@@ -118,7 +142,7 @@ const IngresarNuevoProducto = () => {
           body: JSON.stringify(nueva_categoria),
         };
         const urlProducto =
-          "https://3000-salmon-turtle-38kq26qy.ws-us18.gitpod.io/categoria";
+          "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria";
         fetch(urlProducto, requestOptions)
           .then((response) => response.json())
           .then((data) => console.log(data, nueva_categoria));
@@ -138,7 +162,6 @@ const IngresarNuevoProducto = () => {
         costo_compra:"600",
         factura_proveedor:"800",
         fecha_ingreso:"25/10/2021",
-        id:"5",
         // categoria: categoria_nuevoProducto,
         image: "", 
         nombre: nombre_nuevoProducto, 
