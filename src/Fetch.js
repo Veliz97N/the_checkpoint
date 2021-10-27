@@ -14,7 +14,7 @@ export const Fetch_productos = () => {
     }, [])
     return state;
 }
-export const Fetch_categorias = () => {
+export const Fetch_categorias = (toggleSetCategorias) => {
     const [state, setState] = useState([])
     
     useEffect(() => {
@@ -24,6 +24,7 @@ export const Fetch_categorias = () => {
             })
             .then( data => {
                 setState(data);
+                toggleSetCategorias(data)
                 console.log(data);
             })
     }, [])

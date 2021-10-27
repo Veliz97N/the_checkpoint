@@ -11,7 +11,7 @@ function Login() {
   
   const {isLogged, toggleIsLogged, users, role,toggleSetUser} = useContext(UserContext)
   // usuario de prueba
-  const[nombre,setNombre]= useLocalStorage('name',"")
+ 
   const [adminUser, setAdminUser] = useState("")
 
   const identificar_roles = (users, role) => {

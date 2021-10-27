@@ -5,11 +5,10 @@ import UserContext from '../../UserContext/UserContext';
 import { useEffect } from 'react/cjs/react.development';
 import { Link } from 'react-router-dom';
 import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias } from '../../Fetch';
+import { GrWindows } from 'react-icons/gr';
 
 const IngresarNuevoProducto = () => {
-
-
-  const {productos}  = useContext(UserContext);
+  const {categorias_fetch,productos,categorias,toggleSetCategorias}  = useContext(UserContext);
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
@@ -76,12 +75,59 @@ const IngresarNuevoProducto = () => {
      const [booleano_feliz_valor, setBooleano_feliz_valor]= useState(null)
      const [booleano_feliz_stock,setBooleano_feliz_stock]= useState(null)
 
-     const categorias = Fetch_categorias()
-     
   
+    const funcionPublicarProducto = () => {
+      if (
+        booleano_feliz_producto &&
+        booleano_feliz_categoria &&
+        booleano_feliz_codigoBarra &&
+        booleano_feliz_valor &&
+        booleano_feliz_stock
+      ) {
+        console.log("LGTM = Looks Good To Me");
+        //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+        console.log("Que haga el POST dice....");
+        let contador_existencias = 0
+        for (let x = 0; x < categorias.length; x++) {
+          //ACA VEO SI LA CATEGORIA INGRESADA YA EXISTE EN CATEGORIAS O SI DEBO CREAR UNA NUEVA
+          if (categorias[x].nombre_cat === categoria_nuevoProducto) {
+            contador_existencias +=1
+            
+          
+        }
+      }
+        if (contador_existencias >=1) {
+          //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
+          console.log("Existe esta madre");
+        }
 
+
+       else {
+        const nueva_categoria = {
+          descripcion_cat: "Nueva Categoria: " + categoria_nuevoProducto,
+          nombre_cat: categoria_nuevoProducto,
+        };
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nueva_categoria),
+        };
+        const urlProducto =
+          "https://3000-salmon-turtle-38kq26qy.ws-us18.gitpod.io/categoria";
+        fetch(urlProducto, requestOptions)
+          .then((response) => response.json())
+          .then((data) => console.log(data, nueva_categoria));
+
+        const categorias_incluyendo_nuevas = [...categorias,nueva_categoria]
+        toggleSetCategorias(categorias_incluyendo_nuevas)
+      }
+    }
+    };
      //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
      const FuncionValidarFormulario = (e) => {
+      
+     
+     
         const nuevo_Producto = {
         codigo_barras: codigoBarras_nuevoProducto, 
         costo_compra:"600",
@@ -129,73 +175,16 @@ const IngresarNuevoProducto = () => {
          else{
             setBooleano_feliz_stock(false)
          }
- 
-        // if (booleano_feliz_producto && booleano_feliz_categoria && booleano_feliz_codigoBarra && booleano_feliz_valor && booleano_feliz_stock) {
-         if (
-           nombre_nuevoProducto != "" &&
-           nombre_nuevoProducto.length > 2 &&
-           categoria_nuevoProducto != "" &&
-           categoria_nuevoProducto.length > 2 &&
-           codigoBarras_nuevoProducto != "" &&
-           codigoBarras_nuevoProducto.length > 3 &&
-           valor_nuevoProducto != "" &&
-           valor_nuevoProducto.length > 2 &&
-           stock_nuevoProducto != "" &&
-           stock_nuevoProducto.length >= 1
-         ) {
-           console.log("LGTM = Looks Good To Me");
-           //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
-           console.log("Que haga el POST dice....");
-          
-
-           let existe
-           for (let x=0; x<categorias.length; x++){ //ACA VEO SI LA CATEGORIA INGRESADA YA EXISTE EN CATEGORIAS O SI DEBO CREAR UNA NUEVA
-            if(categorias[x].nombre_cat===categoria_nuevoProducto){
-              existe={siexiste:true, nombreCategoria: categorias[x].nombre_cat, id:categorias[x].id}//{existe:true , id: categorias[x].id , nombreCategoria: categorias[x].nombre_cat}
-            }
-            else{
-              existe={siexiste:false}//{existe:false}
-            }
-           }
-           if(existe.siexiste){
-             //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
-            console.log("Existe esta madre")
-           }
+         funcionPublicarProducto()
          
-           else{
-
-                const nueva_categoria={descripcion_cat:"Nueva Categoria: "+categoria_nuevoProducto, nombre_cat: categoria_nuevoProducto}
-                const requestOptions = {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(nueva_categoria),
-                };
-                const urlProducto= "https://3000-salmon-turtle-38kq26qy.ws-us17.gitpod.io/categoria"
-                fetch(urlProducto, requestOptions)
-                  .then((response) => response.json())
-                  .then((data) => console.log(data,nueva_categoria));
-                
-           }
-           
-
-
-          //  const urlProducto= "https://3000-tomato-crawdad-x2e9x31d.ws-us17.gitpod.io/productos"
-
-          //  fetch(urlProducto, requestOptions)
-          //    .then((response) => response.json())
-          //    .then((data) => console.log(data,nuevo_Producto));
-
-         
-         }
-        // const nueva_categoria={descripcion_cat:'Aca van los dulces', nombre_cat:"Dulces"}
         
-           
-        //  }
-
-       //hay que hacer un useeffect para recargar la base de datos de categoria y asi evitar que al incorporar dos 
-        //productos seguidos se corrompa la wea de si existe la categoria o no en la BD
-
-    }
+         }
+       
+         useEffect(()=>{
+          console.log("Holi mami papi")
+        },[])
+   
+    
   
 
     return (
