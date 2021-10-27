@@ -1,14 +1,14 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 
 import Layout from '../Folder_Contenido_General/Layout'
 import { useMediaQuery } from "react-responsive";
+import UserContext from '../UserContext/UserContext';
 
 const CrearUsuario = () => {
+    const {users} = useContext(UserContext)
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
-      });
-
-    
+      });   
     const input_ingresarNuevoProducto = {
         backgroundColor: '#667ea0',
         color: 'black',
@@ -71,8 +71,8 @@ const CrearUsuario = () => {
     const [booleano_feliz_password, setBooleano_feliz_password]= useState(null)
     const [booleano_feliz_confirm_password,setBooleano_feliz_confirm_password]= useState(null)
     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
-    
     const funcionPublicarUsuario = () => {
+        let contador = 0
         if (
             nombre_nuevoUsuario != "" &&
             nombre_nuevoUsuario.length > 2 &&
@@ -84,8 +84,39 @@ const CrearUsuario = () => {
             password_nuevoUsuario.length > 2 &&
             confirm_password_nuevoUsuario != "" &&
             confirm_password_nuevoUsuario === password_nuevoUsuario
-        ){
-            
+        ){          
+            for (let x = 0; x < users.length; x++){
+                if (users[x].username === username_nuevoUsuario){
+                    contador += 1
+                }    
+            }
+            if (contador !== 0){
+            alert("Nombre de usuario ya existe")
+            }
+            if (contador === 0){
+                console.log("LGTM = Looks Good To Me")
+                //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+                console.log("Que haga el POST dice....")
+                const mail = "test@test.cl"
+                const nuevo_usuario = {
+                    name: nombre_nuevoUsuario,
+                    last_name: apellido_nuevoUsuario,
+                    password: password_nuevoUsuario,
+                    username: username_nuevoUsuario,
+                    email: mail
+                }
+                const requestOptions = {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(nuevo_usuario),
+                  };
+                const urlUsuarios = "https://3000-amber-gerbil-mp7pfq6s.ws-us18.gitpod.io/users"
+                fetch(urlUsuarios, requestOptions)
+                .then((response) => response.json())
+                .then((data) => console.log(data, nuevo_usuario))
+                .catch((err)=> console.log(err))
+
+            }
         }
     }
     
@@ -128,14 +159,7 @@ const CrearUsuario = () => {
         }
         else{
             setBooleano_feliz_confirm_password(false)
-        }
-
-        if(booleano_feliz_nombre&&booleano_feliz_apellido&&booleano_feliz_username&&booleano_feliz_password&&booleano_feliz_confirm_password){
-            
-            console.log("LGTM = Looks Good To Me")
-            //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
-            console.log("Que haga el POST dice....")
-        }
+        }   
         funcionPublicarUsuario()
 
     }

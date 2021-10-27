@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const Fetch_productos = () => {
     const [state, setState] = useState([]);
     useEffect(() => {
-        fetch("https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos")
+        fetch("https://3000-amber-gerbil-mp7pfq6s.ws-us18.gitpod.io/productos")
             .then( response =>{
                 return response.json();
             })
@@ -18,7 +18,7 @@ export const Fetch_categorias = (toggleSetCategorias) => {
     const [state, setState] = useState([])
     
     useEffect(() => {
-        fetch("https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria")
+        fetch("https://3000-amber-gerbil-mp7pfq6s.ws-us18.gitpod.io/categoria")
             .then( response =>{
                 return response.json();
             })
@@ -35,7 +35,7 @@ export const Fetch_usuarios = () => {
     const [users, setUsers] = useState([])
     
     useEffect(() => {
-        fetch("https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users")
+        fetch("https://3000-amber-gerbil-mp7pfq6s.ws-us18.gitpod.io/users")
             .then( response =>{
                 return response.json();
             })
@@ -50,7 +50,7 @@ export const Fetch_usuarios = () => {
 export const Fetch_roles = () => {
     const [state, setState] = useState([])
     useEffect(() => {
-        fetch("https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/role")
+        fetch("https://3000-amber-gerbil-mp7pfq6s.ws-us18.gitpod.io/role")
         .then(response=> {
             return response.json();
         })

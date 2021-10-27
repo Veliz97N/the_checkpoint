@@ -442,6 +442,7 @@ const IngresarNuevoProducto = () => {
                     {fileUrl ? (
                       <div style={contenedorfotografia}>
                         <img
+                          alt=""
                           style={imagen_Ingresar_Modificar_Producto}
                           src={fileUrl}
                         />
@@ -709,6 +710,7 @@ const IngresarNuevoProducto = () => {
                         <img
                           style={imagen_Ingresar_Modificar_Producto}
                           src={fileUrl}
+                          alt=""
                         />
                       </div>
                     ) : (

@@ -32,8 +32,9 @@ const UserProvider = ({ children }) => {
     const[categorias,setCategorias]= useLocalStorage('categorias',"")
     const toggleSetCategorias = (parametro) => {
         setCategorias(parametro)
-
     }
+
+    
     
 
     // const [usuario, setUsuario] = useLocalStorage('name',()=>Fetch_usuarios())
