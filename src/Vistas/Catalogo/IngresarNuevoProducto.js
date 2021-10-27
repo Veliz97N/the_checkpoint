@@ -78,11 +78,16 @@ const IngresarNuevoProducto = () => {
   
     const funcionPublicarProducto = () => {
       if (
-        booleano_feliz_producto &&
-        booleano_feliz_categoria &&
-        booleano_feliz_codigoBarra &&
-        booleano_feliz_valor &&
-        booleano_feliz_stock
+        nombre_nuevoProducto != "" &&
+        nombre_nuevoProducto.length > 2 &&
+        categoria_nuevoProducto != "" &&
+        categoria_nuevoProducto.length > 2 &&
+        codigoBarras_nuevoProducto != "" &&
+        codigoBarras_nuevoProducto.length > 3 &&
+        valor_nuevoProducto != "" &&
+        valor_nuevoProducto.length > 2 &&
+        stock_nuevoProducto != "" &&
+        stock_nuevoProducto.length >= 1
       ) {
         console.log("LGTM = Looks Good To Me");
         //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
@@ -139,6 +144,7 @@ const IngresarNuevoProducto = () => {
         nombre: nombre_nuevoProducto, 
         precio_venta: valor_nuevoProducto, 
         stock: stock_nuevoProducto}
+        console.log("Entre al primer click")
          e.preventDefault();
  
          if(nombre_nuevoProducto !='' && nombre_nuevoProducto.length>2 ){ //Falta que solo acepte letras y no numeros
@@ -179,10 +185,7 @@ const IngresarNuevoProducto = () => {
          
         
          }
-       
-         useEffect(()=>{
-          console.log("Holi mami papi")
-        },[])
+      
    
     
   
