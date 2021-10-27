@@ -166,6 +166,11 @@ code {
   color: white;
 }
 
+.crearUsuarioTitulo{
+  background: var(--dark_selected);
+  border-radius: 25px;
+  color: white;
+}
 
 .btn_cancelar_ingresarNuevoProducto{
   font-size: 3rem;

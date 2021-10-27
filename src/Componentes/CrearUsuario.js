@@ -15,7 +15,7 @@ const CrearUsuario = () => {
         fontSize: '1.3rem'     
       };
       const label_ingresarNuevoProducto={
-        color: 'black',
+        color: 'white',
         fontSize: '1.3rem',
         
       }
@@ -71,6 +71,26 @@ const CrearUsuario = () => {
     const [booleano_feliz_password, setBooleano_feliz_password]= useState(null)
     const [booleano_feliz_confirm_password,setBooleano_feliz_confirm_password]= useState(null)
     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+    
+    const funcionPublicarUsuario = () => {
+        if (
+            nombre_nuevoUsuario != "" &&
+            nombre_nuevoUsuario.length > 2 &&
+            apellido_nuevoUsuario != "" &&
+            apellido_nuevoUsuario.length > 2 &&
+            username_nuevoUsuario != "" &&
+            username_nuevoUsuario.length > 3 &&
+            password_nuevoUsuario != "" &&
+            password_nuevoUsuario.length > 2 &&
+            confirm_password_nuevoUsuario != "" &&
+            confirm_password_nuevoUsuario === password_nuevoUsuario
+        ){
+            
+        }
+    }
+    
+    
+    
     const FuncionValidarFormulario = (e) => {
         e.preventDefault();
 
@@ -116,6 +136,7 @@ const CrearUsuario = () => {
             //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
             console.log("Que haga el POST dice....")
         }
+        funcionPublicarUsuario()
 
     }
 
@@ -126,8 +147,8 @@ const CrearUsuario = () => {
             <div className="crearUsuario">
                
                 <div className="row">
-                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
-                        <div className="titulo col-6 py-2 d-flex justify-content-center">
+                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4 ">
+                        <div className="titulo crearUsuarioTitulo col-6 py-2 d-flex justify-content-center">
                             Crear Nuevo Usuario
                         </div>
                     </div>
@@ -166,20 +187,20 @@ const CrearUsuario = () => {
 
                             <div className="fuera my-2 mb-4">
                                 <div className="form-group">
-                                    <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Contrasena</label>
-                                    <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa tu contrasena" onChange={(e) => setPassword_nuevoUsuario(e.target.value)} value={password_nuevoUsuario} />
+                                    <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Contraseña</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa tu contraseña" onChange={(e) => setPassword_nuevoUsuario(e.target.value)} value={password_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
-                                                                :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
+                                {booleano_feliz_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contraseña Invalida</div>
+                                                                :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contraseña Invalida</div>}
                             </div>
 
                             <div className="fuera my-2 mb-4">
                                 <div className="form-group">
-                                    <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Confirmar Contrasena</label>
-                                    <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa nuevamente tu contrasena" onChange={(e) => setConfirm_password_nuevoUsuario(e.target.value)} value={confirm_password_nuevoUsuario} />
+                                    <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Confirmar Contraseña</label>
+                                    <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa nuevamente tu contraseña" onChange={(e) => setConfirm_password_nuevoUsuario(e.target.value)} value={confirm_password_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_confirm_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
-                                                                       :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
+                                {booleano_feliz_confirm_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contraseña Invalida</div>
+                                                                       :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contraseña Invalida</div>}
                             </div>
 
                         </div>
@@ -225,7 +246,7 @@ const CrearUsuario = () => {
 
                 <div className="row">
                     
-                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
+                    <div className="h3 col-12 d-flex justify-content-center py-3 mb-4 crearUsuarioTitulo">
                         <div className="titulo col-6 py-2 d-flex justify-content-center">
                             Crear Nuevo Usuario
                         </div>
