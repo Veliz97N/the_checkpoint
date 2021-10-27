@@ -40,8 +40,8 @@ function Login() {
   
   const [usuario, setUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+  
   useEffect(()=>{
-    
     //ACA FUNCIONA LA WEA NO SE PORQUE
     identificar_roles(users, role)
   }, [users, role])

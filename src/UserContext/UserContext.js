@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { Fetch_productos, Fetch_usuarios, Fetch_roles } from '../Fetch';
+import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias } from '../Fetch';
 import useLocalStorage from '../useLocalStorage';
 
 const UserContext = createContext();
@@ -20,7 +20,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
-    
+
     const [users, setUsers] = Fetch_usuarios()
     const [user, setUser] = useLocalStorage("name","")
     const toggleSetUser=(valorProvenienteLogin)=>{
@@ -66,7 +66,7 @@ const UserProvider = ({ children }) => {
         console.log(isLogged, "is logged?");
     }
 
-    const data = { user,toggleSetUser,users,productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
+    const data = {user,toggleSetUser,users,productos,role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
    
     // data de prueba para otro rol

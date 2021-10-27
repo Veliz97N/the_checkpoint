@@ -1,11 +1,15 @@
-import React,{useState} from 'react'
-import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
-import { GiConfirmed } from "react-icons/gi";
+import React,{useContext, useState} from 'react'
 import Layout from '../../Folder_Contenido_General/Layout';
 import { useMediaQuery } from "react-responsive";
-import { Fetch } from '../../Fetch';
+import UserContext from '../../UserContext/UserContext';
+import { useEffect } from 'react/cjs/react.development';
+import { Link } from 'react-router-dom';
+import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias } from '../../Fetch';
+
 const IngresarNuevoProducto = () => {
 
+
+  const {productos}  = useContext(UserContext);
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
@@ -60,8 +64,6 @@ const IngresarNuevoProducto = () => {
         setFileUrl(imageUrl)
      }
 
-
-
      const [nombre_nuevoProducto, setNombre_nuevoProducto] = useState('')
      const [categoria_nuevoProducto, setCategoria_nuevoProducto] = useState('')
      const [codigoBarras_nuevoProducto, setCodigoBarras_nuevoProducto] = useState('')
@@ -74,20 +76,21 @@ const IngresarNuevoProducto = () => {
      const [booleano_feliz_valor, setBooleano_feliz_valor]= useState(null)
      const [booleano_feliz_stock,setBooleano_feliz_stock]= useState(null)
 
-
+     const categorias = Fetch_categorias()
      
+  
 
      //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
      const FuncionValidarFormulario = (e) => {
-      const nuevo_Producto = {
+        const nuevo_Producto = {
         codigo_barras: codigoBarras_nuevoProducto, 
         costo_compra:"600",
         factura_proveedor:"800",
         fecha_ingreso:"25/10/2021",
-        
+        id:"5",
         // categoria: categoria_nuevoProducto,
-        nombre: nombre_nuevoProducto, 
         image: "", 
+        nombre: nombre_nuevoProducto, 
         precio_venta: valor_nuevoProducto, 
         stock: stock_nuevoProducto}
          e.preventDefault();
@@ -144,25 +147,56 @@ const IngresarNuevoProducto = () => {
            //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
            console.log("Que haga el POST dice....");
           
-           console.log(nuevo_Producto)
 
-           const requestOptions = {
-             method: "POST",
-             headers: { "Content-Type": "application/json" },
-             body: JSON.stringify(nuevo_Producto),
+           let existe
+           for (let x=0; x<categorias.length; x++){ //ACA VEO SI LA CATEGORIA INGRESADA YA EXISTE EN CATEGORIAS O SI DEBO CREAR UNA NUEVA
+            if(categorias[x].nombre_cat===categoria_nuevoProducto){
+              existe={siexiste:true, nombreCategoria: categorias[x].nombre_cat, id:categorias[x].id}//{existe:true , id: categorias[x].id , nombreCategoria: categorias[x].nombre_cat}
+            }
+            else{
+              existe={siexiste:false}//{existe:false}
+            }
+           }
+           if(existe.siexiste){
+             //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
+            console.log("Existe esta madre")
+           }
+         
+           else{
 
-           };
-           const urlProducto= "https://3000-tomato-crawdad-x2e9x31d.ws-us17.gitpod.io/productos"
-
-           fetch(urlProducto, requestOptions)
-             .then((response) => response.json())
-             .then((data) => console.log(data,nuevo_Producto));
-
+                const nueva_categoria={descripcion_cat:"Nueva Categoria: "+categoria_nuevoProducto, nombre_cat: categoria_nuevoProducto}
+                const requestOptions = {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(nueva_categoria),
+                };
+                const urlProducto= "https://3000-salmon-turtle-38kq26qy.ws-us17.gitpod.io/categoria"
+                fetch(urlProducto, requestOptions)
+                  .then((response) => response.json())
+                  .then((data) => console.log(data,nueva_categoria));
+                
+           }
            
+
+
+          //  const urlProducto= "https://3000-tomato-crawdad-x2e9x31d.ws-us17.gitpod.io/productos"
+
+          //  fetch(urlProducto, requestOptions)
+          //    .then((response) => response.json())
+          //    .then((data) => console.log(data,nuevo_Producto));
+
+         
          }
+        // const nueva_categoria={descripcion_cat:'Aca van los dulces', nombre_cat:"Dulces"}
+        
+           
+        //  }
+
+       //hay que hacer un useeffect para recargar la base de datos de categoria y asi evitar que al incorporar dos 
+        //productos seguidos se corrompa la wea de si existe la categoria o no en la BD
 
     }
-
+  
 
     return (
       <Layout hasNavbar hasSidebar>
@@ -407,6 +441,7 @@ const IngresarNuevoProducto = () => {
 
               <div className="alo">
                 <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                  <Link to="/catalogo_paginaprincipal">
                   <button
                     onClick={(e) => FuncionValidarFormulario(e)}
                     type="submit"
@@ -414,6 +449,7 @@ const IngresarNuevoProducto = () => {
                   >
                     Crear Nuevo Producto
                   </button>
+                  </Link>
                   <button type="reset" class="btn btn-danger mx-5">
                     Cancelar
                   </button>

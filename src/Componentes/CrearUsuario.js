@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
-import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
-import { GiConfirmed } from "react-icons/gi";
+
 import Layout from '../Folder_Contenido_General/Layout'
 import { useMediaQuery } from "react-responsive";
 
@@ -9,9 +8,9 @@ const CrearUsuario = () => {
         query: "(max-width: 577px)",
       });
 
-    const titulo ={nuevo:"Ingresar Nuevo Producto", modificar:"Modificar Producto Existente"}
+    
     const input_ingresarNuevoProducto = {
-        backgroundColor: '#57CC99',
+        backgroundColor: '#667ea0',
         color: 'black',
         fontSize: '1.3rem'     
       };
@@ -21,12 +20,12 @@ const CrearUsuario = () => {
         
       }
       const input_ingresarFotografia = { //Esto no funciona papiiiii
-        backgroundColor: '#57CC99',
+        backgroundColor: '#667ea0',
         color: 'black',
         fontSize: '1.3rem',
         borderRadius: '35px',
         transition: "all ease .5s",
-        transition: "all ease .5s",
+        
             ":hover": {
         backgroundColor: "yellow",
         color: "red"
@@ -58,10 +57,7 @@ const CrearUsuario = () => {
         const imageUrl = URL.createObjectURL(imageFile);
         setFileUrl(imageUrl)
      }
-    const handle_ValidarFormularioUsuario= (e) => {
-        e.preventDefault();
-        console.log("hola")
-    }
+  
 
     const [nombre_nuevoUsuario, setNombre_nuevoUsuario] = useState('')
     const [apellido_nuevoUsuario, setApellido_nuevoUsuario] = useState('')
@@ -78,28 +74,28 @@ const CrearUsuario = () => {
     const FuncionValidarFormulario = (e) => {
         e.preventDefault();
 
-        if(nombre_nuevoUsuario !='' && nombre_nuevoUsuario.length>2 ){ //Falta que solo acepte letras y no numeros
+        if(nombre_nuevoUsuario !=='' && nombre_nuevoUsuario.length>2 ){ //Falta que solo acepte letras y no numeros
             setBooleano_feliz_nombre(true)
         } 
         else{
             setBooleano_feliz_nombre(false)
         }
 
-        if(apellido_nuevoUsuario!='' && apellido_nuevoUsuario.length>2 ){
+        if(apellido_nuevoUsuario!=='' && apellido_nuevoUsuario.length>2 ){
             setBooleano_feliz_apellido(true)
         }
         else{
             setBooleano_feliz_apellido(false)
         }
 
-        if(username_nuevoUsuario != '' && username_nuevoUsuario.length>3){
+        if(username_nuevoUsuario !== '' && username_nuevoUsuario.length>3){
             setBooleano_feliz_username(true)
         }
         else{
             setBooleano_feliz_username(false)
         }
 
-        if(password_nuevoUsuario!='' &&password_nuevoUsuario.length>5) { //Falta validarla para que contenga letras, numeros y una mayuscula
+        if(password_nuevoUsuario!=='' &&password_nuevoUsuario.length>5) { //Falta validarla para que contenga letras, numeros y una mayuscula
             setBooleano_feliz_password(true)
         }
         else{
@@ -107,7 +103,7 @@ const CrearUsuario = () => {
             
         }
 
-        if(confirm_password_nuevoUsuario!='' && confirm_password_nuevoUsuario==password_nuevoUsuario){
+        if(confirm_password_nuevoUsuario!=='' && confirm_password_nuevoUsuario===password_nuevoUsuario){
             setBooleano_feliz_confirm_password(true)
         }
         else{
@@ -120,18 +116,6 @@ const CrearUsuario = () => {
             //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
             console.log("Que haga el POST dice....")
         }
-
-    }
-
-
-    const [datosNuevoUsuario, setDatosNuevoUsuario] = useState()
-   
-
-    const functionValidarFormulario = (e) =>{
-        e.preventDefault()
-
-
-
 
     }
 
@@ -159,7 +143,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12 ps-2" for="exampleInputEmail1">Nombre</label>
                                     <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu nombre" onChange={(e) => setNombre_nuevoUsuario(e.target.value)} value={nombre_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_nombre==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>
+                                {booleano_feliz_nombre===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>
                                                              :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>}
                             </div>
                             <div className="fuera my-2 mb-4">
@@ -167,7 +151,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Apellido</label>
                                     <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu apellido" onChange={(e) => setApellido_nuevoUsuario(e.target.value)} value={apellido_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_apellido==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>
+                                {booleano_feliz_apellido===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>
                                                                 :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>}
                             </div>
 
@@ -176,7 +160,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Nombre de Usuario</label>
                                     <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type="text" name="" id="" placeholder="Ingresa tu nombre de usuario" onChange={(e) => setUsername_nuevoUsuario(e.target.value)} value={username_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_username==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>
+                                {booleano_feliz_username===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>
                                                                 :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>}
                             </div>
 
@@ -185,7 +169,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Contrasena</label>
                                     <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa tu contrasena" onChange={(e) => setPassword_nuevoUsuario(e.target.value)} value={password_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_password==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
+                                {booleano_feliz_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
                                                                 :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
                             </div>
 
@@ -194,7 +178,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-md-4 col-sm-12  ps-2" for="exampleInputPassword1">Confirmar Contrasena</label>
                                     <input style={input_ingresarNuevoProducto} className="col-md-8 col-sm-12" type='password' name="" id="" placeholder="Ingresa nuevamente tu contrasena" onChange={(e) => setConfirm_password_nuevoUsuario(e.target.value)} value={confirm_password_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_confirm_password==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
+                                {booleano_feliz_confirm_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
                                                                        :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
                             </div>
 
@@ -206,7 +190,7 @@ const CrearUsuario = () => {
                             </div>
                             <div className="contenedorcontenedor justify-content-center d-md-flex d-sm-none ">
                                 {fileUrl ? <div style={contenedorfotografia} >
-                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} />
+                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} alt="imagen_nuevo_producto" />
                                 </div> : ""}
                             </div>
                         </div>
@@ -258,7 +242,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-12 d-block" for="exampleInputEmail1">Nombre</label>
                                     <input style={input_ingresarNuevoProducto} className="col-12 d-block" type="text" name="" id="" placeholder="Ingresa tu nombre" onChange={(e) => setNombre_nuevoUsuario(e.target.value)} value={nombre_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_nombre==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>
+                                {booleano_feliz_nombre===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>
                                                              :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre Invalido</div>}
                             </div>
 
@@ -267,7 +251,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-12 d-block  ps-2" for="exampleInputPassword1">Apellido</label>
                                     <input style={input_ingresarNuevoProducto} className="col-12 d-block" type="text" name="" id="" placeholder="Ingresa tu apellido" onChange={(e) => setApellido_nuevoUsuario(e.target.value)} value={apellido_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_apellido==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>
+                                {booleano_feliz_apellido===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>
                                                                 :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Apellido Invalido</div>}
                             </div>
 
@@ -276,7 +260,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-12 d-block ps-2" for="exampleInputPassword1">Nombre de Usuario</label>
                                     <input style={input_ingresarNuevoProducto} className="col-12 d-block" type="text" name="" id="" placeholder="Ingresa tu nombre de usuario" onChange={(e) => setUsername_nuevoUsuario(e.target.value)} value={username_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_username==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>
+                                {booleano_feliz_username===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>
                                                                 :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Nombre de Usuario Invalido</div>}
                             </div>
 
@@ -285,7 +269,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-12 d-block  ps-2" for="exampleInputPassword1">Contrasena</label>
                                     <input style={input_ingresarNuevoProducto} className="col-12 d-block" type='password' name="" id="" placeholder="Ingresa tu contrasena" onChange={(e) => setPassword_nuevoUsuario(e.target.value)} value={password_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_password==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
+                                {booleano_feliz_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
                                                                 :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
                             </div>
 
@@ -294,7 +278,7 @@ const CrearUsuario = () => {
                                     <label style={label_ingresarNuevoProducto} className="col-12 d-block  ps-2" for="exampleInputPassword1">Confirmar Contrasena</label>
                                     <input style={input_ingresarNuevoProducto} className="col-12 d-block" type='password' name="" id="" placeholder="Ingresa nuevamente tu contrasena" onChange={(e) => setConfirm_password_nuevoUsuario(e.target.value)} value={confirm_password_nuevoUsuario} />
                                 </div>
-                                {booleano_feliz_confirm_password==false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
+                                {booleano_feliz_confirm_password===false?<div style={visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>
                                                                        :<div style={no_visible} className="invalido d-flex justify-content-end my-0">Contrasena Invalida</div>}
                             </div>
 
@@ -306,7 +290,7 @@ const CrearUsuario = () => {
                             </div>
                             <div className="contenedorcontenedor justify-content-center d-md-flex d-sm-none ">
                                 {fileUrl ? <div style={contenedorfotografia} >
-                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} />
+                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} alt="imagen_nuevo_producto"/>
                                 </div> : ""}
                             </div>
                         </div>

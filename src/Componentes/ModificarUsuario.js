@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
-import { GiConfirmed } from "react-icons/gi";
+
+
 import Layout from "../Folder_Contenido_General/Layout";
 
 import { useMediaQuery } from "react-responsive";
@@ -14,15 +14,7 @@ const ModificarUsuario = (props) => {
     query: "(max-width: 577px)",
   });
   
-  const titulo = {
-    nuevo: "Ingresar Nuevo Usuario",
-    modificar: "Modificar Usuario Existente",
-  };
-  const input_ingresarNuevoUsuario = {
-    backgroundColor: "#57CC99",
-    color: "black",
-    fontSize: "1.3rem",
-  };
+  
   const input_ingresarNuevoUsuario_Desactivado = {
     backgroundColor: "#d8d8d8",
     color: "black",
@@ -45,7 +37,6 @@ const ModificarUsuario = (props) => {
     color: "black",
     fontSize: "1.3rem",
     borderRadius: "35px",
-    transition: "all ease .5s",
     transition: "all ease .5s",
     ":hover": {
       backgroundColor: "yellow",

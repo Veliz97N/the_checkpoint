@@ -39,14 +39,9 @@ function Estadisticas() {
     maintainAspectRatio: false,
     resposive: true,
   };
-  const opcionesdeGrafico = {
-    visibility: "hidden",
-  };
+  
 
-  const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  
 
   const [totalVenta, setTotalVenta] = useState("");
   const [totalVenta_Tarjeta, setTotalVenta_Tarjeta] = useState("");

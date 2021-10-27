@@ -1,17 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
 import { GiBlackBook } from "react-icons/gi"; // catalogo nuevo
-import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
-import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
-import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
+import { RiBankLine } from "react-icons/ri"; //Ventas
+import { AiOutlineLineChart } from "react-icons/ai"; //Estadisticas
 import Layout from "../Folder_Contenido_General/Layout";
 import { Redirect } from "react-router-dom";
 import UserContext from "../UserContext/UserContext";
 import { useMediaQuery } from "react-responsive";
-import Tarjeta_Usuario_Activo from '../Folder_SideBar_TopBar/Tarjeta_Usuario_Activo';
-import { useEffect } from "react/cjs/react.development";
-import useLocalStorage from "../useLocalStorage";
+
 
 const Home = (props) => {
   // const[nombre,setNombre]= useLocalStorage('name',"")
