@@ -7,6 +7,8 @@ import UserContext from '../../UserContext/UserContext';
 import { useMediaQuery } from "react-responsive";
 
 const ModificarProducto = () => {
+  const {user}  = useContext(UserContext);
+
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
@@ -260,7 +262,9 @@ const ModificarProducto = () => {
 
     return (
       <Layout hasNavbar hasSidebar>
-        {!isChiquito ? (
+        {user.rol_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+        :
+        !isChiquito ? (
           <div className="ingresarNuevoProducto">
             <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
@@ -653,18 +657,7 @@ const ModificarProducto = () => {
           </div>
         ) 
         
-        
-        
-        
-        
-        
-        
         : (
-          
-          
-          
-          
-          
           
           
           <div className="ingresarNuevoProducto">
@@ -1060,7 +1053,9 @@ const ModificarProducto = () => {
                 </div>
               </form>
           </div>
-        )}
+        )
+                      }
+        
       </Layout>
     );
 }

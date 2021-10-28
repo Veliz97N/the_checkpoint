@@ -166,6 +166,11 @@ code {
   color: white;
 }
 
+.crearUsuarioTitulo{
+  background: var(--dark_selected);
+  border-radius: 25px;
+  color: white;
+}
 
 .btn_cancelar_ingresarNuevoProducto{
   font-size: 3rem;
@@ -598,8 +603,16 @@ code {
   padding: 15px;
 }
 
+.wrap_rol_email{
+  margin-top: 40px;
+}
 
-
+.btn-roles-disponibles{
+  background: #667ea0;
+}
+.noPermisos{
+  color:white;
+}
 @media  (max-width: 830px) {
   .sidebar{
     width: 3.5rem;

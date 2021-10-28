@@ -8,7 +8,8 @@ import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias } from '
 import { GrWindows } from 'react-icons/gr';
 
 const IngresarNuevoProducto = () => {
-  const {categorias_fetch,productos,categorias,toggleSetCategorias}  = useContext(UserContext);
+  const {categorias_fetch,productos,categorias,toggleSetCategorias,user}  = useContext(UserContext);
+
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
@@ -114,7 +115,7 @@ const IngresarNuevoProducto = () => {
         precio_venta: valor_nuevoProducto, 
         stock: stock_nuevoProducto}
 
-        
+
         if (contador_existencias >=1) {
           //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
           console.log("Existe esta madre");
@@ -215,7 +216,9 @@ const IngresarNuevoProducto = () => {
 
     return (
       <Layout hasNavbar hasSidebar>
-        {!isChiquito ? (
+        {user.rol_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+        :
+        !isChiquito ? (
           <div className="ingresarNuevoProducto">
             <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
@@ -442,6 +445,7 @@ const IngresarNuevoProducto = () => {
                     {fileUrl ? (
                       <div style={contenedorfotografia}>
                         <img
+                          alt=""
                           style={imagen_Ingresar_Modificar_Producto}
                           src={fileUrl}
                         />
@@ -709,6 +713,7 @@ const IngresarNuevoProducto = () => {
                         <img
                           style={imagen_Ingresar_Modificar_Producto}
                           src={fileUrl}
+                          alt=""
                         />
                       </div>
                     ) : (

@@ -8,8 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useMediaQuery } from 'react-responsive';
 
 import FilaEstadisticas_ProductosMasVendidos from "./filaEstadisticas_ProductosMasVendidos";
+import UserContext from "../UserContext/UserContext";
+import { useContext } from "react";
 
 function Estadisticas() {
+  const {user}  = useContext(UserContext);
+
   const dias = [
     "Lunes",
     "Martes",
@@ -129,7 +133,10 @@ function Estadisticas() {
   })
 
   return (
+
     <Layout hasNavbar hasSidebar>
+      {user.rol_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+      :
       <div className="estadisticas">
         <div className="row mb-3">
           <div className="col-12 d-flex justify-content-center aling-items-center">
@@ -211,7 +218,9 @@ function Estadisticas() {
             </div>
           </div>
         </div>
-      </div>
+      
+
+      
       {!isChiquito&&
       <div className="mt-1 p-2 d-none d-sm-block " id="tabla2">
         <div className="col-md-12 col-sm-12">
@@ -245,6 +254,8 @@ function Estadisticas() {
           </div>
         </div>
       
+      </div>
+      }
       </div>
       }
     </Layout>

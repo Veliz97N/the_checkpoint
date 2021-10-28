@@ -16,24 +16,24 @@ const ModificarUsuario = (props) => {
   
   
   const input_ingresarNuevoUsuario_Desactivado = {
-    backgroundColor: "#d8d8d8",
-    color: "black",
+    backgroundColor: "#0f2b4e",
+    color: "white",
     fontSize: "1.3rem",
   };
   const input_ingresarNuevoUsuario_Activado = {
-    backgroundColor: "#57CC99",
+    backgroundColor: "#667ea0",
     color: "black",
     fontSize: "1.3rem",
   };
 
   const label_ingresarNuevoUsuario = {
-    color: "black",
+    color: "white",
     fontSize: "1.3rem",
   };
 
   const input_ingresarFotografia = {
     //Esto no funciona papiiiii
-    backgroundColor: "#57CC99",
+    backgroundColor: "#667ea0",
     color: "black",
     fontSize: "1.3rem",
     borderRadius: "35px",
@@ -235,7 +235,7 @@ const ModificarUsuario = (props) => {
   }
 
   const borde_titulo = {
-    background: "#57CC99",
+    background: "#667ea0",
     borderRadius:"25px"
   }
 
@@ -243,7 +243,7 @@ const ModificarUsuario = (props) => {
     <Layout hasNavbar hasSidebar>
     {!isChiquito?
       <div className="crearUsuario">
-        <div className="row">
+        <div className="alo">
           <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
             <div className="titulo col-6 col-sm-6 py-2 d-flex justify-content-center" style={borde_titulo}>
               Ver Perfil de Usuario
@@ -251,7 +251,7 @@ const ModificarUsuario = (props) => {
           </div>
         </div>
         <form>
-          <div className="row">
+          <div className="alo d-flex">
             <div className="col-md-7 col-sm-12">
               <div className="fuera my-2 mb-4">
                 <div className="form-group">
@@ -361,14 +361,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    last_name Invalido
+                    Apellido Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    last_name Invalido
+                    Apellido Invalido
                   </div>
                 )}
               </div>
@@ -420,14 +420,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    name de Usuario Invalido
+                    Nombre de Usuario Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    name de Usuario Invalido
+                    Nombre de Usuario Invalido
                   </div>
                 )}
               </div>
@@ -541,7 +541,7 @@ const ModificarUsuario = (props) => {
               </div>
             </div>
 
-            <div className="col-md-5 col-sm-12 mt-2 mb-sm-4">
+            <div className="col-md-5 col-sm-12 mt-2 mb-sm-4 ps-3">
               <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                 <label
                   style={label_ingresarNuevoUsuario}
@@ -576,7 +576,7 @@ const ModificarUsuario = (props) => {
             </div>
           </div>
 
-          <div className="row">
+          <div className="alo">
             <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
               <button
                 onClick={(e) => FuncionValidarFormulario(e)}
@@ -665,14 +665,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    name Invalido
+                    Nombre Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    name Invalido
+                    Nombre Invalido
                   </div>
                 )}
               </div>
@@ -685,7 +685,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputPassword1"
                   >
                     <div className="row">
-                      <div className="col-8">last_name</div>
+                      <div className="col-8">Apellido</div>
                       <div className="col-4">
                         <input
                           class="form-check-input"
@@ -723,14 +723,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    last_name Invalido
+                    Apellido Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    last_name Invalido
+                    Apellido Invalido
                   </div>
                 )}
               </div>
@@ -743,7 +743,7 @@ const ModificarUsuario = (props) => {
                     for="exampleInputPassword1"
                   >
                     <div className="row">
-                      <div className="col-10">name de Usuario</div>
+                      <div className="col-10">Nombre de Usuario</div>
                       <div className="col-1">
                         <input
                           class="form-check-input"
@@ -782,14 +782,14 @@ const ModificarUsuario = (props) => {
                     style={visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    name de Usuario Invalido
+                    Nombre de Usuario Invalido
                   </div>
                 ) : (
                   <div
                     style={no_visible}
                     className="invalido d-flex justify-content-end my-0"
                   >
-                    name de Usuario Invalido
+                    Nombre de Usuario Invalido
                   </div>
                 )}
               </div>

@@ -10,6 +10,8 @@
   --light_background: #E6E6E6;
   --light_input: #5C7AEA;
   --dark_background: #212020;
+  --dark_selected: #667ea0; 
+  --dark_notselected: #0f2b4e;
   /* Fin defincion variables tema Happy */
 }
 
@@ -124,6 +126,10 @@ code {
 .ingresarNuevoProducto .titulo{
   background: var(--happy_non_selected);
   border-radius: 25px;
+}
+
+.crearUsuarioTitulo{
+  background: var(--dark_notselected);
 }
 
 

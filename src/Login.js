@@ -9,33 +9,41 @@ function Login() {
 
   const History = useHistory()
   
-  const {isLogged, toggleIsLogged, users, role,toggleSetUser} = useContext(UserContext)
+  const { toggleIsLogged, users, role,toggleSetUser} = useContext(UserContext)
   // usuario de prueba
  
-  const [adminUser, setAdminUser] = useState("")
+  const [adminUser, setAdminUser] = useState()
+  const [vendedoresUser, setVendedoresUser] = useState()
 
   const identificar_roles = (users, role) => {
-    const adminUser = {
-      username: "",
-      password: "",
-      name: "",
-      last_name:"",
-    }
+    // const adminUserLocal = {
+    //   username: "",
+    //   password: "",
+    //   name: "",
+    //   last_name:"",
+    // }
+    // const vendedorUserLocal = {
+    //   username: "",
+    //   password: "",
+    //   name: "",
+    //   last_name:"",
+    // }
+    const administradoresBaseDatos=[]
+    const vendedoresBaseDatos=[]
     
-    
-    for (let x = 0; x< users.length; x++){
-      for(let j=0; j< role.length; j++){
-        if (users[x].role_id === role[j].id){
-          adminUser.username = users[x].username;
-          adminUser.password = users[x].password;
-          adminUser.name =  users[x].name;
-          adminUser.last_name =  users[x].last_name;
+   users.forEach(user=>{
+     if(user.role_id===1){
+       administradoresBaseDatos.push(user)
+     }
+   }) 
+   users.forEach(user=>{
+     if(user.role_id===2){
+      vendedoresBaseDatos.push(user)
+     }
+   }) 
 
-          console.log("este es adminUser",adminUser);
-          setAdminUser(adminUser);
-        }
-      }
-    }
+    setAdminUser(administradoresBaseDatos); 
+    setVendedoresUser(vendedoresBaseDatos)
   }
   
   const [usuario, setUser] = useState({ username: "", password: "" });
@@ -48,35 +56,62 @@ function Login() {
 
   const login_function = (user_data) => {
      
-    
-    console.log(adminUser);
-    if (adminUser !== ""){
-
-    if (user_data.username === adminUser.username && user_data.password === adminUser.password){
-      console.log("Logged in");     
+    if (adminUser !== "" || vendedoresUser!== ""){
       
-      setUser({
-        username: user_data.username,
-        password: user_data.password
+      adminUser.forEach(usuario=>{
+        if (user_data.username === usuario.username && user_data.password === usuario.password){
+          console.log("Logged in");     
+          
+          setUser({
+            username: user_data.username,
+            password: user_data.password
+          })
+          toggleIsLogged(true)
+          toggleSetUser({
+            username: user_data.username,
+            password: user_data.password,
+            name:usuario.name,
+            last_name:usuario.last_name,
+            rol_id:1
+          }) //ACA SETEAMOS EL USUARIO QUE INGRESO CORRECTAMENTE
+         
+          History.push("/inicio")  
+          
+        } 
+        else {
+          console.log("Usuario o contraseña incorrecto");
+          setError("Usuario o contraseña incorrecto");
+        }
       })
-      toggleIsLogged(true)
-      toggleSetUser({
-        username: user_data.username,
-        password: user_data.password,
-        name:adminUser.name,
-        last_name:adminUser.last_name,
-      }) //ACA SETEAMOS EL USUARIO QUE INGRESO CORRECTAMENTE
-     
-      History.push("/inicio")  
-    } else {
-      console.log("Usuario o contraseña incorrecto");
-      setError("Usuario o contraseña incorrecto");
-      toggleIsLogged(false)
-    }
-  };
-  // useEffect(()=>{
+      vendedoresUser.forEach(usuario=>{
+        if (user_data.username === usuario.username && user_data.password === usuario.password){
+          console.log("Logged in");     
+          
+          setUser({
+            username: user_data.username,
+            password: user_data.password
+          })
+          toggleIsLogged(true)
+          toggleSetUser({
+            username: user_data.username,
+            password: user_data.password,
+            name:usuario.name,
+            last_name:usuario.last_name,
+            rol_id:2 
+          }) //ACA SETEAMOS EL USUARIO QUE INGRESO CORRECTAMENTE
+         
+          History.push("/inicio") 
 
-  // })
+          
+        } 
+        else {
+          console.log("Usuario o contraseña incorrecto");
+          setError("Usuario o contraseña incorrecto");
+        }
+      })
+    
+  };
+
   
   }
   const logout = () => {
