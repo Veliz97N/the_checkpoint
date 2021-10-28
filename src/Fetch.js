@@ -62,3 +62,20 @@ export const Fetch_roles = () => {
     }, [])
     return state
 }
+
+export const Fetch_usuarios2 = () => {
+    const [users, setUsers] = useState([])
+    
+    useEffect(() => {
+        fetch("https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users")
+            .then( response =>{
+                return response.json();
+            })
+            .then( data => {
+                setUsers(data);
+
+                console.log(data);
+            })
+    }, [])
+    return [users, setUsers];
+}

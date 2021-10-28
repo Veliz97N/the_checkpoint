@@ -2,10 +2,9 @@ import React,{useContext, useState} from 'react'
 import Layout from '../../Folder_Contenido_General/Layout';
 import { useMediaQuery } from "react-responsive";
 import UserContext from '../../UserContext/UserContext';
-import { useEffect } from 'react/cjs/react.development';
+
 import { Link } from 'react-router-dom';
-import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias } from '../../Fetch';
-import { GrWindows } from 'react-icons/gr';
+
 
 const IngresarNuevoProducto = () => {
   const {categorias_fetch,productos,categorias,toggleSetCategorias,user}  = useContext(UserContext);
@@ -108,8 +107,8 @@ const IngresarNuevoProducto = () => {
         costo_compra:"600",
         factura_proveedor:"800",
         fecha_ingreso:"25/10/2021",
-        categoria_id:info_categoria.id_categoria,
-        // categoria: categoria_nuevoProducto,
+        categoria_id:info_categoria.id_categoria, //ACA HAY QUE VER QUE PASA SI NO EXISTE LA CATEGORIA, DEBEMOS AGREGAR UNA CATEGORIA_ID mayor en 1 unidad
+        //AL MAYOR VALOR EXISTENTE ACTUALMENTE EN EL ARRAY DE CATEGORIAS
         image: "", 
         nombre: nombre_nuevoProducto, 
         precio_venta: valor_nuevoProducto, 
@@ -118,7 +117,6 @@ const IngresarNuevoProducto = () => {
 
         if (contador_existencias >=1) {
           //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
-          console.log("Existe esta madre");
           const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -132,7 +130,9 @@ const IngresarNuevoProducto = () => {
         }
 
 
-       else {
+       else { //SI LA CATEGORIA NO EXISTE, DEBEMOS CREARLA.. EL ID RESULTANTE DE LA CATEGORIA SERA IGUAL A EL 
+        // MAYOR ID_CATEGORIA + 1 EXISTENTE EN EL ARRAY DE CATEGORIAS, por tanto para crear el producto debemos asignarle el 
+        //categoria_id= categoria_id_maximo+1
          
         const nueva_categoria = {
           descripcion_cat: "Nueva Categoria: " + categoria_nuevoProducto,
@@ -143,14 +143,15 @@ const IngresarNuevoProducto = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nueva_categoria),
         };
-        const urlProducto =
-          "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria";
-        fetch(urlProducto, requestOptions)
+        const urlcategoria = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria";
+        fetch(urlcategoria, requestOptions)
           .then((response) => response.json())
           .then((data) => console.log(data, nueva_categoria));
 
         const categorias_incluyendo_nuevas = [...categorias,nueva_categoria]
         toggleSetCategorias(categorias_incluyendo_nuevas)
+
+
       }
     }
     };

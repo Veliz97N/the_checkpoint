@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias } from '../Fetch';
+import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias,Fetch_usuarios2 } from '../Fetch';
 import useLocalStorage from '../useLocalStorage';
 
 const UserContext = createContext();
@@ -10,7 +10,7 @@ const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
 
     
-    const [users, setUsers] = useLocalStorage('usuarios_existentes',"")
+    const [users, setUsers] = useLocalStorage('usuarios_existentes',Fetch_usuarios2())
     const toggleSetUsuariosExistentes= (parametro) =>{
         setUsers(parametro)
     }
@@ -45,10 +45,6 @@ const UserProvider = ({ children }) => {
     
     const [isDesplegado, setIsDesplegado] = useState(false) 
     const [isLogged, setIsLogged] = useLocalStorage('isLogeado',false)
-   
-    // const setUsuario = () => {
-
-    // }
 
    const [isDarkMode, setIsDarkMode] = useState(true)
    

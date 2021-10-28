@@ -9,28 +9,16 @@ function Login() {
 
   const History = useHistory()
   
-  const { toggleIsLogged, users, role,toggleSetUser} = useContext(UserContext)
+  const { toggleIsLogged, users,toggleSetUser} = useContext(UserContext)
   // usuario de prueba
  
   const [adminUser, setAdminUser] = useState()
   const [vendedoresUser, setVendedoresUser] = useState()
 
-  const identificar_roles = (users, role) => {
-    // const adminUserLocal = {
-    //   username: "",
-    //   password: "",
-    //   name: "",
-    //   last_name:"",
-    // }
-    // const vendedorUserLocal = {
-    //   username: "",
-    //   password: "",
-    //   name: "",
-    //   last_name:"",
-    // }
+  const identificar_roles = () => {
+
     const administradoresBaseDatos=[]
     const vendedoresBaseDatos=[]
-    
    users.forEach(user=>{
      if(user.role_id===1){
        administradoresBaseDatos.push(user)
@@ -50,9 +38,9 @@ function Login() {
   const [error, setError] = useState("");
   
   useEffect(()=>{
-    //ACA FUNCIONA LA WEA NO SE PORQUE
-    identificar_roles(users, role)
-  }, [users, role])
+    identificar_roles()
+    
+  }, [users])
 
   const login_function = (user_data) => {
      
