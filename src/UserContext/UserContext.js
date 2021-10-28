@@ -4,28 +4,40 @@ import useLocalStorage from '../useLocalStorage';
 
 const UserContext = createContext();
 
+
+
 const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
 
-    const [users, setUsers] = Fetch_usuarios()
-    const [user, setUser] = useLocalStorage("name","")
+    
+    const [users, setUsers] = useLocalStorage('usuarios_existentes',"")
+    const toggleSetUsuariosExistentes= (parametro) =>{
+        setUsers(parametro)
+    }
+
+    const users_fetch = Fetch_usuarios(toggleSetUsuariosExistentes)
+
+
+
+     
+    const [user, setUser] = useLocalStorage("name","") //🤬no pescar
     
     const toggleSetUser=(valorProvenienteLogin)=>{
         setUser(valorProvenienteLogin)
         console.log(user)
     }
 
-    const[categorias,setCategorias]= useLocalStorage('categorias',"")
-    const toggleSetCategorias = (parametro) => {
+    const[categorias,setCategorias]= useLocalStorage('categorias',"")//❌❌
+    const toggleSetCategorias = (parametro) => {//❌❌
         setCategorias(parametro)
     }
-
+    const categorias_fetch = Fetch_categorias(toggleSetCategorias) //❌❌❌
     
     
 
     // const [usuario, setUsuario] = useLocalStorage('name',()=>Fetch_usuarios())
     const role = Fetch_roles()
-    const categorias_fetch = Fetch_categorias(toggleSetCategorias)
+    
 
 
     const [productoSeleccionado, setProductoSeleccionado] = useLocalStorage('productoSeleccionado',"") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
@@ -60,7 +72,7 @@ const UserProvider = ({ children }) => {
         console.log(isLogged, "is logged?");
     }
 
-    const data = {categorias_fetch,categorias,toggleSetCategorias,user,toggleSetUser,users,productos,role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
+    const data = {users_fetch,categorias_fetch,categorias,toggleSetCategorias, toggleSetUsuariosExistentes, user,toggleSetUser,users,productos,role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
    
     // data de prueba para otro rol

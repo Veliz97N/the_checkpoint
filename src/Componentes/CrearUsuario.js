@@ -6,7 +6,7 @@ import UserContext from '../UserContext/UserContext';
 import { mapToStyles } from '@popperjs/core/lib/modifiers/computeStyles';
 
 const CrearUsuario = () => {
-    const {users,toggleSetUser,role, user} = useContext(UserContext)
+    const {users,toggleSetUsuariosExistentes,role, user} = useContext(UserContext)
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });   
@@ -77,8 +77,10 @@ const CrearUsuario = () => {
     const [booleano_feliz_email, setBooleano_feliz_email] = useState(null)
     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
     //❌❌❌❌❌❌❌❌❌❌❌❌
+
+    
     const funcionPublicarUsuario = () => { 
-        console.log("entro")
+
         if (
             nombre_nuevoUsuario != "" &&
             nombre_nuevoUsuario.length > 2 &&
@@ -95,7 +97,7 @@ const CrearUsuario = () => {
             email_nuevoUsuario.length>=3 &&
             email_nuevoUsuario.includes('@')
         ){  
-            console.log("entro2");
+
             let contador = 0        
             for (let x = 0; x < users.length; x++){
                 if (users[x].username === username_nuevoUsuario || users[x].email===email_nuevoUsuario){
@@ -149,7 +151,7 @@ const CrearUsuario = () => {
                 .catch((err)=> console.log(err))
 
                 const users_incluyendo_nuevos = [...users,nuevo_usuario]
-                 toggleSetUser(users_incluyendo_nuevos)
+                toggleSetUsuariosExistentes(users_incluyendo_nuevos)
 
             }
           

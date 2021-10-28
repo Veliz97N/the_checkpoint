@@ -133,6 +133,7 @@ const IngresarNuevoProducto = () => {
 
 
        else {
+         
         const nueva_categoria = {
           descripcion_cat: "Nueva Categoria: " + categoria_nuevoProducto,
           nombre_cat: categoria_nuevoProducto,

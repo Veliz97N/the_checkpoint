@@ -31,7 +31,7 @@ export const Fetch_categorias = (toggleSetCategorias) => {
     return state;
 }
 
-export const Fetch_usuarios = () => {
+export const Fetch_usuarios = (toggleSetUsuariosExistentes) => {
     const [users, setUsers] = useState([])
     
     useEffect(() => {
@@ -41,6 +41,7 @@ export const Fetch_usuarios = () => {
             })
             .then( data => {
                 setUsers(data);
+                toggleSetUsuariosExistentes(data)
                 console.log(data);
             })
     }, [])
