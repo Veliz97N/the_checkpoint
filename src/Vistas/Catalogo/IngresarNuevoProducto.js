@@ -99,8 +99,12 @@ const IngresarNuevoProducto = () => {
           if (categorias[x].nombre_cat === categoria_nuevoProducto) {
             contador_existencias +=1
             info_categoria = {id_categoria: categorias[x].id, nombre_categoria:categorias[x].nombre_cat}
+            if(info_categoria.id_categoria===""){
+              info_categoria.id_categoria= (categorias[(categorias.length-2)].id_categoria)+1
+            }
             console.log(info_categoria)
         }
+
       }
       const nuevo_Producto = {
         codigo_barras: codigoBarras_nuevoProducto, 
@@ -133,7 +137,7 @@ const IngresarNuevoProducto = () => {
        else { //SI LA CATEGORIA NO EXISTE, DEBEMOS CREARLA.. EL ID RESULTANTE DE LA CATEGORIA SERA IGUAL A EL 
         // MAYOR ID_CATEGORIA + 1 EXISTENTE EN EL ARRAY DE CATEGORIAS, por tanto para crear el producto debemos asignarle el 
         //categoria_id= categoria_id_maximo+1
-         
+        
         const nueva_categoria = {
           descripcion_cat: "Nueva Categoria: " + categoria_nuevoProducto,
           nombre_cat: categoria_nuevoProducto,
@@ -143,6 +147,7 @@ const IngresarNuevoProducto = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nueva_categoria),
         };
+
         const urlcategoria = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria";
         fetch(urlcategoria, requestOptions)
           .then((response) => response.json())
@@ -151,7 +156,20 @@ const IngresarNuevoProducto = () => {
         const categorias_incluyendo_nuevas = [...categorias,nueva_categoria]
         toggleSetCategorias(categorias_incluyendo_nuevas)
 
-
+        //©PRODUCTOS
+        
+        console.log("AHORA SE ESTA CREANDO EL PRODUCTO")
+        nuevo_Producto.categoria_id= "10"
+        
+        const requestOptionsProducto = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nuevo_Producto),
+        };
+        const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+        fetch(urlProducto, requestOptionsProducto)
+          .then((response) => response.json())
+          .then((data) => console.log(data, nuevo_Producto));
       }
     }
     };
