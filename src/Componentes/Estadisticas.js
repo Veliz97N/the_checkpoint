@@ -135,7 +135,7 @@ function Estadisticas() {
   return (
 
     <Layout hasNavbar hasSidebar>
-      {user.rol_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+      {user.role_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria</h1>
       :
       <div className="estadisticas">
         <div className="row mb-3">

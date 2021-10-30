@@ -144,7 +144,7 @@ const CrearUsuario = () => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(nuevo_usuario),
                   };
-                const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users"
+                const urlUsuarios = "https://dbthecheckpoint2.herokuapp.com/users"
                 fetch(urlUsuarios, requestOptions)
                 .then((response) => response.json())
                 .then((data) => console.log(data, nuevo_usuario))
@@ -222,7 +222,7 @@ const CrearUsuario = () => {
 
     return (
       <Layout hasNavbar hasSidebar>
-        {user.rol_id!==1? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+        {user.role_id!==1? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
         :
         !isChiquito ? (
           <div className="crearUsuario">
@@ -552,11 +552,10 @@ const CrearUsuario = () => {
                     </div>
                   </div>
 
-                  {/* {fileUrl ? <div style={contenedorfotografia} >
-                                    <img style={imagen_Ingresar_Modificar_Producto} src={fileUrl} alt="imagen_nuevo_producto" />
-                                </div> : ""} */}
                 </div>
               </div>
+
+
 
               <div className="alo">
                 <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">

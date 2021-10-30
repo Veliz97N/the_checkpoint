@@ -24,6 +24,7 @@ const UserProvider = ({ children }) => {
     
     const toggleSetUser=(valorProvenienteLogin)=>{
         setUser(valorProvenienteLogin)
+        console.log("ACA USUARIO")
         console.log(user)
     }
 

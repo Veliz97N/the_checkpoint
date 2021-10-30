@@ -76,7 +76,7 @@ const IngresarNuevoProducto = () => {
      const [booleano_feliz_stock,setBooleano_feliz_stock]= useState(null)
 
   
-    const funcionPublicarProducto = () => {
+    async function funcionPublicarProducto () {
       if (
         nombre_nuevoProducto != "" &&
         nombre_nuevoProducto.length > 2 &&
@@ -120,17 +120,17 @@ const IngresarNuevoProducto = () => {
 
 
         if (contador_existencias >=1) {
+          console.log(nuevo_Producto)
           //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
           const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(nuevo_Producto),
           };
-          const urlProducto =
-            "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
-          fetch(urlProducto, requestOptions)
-            .then((response) => response.json())
-            .then((data) => console.log(data, nuevo_Producto));
+          const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+            const response = await fetch(urlProducto, requestOptions)
+            const data = await response.json()
+            console.log(data, nuevo_Producto);
         }
 
 
@@ -149,30 +149,28 @@ const IngresarNuevoProducto = () => {
         };
 
         const urlcategoria = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria";
-        fetch(urlcategoria, requestOptions)
-          .then((response) => response.json())
-          .then((data) => console.log(data, nueva_categoria));
+        const response = await fetch(urlcategoria, requestOptions)
+        const data = await response.json()
+        console.log(data, nueva_categoria);
 
         const categorias_incluyendo_nuevas = [...categorias,nueva_categoria]
         toggleSetCategorias(categorias_incluyendo_nuevas)
 
-        //©PRODUCTOS
-        
-        console.log("AHORA SE ESTA CREANDO EL PRODUCTO")
-        nuevo_Producto.categoria_id= "10"
-        
-        const requestOptionsProducto = {
+        console.log(nuevo_Producto)
+        const requestOptionsProductos = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nuevo_Producto),
         };
         const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
-        fetch(urlProducto, requestOptionsProducto)
-          .then((response) => response.json())
-          .then((data) => console.log(data, nuevo_Producto));
-      }
+          const responseProductos = await fetch(urlProducto, requestOptionsProductos)
+          const dataProductos = await responseProductos.json()
+          console.log(dataProductos, nuevo_Producto);
+     }
     }
     };
+
+    
      //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
      const FuncionValidarFormulario = (e) => {
       
@@ -236,7 +234,7 @@ const IngresarNuevoProducto = () => {
 
     return (
       <Layout hasNavbar hasSidebar>
-        {user.rol_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+        {user.role_id!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
         :
         !isChiquito ? (
           <div className="ingresarNuevoProducto">

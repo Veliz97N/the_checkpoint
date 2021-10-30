@@ -60,7 +60,9 @@ function Login() {
             password: user_data.password,
             name:usuario.name,
             last_name:usuario.last_name,
-            rol_id:1
+            email:usuario.email,
+            id:usuario.id,
+            role_id:1
           }) //ACA SETEAMOS EL USUARIO QUE INGRESO CORRECTAMENTE
          
           History.push("/inicio")  
@@ -85,7 +87,9 @@ function Login() {
             password: user_data.password,
             name:usuario.name,
             last_name:usuario.last_name,
-            rol_id:2 
+            email:usuario.email,
+            id:usuario.id,
+            role_id:2 
           }) //ACA SETEAMOS EL USUARIO QUE INGRESO CORRECTAMENTE
          
           History.push("/inicio") 
