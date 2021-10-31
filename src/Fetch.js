@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+
+
+
 export const Fetch_productos = () => {
     const [state, setState] = useState([]);
     useEffect(() => {

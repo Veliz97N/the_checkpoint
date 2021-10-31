@@ -2,13 +2,14 @@ import React,{useContext, useState} from 'react'
 import Layout from '../../Folder_Contenido_General/Layout';
 import { useMediaQuery } from "react-responsive";
 import UserContext from '../../UserContext/UserContext';
+import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias,Fetch_usuarios2} from '../../Fetch'
 
 import { Link } from 'react-router-dom';
 
 
 const IngresarNuevoProducto = () => {
   const {categorias_fetch,productos,categorias,toggleSetCategorias,user}  = useContext(UserContext);
-
+  const [productos_Recargado, setProductos_Recargado] = useState(productos)
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
@@ -90,7 +91,7 @@ const IngresarNuevoProducto = () => {
         stock_nuevoProducto.length >= 1
       ) {
         console.log("LGTM = Looks Good To Me");
-        //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
+        
         console.log("Que haga el POST dice....");
         let contador_existencias = 0
         let info_categoria = 0
@@ -104,8 +105,19 @@ const IngresarNuevoProducto = () => {
             }
             console.log(info_categoria)
         }
-
       }
+
+      let existe = {codigo_barras: false, nombre_producto: false}
+              for(let x=0; x< productos_Recargado.length; x++){
+                if(codigoBarras_nuevoProducto === productos_Recargado[x].codigo_barras){ //😍
+                  existe.codigo_barras=true
+                }
+                if(nombre_nuevoProducto === productos_Recargado[x].nombre){
+                  existe.nombre_producto= true
+                }
+              }
+
+      if(existe.codigo_barras ===false && existe.nombre_producto === false){
       const nuevo_Producto = {
         codigo_barras: codigoBarras_nuevoProducto, 
         costo_compra:"600",
@@ -167,28 +179,23 @@ const IngresarNuevoProducto = () => {
           const dataProductos = await responseProductos.json()
           console.log(dataProductos, nuevo_Producto);
      }
-    }
-    };
+     const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+     const response = await fetch(urlProducto)
+     const dataProductos = await response.json()
+     setProductos_Recargado(dataProductos)
 
-    
-     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+
+
+     
+    }
+    else{
+      alert("El producto ya existe en la base de datos del negocio")
+    }
+  }
+    };
+         
      const FuncionValidarFormulario = (e) => {
-      
-     
-     
-        const nuevo_Producto = {
-        codigo_barras: codigoBarras_nuevoProducto, 
-        costo_compra:"600",
-        factura_proveedor:"800",
-        fecha_ingreso:"25/10/2021",
-        // categoria: categoria_nuevoProducto,
-        image: "", 
-        nombre: nombre_nuevoProducto, 
-        precio_venta: valor_nuevoProducto, 
-        stock: stock_nuevoProducto}
-        console.log("Entre al primer click")
          e.preventDefault();
- 
          if(nombre_nuevoProducto !='' && nombre_nuevoProducto.length>2 ){ //Falta que solo acepte letras y no numeros
             setBooleano_feliz_producto(true)
          } 
@@ -227,10 +234,6 @@ const IngresarNuevoProducto = () => {
          
         
          }
-      
-   
-    
-  
 
     return (
       <Layout hasNavbar hasSidebar>

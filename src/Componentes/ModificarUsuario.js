@@ -9,7 +9,9 @@ import useLocalStorage from "../useLocalStorage";
 import UserContext from "../UserContext/UserContext";
 
 const ModificarUsuario = (props) => {
-  const {role, users} = useContext(UserContext)
+  const {role, users,toggleSetUser} = useContext(UserContext)
+  const [users_Recargado, setUsers_Recargado] = useState(users)
+
   const [nameUsuarioActivo,setNameUsuarioActivo]=useLocalStorage('name',"")
   const isChiquito = useMediaQuery({
     query: "(max-width: 577px)",
@@ -34,7 +36,7 @@ const ModificarUsuario = (props) => {
 
   const label_ingresarNuevoUsuario = {
     color: "white",
-    fontSize: "1.3rem",
+    fontSize: "1.3rem"
   };
 
   const input_ingresarFotografia = {
@@ -88,8 +90,7 @@ const ModificarUsuario = (props) => {
   const [booleano_feliz_rol, setBooleano_feliz_rol] = useState(null)
   const [booleano_feliz_email, setBooleano_feliz_email] = useState(null)
 
-    const funcionModificarUsuario = (usuarioModificado) => {  //🤬
-      console.log(usuarioModificado)
+    async function funcionModificarUsuario (usuarioModificado) { 
       if (
         usuarioModificado.name != "" &&
         (usuarioModificado.name).length > 2 &&
@@ -105,24 +106,26 @@ const ModificarUsuario = (props) => {
         usuarioModificado.email.length>=6 &&
         usuarioModificado.email.includes("@")
       ){
-              usuarioModificado.role_id=(parseInt(rol_nuevoUsuario)+1)
-
-              console.log(usuarioModificado.role_id)
-              console.log("holi aca imprime")
-
+        
+              if(rol_nuevoUsuario==="0"){
+                usuarioModificado.role_id="1"
+                console.log("ACA LA WEA")
+              }
+              else if(rol_nuevoUsuario==="1"){
+                usuarioModificado.role_id="2"
+                console.log("ACA LA WEA")
+              }
 
               let existe = {username: false, email: false}
-              for(let x=0; x< users.length; x++){
-                if(checkedTrue_Email === users[x].email){
+              for(let x=0; x< users_Recargado.length; x++){
+                if(checkedTrue_Email === users_Recargado[x].email){
                   existe.email=true
                 }
-                if(checkedTrue_Username === users[x].username){
+                if(checkedTrue_Username === users_Recargado[x].username){
                   existe.username= true
                 }
               }
               if(existe.username ===false && existe.email === false){
-                console.log(usuarioModificado)
-                
                 const requestOptions = { //TIENE PROBLEMAS DE CORS NO SE QUE VERGA PERO FUNCIONA
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
@@ -133,25 +136,25 @@ const ModificarUsuario = (props) => {
                 fetch(urlUsuarios, requestOptions)
                 .then((response) => response.json())
                 .then((data) => console.log(data))
-                .catch((err)=> console.log(err))             
+                .catch((err)=> console.log(err))   
+                toggleSetUser(usuarioModificado)          
               }
               else{
                 alert("Usuario o Correo ya existen en la base de datos")
               }
 
+              const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users"
+              const response = await fetch(urlUsuarios)
+              const dataUsers = await response.json()
+              setUsers_Recargado(dataUsers)
               
-
-
-             
-
-          
       }
   }
   
 
   const FuncionValidarFormulario = (e) => {
 
-    let usuarioModificado = { name: props.user.name, last_name: props.user.last_name, username: props.user.username, password: props.user.password, confirmar_password:props.user.password, role_id: props.user.rol_id, email:props.user.email, id:props.user.id}
+    let usuarioModificado = { name: props.user.name, last_name: props.user.last_name, username: props.user.username, password: props.user.password, confirmar_password:props.user.password, role_id: props.user.role_id, email:props.user.email, id:props.user.id}
     e.preventDefault();
     
     if (name === true) {
@@ -273,6 +276,14 @@ const ModificarUsuario = (props) => {
       console.log("nombre false")
     }
   };
+  const [rol, setRol] = useState()
+  const handler_Editar_Rol= (e) =>{
+    if (e.target.checked == true) {
+      setRol(true);
+    } else {
+      setRol(false);
+    }
+  }
   const [email,setEmaill] = useState()
   const handler_Editar_Email = (e) => {
     if (e.target.checked == true) {
@@ -327,6 +338,8 @@ const ModificarUsuario = (props) => {
     background: "#667ea0",
     borderRadius:"25px"
   }
+  let disabled= "disabled"
+  let enabled = !disabled
 
   return (
     <Layout hasNavbar hasSidebar>
@@ -658,26 +671,43 @@ const ModificarUsuario = (props) => {
                 <div className="wrap_rol_email">
 
                 <div className="fuera my-2 mb-4">
+                  
                   <div className="form-group d-flex">
-                    <label
+                  <label
                       style={label_ingresarNuevoUsuario}
                       className="col-md-4 col-sm-12  ps-2"
                       for="exampleInputPassword1"
                     >
-                      Rol
+                      <div className="row">
+                        <div className="col-8">Rol</div>
+
+                        <div className="col-4">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            
+                            id="flexCheckDefault"
+                            onClick={(e) => handler_Editar_Rol(e)}
+                          ></input>
+                        </div>
+                      </div>
                     </label>
+                                        
 
                     <button
-                      className="btn-roles-disponibles col-md-8 col-sm-12 dropdown-toggle d-md-flex"
+                      className={"btn-roles-disponibles col-md-8 col-sm-12 dropdown-toggle d-md-flex"}
                       type="button"
                       id="dropdownMenuButton"
                       data-bs-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
+                      disabled = {!rol?disabled:enabled}
+                      style={!rol?input_ingresarNuevoUsuario_Desactivado:input_ingresarNuevoUsuario_Activado}
                     >
                       <div className="datos_usuario me-4 d-flex flex-column my-auto py-1">
                         <div className="nombre_usuario mx-auto">
-                          {rol_nuevoUsuario===0? "Administrador":"Vendedor"}
+                          {rol_nuevoUsuario===1? "Vendedor":"Administrador"}
                         </div>
                       </div>
                     </button>

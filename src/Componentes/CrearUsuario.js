@@ -7,6 +7,8 @@ import { mapToStyles } from '@popperjs/core/lib/modifiers/computeStyles';
 
 const CrearUsuario = () => {
     const {users,toggleSetUsuariosExistentes,role, user} = useContext(UserContext)
+    const [users_Recargado, setUsers_Recargado] = useState(users)
+    
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });   
@@ -65,7 +67,7 @@ const CrearUsuario = () => {
     const [username_nuevoUsuario, setUsername_nuevoUsuario] = useState('')
     const [password_nuevoUsuario, setPassword_nuevoUsuario] = useState('')
     const [confirm_password_nuevoUsuario, setConfirm_password_nuevoUsuario] = useState('')
-    const [rol_nuevoUsuario, setRol_nuevoUsuario] = useState('vacio')
+    const [rol_nuevoUsuario, setRol_nuevoUsuario] = useState("vacio")
     const [email_nuevoUsuario, setEmail_nuevoUsuario] = useState('')
 
     const [booleano_feliz_nombre, setBooleano_feliz_nombre]= useState(null)
@@ -79,7 +81,7 @@ const CrearUsuario = () => {
     //❌❌❌❌❌❌❌❌❌❌❌❌
 
     
-    const funcionPublicarUsuario = () => { 
+    async function funcionPublicarUsuario () { 
 
         if (
             nombre_nuevoUsuario != "" &&
@@ -99,8 +101,8 @@ const CrearUsuario = () => {
         ){  
 
             let contador = 0        
-            for (let x = 0; x < users.length; x++){
-                if (users[x].username === username_nuevoUsuario || users[x].email===email_nuevoUsuario){
+            for (let x = 0; x < users_Recargado.length; x++){
+                if (users_Recargado[x].username === username_nuevoUsuario || users_Recargado[x].email===email_nuevoUsuario){
                     contador += 1
                     
                     console.log(contador);
@@ -144,7 +146,7 @@ const CrearUsuario = () => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(nuevo_usuario),
                   };
-                const urlUsuarios = "https://dbthecheckpoint2.herokuapp.com/users"
+                const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users"
                 fetch(urlUsuarios, requestOptions)
                 .then((response) => response.json())
                 .then((data) => console.log(data, nuevo_usuario))
@@ -152,8 +154,12 @@ const CrearUsuario = () => {
 
                 const users_incluyendo_nuevos = [...users,nuevo_usuario]
                 toggleSetUsuariosExistentes(users_incluyendo_nuevos)
-
+                               
             }
+            const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users"
+            const response = await fetch(urlUsuarios)
+            const dataUsers = await response.json()
+            setUsers_Recargado(dataUsers)
           
         }
     }
@@ -216,7 +222,7 @@ const CrearUsuario = () => {
 
 
     const funcionRecogerRol= (parametro) =>{
-        setRol_nuevoUsuario(parametro)
+        setRol_nuevoUsuario(parametro+1)
         console.log(rol_nuevoUsuario)
     }
 
@@ -469,7 +475,9 @@ const CrearUsuario = () => {
                           aria-expanded="false"
                         >
                           <div className="datos_usuario me-4 d-flex flex-column my-auto py-1">
-                            <div className="nombre_usuario mx-auto">Ver roles disponibles: </div>
+                            <div className="nombre_usuario mx-auto"> 
+                            {rol_nuevoUsuario==="vacio"?"Ingrese el rol del usuario": rol_nuevoUsuario===1?"Administrador":"Vendedor"}
+                            </div>
                           </div>
 
                          

@@ -24,7 +24,6 @@ const UserProvider = ({ children }) => {
     
     const toggleSetUser=(valorProvenienteLogin)=>{
         setUser(valorProvenienteLogin)
-        console.log("ACA USUARIO")
         console.log(user)
     }
 
@@ -72,8 +71,6 @@ const UserProvider = ({ children }) => {
     const data = {users_fetch,categorias_fetch,categorias,toggleSetCategorias, toggleSetUsuariosExistentes, user,toggleSetUser,users,productos,role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
    
-    // data de prueba para otro rol
-    // const data_vendedor = {vendedor, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
     return (
         <UserContext.Provider value={data}>
             {children}
