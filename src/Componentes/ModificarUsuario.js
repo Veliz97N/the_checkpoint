@@ -116,10 +116,10 @@ const ModificarUsuario = (props) => {
 
               let existe = {username: false, email: false}
               for(let x=0; x< users_Recargado.length; x++){
-                if(checkedTrue_Email === users_Recargado[x].email){
+                if(usuarioModificado.email === users_Recargado[x].email && usuarioModificado.id !==users_Recargado[x].id){
                   existe.email=true
                 }
-                if(checkedTrue_Username === users_Recargado[x].username){
+                if(usuarioModificado.username === users_Recargado[x].username && usuarioModificado.id !==users_Recargado[x].id){
                   existe.username= true
                 }
               }
@@ -129,7 +129,7 @@ const ModificarUsuario = (props) => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(usuarioModificado),
                   };
-                const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users/"+usuarioModificado.id
+                const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/users/"+usuarioModificado.id
                 console.log(urlUsuarios)
                 fetch(urlUsuarios, requestOptions)
                 .then((response) => response.json())
@@ -141,7 +141,7 @@ const ModificarUsuario = (props) => {
                 alert("Usuario o Correo ya existen en la base de datos")
               }
 
-              const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/users"
+              const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/users"
               const response = await fetch(urlUsuarios)
               const dataUsers = await response.json()
               setUsers_Recargado(dataUsers)

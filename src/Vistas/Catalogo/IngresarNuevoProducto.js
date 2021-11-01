@@ -139,7 +139,7 @@ const IngresarNuevoProducto = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(nuevo_Producto),
           };
-          const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+          const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos";
             const response = await fetch(urlProducto, requestOptions)
             const data = await response.json()
             console.log(data, nuevo_Producto);
@@ -160,7 +160,7 @@ const IngresarNuevoProducto = () => {
           body: JSON.stringify(nueva_categoria),
         };
 
-        const urlcategoria = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/categoria";
+        const urlcategoria = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/categoria";
         const response = await fetch(urlcategoria, requestOptions)
         const data = await response.json()
         console.log(data, nueva_categoria);
@@ -173,12 +173,12 @@ const IngresarNuevoProducto = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nuevo_Producto),
         };
-        const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+        const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos";
           const responseProductos = await fetch(urlProducto, requestOptionsProductos)
           const dataProductos = await responseProductos.json()
           console.log(dataProductos, nuevo_Producto);
      }
-     const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos";
+     const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos";
      const response = await fetch(urlProducto)
      const dataProductos = await response.json()
      setProductos_Recargado(dataProductos)

@@ -88,13 +88,16 @@ const ModificarProducto = () => {
     const [booleano_feliz_valorUnidad, setBooleano_feliz_valorUnidad] = useState(null);
     const [booleano_feliz_stockDisponible, setBooleano_feliz_stockDisponible] = useState(null);
 
-    //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+    
     const [productos_Recargado, setProductos_Recargado] = useState(productos)
     const FuncionValidarFormulario = (e) => {
         let productoModificado = {
-            nombreProducto: productoSeleccionado.nombreProducto, categoria: productoSeleccionado.categoria,
-            codigodebarras: productoSeleccionado.codigodebarras, valorUnidad: productoSeleccionado.valorUnidad,
-            stockDisponible: productoSeleccionado.stockDisponible
+            nombreProducto: productoSeleccionado.nombreProducto, 
+            categoria: productoSeleccionado.categoria,
+            codigodebarras: productoSeleccionado.codigodebarras, 
+            valorUnidad: productoSeleccionado.valorUnidad,
+            stockDisponible: productoSeleccionado.stockDisponible, 
+            id:productoSeleccionado.id
         }
         e.preventDefault();
 
@@ -139,17 +142,15 @@ const ModificarProducto = () => {
             }
         }
         if (stockDisponible === true) {
-            if (checkedTrue_StockDisponible === "") {
+            if (checkedTrue_StockDisponible > 0) {
                 setBooleano_feliz_stockDisponible(true);
                 productoModificado.stockDisponible = checkedTrue_StockDisponible
-                //Falta validarla para que contenga letras, numeros y una mayuscula
             }
             else {
                 setBooleano_feliz_stockDisponible(false)
                 productoModificado.stockDisponible = productoSeleccionado.stockDisponible
             }
         }
-        console.log(productoModificado)
 
         funcionModificarProducto(productoModificado)
         
@@ -157,7 +158,8 @@ const ModificarProducto = () => {
     
 
     async function funcionModificarProducto(productoModificado){
-      console.log(productoModificado.valorUnidad)
+      
+
       if(productoModificado.nombreProducto !== "" && productoModificado.nombreProducto.length > 2 &&
       productoModificado.categoria != ""&& productoModificado.codigodebarras != "" && productoModificado.codigodebarras.length > 3 &&
       productoModificado.valorUnidad != "" && productoModificado.valorUnidad>= 10 &&
@@ -167,23 +169,32 @@ const ModificarProducto = () => {
 
         let existe = {nombre: false, codigo_barras: false}
         for(let x=0; x< productos_Recargado.length; x++){
-          if(productoModificado.nombreProducto === productos_Recargado[x].nombre){
+          if(productoModificado.nombreProducto === productos_Recargado[x].nombre && productoModificado.id !==productos_Recargado[x].id){            
             existe.nombre=true
           }
-          if(productoModificado.codigodebarras === productos_Recargado[x].codigo_barras){
+          if(productoModificado.codigodebarras === productos_Recargado[x].codigo_barras && productoModificado.id !==productos_Recargado[x].id){            
             existe.codigo_barras= true
           }
         }
         if(existe.nombre ===false && existe.codigo_barras === false){
-          const producto_para_put= {codigo_barras:productoModificado.codigodebarras, costo_compra: "300", factura_proveedor:'600', fecha_ingreso:'25/10/2021',image:'',
-          nombre:productoModificado.nombreProducto,precio_venta:productoModificado.valorUnidad, stock: productoModificado.stockDisponible}
-          console.log(producto_para_put)
+          const producto_para_put= {
+            categoria_id:productoModificado.categoria,
+            codigo_barras:productoModificado.codigodebarras, 
+            costo_compra: "300", 
+            factura_proveedor:'600', 
+            fecha_ingreso:'25/10/2021',
+            image:'',
+          nombre:productoModificado.nombreProducto,
+          precio_venta:productoModificado.valorUnidad, 
+          stock: productoModificado.stockDisponible}
           const requestOptions = { //TIENE PROBLEMAS DE CORS NO SE QUE VERGA PERO FUNCIONA
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(producto_para_put),
             };
-          const urlProductos = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos/1" // ❌
+            console.log("Este es el producto para PUT")
+          console.log(producto_para_put)
+          const urlProductos = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos/"+productoModificado.id
           console.log(urlProductos)
 
           fetch(urlProductos, requestOptions)
@@ -202,6 +213,7 @@ const ModificarProducto = () => {
             codigodebarras: productoModificado.codigodebarras,
             categoria: productoModificado.categoria,
             categoria_nombre:categoria_nombre,
+            id:productoModificado.id,
             valorUnidad: productoModificado.valorUnidad,
             stockDisponible: productoModificado.stockDisponible}
 
@@ -212,9 +224,10 @@ const ModificarProducto = () => {
           alert("Nombre del Producto o Codigo de Barras ya existen en la base de datos")
         }
 
-        const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos"
+        const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos"
         const response = await fetch(urlUsuarios)
         const dataProductos = await response.json()
+        console.log(dataProductos)
         setProductos_Recargado(dataProductos)
 
 
@@ -267,7 +280,7 @@ const ModificarProducto = () => {
         setCheckedTrue_ValorUnidad(e.target.value);
     };
 
-    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState();
+    const [checkedTrue_StockDisponible, setCheckedTrue_StockDisponible] = useState("");
     const handler_CheckedTrue_StockDisponible = (e) => {
         setCheckedTrue_StockDisponible(e.target.value);
     };
@@ -472,68 +485,7 @@ const ModificarProducto = () => {
 
                 
                 </div>
-
-
-                        {/* <label
-                          style={label_ingresarNuevoProducto}
-                          className="col-md-4 col-sm-12 ps-2"
-                          for="exampleInputEmail1"
-                        >
-                          <div className="row">
-                            <div className="col-8">Categoria</div>
-                            <div className="col-4">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
-                                onClick={(e) => handle_Editar_Categoria(e)}
-                              ></input>
-                            </div>
-                          </div>
-                        </label>
-                        {categoria ? (
-                          <input
-                            disabled={false}
-                            style={input_ingresarNuevoUsuario_Activado}
-                            className="col-md-8 col-sm-12"
-                            type="text"
-                            name=""
-                            id=""
-                            placeholder="Ingresa la categoria"
-                            onChange={(e) => handler_CheckedTrue_Categoria(e)}
-                            value={checkedTrue_Categoria}
-                          />
-                        ) : (
-                          <input
-                            disabled={true}
-                            style={input_ingresarNuevoUsuario_Desactivado}
-                            className="col-md-8 col-sm-12"
-                            type="text"
-                            name=""
-                            id=""
-                            placeholder="Ingresa la categoria"
-                            value={productoSeleccionado.categoria}
-                          />
-                        )} */}
-                     
-                      {/* {booleano_feliz_categoria == false ? (
-                        <div
-                          style={visible}
-                          className="invalido d-flex justify-content-end my-0"
-                        >
-                          Categoria Invalida
-                        </div>
-                      ) : (
-                        <div
-                          style={no_visible}
-                          className="invalido d-flex justify-content-end my-0"
-                        >
-                          Categoria Invalida
-                        </div>
-                      )} */}
-                    
-
+                                   
                     <div className="fuera my-2 mb-4">
                       <div className="form-group">
                         <label

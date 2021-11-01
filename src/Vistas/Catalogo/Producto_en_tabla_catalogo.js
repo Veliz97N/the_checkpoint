@@ -43,7 +43,8 @@ const Producto_en_tabla_catalogo = (props) => {
                             categoria: props.producto.categoria_id,
                             categoria_nombre:categoria_nombre,
                             valorUnidad: props.producto.precio_venta,
-                            stockDisponible: props.producto.stock}
+                            stockDisponible: props.producto.stock,
+                            id:props.producto.id}
         
         toggleProductoSeleccionado(informacion)
 
