@@ -168,7 +168,6 @@ const IngresarNuevoProducto = () => {
         const categorias_incluyendo_nuevas = [...categorias,nueva_categoria]
         toggleSetCategorias(categorias_incluyendo_nuevas)
 
-        console.log(nuevo_Producto)
         const requestOptionsProductos = {
           method: "POST",
           headers: { "Content-Type": "application/json" },

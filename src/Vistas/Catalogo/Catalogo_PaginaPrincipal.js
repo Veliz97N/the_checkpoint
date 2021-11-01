@@ -107,6 +107,7 @@ const Catalogo_PaginaPrincipal = () => {
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    
             <div style={contenedor_tabla} className="contenedor-tabla py-5 px-3">
+                <div className="contenedor_interno" >
                 <table className="table">
                     <thead className="py-5">
                         <tr className="py-5" style={noactivopapi}>                            
@@ -139,12 +140,14 @@ const Catalogo_PaginaPrincipal = () => {
                             </td>
 
                         </tr>
+                        
                         {   productos&&
                         (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)
                         :productos.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)}                        
                         
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>):
         

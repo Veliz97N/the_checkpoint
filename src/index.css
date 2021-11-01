@@ -192,15 +192,6 @@ code {
   color:var(--happy_selected)
 }
 
-
-.container-fluid-light {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: var(--light_background);
-  box-sizing: border-box;
-}
-
 .container-fluid-dark {
   position: relative;
   width: 100%;
@@ -613,11 +604,15 @@ code {
 .noPermisos{
   color:white;
 }
+
+.contenedor_interno{
+  overflow-y: scroll;
+  max-height: 75vh;  
+}
 @media  (max-width: 830px) {
   .sidebar{
     width: 3.5rem;
   }
 }
-
 
 

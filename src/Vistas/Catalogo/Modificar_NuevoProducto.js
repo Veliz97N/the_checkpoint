@@ -7,7 +7,7 @@ import UserContext from '../../UserContext/UserContext';
 import { useMediaQuery } from "react-responsive";
 
 const ModificarProducto = () => {
-  const {user}  = useContext(UserContext);
+  const {user,productoSeleccionado,categorias}  = useContext(UserContext);
 
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
@@ -81,7 +81,6 @@ const ModificarProducto = () => {
     }
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ ACA SI EMPIEZA LO CHIDO  ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
-    const { productoSeleccionado, toggleProductoSeleccionado } = useContext(UserContext);
 
     const [booleano_feliz_nombre, setBooleano_feliz_nombre] = useState(null);
     const [booleano_feliz_categoria, setBooleano_feliz_categoria] = useState(null);
@@ -170,6 +169,20 @@ const ModificarProducto = () => {
             console.log(productoModificado+"PRODUCTO");
         }
     };
+    const [categoria_modificar, setCategoria_modificar] = useState({id:productoSeleccionado.categoria,nombre_cat:productoSeleccionado.categoria_nombre})
+    const funcionRecogerCategoria= (parametro) =>{
+      const id= parametro
+      let nombre_cat
+      categorias.forEach(categoria=>{
+        if(categoria.id===id){
+          nombre_cat=categoria.nombre_cat
+        }
+      })
+      const categoria = {id: parametro, nombre_cat : nombre_cat}
+      setCategoria_modificar(categoria)
+  }
+    const disabled = "disabled"
+    const enabled = !disabled
 
     const [checkedTrue_Nombre, setCheckedTrue_Nombre] = useState("");
     const handle_CheckedTrue_Nombre = (e) => {
@@ -240,6 +253,7 @@ const ModificarProducto = () => {
             setStockDispinible(false);
         }
     };
+  
 
     const cancelar_Producto = (e) => {
         setNombre(false)
@@ -340,8 +354,64 @@ const ModificarProducto = () => {
                     </div>
 
                     <div className="fuera my-2 mb-4">
-                      <div className="form-group">
-                        <label
+                      <div className="form-group d-flex">
+                      <label
+                          style={label_ingresarNuevoProducto}
+                          className="col-md-4 col-sm-12 ps-2"
+                          for="exampleInputEmail1"
+                        >
+                          <div className="row">
+                            <div className="col-8">Categoria</div>
+                            <div className="col-4">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="flexCheckDefault"
+                                onClick={(e) => handle_Editar_Categoria(e)}
+                              ></input>
+                            </div>
+                          </div>
+                          </label>
+                      <button
+                      className="btn-roles-disponibles col-md-8 col-sm-12 dropdown-toggle d-md-flex"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      disabled = {!categoria?disabled:enabled}
+                      style={!categoria?input_ingresarNuevoUsuario_Desactivado:input_ingresarNuevoUsuario_Activado}
+                    >
+                      <div className="datos_usuario me-4 d-flex flex-column my-auto py-1">
+                        <div className="nombre_usuario mx-auto">
+                          {categoria_modificar.nombre_cat}
+                        </div>
+                      </div>
+                    </button>
+
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      {categorias.map((elemento, key) => (
+                        <li
+                          className="dropdown-item"
+                          key={key}
+                          value={key}
+                          onClick={() => funcionRecogerCategoria(elemento.id)}
+                        >
+                          {elemento.nombre_cat}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                
+                </div>
+
+
+                        {/* <label
                           style={label_ingresarNuevoProducto}
                           className="col-md-4 col-sm-12 ps-2"
                           for="exampleInputEmail1"
@@ -382,9 +452,9 @@ const ModificarProducto = () => {
                             placeholder="Ingresa la categoria"
                             value={productoSeleccionado.categoria}
                           />
-                        )}
-                      </div>
-                      {booleano_feliz_categoria == false ? (
+                        )} */}
+                     
+                      {/* {booleano_feliz_categoria == false ? (
                         <div
                           style={visible}
                           className="invalido d-flex justify-content-end my-0"
@@ -398,8 +468,8 @@ const ModificarProducto = () => {
                         >
                           Categoria Invalida
                         </div>
-                      )}
-                    </div>
+                      )} */}
+                    
 
                     <div className="fuera my-2 mb-4">
                       <div className="form-group">

@@ -5,7 +5,7 @@ import UserContext from '../../UserContext/UserContext';
 
 const Producto_en_tabla_catalogo = (props) => {
 
-    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext); //ACA RECIBE LA WEAAAA 
+    const {productoSeleccionado, toggleProductoSeleccionado,categorias}= useContext(UserContext); //ACA RECIBE LA WEAAAA 
     const visibleEditarProductoCategoria = {
         visibility: 'visible',
         fontSize: "1.4rem",
@@ -32,12 +32,19 @@ const Producto_en_tabla_catalogo = (props) => {
     const [isShow, setIsShow] = useState(false) 
     
     const handler_InformacionProductoModificar = () => {
+        let categoria_nombre
+        categorias.forEach(categoria=>{
+            if(categoria.id===props.producto.categoria_id){
+                categoria_nombre=categoria.nombre_cat
+            }
+        })
         const informacion = {nombreProducto: props.producto.nombre,
                             codigodebarras: props.producto.codigo_barras,
-                            categoria: props.producto.id_categoria,
+                            categoria: props.producto.categoria_id,
+                            categoria_nombre:categoria_nombre,
                             valorUnidad: props.producto.precio_venta,
                             stockDisponible: props.producto.stock}
-        console.log(informacion)
+        
         toggleProductoSeleccionado(informacion)
 
     }
