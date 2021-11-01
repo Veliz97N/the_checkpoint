@@ -109,11 +109,9 @@ const ModificarUsuario = (props) => {
         
               if(rol_nuevoUsuario==="0"){
                 usuarioModificado.role_id="1"
-                console.log("ACA LA WEA")
               }
               else if(rol_nuevoUsuario==="1"){
                 usuarioModificado.role_id="2"
-                console.log("ACA LA WEA")
               }
 
               let existe = {username: false, email: false}
@@ -745,6 +743,12 @@ const ModificarUsuario = (props) => {
                     </div>
                   )}
                 </div>
+
+
+
+
+
+
 
                 <div className="fuera mb-4">
                   <div className="form-group ">

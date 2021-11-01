@@ -7,7 +7,7 @@ import UserContext from '../../UserContext/UserContext';
 import { useMediaQuery } from "react-responsive";
 
 const ModificarProducto = () => {
-  const {user,productoSeleccionado,categorias}  = useContext(UserContext);
+  const {user,productoSeleccionado,categorias, productos,toggleProductoSeleccionado}  = useContext(UserContext);
 
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
@@ -89,7 +89,7 @@ const ModificarProducto = () => {
     const [booleano_feliz_stockDisponible, setBooleano_feliz_stockDisponible] = useState(null);
 
     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
-
+    const [productos_Recargado, setProductos_Recargado] = useState(productos)
     const FuncionValidarFormulario = (e) => {
         let productoModificado = {
             nombreProducto: productoSeleccionado.nombreProducto, categoria: productoSeleccionado.categoria,
@@ -110,9 +110,9 @@ const ModificarProducto = () => {
             }
         }
         if (categoria === true) {
-            if (checkedTrue_Categoria != "" && checkedTrue_Categoria.length > 2) {
+            if (categoria_modificar.id != "") {
                 setBooleano_feliz_categoria(true);
-                productoModificado.categoria = checkedTrue_Categoria
+                productoModificado.categoria = categoria_modificar.id
             } else {
                 setBooleano_feliz_categoria(false);
                 productoModificado.categoria = productoSeleccionado.categoria
@@ -149,26 +149,89 @@ const ModificarProducto = () => {
                 productoModificado.stockDisponible = productoSeleccionado.stockDisponible
             }
         }
+        console.log(productoModificado)
 
-        if (
-            booleano_feliz_nombre ||
-            booleano_feliz_categoria ||
-            booleano_feliz_codigoBarras ||
-            booleano_feliz_valorUnidad ||
-            booleano_feliz_stockDisponible
-        ) {
-            console.log("LGTM = Looks Good To Me");
-            //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
-            
-
-
-
-
-
-            console.log("Que haga el POST dice....");
-            console.log(productoModificado+"PRODUCTO");
-        }
+        funcionModificarProducto(productoModificado)
+        
     };
+    
+
+    async function funcionModificarProducto(productoModificado){
+      console.log(productoModificado.valorUnidad)
+      if(productoModificado.nombreProducto !== "" && productoModificado.nombreProducto.length > 2 &&
+      productoModificado.categoria != ""&& productoModificado.codigodebarras != "" && productoModificado.codigodebarras.length > 3 &&
+      productoModificado.valorUnidad != "" && productoModificado.valorUnidad>= 10 &&
+      productoModificado.stockDisponible !== ""){
+
+
+
+        let existe = {nombre: false, codigo_barras: false}
+        for(let x=0; x< productos_Recargado.length; x++){
+          if(productoModificado.nombreProducto === productos_Recargado[x].nombre){
+            existe.nombre=true
+          }
+          if(productoModificado.codigodebarras === productos_Recargado[x].codigo_barras){
+            existe.codigo_barras= true
+          }
+        }
+        if(existe.nombre ===false && existe.codigo_barras === false){
+          const producto_para_put= {codigo_barras:productoModificado.codigodebarras, costo_compra: "300", factura_proveedor:'600', fecha_ingreso:'25/10/2021',image:'',
+          nombre:productoModificado.nombreProducto,precio_venta:productoModificado.valorUnidad, stock: productoModificado.stockDisponible}
+          console.log(producto_para_put)
+          const requestOptions = { //TIENE PROBLEMAS DE CORS NO SE QUE VERGA PERO FUNCIONA
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(producto_para_put),
+            };
+          const urlProductos = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos/1" // ❌
+          console.log(urlProductos)
+
+          fetch(urlProductos, requestOptions)
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((err)=> console.log(err))   
+
+          let categoria_nombre
+          categorias.forEach(categoria=>{
+              if(categoria.id===productoModificado.categoria){
+                  categoria_nombre=categoria.nombre_cat
+              }
+          })
+
+          const informacion = {nombreProducto: productoModificado.nombreProducto,
+            codigodebarras: productoModificado.codigodebarras,
+            categoria: productoModificado.categoria,
+            categoria_nombre:categoria_nombre,
+            valorUnidad: productoModificado.valorUnidad,
+            stockDisponible: productoModificado.stockDisponible}
+
+
+          toggleProductoSeleccionado(informacion)          
+        }
+        else{
+          alert("Nombre del Producto o Codigo de Barras ya existen en la base de datos")
+        }
+
+        const urlUsuarios = "https://3000-gray-tiglon-p4zyj6wv.ws-us18.gitpod.io/productos"
+        const response = await fetch(urlUsuarios)
+        const dataProductos = await response.json()
+        setProductos_Recargado(dataProductos)
+
+
+
+
+
+      }
+    }
+
+
+
+
+
+
+
+
+
     const [categoria_modificar, setCategoria_modificar] = useState({id:productoSeleccionado.categoria,nombre_cat:productoSeleccionado.categoria_nombre})
     const funcionRecogerCategoria= (parametro) =>{
       const id= parametro
