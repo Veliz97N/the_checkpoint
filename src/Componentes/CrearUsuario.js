@@ -40,7 +40,6 @@ const CrearUsuario = () => {
     const no_visible = {
         visibility:'hidden'
     }
-
     const contenedorfotografia={
     width: '250px',
         height:'250px',
@@ -60,7 +59,6 @@ const CrearUsuario = () => {
         const imageUrl = URL.createObjectURL(imageFile);
         setFileUrl(imageUrl)
      }
-  
 
     const [nombre_nuevoUsuario, setNombre_nuevoUsuario] = useState('')
     const [apellido_nuevoUsuario, setApellido_nuevoUsuario] = useState('')
@@ -77,7 +75,6 @@ const CrearUsuario = () => {
     const [booleano_feliz_confirm_password,setBooleano_feliz_confirm_password]= useState(null)
     const [booleano_feliz_rol, setBooleano_feliz_rol] = useState(null)
     const [booleano_feliz_email, setBooleano_feliz_email] = useState(null)
-    //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
     //❌❌❌❌❌❌❌❌❌❌❌❌
 
     
@@ -99,12 +96,10 @@ const CrearUsuario = () => {
             email_nuevoUsuario.length>=3 &&
             email_nuevoUsuario.includes('@')
         ){  
-
             let contador = 0        
             for (let x = 0; x < users_Recargado.length; x++){
                 if (users_Recargado[x].username === username_nuevoUsuario || users_Recargado[x].email===email_nuevoUsuario){
-                    contador += 1
-                    
+                    contador += 1                    
                     console.log(contador);
                 }    
             }

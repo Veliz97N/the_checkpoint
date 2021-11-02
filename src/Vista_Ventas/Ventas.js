@@ -71,7 +71,7 @@ const Ventas = () => {
       if (tipoBusqueda === "0") {
         const producto_A_Vender = productos.filter(
           (producto) =>
-            producto.nombre.toLowerCase() ==
+            producto.nombre.toLowerCase() ===
             valorBusqueda.target.value.toLowerCase()
             //Me recupera un array porque esta haciendo un arrow a cada producto que coincide con el valorBusqueda
         );
@@ -146,7 +146,7 @@ const Ventas = () => {
           listaProductosFiltrado[0].stock
         ) {
 
-          console.log("eNTRE?");
+          console.log("eNTRE?", producto);
           productoValido = true;
           const nueva_Lista_A_Boleta = [...listaProductos_A_Boleta];
           setIndiceAEliminar(index);
@@ -163,6 +163,7 @@ const Ventas = () => {
             categoria: producto.categoria,
             cantidadVendida: nueva_Cantidad,
             precio_venta: nuevo_valor,
+            producto_id: producto.id_producto
           };
           if(productoValido){
 
@@ -225,10 +226,11 @@ const Ventas = () => {
         nombre: listaProductosFiltrado[0].nombre, //Esto hay que hacerlo un array de objetos
         codigo_barras: listaProductosFiltrado[0].codigo_barras,
         categoria: listaProductosFiltrado[0].categoria_id,
+        id_producto: listaProductosFiltrado[0].id,
         cantidadVendida: cantidad,
         precio_venta: valorVentaProducto,
       };
-      console.log("ACA ESTA EL PROBLEMA")
+      console.log("ACA ESTA EL PROBLEMA", productoVendido)
 
 
       if(listaProductos_A_Boleta.length===0){
@@ -326,7 +328,7 @@ const Ventas = () => {
     const urlVentas = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
     const response = await fetch(urlVentas)
     const data = await response.json()
-    console.log("aca va el id de la venta ql")
+    console.log("aca va el id de la venta ql", lista_DatosVentaFinalizada)
     
     console.log(data[data.length-1].id);
 
@@ -335,10 +337,24 @@ const Ventas = () => {
       const itemBoleta={
         "cantidad": lista_DatosVentaFinalizada[0][x].cantidadVendida,
         "precio": lista_DatosVentaFinalizada[0][x].precio_venta,
-        "producto_id": "NO LO TEEEEEENGO",
+        "producto_id": lista_DatosVentaFinalizada[0][x].id_producto,
         "venta_id": data[data.length-1].id,
       }
       boletaVenta.push(itemBoleta)
+    }
+    for(let i=0; i<boletaVenta.length; i++){
+      console.log("BOLETAVENTA[I] ", boletaVenta[i]);
+      const urlDetalleVenta = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/detalleventa"
+      const requestOptions = { //TIENE PROBLEMAS DE CORS NO SE QUE VERGA PERO FUNCIONA
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(boletaVenta[i]),
+      };
+    
+    fetch(urlDetalleVenta, requestOptions)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err)=> console.log(err))
     }
     
     console.log(boletaVenta)
