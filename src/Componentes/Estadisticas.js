@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import { addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { useMediaQuery } from 'react-responsive';
-
+import { format } from "date-fns";
 import FilaEstadisticas_ProductosMasVendidos from "./filaEstadisticas_ProductosMasVendidos";
 import UserContext from "../UserContext/UserContext";
 import { useContext } from "react";
@@ -52,18 +52,33 @@ function Estadisticas() {
   const [totalVenta_Efectivo, setTotalVenta_Efectivo] = useState("");
 
   const [startDate, setStartDate] = useState(new Date());
-
+  const toggleSetStartDate= (parametro) =>{
+    console.log(parametro.toString().split(" "))
+    // let fecha_formato_DDMMYY= parametro.toString().split("/")
+    // console.log(fecha_formato_DDMMYY)
+  }
   const [datos_A_Graficar, setDatos_A_Graficar] = useState();
   const [productosMasVendidos, setProductosMasVendidos] = useState();
-  const funcionObtenerInformacionBaseDatos = () => {
-    //Monto
-    //Total --- > Efectivo y tarjeta
+ async function funcionObtenerInformacionBaseDatos(){
+   
+  const totalVentaDia = 0;
+  const totalTarjeta = 30;
+  const totalEfectivo = totalVentaDia - totalTarjeta;
 
-    //Fetch
+  const urlVentas =
+    "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
+  const response = await fetch(urlVentas);
+  const data = await response.json();
+  console.log(data)
+  for (let x = 0; x < data.length; x++) {
+    if (startDate == data.fecha) {
 
-    const totalVentaDia = 100;
-    const totalTarjeta = 30;
-    const totalEfectivo = totalVentaDia - totalTarjeta;
+      totalVentaDia+=data.total
+
+    }
+  }
+
+   
 
     const datosRecibidos = [800, 515, 651, 239, 658, 557, 758];
                             //El dia seleccionado
@@ -122,6 +137,8 @@ function Estadisticas() {
     setDatos_A_Graficar(informacion_Base_Datos);
     setProductosMasVendidos(productosMasVendidos);
     console.log(productosMasVendidos);
+  
+  
   };
 
   useEffect(() => {
@@ -176,7 +193,7 @@ function Estadisticas() {
                       className="algo"
                       maxDate={addDays(new Date(), 0)}
                       selected={startDate}
-                      onChange={(date) => setStartDate(date)}
+                      onChange={(date) => toggleSetStartDate(date)}
                     />{" "}
                   </div>
                 </div>
@@ -203,6 +220,15 @@ function Estadisticas() {
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
 
           <div className="col-md-6 col-sm-12 px-1 mb-3">
             <div className="prueba" id="col1">
