@@ -95,7 +95,9 @@ function Estadisticas() {
     }
     
     let variableFecha_Graficos = 0
-    console.log(Date.parse(contenedor_ventas_negocio[0].fecha), contenedor_ventas_negocio[0].fecha)
+   contenedor_ventas_negocio=(contenedor_ventas_negocio.sort((a, b) => newDateProyecto(a.fecha)-newDateProyecto(b.fecha)))
+ 
+
 
 
     const datosRecibidos = [800, 515, 651, 239, 658, 557, data[variableFecha_Graficos].total];
@@ -163,6 +165,14 @@ function Estadisticas() {
     setProductosMasVendidos(productosMasVendidos);
     console.log(productosMasVendidos);
   }
+
+  function newDateProyecto(d1){
+    var parts =d1.split('/');
+    var d1 = (parts[2] + parts[1] + parts[0]).toString();
+    console.log(d1)
+    return d1
+    }
+
 
   useEffect(() => {
     funcionObtenerInformacionBaseDatos();
