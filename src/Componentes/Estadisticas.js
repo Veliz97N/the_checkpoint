@@ -91,33 +91,26 @@ function Estadisticas() {
         contenedor_ventas_negocio.push(objeto);
       }
     }
+    
+    
+   contenedor_ventas_negocio=(contenedor_ventas_negocio.sort((a, b) => newDateProyecto(a.fecha)-newDateProyecto(b.fecha)))
+    
 
-    var dateString = contenedor_ventas_negocio[0].fecha; // 01/11/21
+    console.log(contenedor_ventas_negocio);
+    for(let x=0; x<contenedor_ventas_negocio.length; x++){
 
-    var dateParts = dateString.split("/");
-
-    // month is 0-based, that's why we need dataParts[1] - 1
-    var dateObject = new Date(+dateParts[2], dateParts[1] - 1, + dateParts[0]);
-
-    let fechaString = dateObject.toString();
-
-    let variableFecha_Graficos = 0;
-    console.log(
-      fechaString, "fecha string",
-      contenedor_ventas_negocio[0].fecha
-    );
-
+    }
     const datosRecibidos = [
-      800,
-      515,
-      651,
-      239,
-      658,
-      557,
-      data[variableFecha_Graficos].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-7].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-6].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-5].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-4].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-3].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-2].total,
+      contenedor_ventas_negocio[contenedor_ventas_negocio.length-1].total,
     ];
     //El dia seleccionado
-
+    
     const productosMasVendidos = [
       {
         nombreproducto: "Corona",
@@ -179,6 +172,14 @@ function Estadisticas() {
     setDatos_A_Graficar(informacion_Base_Datos);
     setProductosMasVendidos(productosMasVendidos);
   }
+
+  function newDateProyecto(d1){
+    var parts =d1.split('/');
+    var d1 = (parts[2] + parts[1] + parts[0]).toString();
+    
+    return d1
+    }
+
 
   useEffect(() => {
     funcionObtenerInformacionBaseDatos();
