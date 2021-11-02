@@ -53,9 +53,9 @@ function Estadisticas() {
 
   const [startDate, setStartDate] = useState(new Date());
   const toggleSetStartDate= (parametro) =>{
-    console.log(parametro.toString().split(" "))
-    // let fecha_formato_DDMMYY= parametro.toString().split("/")
-    // console.log(fecha_formato_DDMMYY)
+    let fecha=(parametro.toString().split(" ")[2]+parametro.toString().split(" ")[1]+parametro.toString().split(" ")[3])
+    console.log(fecha)
+    
   }
   const [datos_A_Graficar, setDatos_A_Graficar] = useState();
   const [productosMasVendidos, setProductosMasVendidos] = useState();
