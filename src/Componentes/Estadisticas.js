@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import { addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { useMediaQuery } from 'react-responsive';
-import { format } from "date-fns";
+
 import FilaEstadisticas_ProductosMasVendidos from "./filaEstadisticas_ProductosMasVendidos";
 import UserContext from "../UserContext/UserContext";
 import { useContext } from "react";
@@ -52,35 +52,44 @@ function Estadisticas() {
   const [totalVenta_Efectivo, setTotalVenta_Efectivo] = useState("");
 
   const [startDate, setStartDate] = useState(new Date());
-  const toggleSetStartDate= (parametro) =>{
-    let fecha=(parametro.toString().split(" ")[2]+parametro.toString().split(" ")[1]+parametro.toString().split(" ")[3])
-    console.log(fecha)
-    
-  }
+  
   const [datos_A_Graficar, setDatos_A_Graficar] = useState();
   const [productosMasVendidos, setProductosMasVendidos] = useState();
  async function funcionObtenerInformacionBaseDatos(){
    
-  const totalVentaDia = 0;
-  const totalTarjeta = 30;
-  const totalEfectivo = totalVentaDia - totalTarjeta;
+  let totalVentaDia = 0;
+  let totalTarjeta = 0;
+  let totalEfectivo = 0
 
-  const urlVentas =
-    "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
+  const urlVentas ="https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
   const response = await fetch(urlVentas);
   const data = await response.json();
   console.log(data)
+
   for (let x = 0; x < data.length; x++) {
-    if (startDate == data.fecha) {
-
-      totalVentaDia+=data.total
-
+    console.log("HOLAAAA");
+    if (startDate === data[x].fecha) {
+      totalVentaDia+=data[x].total
+      if(data[x].metodo_pago === "Efectivo"){
+        totalEfectivo+=data[x].total
+      }
+      else if(data[x].metodo_pago === "Tarjeta"){
+        totalTarjeta+=data[x].total
+      }
     }
   }
+  console.log(totalVentaDia)
+  console.log(totalEfectivo)
+  console.log(totalTarjeta)
 
-   
 
+// HAY QUE HACER UN GET DE TODAS LAS VENTAS CULIAS Y ORDENARLAS POR FECHA DONDE LA ULTIMA FECHA SERA LA ACTUAL Y LAS DEMAS 
+// SERAN LOS DIAS ANTERIORES
+//data[length-1].fecha = fecha actual
+// data[length-2].fecha y asi    
+//                                        anteayer  ayer   HOY
     const datosRecibidos = [800, 515, 651, 239, 658, 557, 758];
+                            //DATA DE LOS DISTINTOS DIAS.... EL ULTIMO DATO DEBE SER DE LA DATA DEL DIA ACTUAL Y LOS DEMAS DE UN DIA MENOS CONSCTUVIAMENTE
                             //El dia seleccionado
 
     const productosMasVendidos = [
@@ -192,8 +201,9 @@ function Estadisticas() {
                     <DatePicker
                       className="algo"
                       maxDate={addDays(new Date(), 0)}
+                      dateFormat="dd/MM/yyyy"
                       selected={startDate}
-                      onChange={(date) => toggleSetStartDate(date)}
+                      onChange={(date) => setStartDate(date)}
                     />{" "}
                   </div>
                 </div>
