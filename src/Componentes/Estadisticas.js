@@ -61,7 +61,7 @@ function Estadisticas() {
 
 
     const formattedDate = convertDate(startDate);
-    let variableFecha_Graficos = 0
+    
 
     for (let x = 0; x < data.length; x++) {
       if (formattedDate === data[x].fecha) {
@@ -93,9 +93,11 @@ function Estadisticas() {
         contenedor_ventas_negocio.push(objeto);
       }
     }
-    console.log(contenedor_ventas_negocio)
+    
+    let variableFecha_Graficos = 0
+    console.log(Date.parse(contenedor_ventas_negocio[0].fecha), contenedor_ventas_negocio[0].fecha)
 
-    console.log(variableFecha_Graficos)
+
     const datosRecibidos = [800, 515, 651, 239, 658, 557, data[variableFecha_Graficos].total];
     //El dia seleccionado
 
