@@ -324,6 +324,7 @@ const Ventas = () => {
       alert("Indique datos validos para la venta");
     }
   };
+  
   async function functionDetalleVenta(lista_DatosVentaFinalizada){
     const urlVentas = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
     const response = await fetch(urlVentas)
@@ -337,7 +338,7 @@ const Ventas = () => {
       const itemBoleta={
         "cantidad": lista_DatosVentaFinalizada[0][x].cantidadVendida,
         "precio": lista_DatosVentaFinalizada[0][x].precio_venta,
-        "producto_id": lista_DatosVentaFinalizada[0][x].id_producto,
+        "id_producto": lista_DatosVentaFinalizada[0][x].id_producto,
         "venta_id": data[data.length-1].id,
       }
       boletaVenta.push(itemBoleta)
