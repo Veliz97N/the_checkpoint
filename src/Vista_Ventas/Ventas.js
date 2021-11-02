@@ -10,11 +10,11 @@ import { useMediaQuery } from "react-responsive";
 const Ventas = () => {
   //LAS VARIABLES IMPORTANTES DEL FORMULARIO SON: La lista listaProductosFiltrado, Cantidad y Precio.. Si los 3 son distintos de cero
 
-  const { productos } = useContext(UserContext);
+  const { productos } = useContext(UserContext); //productos si cuenta con el stock 
   const isChiquito = useMediaQuery({
     query: "(max-width: 770px)",
   });
-
+  
   const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0");
 
   const handleAddrTypeChange = (e) => {
@@ -133,28 +133,56 @@ const Ventas = () => {
   const [productoValido, setProductoValido] = useState(false);
 
   const FuncionVerificarSiProductoCoincide = (productoNuevo) => {
+    let productoValido = false;
+
     listaProductos_A_Boleta.map((producto, index) => {
       if (producto.nombre === productoNuevo.nombre) {
-        const nueva_Lista_A_Boleta = [...listaProductos_A_Boleta];
-        setIndiceAEliminar(index)
-        const nueva_Cantidad =
+
+        if (
           parseInt(producto.cantidadVendida) +
-          parseInt(productoNuevo.cantidadVendida);
-        const nuevo_valor =
-          parseInt(producto.precio_venta) + parseInt(productoNuevo.precio_venta);
-        const nuevo_producto = {
-          nombre: producto.nombre,
-          codigo_barras: producto.codigo_barras,
-          categoria: producto.categoria,
-          cantidadVendida: nueva_Cantidad,
-          precio_venta: nuevo_valor,
-        };
-        
-        nueva_Lista_A_Boleta.splice(index,1,nuevo_producto)    
-        console.log("hola, nuevo producto", nuevo_producto,"hola nueva lista", nueva_Lista_A_Boleta);
-        setListaProductos_A_Boleta(nueva_Lista_A_Boleta)
-        console.log("boleta final", nueva_Lista_A_Boleta);
+            parseInt(productoNuevo.cantidadVendida) <=
+          listaProductosFiltrado[0].stock
+        ) {
+          console.log("eNTRE?");
+          productoValido = true;
+          const nueva_Lista_A_Boleta = [...listaProductos_A_Boleta];
+          setIndiceAEliminar(index);
+          const nueva_Cantidad =
+            parseInt(producto.cantidadVendida) +
+            parseInt(productoNuevo.cantidadVendida);
+
+          const nuevo_valor =
+            parseInt(producto.precio_venta) +
+            parseInt(productoNuevo.precio_venta);
+          const nuevo_producto = {
+            nombre: producto.nombre,
+            codigo_barras: producto.codigo_barras,
+            categoria: producto.categoria_id,
+            cantidadVendida: nueva_Cantidad,
+            precio_venta: nuevo_valor,
+          };
+
+          nueva_Lista_A_Boleta.splice(index, 1, nuevo_producto);
+         
+          setListaProductos_A_Boleta(nueva_Lista_A_Boleta);
+
+          console.log("boleta final", nueva_Lista_A_Boleta);
+
+          setProductoValido(true);
+        } 
+
+        else if (
+          parseInt(producto.cantidadVendida) +
+            parseInt(productoNuevo.cantidadVendida) >
+          listaProductosFiltrado[0].stock
+        ) {
+          console.log("Entre a esta mierdadaaaa");
+          productoValido = false;
+          setProductoValido(false);
+          alert("No hay suficientes productos dispnibles");
+        }
       }
+      
     });
   };
 
@@ -162,7 +190,8 @@ const Ventas = () => {
     e.preventDefault();
 
     let productoValido = false;
-
+    
+    
     if (
       listaProductosFiltrado.length >= 1 &&
       cantidad !== "" &&
@@ -170,20 +199,29 @@ const Ventas = () => {
     ) {
       productoValido = true;
     }
+    if(listaProductosFiltrado.stock>=cantidad){
+      productoValido = true;
+    }
+    else if(listaProductosFiltrado[0].stock<cantidad){
+      productoValido = false;
+      alert("El producto no posee el stock necesario para realizar esta venta")
+    }
 
     if (productoValido === true) {
       console.log("Los datos de la venta son validos");
-      const productoVendido = {
+      const productoVendido = { // tu nos interesas para pasarlo al POST 😀
         nombre: listaProductosFiltrado[0].nombre, //Esto hay que hacerlo un array de objetos
         codigo_barras: listaProductosFiltrado[0].codigo_barras,
-        categoria: listaProductosFiltrado[0].categoria,
+        categoria: listaProductosFiltrado[0].categoria_id,
         cantidadVendida: cantidad,
         precio_venta: valorVentaProducto,
       };
 
-      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
       FuncionVerificarSiProductoCoincide(productoVendido)
-      setProductoValido(true);
+
+
+      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]); //ESTOS SON TODOS LOS PRODUCTOS QUE VAN A BOLETA... POST DETALLE VENTA
+      
     } else if (productoValido == false) {
       setProductoValido(false);
     }
@@ -397,9 +435,7 @@ const Ventas = () => {
                     <th className="py-3" scope="col">
                       Codigo de Barras
                     </th>
-                    <th className="py-3" scope="col">
-                      Categoria
-                    </th>
+                    
                     <th className="py-3" scope="col">
                       Cantidad
                     </th>
