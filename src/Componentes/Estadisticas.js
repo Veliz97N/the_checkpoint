@@ -59,23 +59,21 @@ function Estadisticas() {
     const response = await fetch(urlVentas);
     const data = await response.json();
 
-
     const formattedDate = convertDate(startDate);
-    
 
     for (let x = 0; x < data.length; x++) {
       if (formattedDate === data[x].fecha) {
         totalVentaDia += data[x].total;
         console.log(totalVentaDia);
-        if (data[x].metodo_pago === "Tarjeta"){
-          totalTarjeta += data[x].total
-        } else if (data[x].metodo_pago === "Efectivo"){
-          totalEfectivo = totalVentaDia - totalTarjeta
+        if (data[x].metodo_pago === "Tarjeta") {
+          totalTarjeta += data[x].total;
+        } else if (data[x].metodo_pago === "Efectivo") {
+          totalEfectivo = totalVentaDia - totalTarjeta;
         }
       }
     }
 
-    let contenedor_ventas_negocio=[]
+    let contenedor_ventas_negocio = [];
     for (let x = 0; x < data.length; x++) {
       let contador = 0;
       let objeto = { fecha: data[x].fecha, total: data[x].total };
@@ -86,19 +84,38 @@ function Estadisticas() {
       }
       if (contador === 0) {
         for (let y = x + 1; y < data.length; y++) {
-          if (data[x].fecha == data[y].fecha) {
+          if (data[x].fecha === data[y].fecha) {
             objeto.total += data[y].total;
           }
         }
         contenedor_ventas_negocio.push(objeto);
       }
     }
-    
-    let variableFecha_Graficos = 0
-    console.log(Date.parse(contenedor_ventas_negocio[0].fecha), contenedor_ventas_negocio[0].fecha)
 
+    var dateString = contenedor_ventas_negocio[0].fecha; // 01/11/21
 
-    const datosRecibidos = [800, 515, 651, 239, 658, 557, data[variableFecha_Graficos].total];
+    var dateParts = dateString.split("/");
+
+    // month is 0-based, that's why we need dataParts[1] - 1
+    var dateObject = new Date(+dateParts[2], dateParts[1] - 1, + dateParts[0]);
+
+    let fechaString = dateObject.toString();
+
+    let variableFecha_Graficos = 0;
+    console.log(
+      fechaString, "fecha string",
+      contenedor_ventas_negocio[0].fecha
+    );
+
+    const datosRecibidos = [
+      800,
+      515,
+      651,
+      239,
+      658,
+      557,
+      data[variableFecha_Graficos].total,
+    ];
     //El dia seleccionado
 
     const productosMasVendidos = [
@@ -126,14 +143,14 @@ function Estadisticas() {
     ];
 
     const dias = [
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes",
-    "Sabado",
-    "Domingo",
-  ];
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+      "Domingo",
+    ];
 
     const informacion_Base_Datos = {
       labels: dias,
@@ -161,7 +178,6 @@ function Estadisticas() {
     setTotalVenta_Efectivo(totalVentadia_Efectivo);
     setDatos_A_Graficar(informacion_Base_Datos);
     setProductosMasVendidos(productosMasVendidos);
-    console.log(productosMasVendidos);
   }
 
   useEffect(() => {
