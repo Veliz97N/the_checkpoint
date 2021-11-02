@@ -132,17 +132,20 @@ const Ventas = () => {
 
   const [productoValido, setProductoValido] = useState(false);
 
-  const FuncionVerificarSiProductoCoincide = (productoNuevo) => {
-    let productoValido = false;
+  const FuncionVerificarSiProductoCoincide = (productoNuevo,productoVendido) => {
+    let productoValido= false
+    let contador = 0
+    let lista_auxiliar = [...listaProductos_A_Boleta];
+    lista_auxiliar.map((producto, index) => {
 
-    listaProductos_A_Boleta.map((producto, index) => {
-      if (producto.nombre === productoNuevo.nombre) {
-
+      if (producto.nombre === productoNuevo.nombre ) {
+        console.log("Entre con"+ producto.nombre)
         if (
           parseInt(producto.cantidadVendida) +
             parseInt(productoNuevo.cantidadVendida) <=
           listaProductosFiltrado[0].stock
         ) {
+
           console.log("eNTRE?");
           productoValido = true;
           const nueva_Lista_A_Boleta = [...listaProductos_A_Boleta];
@@ -157,10 +160,11 @@ const Ventas = () => {
           const nuevo_producto = {
             nombre: producto.nombre,
             codigo_barras: producto.codigo_barras,
-            categoria: producto.categoria_id,
+            categoria: producto.categoria,
             cantidadVendida: nueva_Cantidad,
             precio_venta: nuevo_valor,
           };
+          if(productoValido){
 
           nueva_Lista_A_Boleta.splice(index, 1, nuevo_producto);
          
@@ -169,6 +173,8 @@ const Ventas = () => {
           console.log("boleta final", nueva_Lista_A_Boleta);
 
           setProductoValido(true);
+          
+        }
         } 
 
         else if (
@@ -181,10 +187,17 @@ const Ventas = () => {
           setProductoValido(false);
           alert("No hay suficientes productos dispnibles");
         }
+        contador+=1
+        console.log(contador)
+      }
+      else if(contador===0){
+        console.log(contador)
+        console.log("ACA NO DEBERIA ENTRAR PAPI")
+        setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
       }
       
     });
-  };
+  }
 
   const FuncionValidarFormulario = (e) => {
     e.preventDefault();
@@ -208,7 +221,6 @@ const Ventas = () => {
     }
 
     if (productoValido === true) {
-      console.log("Los datos de la venta son validos");
       const productoVendido = { // tu nos interesas para pasarlo al POST 😀
         nombre: listaProductosFiltrado[0].nombre, //Esto hay que hacerlo un array de objetos
         codigo_barras: listaProductosFiltrado[0].codigo_barras,
@@ -216,11 +228,17 @@ const Ventas = () => {
         cantidadVendida: cantidad,
         precio_venta: valorVentaProducto,
       };
+      console.log("ACA ESTA EL PROBLEMA")
 
-      FuncionVerificarSiProductoCoincide(productoVendido)
 
+      if(listaProductos_A_Boleta.length===0){
+      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
+    }
 
-      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]); //ESTOS SON TODOS LOS PRODUCTOS QUE VAN A BOLETA... POST DETALLE VENTA
+    else{
+      FuncionVerificarSiProductoCoincide(productoVendido,productoVendido)
+    }
+       //ESTOS SON TODOS LOS PRODUCTOS QUE VAN A BOLETA... POST DETALLE VENTA
       
     } else if (productoValido == false) {
       setProductoValido(false);
