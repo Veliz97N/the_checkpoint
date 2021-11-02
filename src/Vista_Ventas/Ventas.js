@@ -576,7 +576,7 @@ const Ventas = () => {
                     type="radio"
                     id="check_paymentMethod_Visa"
                     name="radio_payment"
-                    value="visa"
+                    value="Tarjeta"
                   />
                   <i class="fab fa-cc-visa text-white fa-2x"></i>
                 </div>

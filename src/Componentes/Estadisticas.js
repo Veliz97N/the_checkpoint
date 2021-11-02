@@ -14,16 +14,6 @@ import { useContext } from "react";
 function Estadisticas() {
   const { user } = useContext(UserContext);
 
-  const dias = [
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes",
-    "Sabado",
-    "Domingo",
-  ];
-
   const convertDate = (str) => {
     str = str.toString();
     let parts = str.split(" ");
@@ -58,37 +48,6 @@ function Estadisticas() {
 
   const [datos_A_Graficar, setDatos_A_Graficar] = useState();
   const [productosMasVendidos, setProductosMasVendidos] = useState();
-<<<<<<< HEAD
- async function funcionObtenerInformacionBaseDatos(){
-   
-  let totalVentaDia = 0;
-  let totalTarjeta = 0;
-  let totalEfectivo = 0
-
-  const urlVentas ="https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
-  const response = await fetch(urlVentas);
-  const data = await response.json();
-  console.log(data)
-
-  for (let x = 0; x < data.length; x++) {
-    console.log(startDate)
-    console.log(data[x].fecha)
-    if (startDate === data[x].fecha) {
-      
-      totalVentaDia+=data[x].total
-      if(data[x].metodo_pago === "Efectivo"){
-        totalEfectivo+=data[x].total
-      }
-      else if(data[x].metodo_pago === "Tarjeta"){
-        totalTarjeta+=data[x].total
-      }
-    }
-  }
-  console.log(totalVentaDia)
-  console.log(totalEfectivo)
-  console.log(totalTarjeta)
-
-=======
 
   async function funcionObtenerInformacionBaseDatos() {
     let totalVentaDia = 0;
@@ -100,36 +59,45 @@ function Estadisticas() {
     const response = await fetch(urlVentas);
     const data = await response.json();
 
-    console.log("esta es la data de ventas", data);
+
     const formattedDate = convertDate(startDate);
-    console.log(formattedDate, "fecha formateada perriii");
-    console.log(data[0].fecha);
+    let variableFecha_Graficos = 0
+
     for (let x = 0; x < data.length; x++) {
       if (formattedDate === data[x].fecha) {
-        console.log("HOLAAAA", data.length);
         totalVentaDia += data[x].total;
         console.log(totalVentaDia);
-        if (data[x].metodo_pago === "visa"){
+        if (data[x].metodo_pago === "Tarjeta"){
           totalTarjeta += data[x].total
         } else if (data[x].metodo_pago === "Efectivo"){
           totalEfectivo = totalVentaDia - totalTarjeta
         }
       }
     }
->>>>>>> 0bec8327bfec3da18bfeed88837e9e55aa8a4fa7
 
-// HAY QUE HACER UN GET DE TODAS LAS VENTAS CULIAS Y ORDENARLAS POR FECHA DONDE LA ULTIMA FECHA SERA LA ACTUAL Y LAS DEMAS 
-// SERAN LOS DIAS ANTERIORES
-//data[length-1].fecha = fecha actual
-// data[length-2].fecha y asi    
-//                                        anteayer  ayer   HOY
-    const datosRecibidos = [800, 515, 651, 239, 658, 557, 758];
-<<<<<<< HEAD
-                            //DATA DE LOS DISTINTOS DIAS.... EL ULTIMO DATO DEBE SER DE LA DATA DEL DIA ACTUAL Y LOS DEMAS DE UN DIA MENOS CONSCTUVIAMENTE
-                            //El dia seleccionado
-=======
+    let contenedor_ventas_negocio=[]
+    for (let x = 0; x < data.length; x++) {
+      let contador = 0;
+      let objeto = { fecha: data[x].fecha, total: data[x].total };
+      for (let z = 0; z < contenedor_ventas_negocio.length; z++) {
+        if (data[x].fecha === contenedor_ventas_negocio[z].fecha) {
+          contador += 1;
+        }
+      }
+      if (contador === 0) {
+        for (let y = x + 1; y < data.length; y++) {
+          if (data[x].fecha == data[y].fecha) {
+            objeto.total += data[y].total;
+          }
+        }
+        contenedor_ventas_negocio.push(objeto);
+      }
+    }
+    console.log(contenedor_ventas_negocio)
+
+    console.log(variableFecha_Graficos)
+    const datosRecibidos = [800, 515, 651, 239, 658, 557, data[variableFecha_Graficos].total];
     //El dia seleccionado
->>>>>>> 0bec8327bfec3da18bfeed88837e9e55aa8a4fa7
 
     const productosMasVendidos = [
       {
@@ -155,7 +123,15 @@ function Estadisticas() {
       },
     ];
 
-    //Fetch
+    const dias = [
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado",
+    "Domingo",
+  ];
 
     const informacion_Base_Datos = {
       labels: dias,
