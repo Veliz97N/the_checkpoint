@@ -67,8 +67,10 @@ function Estadisticas() {
   console.log(data)
 
   for (let x = 0; x < data.length; x++) {
-    console.log("HOLAAAA");
+    console.log(startDate)
+    console.log(data[x].fecha)
     if (startDate === data[x].fecha) {
+      
       totalVentaDia+=data[x].total
       if(data[x].metodo_pago === "Efectivo"){
         totalEfectivo+=data[x].total
