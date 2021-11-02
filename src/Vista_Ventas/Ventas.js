@@ -10,7 +10,7 @@ import { useMediaQuery } from "react-responsive";
 const Ventas = () => {
   //LAS VARIABLES IMPORTANTES DEL FORMULARIO SON: La lista listaProductosFiltrado, Cantidad y Precio.. Si los 3 son distintos de cero
 
-  const { productos } = useContext(UserContext); //productos si cuenta con el stock 
+  const { productos,user } = useContext(UserContext); //productos si cuenta con el stock 
   const isChiquito = useMediaQuery({
     query: "(max-width: 770px)",
   });
@@ -185,14 +185,14 @@ const Ventas = () => {
           console.log("Entre a esta mierdadaaaa");
           productoValido = false;
           setProductoValido(false);
-          alert("No hay suficientes productos dispnibles");
+          alert("No hay suficientes productos disponibles");
         }
         contador+=1
         console.log(contador)
       }
       else if(contador===0){
-        console.log(contador)
-        console.log("ACA NO DEBERIA ENTRAR PAPI")
+
+
         setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
       }
       
@@ -232,7 +232,7 @@ const Ventas = () => {
 
 
       if(listaProductos_A_Boleta.length===0){
-      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
+      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);      
     }
 
     else{
@@ -243,7 +243,11 @@ const Ventas = () => {
     } else if (productoValido == false) {
       setProductoValido(false);
     }
+    
   };
+
+  
+
   const FuncionEliminarDatosProductosBoleta = () => {
     setCantidad("");
     setValorVentaProducto("");
@@ -299,6 +303,11 @@ const Ventas = () => {
       ];
       console.log(lista_DatosVentaFinalizada);
       alert("Venta Existosa");
+      
+      
+      
+      functionPostVenta(lista_DatosVentaFinalizada)
+      functionDetalleVenta(lista_DatosVentaFinalizada)
 
       //ACA HAY QUE SETEAR TODO EN CERO
       setValor_busqueda_producto("");
@@ -313,6 +322,50 @@ const Ventas = () => {
       alert("Indique datos validos para la venta");
     }
   };
+  async function functionDetalleVenta(lista_DatosVentaFinalizada){
+    const urlVentas = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
+    const response = await fetch(urlVentas)
+    const data = await response.json()
+    console.log("aca va el id de la venta ql")
+    
+    console.log(data[data.length-1].id);
+
+    const boletaVenta=[]
+    for(let x=0; x<lista_DatosVentaFinalizada[0].length;x++){
+      const itemBoleta={
+        "cantidad": lista_DatosVentaFinalizada[0][x].cantidadVendida,
+        "precio": lista_DatosVentaFinalizada[0][x].precio_venta,
+        "producto_id": "NO LO TEEEEEENGO",
+        "venta_id": data[data.length-1].id,
+      }
+      boletaVenta.push(itemBoleta)
+    }
+    
+    console.log(boletaVenta)
+
+  }
+  
+  async function functionPostVenta(lista_DatosVentaFinalizada){
+    let venta = {fecha: "01/11/21",
+    id_usuario: user.id,
+    impuesto: 100.0,
+    numero_comprobante: "1",
+    tipo_comprobante: "Real",
+    metodo_pago:lista_DatosVentaFinalizada[2],
+    total: lista_DatosVentaFinalizada[1]}
+
+    console.log(venta)
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(venta),
+    };
+    const urlVentas = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
+    const response = await fetch(urlVentas, requestOptions)
+    const data = await response.json()
+    console.log(data);
+  }
+
   const handler_CancelarVenta = () => {
     //ACA HAY QUE SETEAR TODO EN CERO
     setValor_busqueda_producto("");
