@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import { addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { useMediaQuery } from 'react-responsive';
-import { format } from "date-fns";
+
 import FilaEstadisticas_ProductosMasVendidos from "./filaEstadisticas_ProductosMasVendidos";
 import UserContext from "../UserContext/UserContext";
 import { useContext } from "react";
@@ -52,18 +52,14 @@ function Estadisticas() {
   const [totalVenta_Efectivo, setTotalVenta_Efectivo] = useState("");
 
   const [startDate, setStartDate] = useState(new Date());
-  const toggleSetStartDate= (parametro) =>{
-    console.log(parametro.toString().split(" "))
-    // let fecha_formato_DDMMYY= parametro.toString().split("/")
-    // console.log(fecha_formato_DDMMYY)
-  }
+  
   const [datos_A_Graficar, setDatos_A_Graficar] = useState();
   const [productosMasVendidos, setProductosMasVendidos] = useState();
  async function funcionObtenerInformacionBaseDatos(){
    
-  const totalVentaDia = 0;
-  const totalTarjeta = 30;
-  const totalEfectivo = totalVentaDia - totalTarjeta;
+  let totalVentaDia = 0;
+  let totalTarjeta = 30;
+  let totalEfectivo = totalVentaDia - totalTarjeta;
 
   const urlVentas =
     "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
@@ -71,9 +67,10 @@ function Estadisticas() {
   const data = await response.json();
   console.log(data)
   for (let x = 0; x < data.length; x++) {
-    if (startDate == data.fecha) {
-
+    console.log("HOLAAAA");
+    if (startDate === data.fecha) {
       totalVentaDia+=data.total
+      console.log(totalVentaDia);
 
     }
   }
@@ -192,8 +189,9 @@ function Estadisticas() {
                     <DatePicker
                       className="algo"
                       maxDate={addDays(new Date(), 0)}
+                      dateFormat="dd/MM/yyyy"
                       selected={startDate}
-                      onChange={(date) => toggleSetStartDate(date)}
+                      onChange={(date) => setStartDate(date)}
                     />{" "}
                   </div>
                 </div>
