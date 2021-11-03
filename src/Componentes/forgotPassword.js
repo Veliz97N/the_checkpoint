@@ -18,8 +18,8 @@ const forgotPassword = () => {
           <div className=" password-form-username">
             
             <input
-              type="text"
-              placeholder="Ingresa tu nombre de usuario"
+              type="email"
+              placeholder="Ingresa tu correo"
               name="username-input"
               id="username-input"
             //   onChange={}
@@ -29,9 +29,11 @@ const forgotPassword = () => {
           
           {/* Login button */}
           <div className="forgot_password_button">
+            <Link to="/">
             <button className="btn btn-success" type="submit">
               Enviar
             </button>
+            </Link>
           </div>
           <Link to="/">
         <p className="back_to_login">Volver al login</p>
