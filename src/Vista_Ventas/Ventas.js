@@ -338,7 +338,7 @@ const Ventas = () => {
       const itemBoleta={
         "cantidad": lista_DatosVentaFinalizada[0][x].cantidadVendida,
         "precio": lista_DatosVentaFinalizada[0][x].precio_venta,
-        "id_producto": lista_DatosVentaFinalizada[0][x].id_producto,
+        "producto_id": lista_DatosVentaFinalizada[0][x].id_producto,
         "venta_id": data[data.length-1].id,
       }
       boletaVenta.push(itemBoleta)
@@ -363,7 +363,31 @@ const Ventas = () => {
   }
   
   async function functionPostVenta(lista_DatosVentaFinalizada){
-    let venta = {fecha: "01/11/21",
+    
+    let date = new Date();
+
+    let day = date.getDate();
+    let dia=""
+    let month = date.getMonth() + 1;
+    let mes=""
+    let year = date.getFullYear().toString().slice(-2);
+
+    if (month < 10) {
+     mes = `0${month}`;
+    }
+    else{
+      mes=`${month}`
+    }
+    if(day<10){
+     dia = `0${day}`;
+    }
+    else{
+      dia = `${day}`;
+    }
+    let venta_fecha=""
+    venta_fecha=(`${dia}/${mes}/${year}`)
+
+    let venta = {fecha:  venta_fecha,
     id_usuario: user.id,
     impuesto: 100.0,
     numero_comprobante: "1",

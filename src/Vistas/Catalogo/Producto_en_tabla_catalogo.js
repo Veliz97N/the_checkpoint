@@ -56,27 +56,24 @@ const Producto_en_tabla_catalogo = (props) => {
                 categoria_nombre=categoria.nombre_cat
             }
         })
-        const informacion = {nombreProducto: props.producto.nombre,
-                            codigodebarras: props.producto.codigo_barras,
-                            categoria: props.producto.categoria_id,
+        let informacion = {
                             categoria_nombre:categoria_nombre,
-                            valorUnidad: props.producto.precio_venta,
-                            stockDisponible: props.producto.stock,
-                            id:props.producto.id}
+                            }
         setProducto(informacion)
-        console.log(informacion)
-    },[])
+    },[producto])
 
     return (
         <tr onMouseOver={() => setIsShow(true)}
             onMouseLeave={() => setIsShow(false)}
             style={isShow?activopapi:noactivopapi}
             >
-            <th scope="row">{producto&&producto.nombreProducto}</th>
-            <td >{producto&&producto.codigodebarras}</td>
-            <td>{producto&&producto.categoria_nombre}</td>
-            <td>{producto&&producto.valorUnidad}</td>
-            <td>{producto&&producto.stockDisponible + " unid."} 
+            <th scope="row">{producto&&props.producto.nombre}</th>
+            <td >{producto&&props.producto.codigo_barras}</td>
+            <td>{producto&&
+            producto.categoria_nombre}
+            </td>
+            <td>{producto&&props.producto.precio_venta}</td>
+            <td>{producto&&props.producto.stock + " unid."} 
                 <Link to="/catalogo_modificarproducto" onClick={handler_InformacionProductoModificar}>
                     <AiOutlineEdit className="ms-4" style={isShow ? visibleEditarProductoCategoria : invisibleEditarProductoCategoria} />
                 </Link>
