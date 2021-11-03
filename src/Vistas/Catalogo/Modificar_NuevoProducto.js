@@ -154,6 +154,7 @@ const ModificarProducto = () => {
 
         funcionModificarProducto(productoModificado)
         
+        
     };
     
 
