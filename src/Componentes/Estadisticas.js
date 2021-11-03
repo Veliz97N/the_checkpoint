@@ -94,13 +94,32 @@ function Estadisticas() {
       }
     }
     
+    contenedor_ventas_negocio=(contenedor_ventas_negocio.sort((a, b) => newDateProyecto(a.fecha)-newDateProyecto(b.fecha)))
     let variableFecha_Graficos = 0
-   contenedor_ventas_negocio=(contenedor_ventas_negocio.sort((a, b) => newDateProyecto(a.fecha)-newDateProyecto(b.fecha)))
  
+    for (let x=0;x<contenedor_ventas_negocio.length;x++){
+      if(formattedDate===contenedor_ventas_negocio[x].fecha){
+        console.log("Coincide esta fecha: "+formattedDate + "en la posicion: "+ x)
+        variableFecha_Graficos=x
+      }
+    }
+    console.log(contenedor_ventas_negocio);
 
-
-
-    const datosRecibidos = [800, 515, 651, 239, 658, 557, 800];
+    const cantidad_datos_a_graficar=[6,5,4,3,2,1,0] 
+    let datosRecibidos_total = []
+    let datosRecibidos_fecha=[]
+    for(let x=0;x<cantidad_datos_a_graficar.length;x++){
+      if(typeof contenedor_ventas_negocio[variableFecha_Graficos-x]?.total === 'null' ||  contenedor_ventas_negocio[variableFecha_Graficos-x]?.total  == undefined ){
+        let valor_a_graficar=0
+        datosRecibidos_fecha.push(contenedor_ventas_negocio[variableFecha_Graficos-x]?.fecha)
+        datosRecibidos_total.push(valor_a_graficar)
+      }
+      else{
+        datosRecibidos_fecha.push(contenedor_ventas_negocio[variableFecha_Graficos-x].fecha)
+        datosRecibidos_total.push(contenedor_ventas_negocio[variableFecha_Graficos-x].total)
+      }
+    }
+    
     //El dia seleccionado
 
     const productosMasVendidos = [
@@ -138,7 +157,7 @@ function Estadisticas() {
   ];
 
     const informacion_Base_Datos = {
-      labels: dias,
+      labels: datosRecibidos_fecha.reverse(),
       datasets: [
         {
           label: "Venta Semanal",
@@ -146,7 +165,7 @@ function Estadisticas() {
           textColor: "#000",
           borderWidth: 1,
           hoverBackgroundColor: "#9400D3",
-          data: datosRecibidos,
+          data: datosRecibidos_total.reverse(),
         },
       ],
     };
@@ -163,13 +182,11 @@ function Estadisticas() {
     setTotalVenta_Efectivo(totalVentadia_Efectivo);
     setDatos_A_Graficar(informacion_Base_Datos);
     setProductosMasVendidos(productosMasVendidos);
-    console.log(productosMasVendidos);
   }
 
   function newDateProyecto(d1){
     var parts =d1.split('/');
     var d1 = (parts[2] + parts[1] + parts[0]).toString();
-    console.log(d1)
     return d1
     }
 
