@@ -7,13 +7,13 @@ import UserContext from '../../UserContext/UserContext';
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 import { useMediaQuery } from 'react-responsive';
-import { Fetch } from '../../Fetch';
+import { Fetch, Fetch_productos } from '../../Fetch';
 
 import Layout from '../../Folder_Contenido_General/Layout';
 
 const Catalogo_PaginaPrincipal = () => {
-    const {productos}  = useContext(UserContext);
 
+    const productos = Fetch_productos()
     const noactivopapi = {
         background: "#667ea0",
         transition: "all 0.5s ease;",
@@ -72,6 +72,7 @@ const Catalogo_PaginaPrincipal = () => {
             
             const productoFiltrados = productos.filter(producto => (producto.nombre).toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
+            
         }
         else if(tipoBusqueda==="1" &&valorBusqueda!==""){
             
@@ -100,11 +101,14 @@ const Catalogo_PaginaPrincipal = () => {
 
     return (
         <Layout hasNavbar hasSidebar>
-        {!isChiquito?(<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+        {!isChiquito?
+        
+        (<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
             <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    
             <div style={contenedor_tabla} className="contenedor-tabla py-5 px-3">
+                <div className="contenedor_interno" >
                 <table className="table">
                     <thead className="py-5">
                         <tr className="py-5" style={noactivopapi}>                            
@@ -137,14 +141,19 @@ const Catalogo_PaginaPrincipal = () => {
                             </td>
 
                         </tr>
+                        
                         {   productos&&
                         (listaProductosFiltrado.length >=1 )?listaProductosFiltrado.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)
                         :productos.map(producto =>  <Producto_en_tabla_catalogo  producto={producto}/>)}                        
                         
                     </tbody>
                 </table>
+                </div>
             </div>
-        </div>):(<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
+        </div>):
+        
+        
+        (<div style={Catalogo_PaginaPrincipal} className="Catalogo-PaginaPrincipal">
             <Link className="boton_hacia_IngresarNuevoProducto p-2" to="/catalogo_ingresarnuevoproducto" style={botonIngresarNuevoProducto}>
                           <IoAddCircleOutline style={botonagregarNuevoProducto}/> Agregar Producto
             </Link>                    

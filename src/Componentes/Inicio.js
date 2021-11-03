@@ -1,21 +1,22 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineHome, AiFillHome } from "react-icons/ai"; //Si esta hover, hacer esas caracteristicas
 import { GiBlackBook } from "react-icons/gi"; // catalogo nuevo
-import { RiBankLine, RiBankFill } from "react-icons/ri"; //Ventas
-import { AiOutlineLineChart, AiOutlineAreaChart } from "react-icons/ai"; //Estadisticas
-import { IoSettingsOutline, IoSettingsSharp } from "react-icons/io5";
+import { RiBankLine } from "react-icons/ri"; //Ventas
+import { AiOutlineLineChart } from "react-icons/ai"; //Estadisticas
 import Layout from "../Folder_Contenido_General/Layout";
 import { Redirect } from "react-router-dom";
 import UserContext from "../UserContext/UserContext";
 import { useMediaQuery } from "react-responsive";
-import Tarjeta_Usuario_Activo from '../Folder_SideBar_TopBar/Tarjeta_Usuario_Activo';
+
 
 const Home = (props) => {
+  // const[nombre,setNombre]= useLocalStorage('name',"")
+ 
   const isChiquito = useMediaQuery({
     query: "(max-width: 830px)",
   });
-  const { isLogged, toggleIsLogged, user } = useContext(UserContext);
+  const { isLogged} = useContext(UserContext);
+  
   if (!isLogged) {
     return <Redirect to="/" />;
   } else {
@@ -100,7 +101,7 @@ const Home = (props) => {
                 </div>
                 <div className="col-12" id="text2">
                 <div className=" mx-auto">
-                    {props.user[0].name}
+                    {props.user.username}
                   </div>
                 </div>
               </button>

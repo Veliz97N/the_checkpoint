@@ -1,11 +1,15 @@
-import React,{useState} from 'react'
-import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
-import { GiConfirmed } from "react-icons/gi";
+import React,{useContext, useState} from 'react'
 import Layout from '../../Folder_Contenido_General/Layout';
 import { useMediaQuery } from "react-responsive";
-import { Fetch } from '../../Fetch';
-const IngresarNuevoProducto = () => {
+import UserContext from '../../UserContext/UserContext';
+import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias,Fetch_usuarios2} from '../../Fetch'
 
+import { Link } from 'react-router-dom';
+
+
+const IngresarNuevoProducto = () => {
+  const {categorias_fetch,productos,categorias,toggleSetCategorias,user}  = useContext(UserContext);
+  const [productos_Recargado, setProductos_Recargado] = useState(productos)
     const isChiquito = useMediaQuery({
         query: "(max-width: 577px)",
       });
@@ -60,8 +64,6 @@ const IngresarNuevoProducto = () => {
         setFileUrl(imageUrl)
      }
 
-
-
      const [nombre_nuevoProducto, setNombre_nuevoProducto] = useState('')
      const [categoria_nuevoProducto, setCategoria_nuevoProducto] = useState('')
      const [codigoBarras_nuevoProducto, setCodigoBarras_nuevoProducto] = useState('')
@@ -74,19 +76,125 @@ const IngresarNuevoProducto = () => {
      const [booleano_feliz_valor, setBooleano_feliz_valor]= useState(null)
      const [booleano_feliz_stock,setBooleano_feliz_stock]= useState(null)
 
-     
-     const productos_A_Vender = () => {
-       const arr_de_objetos = {nombre: nombre_nuevoProducto, codigodebarras: codigoBarras_nuevoProducto, categoria: categoria_nuevoProducto,
-                              precioVenta: valor_nuevoProducto, imagen: "", stockDisponible: stock_nuevoProducto}
+  
+    async function funcionPublicarProducto () {
+      if (
+        nombre_nuevoProducto != "" &&
+        nombre_nuevoProducto.length > 2 &&
+        categoria_nuevoProducto != "" &&
+        categoria_nuevoProducto.length > 2 &&
+        codigoBarras_nuevoProducto != "" &&
+        codigoBarras_nuevoProducto.length > 3 &&
+        valor_nuevoProducto != "" &&
+        valor_nuevoProducto.length > 2 &&
+        stock_nuevoProducto != "" &&
+        stock_nuevoProducto.length >= 1
+      ) {
+        console.log("LGTM = Looks Good To Me");
         
+        console.log("Que haga el POST dice....");
+        let contador_existencias = 0
+        let info_categoria = 0
+        for (let x = 0; x < categorias.length; x++) {
+          //ACA VEO SI LA CATEGORIA INGRESADA YA EXISTE EN CATEGORIAS O SI DEBO CREAR UNA NUEVA
+          if (categorias[x].nombre_cat === categoria_nuevoProducto) {
+            contador_existencias +=1
+            info_categoria = {id_categoria: categorias[x].id, nombre_categoria:categorias[x].nombre_cat}
+            if(info_categoria.id_categoria===""){
+              info_categoria.id_categoria= (categorias[(categorias.length-2)].id_categoria)+1
+            }
+            console.log(info_categoria)
+        }
       }
 
-     
+      let existe = {codigo_barras: false, nombre_producto: false}
+              for(let x=0; x< productos_Recargado.length; x++){
+                if(codigoBarras_nuevoProducto === productos_Recargado[x].codigo_barras){ //😍
+                  existe.codigo_barras=true
+                }
+                if(nombre_nuevoProducto === productos_Recargado[x].nombre){
+                  existe.nombre_producto= true
+                }
+              }
 
-     //const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
+      if(existe.codigo_barras ===false && existe.nombre_producto === false){
+      const nuevo_Producto = {
+        codigo_barras: codigoBarras_nuevoProducto, 
+        costo_compra:"600",
+        factura_proveedor:"800",
+        fecha_ingreso:"25/10/2021",
+        categoria_id:info_categoria.id_categoria, //ACA HAY QUE VER QUE PASA SI NO EXISTE LA CATEGORIA, DEBEMOS AGREGAR UNA CATEGORIA_ID mayor en 1 unidad
+        //AL MAYOR VALOR EXISTENTE ACTUALMENTE EN EL ARRAY DE CATEGORIAS
+        image: "", 
+        nombre: nombre_nuevoProducto, 
+        precio_venta: valor_nuevoProducto, 
+        stock: stock_nuevoProducto}
+
+
+        if (contador_existencias >=1) {
+          console.log(nuevo_Producto)
+          //CREAR EL PRODUCTO CON EL ID DE CATEGORIA RESCATADO EN EXISTE.id
+          const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevo_Producto),
+          };
+          const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos";
+            const response = await fetch(urlProducto, requestOptions)
+            const data = await response.json()
+            console.log(data, nuevo_Producto);
+        }
+
+
+       else { //SI LA CATEGORIA NO EXISTE, DEBEMOS CREARLA.. EL ID RESULTANTE DE LA CATEGORIA SERA IGUAL A EL 
+        // MAYOR ID_CATEGORIA + 1 EXISTENTE EN EL ARRAY DE CATEGORIAS, por tanto para crear el producto debemos asignarle el 
+        //categoria_id= categoria_id_maximo+1
+        
+        const nueva_categoria = {
+          descripcion_cat: "Nueva Categoria: " + categoria_nuevoProducto,
+          nombre_cat: categoria_nuevoProducto,
+        };
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nueva_categoria),
+        };
+
+        const urlcategoria = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/categoria";
+        const response = await fetch(urlcategoria, requestOptions)
+        const data = await response.json()
+        console.log(data, nueva_categoria);
+
+        const categorias_incluyendo_nuevas = [...categorias,nueva_categoria]
+        toggleSetCategorias(categorias_incluyendo_nuevas)
+
+        const requestOptionsProductos = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nuevo_Producto),
+        };
+        const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos";
+          const responseProductos = await fetch(urlProducto, requestOptionsProductos)
+          const dataProductos = await responseProductos.json()
+          console.log(dataProductos, nuevo_Producto);
+     }
+     const urlProducto = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/productos";
+     const response = await fetch(urlProducto)
+     const dataProductos = await response.json()
+     setProductos_Recargado(dataProductos)
+
+
+
+     
+    }
+    else{
+      alert("El producto ya existe en la base de datos del negocio")
+    }
+  }
+    };
+         
      const FuncionValidarFormulario = (e) => {
          e.preventDefault();
- 
          if(nombre_nuevoProducto !='' && nombre_nuevoProducto.length>2 ){ //Falta que solo acepte letras y no numeros
             setBooleano_feliz_producto(true)
          } 
@@ -121,22 +229,18 @@ const IngresarNuevoProducto = () => {
          else{
             setBooleano_feliz_stock(false)
          }
- 
-        if (booleano_feliz_producto && booleano_feliz_categoria && booleano_feliz_codigoBarra && booleano_feliz_valor && booleano_feliz_stock) {
-
-            console.log("LGTM = Looks Good To Me")
-            //ACA HAREMOS EL POST DEL NUEVO USUARIO PAPI
-            console.log("Que haga el POST dice....")
-        }
-
-    }
-
+         funcionPublicarProducto()
+         
+        
+         }
 
     return (
       <Layout hasNavbar hasSidebar>
-        {!isChiquito ? (
+        {parseInt(user.role_id)!==1 ? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+        :
+        !isChiquito ? (
           <div className="ingresarNuevoProducto">
-            <div className="row">
+            <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                 <div className="titulo col-6 py-2 d-flex justify-content-center">
                   {titulo.nuevo}
@@ -144,7 +248,7 @@ const IngresarNuevoProducto = () => {
               </div>
             </div>
             <form>
-              <div className="row">
+              <div className="alo d-flex">
                 <div className="col-md-7 col-sm-12">
                   <div className="fuera my-2 mb-4">
                     <div className="form-group">
@@ -338,7 +442,7 @@ const IngresarNuevoProducto = () => {
                   </div>
                 </div>
 
-                <div className="col-md-5 col-sm-12 mt-2 mb-2">
+                <div className="col-md-5 col-sm-12 mt-2 mb-2 ps-3">
                   <div className="ingresar_foto mb-1 ps-2" style={overFlow}>
                     <label
                       style={label_ingresarNuevoProducto}
@@ -361,6 +465,7 @@ const IngresarNuevoProducto = () => {
                     {fileUrl ? (
                       <div style={contenedorfotografia}>
                         <img
+                          alt=""
                           style={imagen_Ingresar_Modificar_Producto}
                           src={fileUrl}
                         />
@@ -373,8 +478,9 @@ const IngresarNuevoProducto = () => {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="alo">
                 <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
+                  <Link to="/catalogo_paginaprincipal">
                   <button
                     onClick={(e) => FuncionValidarFormulario(e)}
                     type="submit"
@@ -382,6 +488,7 @@ const IngresarNuevoProducto = () => {
                   >
                     Crear Nuevo Producto
                   </button>
+                  </Link>
                   <button type="reset" class="btn btn-danger mx-5">
                     Cancelar
                   </button>
@@ -399,7 +506,7 @@ const IngresarNuevoProducto = () => {
 
 
           <div className="ingresarNuevoProducto">
-            <div className="row">
+            <div className="alo">
               <div className="h3 col-12 d-flex justify-content-center py-3 mb-4">
                 <div className="titulo col-12 py-2 d-flex justify-content-center">
                   {titulo.nuevo}
@@ -407,7 +514,7 @@ const IngresarNuevoProducto = () => {
               </div>
             </div>
             <form>
-              <div className="row">
+              <div className="alo">
                 <div className="col-12">
                   <div className="fuera my-2 mb-4">
                     <div className="form-group">
@@ -626,6 +733,7 @@ const IngresarNuevoProducto = () => {
                         <img
                           style={imagen_Ingresar_Modificar_Producto}
                           src={fileUrl}
+                          alt=""
                         />
                       </div>
                     ) : (
@@ -636,7 +744,7 @@ const IngresarNuevoProducto = () => {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="alo">
                 <div className="botonera_AddProducto_O_RemoverProducto d-flex justify-content-center">
                   <button
                     onClick={(e) => FuncionValidarFormulario(e)}

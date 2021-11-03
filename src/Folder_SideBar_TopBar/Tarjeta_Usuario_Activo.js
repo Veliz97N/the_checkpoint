@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
+import useLocalStorage from "../useLocalStorage";
 
 const Tarjeta_Usuario_Activo = (props) => {
   const isChiquito = useMediaQuery({
@@ -33,6 +35,9 @@ const Tarjeta_Usuario_Activo = (props) => {
   const verUsuario = () => {
     console.log(props.user);
   }
+  const functionCerrarTodo = () =>{
+    localStorage.clear()
+  }
 
   return (
     <>
@@ -54,12 +59,10 @@ const Tarjeta_Usuario_Activo = (props) => {
           >
             <div className="datos_usuario me-4 d-flex flex-column my-auto">
               <div className="nombre_usuario mx-auto">
-                {props.user[0].name}
+                {props.user.username}
               </div>
 
-              {/* <div className="permiso_usuario mx-auto">
-                <small className="text-white">{props.user[0].role_id}</small>
-              </div> */}
+        
             </div>
 
             <div className="foto_usuario">
@@ -71,7 +74,7 @@ const Tarjeta_Usuario_Activo = (props) => {
             className="dropdown-menu"
             aria-labelledby="dropdownMenuButton"
           >
-            <Link className="dropdown-item" to="/">
+            <Link className="dropdown-item" to="/" onClick={functionCerrarTodo}>
               Cerrar Sesion
             </Link>
             <Link className="dropdown-item" to="/usuario_crearusuario">

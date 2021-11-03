@@ -10,11 +10,11 @@ import { useMediaQuery } from "react-responsive";
 const Ventas = () => {
   //LAS VARIABLES IMPORTANTES DEL FORMULARIO SON: La lista listaProductosFiltrado, Cantidad y Precio.. Si los 3 son distintos de cero
 
-  const { productos } = useContext(UserContext);
+  const { productos,user } = useContext(UserContext); //productos si cuenta con el stock 
   const isChiquito = useMediaQuery({
     query: "(max-width: 770px)",
   });
-
+  
   const [indiceBuscarElemento, setIndiceBuscarElemento] = useState("0");
 
   const handleAddrTypeChange = (e) => {
@@ -71,7 +71,7 @@ const Ventas = () => {
       if (tipoBusqueda === "0") {
         const producto_A_Vender = productos.filter(
           (producto) =>
-            producto.nombre.toLowerCase() ==
+            producto.nombre.toLowerCase() ===
             valorBusqueda.target.value.toLowerCase()
             //Me recupera un array porque esta haciendo un arrow a cada producto que coincide con el valorBusqueda
         );
@@ -132,37 +132,80 @@ const Ventas = () => {
 
   const [productoValido, setProductoValido] = useState(false);
 
-  const FuncionVerificarSiProductoCoincide = (productoNuevo) => {
-    listaProductos_A_Boleta.map((producto, index) => {
-      if (producto.nombre === productoNuevo.nombre) {
-        const nueva_Lista_A_Boleta = [...listaProductos_A_Boleta];
-        setIndiceAEliminar(index)
-        const nueva_Cantidad =
+  const FuncionVerificarSiProductoCoincide = (productoNuevo,productoVendido) => {
+    let productoValido= false
+    let contador = 0
+    let lista_auxiliar = [...listaProductos_A_Boleta];
+    lista_auxiliar.map((producto, index) => {
+
+      if (producto.nombre === productoNuevo.nombre ) {
+        console.log("Entre con"+ producto.nombre)
+        if (
           parseInt(producto.cantidadVendida) +
-          parseInt(productoNuevo.cantidadVendida);
-        const nuevo_valor =
-          parseInt(producto.precio_venta) + parseInt(productoNuevo.precio_venta);
-        const nuevo_producto = {
-          nombre: producto.nombre,
-          codigo_barras: producto.codigo_barras,
-          categoria: producto.categoria,
-          cantidadVendida: nueva_Cantidad,
-          precio_venta: nuevo_valor,
-        };
-        
-        nueva_Lista_A_Boleta.splice(index,1,nuevo_producto)    
-        console.log("hola, nuevo producto", nuevo_producto,"hola nueva lista", nueva_Lista_A_Boleta);
-        setListaProductos_A_Boleta(nueva_Lista_A_Boleta)
-        console.log("boleta final", nueva_Lista_A_Boleta);
+            parseInt(productoNuevo.cantidadVendida) <=
+          listaProductosFiltrado[0].stock
+        ) {
+
+          console.log("eNTRE?", producto);
+          productoValido = true;
+          const nueva_Lista_A_Boleta = [...listaProductos_A_Boleta];
+          setIndiceAEliminar(index);
+          const nueva_Cantidad =
+            parseInt(producto.cantidadVendida) +
+            parseInt(productoNuevo.cantidadVendida);
+
+          const nuevo_valor =
+            parseInt(producto.precio_venta) +
+            parseInt(productoNuevo.precio_venta);
+          const nuevo_producto = {
+            nombre: producto.nombre,
+            codigo_barras: producto.codigo_barras,
+            categoria: producto.categoria,
+            cantidadVendida: nueva_Cantidad,
+            precio_venta: nuevo_valor,
+            producto_id: producto.id_producto
+          };
+          if(productoValido){
+
+          nueva_Lista_A_Boleta.splice(index, 1, nuevo_producto);
+         
+          setListaProductos_A_Boleta(nueva_Lista_A_Boleta);
+
+          console.log("boleta final", nueva_Lista_A_Boleta);
+
+          setProductoValido(true);
+          
+        }
+        } 
+
+        else if (
+          parseInt(producto.cantidadVendida) +
+            parseInt(productoNuevo.cantidadVendida) >
+          listaProductosFiltrado[0].stock
+        ) {
+          console.log("Entre a esta mierdadaaaa");
+          productoValido = false;
+          setProductoValido(false);
+          alert("No hay suficientes productos disponibles");
+        }
+        contador+=1
+        console.log(contador)
       }
+      else if(contador===0){
+
+
+        setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
+      }
+      
     });
-  };
+  }
 
   const FuncionValidarFormulario = (e) => {
     e.preventDefault();
 
     let productoValido = false;
-
+    
+    
     if (
       listaProductosFiltrado.length >= 1 &&
       cantidad !== "" &&
@@ -170,24 +213,43 @@ const Ventas = () => {
     ) {
       productoValido = true;
     }
+    if(listaProductosFiltrado.stock>=cantidad){
+      productoValido = true;
+    }
+    else if(listaProductosFiltrado[0].stock<cantidad){
+      productoValido = false;
+      alert("El producto no posee el stock necesario para realizar esta venta")
+    }
 
     if (productoValido === true) {
-      console.log("Los datos de la venta son validos");
-      const productoVendido = {
+      const productoVendido = { // tu nos interesas para pasarlo al POST 😀
         nombre: listaProductosFiltrado[0].nombre, //Esto hay que hacerlo un array de objetos
         codigo_barras: listaProductosFiltrado[0].codigo_barras,
-        categoria: listaProductosFiltrado[0].categoria,
+        categoria: listaProductosFiltrado[0].categoria_id,
+        id_producto: listaProductosFiltrado[0].id,
         cantidadVendida: cantidad,
         precio_venta: valorVentaProducto,
       };
+      console.log("ACA ESTA EL PROBLEMA", productoVendido)
 
-      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);
-      FuncionVerificarSiProductoCoincide(productoVendido)
-      setProductoValido(true);
+
+      if(listaProductos_A_Boleta.length===0){
+      setListaProductos_A_Boleta([...listaProductos_A_Boleta, productoVendido]);      
+    }
+
+    else{
+      FuncionVerificarSiProductoCoincide(productoVendido,productoVendido)
+    }
+       //ESTOS SON TODOS LOS PRODUCTOS QUE VAN A BOLETA... POST DETALLE VENTA
+      
     } else if (productoValido == false) {
       setProductoValido(false);
     }
+    
   };
+
+  
+
   const FuncionEliminarDatosProductosBoleta = () => {
     setCantidad("");
     setValorVentaProducto("");
@@ -243,6 +305,11 @@ const Ventas = () => {
       ];
       console.log(lista_DatosVentaFinalizada);
       alert("Venta Existosa");
+      
+      
+      
+      functionPostVenta(lista_DatosVentaFinalizada)
+      functionDetalleVenta(lista_DatosVentaFinalizada)
 
       //ACA HAY QUE SETEAR TODO EN CERO
       setValor_busqueda_producto("");
@@ -257,6 +324,89 @@ const Ventas = () => {
       alert("Indique datos validos para la venta");
     }
   };
+  
+  async function functionDetalleVenta(lista_DatosVentaFinalizada){
+    const urlVentas = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
+    const response = await fetch(urlVentas)
+    const data = await response.json()
+    console.log("aca va el id de la venta ql", lista_DatosVentaFinalizada)
+    
+    console.log(data[data.length-1].id);
+
+    const boletaVenta=[]
+    for(let x=0; x<lista_DatosVentaFinalizada[0].length;x++){
+      const itemBoleta={
+        "cantidad": lista_DatosVentaFinalizada[0][x].cantidadVendida,
+        "precio": lista_DatosVentaFinalizada[0][x].precio_venta,
+        "producto_id": lista_DatosVentaFinalizada[0][x].id_producto,
+        "venta_id": data[data.length-1].id,
+      }
+      boletaVenta.push(itemBoleta)
+    }
+    for(let i=0; i<boletaVenta.length; i++){
+      console.log("BOLETAVENTA[I] ", boletaVenta[i]);
+      const urlDetalleVenta = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/detalleventa"
+      const requestOptions = { //TIENE PROBLEMAS DE CORS NO SE QUE VERGA PERO FUNCIONA
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(boletaVenta[i]),
+      };
+    
+    fetch(urlDetalleVenta, requestOptions)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err)=> console.log(err))
+    }
+    
+    console.log(boletaVenta)
+
+  }
+  
+  async function functionPostVenta(lista_DatosVentaFinalizada){
+    
+    let date = new Date();
+
+    let day = date.getDate();
+    let dia=""
+    let month = date.getMonth() + 1;
+    let mes=""
+    let year = date.getFullYear().toString().slice(-2);
+
+    if (month < 10) {
+     mes = `0${month}`;
+    }
+    else{
+      mes=`${month}`
+    }
+    if(day<10){
+     dia = `0${day}`;
+    }
+    else{
+      dia = `${day}`;
+    }
+    let venta_fecha=""
+    venta_fecha=(`${dia}/${mes}/${year}`)
+
+    let venta = {fecha:  venta_fecha,
+    id_usuario: user.id,
+    impuesto: 100.0,
+    numero_comprobante: "1",
+    tipo_comprobante: "Real",
+    metodo_pago:lista_DatosVentaFinalizada[2],
+    total: lista_DatosVentaFinalizada[1]}
+
+    console.log(venta)
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(venta),
+    };
+    const urlVentas = "https://3000-gray-tiglon-p4zyj6wv.ws-us17.gitpod.io/ventas";
+    const response = await fetch(urlVentas, requestOptions)
+    const data = await response.json()
+    console.log(data);
+  }
+
   const handler_CancelarVenta = () => {
     //ACA HAY QUE SETEAR TODO EN CERO
     setValor_busqueda_producto("");
@@ -276,7 +426,6 @@ const Ventas = () => {
     borderRadius: "25px",
     color: "#fff"
   }
-
   return (
     <Layout hasNavbar hasSidebar>
       <div className="Ventana_Ventas">
@@ -398,9 +547,7 @@ const Ventas = () => {
                     <th className="py-3" scope="col">
                       Codigo de Barras
                     </th>
-                    <th className="py-3" scope="col">
-                      Categoria
-                    </th>
+                    
                     <th className="py-3" scope="col">
                       Cantidad
                     </th>
@@ -453,7 +600,7 @@ const Ventas = () => {
                     type="radio"
                     id="check_paymentMethod_Visa"
                     name="radio_payment"
-                    value="visa"
+                    value="Tarjeta"
                   />
                   <i class="fab fa-cc-visa text-white fa-2x"></i>
                 </div>

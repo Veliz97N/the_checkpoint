@@ -34,7 +34,6 @@ const ProductosVendidosporBoleta = (props) => {
             >
             <th scope="row">{props.producto.nombre}</th>
             <td >{props.producto.codigo_barras}</td>
-            <td>{props.producto.categoria}</td>
             <td>{props.producto.cantidadVendida}</td>
             <td>{"$ "+props.producto.precio_venta} 
                 <button className="eliminar_producto_boleta" onClick={() => props.eliminarProductoDeLaTabla(props.index)}>

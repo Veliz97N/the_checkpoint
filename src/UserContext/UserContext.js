@@ -1,39 +1,50 @@
 import React, { createContext, useState } from 'react';
-import { Fetch_productos, Fetch_usuarios, Fetch_roles } from '../Fetch';
+import { Fetch_productos, Fetch_usuarios, Fetch_roles, Fetch_categorias,Fetch_usuarios2 } from '../Fetch';
+import useLocalStorage from '../useLocalStorage';
 
 const UserContext = createContext();
-
-// const usuario = { nombre:"Juan Carlos", apellido: "Gonzalez",username: "juankaX", password: "juan123", permiso: "Administrador", tema: "Dark", Fuente: { tipo: "Arial", tamaño: 48, titulo_sidebar: true }, isFacebook: false, isGoogle: false }
-// usuario de prueba para otro rol
-// const vendedor_prueba = { nombre: "Camilo", apellido:"Miranda", username: "elCamilo", password: "123456", permiso: "Vendedor", tema: "Happy", Fuente: {tipo: "Times New Roman", tamaño: 48, titulo_sidebar:true}, isFacebook: false, isGoogle: false}
-
-
-// const productos=[{nombreProducto:"Modelo",codigodebarras:"8888888888",categoria:"Cervezas",valorUnidad:"600",imagen:"",stockDisponible:"82"},
-//                 {nombreProducto:"Corona",codigodebarras:"555555555555",categoria:"Cervezas",valorUnidad:"1100",imagen:"",stockDisponible:"82"},
-//                 {nombreProducto:"Papas Fritas",codigodebarras:"444444444",categoria:"Abarrotes",valorUnidad:"1500",imagen:"",stockDisponible:"82"},
-//                 {nombreProducto:"Chocman",codigodebarras:"12312313",categoria:"Abarrotes",valorUnidad:"30",imagen:"",stockDisponible:"82"}]
-
-//Se pasa usuario, productos como variable global para simular la obtencion de la informacion proveniente de la base de datos
 
 
 
 const UserProvider = ({ children }) => {
     const productos = Fetch_productos()
-    const usuario = Fetch_usuarios()
+
+    
+    const [users, setUsers] = useLocalStorage('usuarios_existentes',Fetch_usuarios2())
+    const toggleSetUsuariosExistentes= (parametro) =>{
+        setUsers(parametro)
+    }
+
+    const users_fetch = Fetch_usuarios(toggleSetUsuariosExistentes)
+
+
+
+     
+    const [user, setUser] = useLocalStorage("name","") //🤬no pescar
+    
+    const toggleSetUser=(valorProvenienteLogin)=>{
+        setUser(valorProvenienteLogin)
+        console.log(user)
+    }
+
+    const[categorias,setCategorias]= useLocalStorage('categorias',"")//❌❌
+    const toggleSetCategorias = (parametro) => {//❌❌
+        setCategorias(parametro)
+    }
+    const categorias_fetch = Fetch_categorias(toggleSetCategorias) //❌❌❌
+    
+    
+
+    // const [usuario, setUsuario] = useLocalStorage('name',()=>Fetch_usuarios())
     const role = Fetch_roles()
+    
 
 
+    const [productoSeleccionado, setProductoSeleccionado] = useLocalStorage('productoSeleccionado',"") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
 
-    const [productoSeleccionado, setProductoSeleccionado] = useState("") //ACA ESTA LA WEA SE SETEA A '' CON CADA REFRESH acaaaa
-
-    // const [user, setUser] = useState(usuario)
-    const user = usuario
+    
     const [isDesplegado, setIsDesplegado] = useState(false) 
-    const [isLogged, setIsLogged] = useState(false)
-   
-    // const setUsuario = () => {
-
-    // }
+    const [isLogged, setIsLogged] = useLocalStorage('isLogeado',false)
 
    const [isDarkMode, setIsDarkMode] = useState(true)
    
@@ -45,7 +56,7 @@ const UserProvider = ({ children }) => {
     const toggleIsDesplegado = (booleano) => {
         setIsDesplegado(booleano)
         console.log(isDesplegado)
-        console.log(user);
+        console.log(users);
     }
     const toggleProductoSeleccionado = (valor) =>{
         setProductoSeleccionado(valor)
@@ -57,10 +68,9 @@ const UserProvider = ({ children }) => {
         console.log(isLogged, "is logged?");
     }
 
-    const data = { user, productos, role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
+    const data = {users_fetch,categorias_fetch,categorias,toggleSetCategorias, toggleSetUsuariosExistentes, user,toggleSetUser,users,productos,role, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged, productoSeleccionado, toggleProductoSeleccionado
     ,toggleSetIsDarkMode,isDarkMode}
-    // data de prueba para otro rol
-    // const data_vendedor = {vendedor, productos, isDesplegado, toggleIsDesplegado, isLogged, toggleIsLogged}
+   
     return (
         <UserContext.Provider value={data}>
             {children}

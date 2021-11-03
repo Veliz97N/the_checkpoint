@@ -5,11 +5,11 @@ import UserContext from '../../UserContext/UserContext';
 
 const Producto_en_tabla_responsive = (props) => {
 
-    const {productoSeleccionado, toggleProductoSeleccionado}= useContext(UserContext); //ACA RECIBE LA WEAAAA 
+    const {productoSeleccionado, toggleProductoSeleccionado,categorias}= useContext(UserContext); //ACA RECIBE LA WEAAAA 
     const visibleEditarProductoCategoria = {
         visibility: 'visible',
         fontSize: "1.4rem",
-        color:'black',
+        color:'white',
         transition: "all .5s ease;",
 
     }
@@ -21,22 +21,32 @@ const Producto_en_tabla_responsive = (props) => {
          
     }
     const activopapi ={
-        background: "#80ED99",
+        background: "#667ea0",
         transition: "all .5s ease;",  
+        opacity: "0.8",
     }
     const noactivopapi ={
-        background: "#57CC99",
+        background: "#667ea0",
         transition: "all 0.5s ease;",  
     }
     const [isShow, setIsShow] = useState(false) 
     
     const handler_InformacionProductoModificar = () => {
-        const informacion = {nombreProducto: props.producto.nombreProducto,
-                            
-                            valorUnidad: props.producto.valorUnidad,
-                            stockDisponible: props.producto.stockDisponible}
+        let categoria_nombre
+        categorias.forEach(categoria=>{
+            if(categoria.id===props.producto.categoria_id){
+                categoria_nombre=categoria.nombre_cat
+            }
+        })
+        const informacion = {nombreProducto: props.producto.nombre,
+                            codigodebarras: props.producto.codigo_barras,
+                            categoria: props.producto.categoria_id,
+                            categoria_nombre:categoria_nombre,
+                            valorUnidad: props.producto.precio_venta,
+                            stockDisponible: props.producto.stock,
+                            id:props.producto.id}
+        
         toggleProductoSeleccionado(informacion)
-
     }
 
 

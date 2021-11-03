@@ -11,8 +11,11 @@ import Tarjeta_Usuario_Activo from './Tarjeta_Usuario_Activo'; //Se importa la t
 
 import { Link } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
+import useLocalStorage from '../useLocalStorage';
 
 const Sidebar = () => {
+
+    const [usuarioGuardadito, setUsuarioGuardadito] = useLocalStorage('name',"")
 
     const activo = {
         width: '13rem',
@@ -20,7 +23,7 @@ const Sidebar = () => {
         transition: "all ease .5s",     
       };
       const no_activo ={
-          width: '3.5rem',
+          width: '3rem',
           overflow: 'hidden',
           transition: "all ease .5s",
           
@@ -73,7 +76,8 @@ const Sidebar = () => {
 
 
         </div>
-        :<div className=" no_activo sidebar d-flex flex-column justify-content-between">
+        :<div className=" no_activo sidebar d-flex flex-column justify-content-between"
+        >
             
             <ul className="nav-li">
                 <li>
