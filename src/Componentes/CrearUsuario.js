@@ -223,7 +223,7 @@ const CrearUsuario = () => {
 
     return (
       <Layout hasNavbar hasSidebar>
-        {user.role_id!==1? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
+        {parseInt(user.role_id)!==1? <h1 className="noPermisos"> Usted no posee permisos suficientes para acceder a esta categoria </h1>
         :
         !isChiquito ? (
           <div className="crearUsuario">

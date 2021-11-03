@@ -105,14 +105,7 @@ const ModificarUsuario = (props) => {
         usuarioModificado.email!=="" &&
         usuarioModificado.email.length>=6 &&
         usuarioModificado.email.includes("@")
-      ){
-        
-              if(rol_nuevoUsuario==="0"){
-                usuarioModificado.role_id="1"
-              }
-              else if(rol_nuevoUsuario==="1"){
-                usuarioModificado.role_id="2"
-              }
+      ){             
 
               let existe = {username: false, email: false}
               for(let x=0; x< users_Recargado.length; x++){
@@ -223,6 +216,19 @@ const ModificarUsuario = (props) => {
       } else {
         setBooleano_feliz_confirm_password(false);
         usuarioModificado.confirmar_password= props.user.password
+      }
+    }
+    if(rol===true){
+      console.log(rol_nuevoUsuario)
+      if(rol_nuevoUsuario===0){
+        console.log("INGRESE AL ROLE")
+        usuarioModificado.role_id="1"
+        console.log(usuarioModificado.role_id)
+      }
+      else if(rol_nuevoUsuario===1){
+        console.log("INGRESE AL ROLE")
+        usuarioModificado.role_id="2"
+        console.log(usuarioModificado.role_id)
       }
     }
     
@@ -705,7 +711,7 @@ const ModificarUsuario = (props) => {
                     >
                       <div className="datos_usuario me-4 d-flex flex-column my-auto py-1">
                         <div className="nombre_usuario mx-auto">
-                          {rol_nuevoUsuario===1? "Vendedor":"Administrador"}
+                          {!rol?(parseInt(props.user.role_id)===1?"Administrador":"Vendedor"):(rol_nuevoUsuario===1? "Vendedor":"Administrador")}
                         </div>
                       </div>
                     </button>

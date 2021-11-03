@@ -7,13 +7,13 @@ import UserContext from '../../UserContext/UserContext';
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 import { useMediaQuery } from 'react-responsive';
-import { Fetch } from '../../Fetch';
+import { Fetch, Fetch_productos } from '../../Fetch';
 
 import Layout from '../../Folder_Contenido_General/Layout';
 
 const Catalogo_PaginaPrincipal = () => {
-    const {productos}  = useContext(UserContext);
 
+    const productos = Fetch_productos()
     const noactivopapi = {
         background: "#667ea0",
         transition: "all 0.5s ease;",

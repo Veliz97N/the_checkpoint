@@ -59,21 +59,23 @@ function Estadisticas() {
     const response = await fetch(urlVentas);
     const data = await response.json();
 
+
     const formattedDate = convertDate(startDate);
+    
 
     for (let x = 0; x < data.length; x++) {
       if (formattedDate === data[x].fecha) {
         totalVentaDia += data[x].total;
         console.log(totalVentaDia);
-        if (data[x].metodo_pago === "Tarjeta") {
-          totalTarjeta += data[x].total;
-        } else if (data[x].metodo_pago === "Efectivo") {
-          totalEfectivo = totalVentaDia - totalTarjeta;
+        if (data[x].metodo_pago === "Tarjeta"){
+          totalTarjeta += data[x].total
+        } else if (data[x].metodo_pago === "Efectivo"){
+          totalEfectivo = totalVentaDia - totalTarjeta
         }
       }
     }
 
-    let contenedor_ventas_negocio = [];
+    let contenedor_ventas_negocio=[]
     for (let x = 0; x < data.length; x++) {
       let contador = 0;
       let objeto = { fecha: data[x].fecha, total: data[x].total };
@@ -84,7 +86,7 @@ function Estadisticas() {
       }
       if (contador === 0) {
         for (let y = x + 1; y < data.length; y++) {
-          if (data[x].fecha === data[y].fecha) {
+          if (data[x].fecha == data[y].fecha) {
             objeto.total += data[y].total;
           }
         }
@@ -92,25 +94,15 @@ function Estadisticas() {
       }
     }
     
-    
+    let variableFecha_Graficos = 0
    contenedor_ventas_negocio=(contenedor_ventas_negocio.sort((a, b) => newDateProyecto(a.fecha)-newDateProyecto(b.fecha)))
-    
+ 
 
-    console.log(contenedor_ventas_negocio);
-    for(let x=0; x<contenedor_ventas_negocio.length; x++){
 
-    }
-    const datosRecibidos = [
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-7].total,
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-6].total,
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-5].total,
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-4].total,
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-3].total,
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-2].total,
-      contenedor_ventas_negocio[contenedor_ventas_negocio.length-1].total,
-    ];
+
+    const datosRecibidos = [800, 515, 651, 239, 658, 557, 800];
     //El dia seleccionado
-    
+
     const productosMasVendidos = [
       {
         nombreproducto: "Corona",
@@ -136,14 +128,14 @@ function Estadisticas() {
     ];
 
     const dias = [
-      "Lunes",
-      "Martes",
-      "Miercoles",
-      "Jueves",
-      "Viernes",
-      "Sabado",
-      "Domingo",
-    ];
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado",
+    "Domingo",
+  ];
 
     const informacion_Base_Datos = {
       labels: dias,
@@ -171,12 +163,13 @@ function Estadisticas() {
     setTotalVenta_Efectivo(totalVentadia_Efectivo);
     setDatos_A_Graficar(informacion_Base_Datos);
     setProductosMasVendidos(productosMasVendidos);
+    console.log(productosMasVendidos);
   }
 
   function newDateProyecto(d1){
     var parts =d1.split('/');
     var d1 = (parts[2] + parts[1] + parts[0]).toString();
-    
+    console.log(d1)
     return d1
     }
 
@@ -191,7 +184,7 @@ function Estadisticas() {
 
   return (
     <Layout hasNavbar hasSidebar>
-      {user.role_id !== 1 ? (
+      {parseInt(user.role_id) !== 1 ? (
         <h1 className="noPermisos">
           {" "}
           Usted no posee permisos suficientes para acceder a esta categoria
