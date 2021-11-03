@@ -27,7 +27,7 @@ const ModificarProducto = () => {
         
     }
     const input_ingresarNuevoUsuario_Desactivado = {
-        backgroundColor: "#667ea0",
+        backgroundColor: "#0f2b4e",
         color: "#fff",
         fontSize: "1.3rem",
       };
@@ -288,7 +288,7 @@ const ModificarProducto = () => {
 
     const [nombre, setNombre] = useState();
     const handler_Editar_Nombre = (e) => {
-        if (e.target.checked == true) {
+        if (e.target.checked === true) {
             setNombre(true);
         } else {
             setNombre(false);
@@ -297,7 +297,7 @@ const ModificarProducto = () => {
 
     const [categoria, setCategoria] = useState();
     const handle_Editar_Categoria = (e) => {
-        if (e.target.checked == true) {
+        if (e.target.checked === true) {
             setCategoria(true);
         } else {
             setCategoria(false);
@@ -306,7 +306,7 @@ const ModificarProducto = () => {
 
     const [codigoBarras, setCodigoBarras] = useState();
     const handle_Editar_CodigoBarras = (e) => {
-        if (e.target.checked == true) {
+        if (e.target.checked === true) {
             setCodigoBarras(true);
         } else {
             setCodigoBarras(false);
@@ -315,7 +315,7 @@ const ModificarProducto = () => {
 
     const [valorUnidad, setValorUnidad] = useState();
     const handle_Editar_ValorUnidad = (e) => {
-        if (e.target.checked == true) {
+        if (e.target.checked === true) {
             setValorUnidad(true);
         } else {
             setValorUnidad(false);
@@ -323,7 +323,7 @@ const ModificarProducto = () => {
     };
     const [stockDisponible, setStockDispinible] = useState();
     const handle_Editar_StockDisponible = (e) => {
-        if (e.target.checked == true) {
+        if (e.target.checked === true) {
             setStockDispinible(true);
         } else {
             setStockDispinible(false);
