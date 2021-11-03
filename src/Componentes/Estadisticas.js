@@ -233,7 +233,7 @@ function Estadisticas() {
                   </select>
                 </div>
 
-                <div className="row d-flex justify-content-center">
+                <div className="row d-flex justify-content-center fechas">
                   <div className="col-8 d-flex justify-content-center">
                     <div className="d-flex justify-content-center">
                       <div className="contenedorfecha mx-2">Fecha:</div>

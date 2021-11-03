@@ -578,7 +578,6 @@ code {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
-  
 }
 #col1, #col3{
   margin: 5px;
@@ -592,6 +591,13 @@ code {
 .estadisticas{
   padding: 15px;
 }
+
+.prueba {
+  height: 100%;
+}
+ .fechas {
+   padding: 0.8rem;
+ }
 
 .wrap_rol_email{
   margin-top: 40px;
