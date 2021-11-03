@@ -232,7 +232,6 @@ code {
   font-weight: 400;
   font-size: 6rem;
   text-align: center;
-  
 }
 
 .login h6{
@@ -256,7 +255,7 @@ code {
 
 
 
-.username-input input:focus, .password-input input:focus {
+.username-input input:focus, .password-input input:focus, .password-form-username input:focus {
   outline: none;
 }
   
@@ -616,3 +615,70 @@ code {
 }
 
 
+.forgot {
+  position: absolute;
+  width: 40%;
+  height: 8.625rem;
+  left: 30%;
+  top: 32%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 6rem;
+  text-align: center;
+  font-family: 'Titillium Web';
+}
+
+.forgot_password {
+  text-decoration: none;
+  color: var(--happy_input);
+  position: absolute;
+  top: 62%;
+  left: 58%;
+  font-style: italic;
+}
+
+.forgot_password:hover{
+  text-decoration: underline;
+}
+
+.password-form-username input {
+  position: absolute;
+  width: 50%;
+  height: 7%;
+  left: 27%;
+  top: 43%;
+  background: var(--happy_input);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 60px;
+  padding: 1rem;
+  color: #22577a;
+  
+}
+
+.forgot_password_button button {
+  font-family: 'Titillium Web';
+  position: absolute;
+  width: 50%;
+  height: 7%;
+  left: 27%;
+  top: 53%;
+  background: #47af82;
+  border-color: #47af82;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 60px;
+  /* color:black; */
+}
+
+.back_to_login {
+  text-decoration: none;
+  color: var(--happy_input);
+  position: absolute;
+  top: 62%;
+  left: 65%;
+  font-style: italic;
+}
+
+.back_to_login:hover{
+  text-decoration: underline;
+}

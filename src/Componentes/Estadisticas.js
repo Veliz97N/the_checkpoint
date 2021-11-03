@@ -38,6 +38,7 @@ function Estadisticas() {
   const opciones = {
     maintainAspectRatio: false,
     resposive: true,
+    color: "#fff"
   };
 
   const [totalVenta, setTotalVenta] = useState("");
@@ -162,7 +163,7 @@ function Estadisticas() {
         {
           label: "Venta Semanal",
           backgroundColor: "#0f2b4e",
-          textColor: "#000",
+          color: "#0000000",
           borderWidth: 1,
           hoverBackgroundColor: "#9400D3",
           data: datosRecibidos_total.reverse(),
@@ -214,7 +215,7 @@ function Estadisticas() {
                 className="col-4 d-flex justify-content-center aling-items-center"
                 id="stadistics"
               >
-                Estadisticas
+                Estadísticas
               </div>
             </div>
           </div>
@@ -228,13 +229,7 @@ function Estadisticas() {
                 >
                   <select className="browser-default custom-select col-4 me-2">
                     <option>Venta Diaria</option>
-                    {/* <option>
-                      Venta Semanal
-                    </option>
-                    <option>
-                      Venta Mensual
-                    </option>
-                   */}
+                   
                   </select>
                 </div>
 
@@ -281,7 +276,7 @@ function Estadisticas() {
                   className="col-12 d-flex justify-content-center"
                   id="titleStadistic"
                 >
-                  Grafico de Ventas
+                  Gráfico de Ventas
                 </div>
                 <div className=" col d-flex aling-content-center" id="datas">
                   <Bar data={datos_A_Graficar} options={opciones} />

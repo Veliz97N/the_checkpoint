@@ -11,6 +11,7 @@ import Ventas from '../Vista_Ventas/Ventas';
 import CrearUsuario from '../Componentes/CrearUsuario';
 import Estadisticas from '../Componentes/Estadisticas';
 import useLocalStorage from '../useLocalStorage';
+import forgotPassword from '../Componentes/forgotPassword';
 
 
 const ContenidoGeneral = () => {
@@ -31,6 +32,7 @@ const ContenidoGeneral = () => {
             <Route exact path="/usuario_crearusuario" component={CrearUsuario}/>
             <Route exact path="/modificarusuario" component={()=> <ModificarUsuario user={user}/>} /> 
             <Route exact path="/estadisticas" component={Estadisticas} />
+            <Route exact path="/forgot_password" component={forgotPassword}/>
             <Route exact path="/" component={()=> <Login authorized={false} />} /> 
     
           </div>

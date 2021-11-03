@@ -1,4 +1,5 @@
 import React, { useState,useContext } from "react";
+import { Link } from "react-router-dom";
 import useLocalStorage from "./useLocalStorage";
 import UserContext from './UserContext/UserContext';
 function LoginForm({login_function, error}) {
@@ -60,7 +61,11 @@ function LoginForm({login_function, error}) {
           Iniciar sesión
         </button>
       </div>
-
+      {(error !== "") ? 
+        <Link to="/forgot_password">
+        <p className="forgot_password">Olvistaste tu contrseña?</p>
+        </Link>
+         : ""}
       
     </form>
     </>
