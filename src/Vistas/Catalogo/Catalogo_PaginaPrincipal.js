@@ -72,6 +72,7 @@ const Catalogo_PaginaPrincipal = () => {
             
             const productoFiltrados = productos.filter(producto => (producto.nombre).toLowerCase().includes(valor_busqueda_producto.toLowerCase()))
             setListaProductosFiltrado(productoFiltrados)
+            console.log(productoFiltrados)
         }
         else if(tipoBusqueda==="1" &&valorBusqueda!==""){
             
